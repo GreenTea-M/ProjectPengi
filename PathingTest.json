@@ -1,0 +1,92 @@
+[
+	{
+		"title": "Start",
+		"tags": "",
+		"body": "You are lost. As you walk through the forest, you encounter the path fork from left to right. Where do you go?\n[[Left|LeftRoad.1]]\n[[Right|RightRoad.1]]\n",
+		"position": {
+			"x": 53,
+			"y": 790
+		},
+		"colorID": 0
+	},
+	{
+		"title": "LeftRoad.1",
+		"tags": "",
+		"body": "Further along the way, you encounter a river. Do you cross the river?\n<<changeBG red>>\n[[Cross the river|RiverCross]]\n[[Go back|LeftRoadBack]]\n",
+		"position": {
+			"x": 63,
+			"y": 431
+		},
+		"colorID": 0
+	},
+	{
+		"title": "RightRoad.1",
+		"tags": "unfinished",
+		"body": "WE got o right road.\nWhere do go?\n[img]cow.png[/img]\n<<showimage image.png 0,0>>\nasdfhasdfs\n[[Left|RR.Left]]\n[[Right|RR.Right]]\n",
+		"position": {
+			"x": 452,
+			"y": 432
+		},
+		"colorID": 0
+	},
+	{
+		"title": "RiverCross",
+		"tags": "unfinished",
+		"body": "Empty Text\n",
+		"position": {
+			"x": 70,
+			"y": 139
+		},
+		"colorID": 0
+	},
+	{
+		"title": "LeftRoadBack",
+		"tags": "",
+		"body": "As you went back, you found a new forking path. The path was not here before.\nDo you go left or right?\n[[Left|Start]]\n[[Right|NewMagicalPath]]\n",
+		"position": {
+			"x": -438,
+			"y": 445
+		},
+		"colorID": 0
+	},
+	{
+		"title": "NewMagicalPath",
+		"tags": "unfinished",
+		"body": "to do: magical path\n",
+		"position": {
+			"x": -432,
+			"y": 774
+		},
+		"colorID": 0
+	},
+	{
+		"title": "RR.Left",
+		"tags": "",
+		"body": "[[To]]\n",
+		"position": {
+			"x": 750,
+			"y": 813
+		},
+		"colorID": 0
+	},
+	{
+		"title": "RR.Right",
+		"tags": "",
+		"body": "Empty Text\n",
+		"position": {
+			"x": 785,
+			"y": 131
+		},
+		"colorID": 0
+	},
+	{
+		"title": "To",
+		"tags": "",
+		"body": "Empty Text\n",
+		"position": {
+			"x": 1059,
+			"y": 448
+		},
+		"colorID": 0
+	}
+]
