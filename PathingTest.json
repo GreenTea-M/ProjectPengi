@@ -62,7 +62,7 @@
 	{
 		"title": "RR.Left",
 		"tags": "",
-		"body": "[[To]]\n",
+		"body": "[[Something|To]]",
 		"position": {
 			"x": 750,
 			"y": 813
