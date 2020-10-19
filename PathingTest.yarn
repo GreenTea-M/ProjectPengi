@@ -1,4 +1,4 @@
-title: PathTest.Start
+title: PathingTest.Start
 tags: 
 colorID: 0
 position: 53,790
@@ -44,7 +44,7 @@ position: -438,445
 ---
 As you went back, you found a new forking path. The path was not here before.
 Do you go left or right?
-[[Left|PathTest.Start]]
+[[Left|PathingTest.Start]]
 [[Right|NewMagicalPath]]
 ===
 title: NewMagicalPath
