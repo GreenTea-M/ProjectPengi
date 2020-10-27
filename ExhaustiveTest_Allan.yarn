@@ -1,9 +1,9 @@
 title: Start
 tags: 
 colorID: 0
-position: 330,482
+position: 332,482
 ---
-Cow: Hello! Can you share some <b>cookies</b>?
+Cow: Hello! Can <color=#ff00ff>you</color> <u>share</u> some <b>cookies</b>?
 [[Yes|GiveCookieScenario]]
 [[No|MyCookieScenario]]
 ===
@@ -59,4 +59,11 @@ Now, I have {$money}!
 <<else>>
 	Drat, I can't afford anything.
 <<endif>>
+===
+title: PathingTest.Start
+tags: 
+colorID: 0
+position: 477,-94
+---
+Empty Text
 ===
