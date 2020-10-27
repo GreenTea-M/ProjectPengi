@@ -1037,7 +1037,7 @@ MonoBehaviour:
   dialoguePortraitPrefab: {fileID: 7198581097707215212, guid: a0e438b61aedd174e835bcb64f26a16d, type: 3}
   dialogueOptionsPrefab: {fileID: 0}
   prefabPortrait: {fileID: 7198581097707215212, guid: a0e438b61aedd174e835bcb64f26a16d, type: 3}
-  textSpeed: 0.025
+  textSpeed: 0.05
   onDialogueStart:
     m_PersistentCalls:
       m_Calls: []

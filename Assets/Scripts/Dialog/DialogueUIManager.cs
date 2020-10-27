@@ -98,7 +98,6 @@ namespace Dialog
                 text = line.ID;
             }
 
-            // todo: identify speaker
             string candidateSpeaker = text.Split(':')[0];
             Sprite newSprite = iconManager.GetSprite(candidateSpeaker);
             if (!candidateSpeaker.Equals(_lastSpeaker) || (newSprite == null && _lastSpeaker.Equals("")))
@@ -126,6 +125,7 @@ namespace Dialog
             if (textSpeed > 0.0f)
             {
                 var stringBuilder = new StringBuilder();
+                var markupBuilder = new StringBuilder();
                 var originalTextSpeed = textSpeed;
                 bool skippingChars = false;
                 // todo: do something about markup symbols
@@ -134,6 +134,30 @@ namespace Dialog
 
                 foreach (var c in text)
                 {
+                    if (markupBuilder.Length != 0)
+                    {
+                        // adjustment for color to work
+                        if (markupBuilder.ToString().Equals("<color="))
+                        {
+                            markupBuilder.Append("#");
+                        }
+                        
+                        markupBuilder.Append(c);
+                        
+                        if (c.Equals('>'))
+                        {
+                            stringBuilder.Append(markupBuilder);
+                            markupBuilder.Clear();
+                        }
+                        continue;
+                    }
+                    
+                    if (c.Equals('<'))
+                    {
+                        markupBuilder.Append(c);
+                        continue;
+                    }
+
                     stringBuilder.Append(c);
                     onLineUpdate?.Invoke(stringBuilder.ToString());
                     if (userRequestedNextLine)
