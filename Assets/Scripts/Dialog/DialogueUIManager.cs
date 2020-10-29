@@ -111,6 +111,7 @@ namespace Dialog
                 text = line.ID;
             }
 
+            // todo: identify speaker
             string candidateSpeaker = text.Split(':')[0];
             Sprite newSprite = iconManager.GetSprite(candidateSpeaker);
             if (!candidateSpeaker.Equals(_lastSpeaker) || (newSprite == null && _lastSpeaker.Equals("")))
@@ -178,6 +179,7 @@ namespace Dialog
                         break;
                     }
 
+                    yield return new WaitForSeconds(TextRate);
                     yield return new WaitForSeconds(TextRate);
                 }
             }
