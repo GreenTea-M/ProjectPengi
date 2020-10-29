@@ -17,6 +17,8 @@ namespace Dialog
     {
         public IconManager iconManager;
 
+        [Header("Critical")] public GameConfiguration gameConfiguration;
+        
         [Header("Prefabs")] [Tooltip("Prefab that contains the texts")]
         public GameObject dialogueItemPrefab;
 
@@ -24,11 +26,6 @@ namespace Dialog
         public GameObject dialoguePortraitPrefab;
 
         [Tooltip("Prefab for the options")] public GameObject dialogueOptionsPrefab;
-
-        public GameObject prefabPortrait;
-
-        [Header("Values")] [Tooltip("Text speed in characters per second")]
-        public float textSpeed = 0.025f;
 
         private bool userRequestedNextLine = false;
 
@@ -60,9 +57,12 @@ namespace Dialog
         private PortraitItem[] _portraitItems = new PortraitItem[PoolSize];
         private int _portraitIndex = 0;
         private string _lastSpeaker = "";
+        
+        private float TextRate => gameConfiguration.textRate;
 
         private void Awake()
         {
+            Debug.Assert(gameConfiguration != null);
             Debug.Assert(_textItems != null);
             Debug.Assert(iconManager != null);
 
@@ -83,6 +83,19 @@ namespace Dialog
             return Dialogue.HandlerExecutionType.PauseExecution;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// For changing up the text. You have three places to watch out for:
+        /// (1) When text is fed to the string slowly
+        /// (2) When text was never fed to the string slowly
+        /// (3) User decided to show the entire text immediately
+        /// </remarks>
+        /// <param name="line"></param>
+        /// <param name="localisationProvider"></param>
+        /// <param name="onComplete"></param>
+        /// <returns></returns>
         private IEnumerator DoRunLine(Yarn.Line line, ILineLocalisationProvider localisationProvider,
             System.Action onComplete)
         {
@@ -122,30 +135,25 @@ namespace Dialog
             textItem.SetToCenter();
             onLineUpdate.AddListener(textItem.UpdateLine);
 
-            if (textSpeed > 0.0f)
+            if (TextRate > 0.0f)
             {
                 var stringBuilder = new StringBuilder();
                 var markupBuilder = new StringBuilder();
-                var originalTextSpeed = textSpeed;
-                bool skippingChars = false;
+                var originalTextSpeed = TextRate;
                 // todo: do something about markup symbols
                 // todo: research text gui things that people may use
                 // todo: change text speed
 
                 foreach (var c in text)
                 {
+                    #region for hiding markup
                     if (markupBuilder.Length != 0)
                     {
-                        // adjustment for color to work
-                        if (markupBuilder.ToString().Equals("<color="))
-                        {
-                            markupBuilder.Append("#");
-                        }
-                        
                         markupBuilder.Append(c);
                         
                         if (c.Equals('>'))
                         {
+                            AdjustMarkups(markupBuilder);
                             stringBuilder.Append(markupBuilder);
                             markupBuilder.Clear();
                         }
@@ -157,6 +165,7 @@ namespace Dialog
                         markupBuilder.Append(c);
                         continue;
                     }
+                    #endregion for hiding markup
 
                     stringBuilder.Append(c);
                     onLineUpdate?.Invoke(stringBuilder.ToString());
@@ -164,16 +173,18 @@ namespace Dialog
                     {
                         // We've requested a skip of the entire line.
                         // Display all of the text immediately.
+                        text = AdjustMarkups(text);
                         onLineUpdate?.Invoke(text);
                         break;
                     }
 
-                    yield return new WaitForSeconds(textSpeed);
+                    yield return new WaitForSeconds(TextRate);
                 }
             }
             else
             {
                 // Display the entire line immediately if textSpeed <= 0
+                text = AdjustMarkups(text);
                 onLineUpdate?.Invoke(text);
             }
 
@@ -198,6 +209,16 @@ namespace Dialog
             onLineUpdate.RemoveListener(textItem.UpdateLine);
 
             onComplete();
+        }
+
+        private void AdjustMarkups(StringBuilder markupBuilder)
+        {
+            markupBuilder.Replace("<color=", "<color=#");
+        }
+
+        private string AdjustMarkups(String markupBuilder)
+        {
+            return markupBuilder.Replace("<color=", "<color=#");
         }
 
         public override void RunOptions(OptionSet optionSet, ILineLocalisationProvider localisationProvider,
