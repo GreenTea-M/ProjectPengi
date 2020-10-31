@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Yarn.Unity;
 
 /// <summary>
 /// This class holds all serializable variables for one save slot.
@@ -12,14 +14,12 @@ using UnityEngine.Serialization;
 [Serializable]
 public class SaveData
 {
-    [FormerlySerializedAs("characterName")] [Tooltip("Name used in-game for main character's name")]
-    public String mainName;
-
-    [Header("Prototype artefacts")]
-    // todo: remove this two values after removing save game prototypes
-    public int testNumber;
-
-    public String testString;
+    public string name = "";
+    public string currentYarnNode = "Start";
+    public string lastDialog = "";
+    public Sprite lastSprite = null;
+    
+    public List<InMemoryVariableStorage.DefaultVariable> savedVariables;
 
     private SaveData()
     {

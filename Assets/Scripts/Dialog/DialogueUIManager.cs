@@ -57,6 +57,7 @@ namespace Dialog
         private PortraitItem[] _portraitItems = new PortraitItem[PoolSize];
         private int _portraitIndex = 0;
         private string _lastSpeaker = "";
+        private bool requestDialogWrite = false;
         
         private float TextRate => gameConfiguration.textRate;
 
@@ -134,6 +135,11 @@ namespace Dialog
             _textIndex = (_textIndex + 1) % PoolSize;
             TextItem textItem = _textItems[_textIndex];
             textItem.SetToCenter();
+            if (requestDialogWrite)
+            {
+                gameConfiguration.autoSave.lastDialog = text;
+                gameConfiguration.autoSave.lastSprite = newSprite;
+            }
             onLineUpdate.AddListener(textItem.UpdateLine);
 
             if (TextRate > 0.0f)
@@ -357,6 +363,12 @@ namespace Dialog
 
             waitingForOptionSelection = false;
             currentOptionSelectionHandler?.Invoke(optionID);
+        }
+
+        public void	 RequestLastDialogWrite()
+        {
+            requestDialogWrite = true;
+            gameConfiguration.autoSave.lastDialog = "";
         }
     }
 }
