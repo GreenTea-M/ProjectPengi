@@ -1,4 +1,6 @@
 using System;
+using GameSystem.Save;
+using Tomato.Core.GameSystem.Save;
 using UnityEngine;
 
 /// <summary>
@@ -11,8 +13,30 @@ public class GameConfiguration : ScriptableObject
 {
     [Header("Constants")] [Tooltip("Number of max save slots")]
     public int maxSaveSlots = 3;
+    [Tooltip("This will be the game configuration used on new game")]
+    public GameConfiguration baseConfiguration;
 
     [Header("Option variables")] 
     [Tooltip("The delay in seconds that each character shows up; If less than 0, show instantly")]
     public float textRate = 0.025f;
+
+    [Header("Save data")]
+    public SaveData saveData;
+
+    [Header("Auto save (Do not touch)")] 
+    public bool isSaveDirty = false;
+    public SaveData autoSave;
+
+    [Header("Other global stuff")] 
+    public SaveIO saveIo;
+
+    private void Awake()
+    {
+        saveIo = new SaveIO(this);
+    }
+
+    public void ResetSaveData()
+    {
+        saveData = baseConfiguration.saveData;
+    }
 }

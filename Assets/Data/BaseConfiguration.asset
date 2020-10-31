@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74ec866e657ac3346a8dc305750470c7, type: 3}
-  m_Name: GameConfiguration
+  m_Name: BaseConfiguration
   m_EditorClassIdentifier: 
   maxSaveSlots: 7
-  baseConfiguration: {fileID: 11400000, guid: dcbf9e10567ae3f4e9278d0692211347, type: 2}
+  baseConfiguration: {fileID: 0}
   textRate: 0.025
   saveData:
     name: 
-    currentYarnNode: BuySomething
-    lastDialog: You have 1 apples
+    currentYarnNode: Start
+    lastDialog: 
     lastSprite: {fileID: 0}
     savedVariables: []
-  isSaveDirty: 1
+  isSaveDirty: 0
   autoSave:
     name: 
-    currentYarnNode: BuySomething
-    lastDialog: I would like a horse please.
+    currentYarnNode: Start
+    lastDialog: 
     lastSprite: {fileID: 0}
     savedVariables: []

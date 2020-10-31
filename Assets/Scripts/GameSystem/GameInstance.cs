@@ -1,3 +1,4 @@
+using GameSystem.Save;
 using Tomato.Core.GameSystem.Save;
 using UnityEngine;
 using Yarn.Unity;
@@ -46,7 +47,6 @@ public class GameInstance : MonoBehaviour
 
         // init
         SaveLocator = new SaveLocator();
-        SaveIO = new SaveIO(this);
 
         // debug
         if (useDebugGameSave && debugSaveData != null)
