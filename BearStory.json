@@ -1,0 +1,92 @@
+[
+	{
+		"title": "Bear.EnterStore",
+		"tags": "",
+		"body": "Old mole offers a reward for finding her shoe\nPlayer enters the bear shop ~ hello im looking for shoe ~\nSees a shelf of jim and jams and is likw wow ~ many things\nGets scared by bear owner and knocks down items\n[[Clean up|Bear.CleanUp]]\n[[You suck I won't clean|Bear.NotCleanUp]]",
+		"position": {
+			"x": 368,
+			"y": 170
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Bear.CleanUp",
+		"tags": "",
+		"body": "Puzzle time!\n<<doPuzzle teddy>>\n<<doPuzzle peaceSign>>\n<<doPuzzle frog>>\n[[I am all done|Bear.PuzzleDone]]",
+		"position": {
+			"x": 712,
+			"y": 364
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Bear.NotCleanUp",
+		"tags": "",
+		"body": "Penguin gets scared and runs away",
+		"position": {
+			"x": 708,
+			"y": -50
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Bear.PuzzleDone",
+		"tags": "",
+		"body": "Bear is like what r u doing here? u little flightless cretin\nI can smell the fish on you\n[[I'm here for shoe? Where is shoe for old mole lady|Bear.ForOldLady]]\n[[Ask to get signature|Bear.GetSignature]]",
+		"position": {
+			"x": 1086,
+			"y": 361
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Bear.ForOldLady",
+		"tags": "",
+		"body": "I'm here for shoe?\nWhere is shoe for old mole lady\nOh the mole lady, i haven't seen her in years???\nwhere did you see her?\nwe though she was dead are you sure its not a ghost?\nPenguin is like kinda freaked out, questioning all beliefs and is like oh man oh diddly\nBear: but I don't know where the shoe is? but who are you? what are you doing in this city?\nGet deep, asks question, bear gets philosophical\npenguin talks about their dream\n[[Bear tells dream|Bear.BearDream]]",
+		"position": {
+			"x": 1471,
+			"y": 97
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Bear.GetSignature",
+		"tags": "",
+		"body": "Bear is like nah please stop get out of my store you disrespectul wench\n[[Penguin is like oh no gimmi i want sign|Bear.BegSignature]]\n[[I want to achieve my dream tho|Bear.JustifyDream]]",
+		"position": {
+			"x": 1107,
+			"y": 951
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Bear.BegSignature",
+		"tags": "",
+		"body": "Bear doesn't give signature",
+		"position": {
+			"x": 1738,
+			"y": 971
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Bear.JustifyDream",
+		"tags": "",
+		"body": "Bear is like what about MY dreams.\nthe dreams of my legacy?\nWho you think you are?\n[[Bear dream|Bear.BearDream]]",
+		"position": {
+			"x": 1471,
+			"y": 553
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Bear.BearDream",
+		"tags": "",
+		"body": "Empty Text",
+		"position": {
+			"x": 1858,
+			"y": 327
+		},
+		"colorID": 0
+	}
+]
