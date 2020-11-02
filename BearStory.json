@@ -74,15 +74,15 @@
 		"tags": "",
 		"body": "Bear is like what about MY dreams.\nthe dreams of my legacy?\nWho you think you are?\n[[Bear dream|Bear.BearDream]]",
 		"position": {
-			"x": 1471,
-			"y": 553
+			"x": 1452,
+			"y": 589
 		},
 		"colorID": 0
 	},
 	{
 		"title": "Bear.BearDream",
 		"tags": "",
-		"body": "Empty Text",
+		"body": "Bear has internal conflict about family self; heritage and personal branding",
 		"position": {
 			"x": 1858,
 			"y": 327
