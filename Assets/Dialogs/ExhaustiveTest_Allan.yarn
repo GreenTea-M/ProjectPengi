@@ -13,7 +13,8 @@ tags:
 colorID: 0
 position: 390,196
 ---
-[[Give Cookie???|PathingTest.Start]]
+<<doPuzzle cement>>
+Cement time!
 ===
 title: MyCookieScenario
 tags: 

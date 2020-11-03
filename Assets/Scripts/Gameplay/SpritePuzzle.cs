@@ -86,5 +86,10 @@ namespace Gameplay
                 yield return new WaitForSeconds(rate);
             }
         }
+
+        public bool IsFinish()
+        {
+            return isSolved;
+        }
     }
 }

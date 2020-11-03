@@ -371,5 +371,18 @@ namespace Dialog
             requestDialogWrite = true;
             gameConfiguration.autoSave.lastDialog = "";
         }
+
+        public void ShowElements(bool shouldShow)
+        {
+            foreach (var item in _textItems)
+            {
+                item.gameObject.SetActive(shouldShow);
+            }
+
+            foreach (var item in _portraitItems)
+            {
+                item.gameObject.SetActive(shouldShow);
+            }
+        }
     }
 }
