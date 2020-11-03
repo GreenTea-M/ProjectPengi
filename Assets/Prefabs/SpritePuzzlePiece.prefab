@@ -98,8 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sqrTolerance: 0.5
-  forceMultiplier: 40
-  gravitateSpeed: 0.0625
+  forceMultiplier: 10
 --- !u!50 &3917481617320116241
 Rigidbody2D:
   serializedVersion: 4

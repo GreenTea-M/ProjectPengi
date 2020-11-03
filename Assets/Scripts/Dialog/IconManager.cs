@@ -6,6 +6,7 @@ using UnityEngine;
 public class IconManager : MonoBehaviour
 {
     public IconItem[] iconList;
+
     public Sprite GetSprite(string speakerName)
     {
         foreach (var iconItem in iconList)

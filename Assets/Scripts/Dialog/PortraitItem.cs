@@ -25,12 +25,12 @@ namespace Dialog
             float endTime = startTime + scrollDuration;
             Vector3 startPosition = transform.position;
             Vector3 targetPosition = startPosition + Vector3.up * distance;
-            while (Time.time < endTime)
-            {
-                transform.position = Vector3.Lerp(startPosition, targetPosition,
-                    (Time.time - startTime) / scrollDuration);
-                yield return new WaitForSeconds(delay);
-            }
+            // while (Time.time < endTime)
+            // {
+            //     transform.position = Vector3.Lerp(startPosition, targetPosition,
+            //         (Time.time - startTime) / scrollDuration);
+            //     yield return new WaitForSeconds(delay);
+            // }
 
             transform.position = targetPosition;
             yield return null;

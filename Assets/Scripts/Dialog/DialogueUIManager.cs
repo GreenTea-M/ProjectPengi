@@ -3,7 +3,6 @@ using System.Collections;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 using Yarn;
 using Yarn.Unity;
 
@@ -16,7 +15,7 @@ namespace Dialog
     ///  todo: add more documentation
     public class DialogueUIManager : Yarn.Unity.DialogueUIBehaviour
     {
-        [FormerlySerializedAs("assetManager")] public IconManager iconManager;
+        public IconManager iconManager;
 
         [Header("Critical")] public GameConfiguration gameConfiguration;
         

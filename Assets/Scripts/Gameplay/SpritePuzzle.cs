@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -11,7 +10,6 @@ namespace Gameplay
     {
         public float sqrTolerance = 0.5f;
         public float forceMultiplier = 10f;
-        public float gravitateSpeed = 1f;
 
         private Vector3 targetPosition;
         private bool isSolved = false;
@@ -63,9 +61,10 @@ namespace Gameplay
 
             if ((targetPosition - transform.position).sqrMagnitude < sqrTolerance)
             {
+                Debug.Log("We win: " + name);
                 isSolved = true;
                 isDragging = false;
-                StartCoroutine(GravitateToTarget());
+                // todo: move to position
                 return;
             }
 
@@ -74,17 +73,6 @@ namespace Gameplay
 
             isDragging = false;
             _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
-        }
-
-        private IEnumerator GravitateToTarget()
-        {
-            const float rate = 1f / 60f;
-
-            while (transform.position != targetPosition)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, gravitateSpeed);
-                yield return new WaitForSeconds(rate);
-            }
         }
     }
 }
