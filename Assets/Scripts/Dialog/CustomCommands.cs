@@ -20,9 +20,9 @@ namespace Dialog
         
         [Header("Assets")]
         public AudioItem[] audioList;
-
-        [FormerlySerializedAs("puzzleItems")] [Tooltip("Puzzles should have PuzzleParent script")]
+        [Tooltip("Puzzles should have PuzzleParent script")]
         public PuzzleItem[] puzzleList;
+        public SpriteItem[] headerList;
 
         [Header("Prefabs")] 
         public GameObject prefabFadedAudio;
@@ -31,6 +31,7 @@ namespace Dialog
         // Drag and drop your Dialogue Runner into this variable.
         public DialogueRunner dialogueRunner;
         public DialogueUIManager dialogueUiManager;
+        public SpriteRenderer headerSprite;
 
         private FadedAudio _lastAudio = null;
         
@@ -43,16 +44,43 @@ namespace Dialog
             Debug.Assert(dialogueRunner != null);
             Debug.Assert(dialogueUiManager != null);
             Debug.Assert(prefabFadedAudio != null);
+            Debug.Assert(headerSprite != null);
             
             dialogueRunner.AddCommandHandler(
                 "playAudio", // the name of the command
                 PlayAudio // the method to run
             );
             
-            dialogueRunner.AddCommandHandler(
-                "doPuzzle", // the name of the command
-                DoPuzzle // the method to run
-            );
+            dialogueRunner.AddCommandHandler("doPuzzle", DoPuzzle);
+            dialogueRunner.AddCommandHandler("changeHeader", ChangeHeader);
+        }
+
+        /// <summary>
+        /// Call in YarnSpinner as:
+        /// <<changeHeader headerName>>
+        /// </summary>
+        /// <example>
+        /// <<changeHeader fishMarket>>
+        /// </example>
+        /// <param name="parameters">1 name for the header</param>
+        private void ChangeHeader(string[] parameters)
+        {
+            if (parameters.Length != 1)
+            {
+                return;
+            }
+
+            string searchTerm = parameters[0].ToUpper();
+            foreach (var item in headerList)
+            {
+                if (!item.name.ToUpper().Equals(searchTerm)) continue;
+
+                headerSprite.sprite = item.sprite;
+                    
+                return;
+            }
+
+            headerSprite.sprite = null; //  default behavior when no sprite found
         }
 
         #region PlayAudio
@@ -78,6 +106,8 @@ namespace Dialog
                     
                 return;
             }
+            
+            Debug.LogWarning($"Audio name not found: {searchTerm}");
         }
 
         private FadedAudio GetNewAudio()
@@ -122,6 +152,8 @@ namespace Dialog
                     
                 return;
             }
+            
+            Debug.LogWarning($"Puzzle name not found: {searchTerm}");
         }
 
         public void InformPuzzleDone()
@@ -151,18 +183,6 @@ namespace Dialog
         private void ChangeIcon(string[] paremeters)
         {
             // todo: implement change icon
-        }
-
-        /// <summary>
-        /// todo: document
-        /// </summary>
-        /// <example>
-        /// <<changeHeader fishMarket>>
-        /// </example>
-        /// <param name="parameters">1 name for the header</param>
-        private void ChangeHeader(string[] parameters)
-        {
-            // todo implement change header
         }
 
         /* Example:
@@ -207,5 +227,12 @@ namespace Dialog
     {
         public GameObject puzzlePrefab;
         public String name;
+    }
+
+    [Serializable]
+    public class SpriteItem
+    {
+        public Sprite sprite;
+        public string name;
     }
 }
