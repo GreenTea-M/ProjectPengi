@@ -1,0 +1,72 @@
+[
+	{
+		"title": "Start",
+		"tags": "",
+		"body": "<<playAudio fishMarket>>\nCow: Hello! Can <color=ff00ff>you</color> <u>share</u> some <b>cookies</b>?\n[[Yes|GiveCookieScenario]]\n[[No|MyCookieScenario]]",
+		"position": {
+			"x": 332,
+			"y": 482
+		},
+		"colorID": 0
+	},
+	{
+		"title": "GiveCookieScenario",
+		"tags": "",
+		"body": "[[Give Cookie???|PathingTest.Start]]\n",
+		"position": {
+			"x": 390,
+			"y": 196
+		},
+		"colorID": 0
+	},
+	{
+		"title": "MyCookieScenario",
+		"tags": "",
+		"body": "Cow: Can I buy the cookie from you? 😉\n[[Yes|CookieBought]]\n[[No|CookieNotBought]]\n",
+		"position": {
+			"x": 600,
+			"y": 624
+		},
+		"colorID": 0
+	},
+	{
+		"title": "CookieBought",
+		"tags": "",
+		"body": "<<set $money to 1>>\nCow: Thank you!\n<<set $cow_friendship = 1>>\nCow: Yay!\n[[Continue|BuySomething]]\n",
+		"position": {
+			"x": 722,
+			"y": 290
+		},
+		"colorID": 0
+	},
+	{
+		"title": "CookieNotBought",
+		"tags": "",
+		"body": "Empty Text\n",
+		"position": {
+			"x": 1063,
+			"y": 357
+		},
+		"colorID": 0
+	},
+	{
+		"title": "BuySomething",
+		"tags": "",
+		"body": "<<set $apples=1>>\nYou have [plural {$apples} one=\"an apple\" other=\"% apples\"]\nNow, I have {$money}!\n<<if $money > 1>>\n\tI would like a horse please.\n\t<<set $money to $money - 2>>\n\t<<set $hasHorse to true>>\n<<elseif $money eq 1 >>\n\tJust a drink thanks.\n\t<<set $money to $money - 1>>\n<<else>>\n\tDrat, I can't afford anything.\n<<endif>>\n",
+		"position": {
+			"x": 846,
+			"y": -20
+		},
+		"colorID": 0
+	},
+	{
+		"title": "PathingTest.Start",
+		"tags": "",
+		"body": "Empty Text\n",
+		"position": {
+			"x": 477,
+			"y": -94
+		},
+		"colorID": 0
+	}
+]
