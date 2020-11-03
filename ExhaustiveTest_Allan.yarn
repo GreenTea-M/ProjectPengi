@@ -3,6 +3,7 @@ tags:
 colorID: 0
 position: 332,482
 ---
+<<playAudio fishMarket>>
 Cow: Hello! Can <color=ff00ff>you</color> <u>share</u> some <b>cookies</b>?
 [[Yes|GiveCookieScenario]]
 [[No|MyCookieScenario]]

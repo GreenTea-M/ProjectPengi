@@ -1,0 +1,89 @@
+title: Bear.EnterStore
+tags: 
+colorID: 0
+position: 368,170
+---
+Old mole offers a reward for finding her shoe
+Player enters the bear shop ~ hello im looking for shoe ~
+Sees a shelf of jim and jams and is likw wow ~ many things
+Gets scared by bear owner and knocks down items
+[[Clean up|Bear.CleanUp]]
+[[You suck I won't clean|Bear.NotCleanUp]]
+===
+title: Bear.CleanUp
+tags: 
+colorID: 0
+position: 712,364
+---
+Puzzle time!
+<<doPuzzle teddy>>
+<<doPuzzle peaceSign>>
+<<doPuzzle frog>>
+[[I am all done|Bear.PuzzleDone]]
+===
+title: Bear.NotCleanUp
+tags: 
+colorID: 0
+position: 708,-50
+---
+Penguin gets scared and runs away
+===
+title: Bear.PuzzleDone
+tags: 
+colorID: 0
+position: 1086,361
+---
+Bear is like what r u doing here? u little flightless cretin
+I can smell the fish on you
+[[I'm here for shoe? Where is shoe for old mole lady|Bear.ForOldLady]]
+[[Ask to get signature|Bear.GetSignature]]
+===
+title: Bear.ForOldLady
+tags: 
+colorID: 0
+position: 1471,97
+---
+I'm here for shoe?
+Where is shoe for old mole lady
+Oh the mole lady, i haven't seen her in years???
+where did you see her?
+we though she was dead are you sure its not a ghost?
+Penguin is like kinda freaked out, questioning all beliefs and is like oh man oh diddly
+Bear: but I don't know where the shoe is? but who are you? what are you doing in this city?
+Get deep, asks question, bear gets philosophical
+penguin talks about their dream
+[[Bear tells dream|Bear.BearDream]]
+===
+title: Bear.GetSignature
+tags: 
+colorID: 0
+position: 1107,951
+---
+Bear is like nah please stop get out of my store you disrespectul wench
+[[Penguin is like oh no gimmi i want sign|Bear.BegSignature]]
+[[I want to achieve my dream tho|Bear.JustifyDream]]
+===
+title: Bear.BegSignature
+tags: 
+colorID: 0
+position: 1738,971
+---
+Bear doesn't give signature
+===
+title: Bear.JustifyDream
+tags: 
+colorID: 0
+position: 1452,589
+---
+Bear is like what about MY dreams.
+the dreams of my legacy?
+Who you think you are?
+[[Bear dream|Bear.BearDream]]
+===
+title: Bear.BearDream
+tags: 
+colorID: 0
+position: 1858,327
+---
+Bear has internal conflict about family self; heritage and personal branding
+===
