@@ -1,0 +1,49 @@
+fileFormatVersion: 2
+guid: 820ead3561191414e96d678eee1b79a7
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: 
+  stringIDs:
+  - BearStory-Bear.EnterStore-0
+  - BearStory-Bear.EnterStore-1
+  - BearStory-Bear.EnterStore-2
+  - BearStory-Bear.EnterStore-3
+  - BearStory-Bear.EnterStore-4
+  - BearStory-Bear.EnterStore-5
+  - BearStory-Bear.CleanUp-6
+  - BearStory-Bear.CleanUp-7
+  - BearStory-Bear.NotCleanUp-8
+  - BearStory-Bear.PuzzleDone-9
+  - BearStory-Bear.PuzzleDone-10
+  - BearStory-Bear.PuzzleDone-11
+  - BearStory-Bear.PuzzleDone-12
+  - BearStory-Bear.ForOldLady-13
+  - BearStory-Bear.ForOldLady-14
+  - BearStory-Bear.ForOldLady-15
+  - BearStory-Bear.ForOldLady-16
+  - BearStory-Bear.ForOldLady-17
+  - BearStory-Bear.ForOldLady-18
+  - BearStory-Bear.ForOldLady-19
+  - BearStory-Bear.ForOldLady-20
+  - BearStory-Bear.ForOldLady-21
+  - BearStory-Bear.ForOldLady-22
+  - BearStory-Bear.GetSignature-23
+  - BearStory-Bear.GetSignature-24
+  - BearStory-Bear.GetSignature-25
+  - BearStory-Bear.BegSignature-26
+  - BearStory-Bear.JustifyDream-27
+  - BearStory-Bear.JustifyDream-28
+  - BearStory-Bear.JustifyDream-29
+  - BearStory-Bear.JustifyDream-30
+  - BearStory-Bear.BearDream-31
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {instanceID: 0}
+  localizations: []

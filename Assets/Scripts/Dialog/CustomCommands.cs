@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using GameSystem;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Audio;
 using Yarn.Unity;
 
 namespace Dialog
@@ -11,15 +14,21 @@ namespace Dialog
         [Header("Assets")]
         public AudioItem[] audioList;
 
+        [Header("Prefabs")] 
+        public GameObject prefabFadedAudio;
+
         [Header("Scene objects")]
         // Drag and drop your Dialogue Runner into this variable.
         public DialogueRunner dialogueRunner;
 
-        private AudioSource _audioSource;
+        private FadedAudio _lastAudio = null;
+        
+        private static readonly Stack<FadedAudio> _pool = new Stack<FadedAudio>();
         
         private void Awake()
         {
             Debug.Assert(dialogueRunner != null);
+            Debug.Assert(prefabFadedAudio != null);
             
             dialogueRunner.AddCommandHandler(
                 "playAudio", // the name of the command
@@ -38,12 +47,37 @@ namespace Dialog
             string searchTerm = parameters[0].ToUpper();
             foreach (var audioItem in audioList)
             {
-                if (audioItem.name.ToUpper().Equals(searchTerm))
+                if (!audioItem.name.ToUpper().Equals(searchTerm)) continue;
+                
+                if (_lastAudio != null)
                 {
-                    audioItem.audioClip = audioItem.audioClip;
-                    return;
+                    _lastAudio.FadeOut();
                 }
+
+                _lastAudio = GetNewAudio();
+                _lastAudio.FadeIn(audioItem.audioClip, this);
+                    
+                return;
             }
+        }
+
+        private FadedAudio GetNewAudio()
+        {
+            if (_pool.Count == 0)
+            {
+                var fadedAudio = Instantiate(prefabFadedAudio).GetComponent<FadedAudio>();
+                Debug.Assert(fadedAudio != null);
+                return fadedAudio;
+            }
+            else
+            {
+                return _pool.Pop();
+            }
+        }
+        
+        public void ReturnAudio(FadedAudio fadedAudio)
+        {
+            _pool.Push(fadedAudio);
         }
 
         private void PlayPuzzle(string[] parameters)
