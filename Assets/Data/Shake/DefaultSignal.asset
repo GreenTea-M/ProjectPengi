@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5969901aa40942499363f92e3787110, type: 3}
+  m_Name: DefaultSignal
+  m_EditorClassIdentifier: 
+  m_XCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.23885168
+      value: 0.99153435
+      inSlope: -0.051553607
+      outSlope: -0.051553607
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.3443905
+    - serializedVersion: 3
+      time: 0.3932052
+      value: -0.757563
+      inSlope: 0.17902163
+      outSlope: 0.17902163
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.4138736
+    - serializedVersion: 3
+      time: 0.64592934
+      value: 0.51075804
+      inSlope: -0.008964294
+      outSlope: -0.008964294
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.4615614
+    - serializedVersion: 3
+      time: 0.71344686
+      value: -0.16408539
+      inSlope: 0.0023175303
+      outSlope: 0.0023175303
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.73519313
+    - serializedVersion: 3
+      time: 0.89253086
+      value: 0.038302064
+      inSlope: -0.039881244
+      outSlope: -0.039881244
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.996521
+      value: -0.018089294
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_YCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 6.6867385
+      outSlope: 6.6867385
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.14855148
+      value: 0.9933249
+      inSlope: 0.17065395
+      outSlope: 0.17065395
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.12217043
+    - serializedVersion: 3
+      time: 0.2808093
+      value: -0.7099718
+      inSlope: 0.16385515
+      outSlope: 0.16385515
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.1922679
+    - serializedVersion: 3
+      time: 0.46787336
+      value: 0.43447262
+      inSlope: 0.016957972
+      outSlope: 0.016957972
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.29352874
+    - serializedVersion: 3
+      time: 0.56483805
+      value: -0.23053508
+      inSlope: 0.080951035
+      outSlope: 0.080951035
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.56251216
+    - serializedVersion: 3
+      time: 0.71842843
+      value: 0.29870373
+      inSlope: -0.009640528
+      outSlope: -0.009640528
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.6105576
+    - serializedVersion: 3
+      time: 0.8012927
+      value: -0.12401378
+      inSlope: 0.25708762
+      outSlope: 0.25708762
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.7441391
+    - serializedVersion: 3
+      time: 1.0023804
+      value: 0.0084991455
+      inSlope: 0.6589809
+      outSlope: 0.6589809
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_ZCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

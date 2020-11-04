@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Cinemachine;
 using Gameplay;
 using GameSystem;
 using UnityEngine;
@@ -13,8 +14,11 @@ using Yarn.Unity;
 namespace Dialog
 {
     // todo: play current song being played??? on load
+    [RequireComponent(typeof(CinemachineImpulseSource))]
     public class CustomCommands : MonoBehaviour
     {
+        public GameConfiguration gameConfiguration;
+        
         [Header("Variables")] 
         public float delayTime = 3f;
         
@@ -35,12 +39,16 @@ namespace Dialog
 
         private FadedAudio _lastAudio = null;
         
-        private static readonly Stack<FadedAudio> _pool = new Stack<FadedAudio>();
+        private static readonly Stack<FadedAudio> Pool = new Stack<FadedAudio>();
         private PuzzleParent _puzzle;
         private Action _onComplete;
+        private CinemachineImpulseSource _impulseSignal;
 
         private void Awake()
         {
+            _impulseSignal = GetComponent<CinemachineImpulseSource>();
+            
+            Debug.Assert(gameConfiguration != null);
             Debug.Assert(dialogueRunner != null);
             Debug.Assert(dialogueUiManager != null);
             Debug.Assert(prefabFadedAudio != null);
@@ -53,6 +61,7 @@ namespace Dialog
             
             dialogueRunner.AddCommandHandler("doPuzzle", DoPuzzle);
             dialogueRunner.AddCommandHandler("changeHeader", ChangeHeader);
+            dialogueRunner.AddCommandHandler("shake", Shake);
         }
 
         /// <summary>
@@ -81,6 +90,12 @@ namespace Dialog
             }
 
             headerSprite.sprite = null; //  default behavior when no sprite found
+        }
+
+        private void Shake(string[] parameter)
+        {
+            Debug.Log("Shake!!");
+            _impulseSignal.GenerateImpulse(gameConfiguration.ShakeStrength);
         }
 
         #region PlayAudio
@@ -112,7 +127,7 @@ namespace Dialog
 
         private FadedAudio GetNewAudio()
         {
-            if (_pool.Count == 0)
+            if (Pool.Count == 0)
             {
                 var fadedAudio = Instantiate(prefabFadedAudio).GetComponent<FadedAudio>();
                 Debug.Assert(fadedAudio != null);
@@ -120,13 +135,13 @@ namespace Dialog
             }
             else
             {
-                return _pool.Pop();
+                return Pool.Pop();
             }
         }
         
         public void ReturnAudio(FadedAudio fadedAudio)
         {
-            _pool.Push(fadedAudio);
+            Pool.Push(fadedAudio);
         }
         #endregion PlayAudio
         

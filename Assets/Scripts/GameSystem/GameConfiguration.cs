@@ -19,13 +19,17 @@ public class GameConfiguration : ScriptableObject
     [Header("Option variables")] 
     [Tooltip("The delay in seconds that each character shows up; If less than 0, show instantly")]
     public float textRate = 0.025f;
-
+    public float shakeStrength = 1f;
+    public bool shouldShake = true;
+    
     [Header("Save data")]
     public SaveData saveData;
 
     [Header("Auto save (Do not touch)")] 
     public bool isSaveDirty = false;
     public SaveData autoSave;
+
+    public float ShakeStrength => shouldShake ? shakeStrength : 0f;
 
     [Header("Other global stuff")] 
     public SaveIO saveIo;
