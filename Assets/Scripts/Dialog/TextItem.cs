@@ -20,11 +20,11 @@ namespace Dialog
         private Canvas _canvas;
         
         private readonly List<Button> _buttons = new List<Button>();
-        // todo: improve magic numbers
-        private readonly Vector3 _defaultPosition = new Vector3(9.044f, 9.358f, 0f);
+        private Vector3 _defaultPosition = new Vector3(9.044f, 9.358f, 0f);
 
         private void Awake()
         {
+            _defaultPosition = transform.position;
             Debug.Assert(uiText != null);
             Debug.Assert(uiButton != null);
             Debug.Assert(uiButton.GetComponent<Button>() != null);
@@ -38,6 +38,7 @@ namespace Dialog
 
         public void PushUpwards()
         {
+            layoutGroup.gameObject.SetActive(false);
             StopAllCoroutines();
             StartCoroutine(DoPushUpwards(scrollDistance));
         }
@@ -62,6 +63,7 @@ namespace Dialog
 
         public void SetToCenter()
         {
+            layoutGroup.gameObject.SetActive(true);
             StopAllCoroutines();
             _rectTransform.position = _defaultPosition;
         }

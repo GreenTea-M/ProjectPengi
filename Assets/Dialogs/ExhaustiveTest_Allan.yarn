@@ -21,7 +21,6 @@ tags:
 colorID: 0
 position: 600,624
 ---
-<<shake>>
 Cow: Can I buy the cookie from you? 😉
 [[Yes|CookieBought]]
 [[No|CookieNotBought]]

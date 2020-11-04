@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Dialog
@@ -9,11 +10,16 @@ namespace Dialog
         public float scrollDuration = 0.25f;
         public SpriteRenderer spriteRenderer;
 
-        // todo: improve magic numbers
-        private readonly Vector3 _defaultPosition = new Vector3(18.75f, 8.49f, 0f);
+        private Vector3 _defaultPosition = new Vector3(18.75f, 8.49f, 0f);
+
+        private void Awake()
+        {
+            _defaultPosition = transform.position;
+        }
 
         public void PushUpwards()
         {
+            spriteRenderer.enabled = false;
             StopAllCoroutines();
             StartCoroutine(DoPushUpwards(scrollDistance));
         }
@@ -38,6 +44,7 @@ namespace Dialog
 
         public void SetToCenter(Sprite newSprite)
         {
+            spriteRenderer.enabled = true;
             StopAllCoroutines();
             transform.position = _defaultPosition;
             spriteRenderer.sprite = newSprite;
