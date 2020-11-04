@@ -21,6 +21,7 @@ public class GameConfiguration : ScriptableObject
     public float textRate = 0.025f;
     public float shakeStrength = 1f;
     public bool shouldShake = true;
+    public float fontSize = 18f;
     
     [Header("Save data")]
     public SaveData saveData;
@@ -29,8 +30,6 @@ public class GameConfiguration : ScriptableObject
     public bool isSaveDirty = false;
     public SaveData autoSave;
 
-    public float ShakeStrength => shouldShake ? shakeStrength : 0f;
-
     [Header("Other global stuff")] 
     public SaveIO saveIo;
 
@@ -38,6 +37,9 @@ public class GameConfiguration : ScriptableObject
     {
         saveIo = new SaveIO(this);
     }
+
+    public float ShakeStrength => shouldShake ? shakeStrength : 0f;
+    public float FontSize => fontSize;
 
     public void ResetSaveData()
     {
