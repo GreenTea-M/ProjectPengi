@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuScene.unity
     guid: b61e1c82090dfc7409c763c60da274fc
   - enabled: 1
-    path: Assets/Presets/DialogScene.unity
+    path: Assets/Scenes/DialogScene.unity
     guid: 11ec3ee50df5be841833832c84cd8fff
   - enabled: 1
     path: Assets/Scenes/SaveSelect.unity

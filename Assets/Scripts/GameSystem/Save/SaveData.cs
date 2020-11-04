@@ -18,6 +18,8 @@ public class SaveData
     public string currentYarnNode = "Start";
     public string lastDialog = "";
     public Sprite lastSprite = null;
+    public string lastAudioName = "fishMarket";
+    public string lastHeader = "carpentry";
     
     public List<InMemoryVariableStorage.DefaultVariable> savedVariables;
 

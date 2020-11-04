@@ -85,6 +85,8 @@ namespace Gameplay
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, gravitateSpeed);
                 yield return new WaitForSeconds(rate);
             }
+
+            transform.position += Vector3.forward * 0.1f; // make it look background
         }
 
         public bool IsFinish()
