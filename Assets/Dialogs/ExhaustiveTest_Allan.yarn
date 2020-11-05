@@ -35,13 +35,14 @@ Cow: Thank you!
 <<set $cow_friendship = 1>>
 Cow: Yay!
 [[Continue|BuySomething]]
+[[Testing|CookieNotBought]]
 ===
 title: CookieNotBought
 tags: 
 colorID: 0
 position: 1063,357
 ---
-Empty Text
+Brynhilda: Swag
 ===
 title: BuySomething
 tags: 

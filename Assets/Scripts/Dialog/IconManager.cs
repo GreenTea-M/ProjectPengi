@@ -50,29 +50,30 @@ public class IconManager : MonoBehaviour
         // todo implement remove speaker
     }
 
-    public void InformSpeaker(string candidateSpeaker)
+    public bool InformSpeaker(string candidateSpeaker)
     {
         candidateSpeaker = candidateSpeaker.Trim();
 
         if (candidateSpeaker.Equals(""))
         {
-            return;
+            // do nothing ??
+            return false;
         }
 
         if (_currentSpeaker == null)
         {
             _currentSpeaker = GetSpeakerPortrait(candidateSpeaker);
             _currentSpeaker.Speak();
-            return;
+            return true;
         }
 
-        Debug.LogWarning(candidateSpeaker);
         if (_currentSpeaker.IsSameSpeaker(candidateSpeaker))
         {
             // todo: change emotions???
-            return;
+            return false;
         }
 
+        bool isBlocking = false;
         PortraitItem newSpeaker = null;
         if (_previousSpeaker == null)
         {
@@ -98,10 +99,13 @@ public class IconManager : MonoBehaviour
         else
         {
             _currentSpeaker = GetSpeakerPortrait(candidateSpeaker);
+            isBlocking = true;
         }
         
         _previousSpeaker.Idle();
         _currentSpeaker.Speak();
+
+        return isBlocking;
     }
 
     private PortraitItem GetSpeakerPortrait(string candidateSpeaker)
@@ -115,8 +119,8 @@ public class IconManager : MonoBehaviour
 
     public void ShowElements(bool shouldShow)
     {
-        _currentSpeaker.gameObject.SetActive(shouldShow);
-        _previousSpeaker.gameObject.SetActive(shouldShow);
+        if (_currentSpeaker != null) _currentSpeaker.gameObject.SetActive(shouldShow);
+        if (_previousSpeaker != null) _previousSpeaker.gameObject.SetActive(shouldShow);
     }
 }
 

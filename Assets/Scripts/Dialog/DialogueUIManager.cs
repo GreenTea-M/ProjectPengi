@@ -19,7 +19,7 @@ namespace Dialog
         [FormerlySerializedAs("assetManager")] public IconManager iconManager;
 
         [Header("Critical")] public GameConfiguration gameConfiguration;
-        
+
         [Header("Prefabs")] [Tooltip("Prefab that contains the texts")]
         public GameObject dialogueItemPrefab;
 
@@ -52,14 +52,22 @@ namespace Dialog
 
         public DialogueRunner.StringUnityEvent onCommand;
 
+        public bool isBlocking = false;
+
         private const int PoolSize = 10;
         private TextItem[] _textItems = new TextItem[PoolSize];
         private int _textIndex = 0;
         private int _portraitIndex = 0;
         private string _lastSpeaker = "";
         private bool requestDialogWrite = false;
-        
+
         private float TextRate => gameConfiguration.textRate;
+
+        public bool IsBlocking
+        {
+            get => isBlocking;
+            set => isBlocking = value;
+        }
 
         private void Awake()
         {
@@ -110,8 +118,8 @@ namespace Dialog
             }
 
             // todo: identify speaker
-            string candidateSpeaker = text.Split(':')[0];
-            iconManager.InformSpeaker(candidateSpeaker);
+            var argSplit = text.Split(':');
+            isBlocking = iconManager.InformSpeaker(argSplit.Length != 1 ? argSplit[0] : "");
 
             // todo: push every text upwards
             foreach (var item in _textItems)
@@ -126,7 +134,13 @@ namespace Dialog
             {
                 gameConfiguration.autoSave.lastDialog = text;
             }
+
             onLineUpdate.AddListener(textItem.UpdateLine);
+
+            while (isBlocking && !userRequestedNextLine)
+            {
+                yield return new WaitForSeconds(0.03f);
+            }
 
             if (TextRate > 0.0f)
             {
@@ -140,24 +154,27 @@ namespace Dialog
                 foreach (var c in text)
                 {
                     #region for hiding markup
+
                     if (markupBuilder.Length != 0)
                     {
                         markupBuilder.Append(c);
-                        
+
                         if (c.Equals('>'))
                         {
                             AdjustMarkups(markupBuilder);
                             stringBuilder.Append(markupBuilder);
                             markupBuilder.Clear();
                         }
+
                         continue;
                     }
-                    
+
                     if (c.Equals('<'))
                     {
                         markupBuilder.Append(c);
                         continue;
                     }
+
                     #endregion for hiding markup
 
                     stringBuilder.Append(c);
@@ -351,7 +368,7 @@ namespace Dialog
             currentOptionSelectionHandler?.Invoke(optionID);
         }
 
-        public void	 RequestLastDialogWrite()
+        public void RequestLastDialogWrite()
         {
             requestDialogWrite = true;
             gameConfiguration.autoSave.lastDialog = "";

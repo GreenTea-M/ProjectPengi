@@ -83,7 +83,6 @@ namespace Dialog
 
         public bool IsSameSpeaker(string candidateSpeaker)
         {
-            Debug.LogWarning($"{candidateSpeaker} vs {_candidateSpeaker}: ${_candidateSpeaker.Equals(candidateSpeaker)}");
             return _candidateSpeaker.Equals(candidateSpeaker);
         }
 
