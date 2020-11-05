@@ -1,19 +1,32 @@
 title: Bear.EnterStore
-tags: 
+tags: Store
 colorID: 0
-position: 368,170
+position: 58,183
 ---
-Old mole offers a reward for finding her shoe
-Player enters the bear shop ~ hello im looking for shoe ~
-Sees a shelf of jim and jams and is likw wow ~ many things
-Gets scared by bear owner and knocks down items
-[[Clean up|Bear.CleanUp]]
-[[You suck I won't clean|Bear.NotCleanUp]]
+<i>The bell on the door jingles in a delicate manner as Pengi enters the warm shop filled with an assortment of breathtaking, handcrafted items.</i>
+<i>Breathing in the welcoming scent of sawdust and maple, Pengi takes a few steps into the shop before noticing a shelf full of odd looking bits and bobs. Pengi walks over to it, leaning in to take a closer look at the shelf’s contents.</i>
+
+Pengi: WOooow what are these??
+Brynhilda: Well hello-
+Pengi: AHH!
+[Screen shakes? Theres so much screen shaking LOL what else can we do?? SFX? Both?]
+<b>BAM</b> 
+//
+<i>Having been enthralled in all the items around them, Pengi hadn’t noticed the arrival of Brynhilda, and SMASHED their head on the shelf, knocking all of the items onto the floor.</i>
+Brynhilda: -there.
+P: Oh my gosh, I’m so sorry! 
+<i>Pengi hurriedly gets to their knees, trying to pick up the items which were now strewn all across the shop floor.</i>
+<i>Brynhilda lets out a warm and hearty laugh</i>
+ Brynhilda: <Smiling> Don’t be, you’d be surprised how common that is. I really need to make more sound when I enter a room. 
+<i>She bends down and begins to help pick up the items on the floor</i>
+<i>Pengi, feeling a flush of red creeping up to their face pick up...</i>
+
+[[Bear.PuzzleStart]]
 ===
-title: Bear.CleanUp
+title: Bear.PuzzleStart
 tags: 
 colorID: 0
-position: 712,364
+position: 358,188
 ---
 Puzzle time!
 <<doPuzzle teddy>>
@@ -21,69 +34,177 @@ Puzzle time!
 <<doPuzzle frog>>
 [[I am all done|Bear.PuzzleDone]]
 ===
-title: Bear.NotCleanUp
-tags: 
-colorID: 0
-position: 708,-50
----
-Penguin gets scared and runs away
-===
 title: Bear.PuzzleDone
 tags: 
-colorID: 0
-position: 1086,361
+colorID: 2
+position: 722,162
 ---
-Bear is like what r u doing here? u little flightless cretin
-I can smell the fish on you
-[[I'm here for shoe? Where is shoe for old mole lady|Bear.ForOldLady]]
-[[Ask to get signature|Bear.GetSignature]]
-===
-title: Bear.ForOldLady
-tags: 
-colorID: 0
-position: 1471,97
----
-I'm here for shoe?
-Where is shoe for old mole lady
-Oh the mole lady, i haven't seen her in years???
-where did you see her?
-we though she was dead are you sure its not a ghost?
-Penguin is like kinda freaked out, questioning all beliefs and is like oh man oh diddly
-Bear: but I don't know where the shoe is? but who are you? what are you doing in this city?
-Get deep, asks question, bear gets philosophical
-penguin talks about their dream
-[[Bear tells dream|Bear.BearDream]]
+Brynhilda: <Smiling> Thank you kindly for your help.
+<i>She smiles softly down at the tiny penguin.</i>
+Pengi: <Nervous> Nervously replies Ahhaha well, it WAS technically my fault. 
+Brynhilda: <Normal> Well not everyone helps you see, most actually run away in fright. My appearance can be a little intimidating at times. She chuckles to herself. 
+Brynhilda: Oh! I almost forgot, my name’s Brynhilda and welcome to The Builder Bear.
+Brynhilda: How can I help you today…umm
+Pengi: <Smiling> Pengi.
+Brynhilda: <Beaming?/Smiling>Pengi!
+Brynhilda: What an absolutely delightful name! 
+<i>Her eyes beam as she says this, betraying the excitement she was having to finally having a customer in her store.</i>
+Brynhilda: So, what can I do for you today?
+//[[Well...I guess I’m looking for a...Shoe?|Bear.Shoe]]
+[[I’m here on behalf of Grounded Real Estate.|Bear.GetSignature]]
 ===
 title: Bear.GetSignature
 tags: 
-colorID: 0
-position: 1107,951
+colorID: 5
+position: 1042,404
 ---
-Bear is like nah please stop get out of my store you disrespectul wench
-[[Penguin is like oh no gimmi i want sign|Bear.BegSignature]]
-[[I want to achieve my dream tho|Bear.JustifyDream]]
+Pengi: Ummm, well.
+<i>They straighten their back and adjust their tie.</i>
+Pengi: I’m here on behalf of Grounded Real Estate to ask you if you would be willing to sign this document signing over possession of this lot. You and a few other shops on this street own the plots on which your businesses have been built and my company is looking to acquire these for a new project; The Menagerie Mall!. 
+<i>Pengi notices that as they are saying this, Brynhilda’s face slowly becomes much more stern, her nose crinkling and fur standing up in what appears to be a barely contained sense of outrage at their sudden all-business approach.</i>
+Pengi: Uh-uhmm.
+Brynhilda: <Tense Smiling or Neutral> I’m sorry, but I think you need to leave.
+[[I just want a little bit of your time.|Bear.BegSignature]]
+[[I-I’m sorry!|Bear.JustifyDream]]
 ===
 title: Bear.BegSignature
 tags: 
-colorID: 0
-position: 1738,971
+colorID: 5
+position: 1377,713
 ---
 Bear doesn't give signature
 ===
 title: Bear.JustifyDream
 tags: 
-colorID: 0
-position: 1452,589
+colorID: 1
+position: 1367,244
 ---
-Bear is like what about MY dreams.
-the dreams of my legacy?
-Who you think you are?
-[[Bear dream|Bear.BearDream]]
+Pengi: <Nervously> I-I’m sorry! I really am 
+Pengi: It wasn’t my idea to do this to you, and if I didn’t have to, I wouldn’t ask you to.
+Pengi: <Normal> But it’s my dream to be a pilot, a-and I promise you will be compensated so you can relocate, but I really need this if anyone at my firm is going to respect me enough to promote me, so I can afford the lessons… 
+<i>Pengi trails off, realizing the rude tone they had just taken with her after asking her to sign her store away and not thinking about how she might feel about their intrusion.</i>
+[[Bear.Signature]]
 ===
-title: Bear.BearDream
-tags: 
+title: Bear.Intro
+tags: Intro
 colorID: 0
-position: 1858,327
+position: -260,184
 ---
-Bear has internal conflict about family self; heritage and personal branding
+[Fade in background of street? Will add in later version]
+//
+Pengi: Okokok OK!
+Pengi: I got this!
+Pengi: Phew. 
+<i>This was Pengi's first real job. Their first actual, proper job.</i>
+Pengi: I really hope I don't mess it up.
+<i>They nervously adjust their tie and pull out a hankerchief to wipe thier beak.</i>
+<i>Hmmm<<textSpeed = 0.5/>>...<<textSpeed = 1/>>now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
+//
+[The screen would shake here]
+HeLLLlllOOOoo youNG child.
+Pengi: Wha-what the?!
+-> Look around
+    <i>Pengi looks around, confused</i>
+    HellooOOOoooo HELLlooOoo over heeereee!
+    <i>They waddle around to look behind them. Still nothing.</i>
+    Down! LooOOkk DOwn!
+    <i>Surprised, Pengi looks down to see an Old Mole looking up at them through foggy glasses.</i>
+//
+-> Look down
+    <i>They look down and see...nothing?</i>
+    Oh young one, bEHinNND you!
+    <i>I turn around and still see...nothing?</i>
+    Look down dear.
+    <i>Looking down once again, I am greeted with the face of wrinkled Old Mole</i>
+//
+Pengi: O-oh, hello there?
+<i>She squints up at the well dressed bird through tiny glasses and beady, black eyes.</i>
+Old Mole: You wouldn’t have happened to see my <b>Shoe</b>, no?
+<i>As impossible as it may seem she squints even harder, her eyes seemingly disappearing into her graying fur.</i>
+Pengi: UUuuhhhh no? Sorry, I'm pretty busy and I have toda-
+//
+[screen shakes again while next description plays:]
+Pengi: Hey! My shirt-
+Old Mole: OOOOoooooOoh please young one, could you help me find my <b>Shoe</b>? 
+Old Mole: It’s very important to me and my knees aren’t what they used to be. I was just sitting on a bench and suddenly…
+<i>She raises her hands, her beaded bag rustling at the sudden movement.</i>
+[screen shakes again while next description plays]
+Old Mole: BAM! ITS GONE!!! 
+<i>Lowering her hands, her brow wrinkles.</i>
+//
+Old Mole:  [smaller text to signify she is muttering] ]I swear <b>The Market</b> was where I was, no? Hmmmm...must have wandered off, just like my shoe...oh dear…
+Pengi: Did you just say...<b>The Market</b>?
+Old Mole: [normal text size] Yes dear! You know <b>The Market</b>, no? Just down the street, turn left, over the yellow bridge, through the stream, past the hill, over the red bridge - not the yellow one - and through the corn field. Best and only <b>Market</b> we have!
+Pengi: <Surprise/Confused>
+Old Mole: SO, could you help me?
+Pengi: <Confused> 
+<i>Pengi paused. Guess it would'nt hurt to help a little right?</i>
+Pengi: <Facial expression similar to a sigh?> Fine
+Old Mole: OH! Goodness child, thank yoU!!! 
+//
+Old Mole: When you find it and bring it back, I’ll be sure to present a proper thank you gift.
+<i>She smiles sweetly, and with a curious glint in her eyes promptly turns and walks away at a surprisingly brisk pace.</i>
+Pengi: <Surprised> Oh wait where can I meet you once I...annnnnd she’s gone.
+Pengi: <Normal> Alright. At least I know the way there now. 
+Pengi: It’s just...down the street, yes?
+//
+[Change to General Market Background, no character images here]
+//
+Using their impeccable memory, Pengi began following the Old Mole's directions. 
+Panting, Pengi finally made it to <b>The Market</b>. 
+What greets them first are the various sounds and smells of people chatting, food cooking and so on. Next came the sights, a street filled with various shops, all seemingly different and random compared to the next. Overwhelmed by the smells and sounds surrounding the area Pengi rushes into the nearest store. 
+//
+[[Bear.EnterStore]]
+===
+title: Bear.Signature
+tags: 
+colorID: 1
+position: 1665,55
+---
+Empty Text
+===
+title: Bear.CondShoe
+tags: 
+colorID: 2
+position: 1312,-221
+---
+Empty Text
+===
+title: Bear.Shoe
+tags: 
+colorID: 2
+position: 994,-60
+---
+Pengi: Well...I guess I’m looking for a...Shoe? 
+<i>Brynhilda’s looks down at the little penguin in confusion.</i>
+Brynhilda: <Confusion> A Shoe? I’m sorry, but we’re a carpentry store. Unfortunately we don’t have any shoes on sale.
+Pengi: Ah! No, I mean that I’m looking for a lost shoe. There’s this Old Mole lady and she left it somewhere at this market?
+Brynhilda: <Confused> Mole Lady?
+Brynhilda: <Surprised> OH! Mole Lady! I haven’t seen her in years!
+Pengi: Wh-what? Years?? But she said she was here just a couple hours ago.
+Brynhilda: <Confused> Huh, I guess I missed her then. 
+<i>She peers outside the storefront window, her eyes squinting.</i>
+Brynhilda: <Confused> [smaller text as she mutters] Hmm...she usually comes here to say hi. I hope she's alright.
+<i>She looks back at Pengi, her expression looking a bit more sombre.</i>
+Brynhilda: Sorry, it’s just...I was under the impression that she may have...left us. Made me think a little bit about the ending of things you know? 
+<i>She shakes her head a little, her fur rustling as she did so.</i>
+Brynhilda: <Sad> What am I saying? 
+Brynhilda: <Normal> Sorry, I shouldn’t be talking about such a heavy topic with a customer. 
+Pengi: No no no don’t apologize. I understand.  
+<i>Pengi looks at the sawdust covered floor, shuffling their feet a little.</i>
+Pengi: <Sad> I...I’ve always wanted to fly. But I can’t do it naturally you know? I...I really want to do it at least once! Just to know what it feels like! So I really want to enroll in flight school.
+Brynhilda: <Smiling> I wholeheartedly support this venture. What’s stopping you from going after it?
+Pengi: <Nervous> Ah-
+Well-
+I-
+Ummm-
+Brynhilda: Yes?
+Pengi: I-
+[Screen shakes???]
+Pengi: I’M SORRY!
+Brynhilda: <Surprised> Wha-what? 
+Pengi: I’m part of Grounded Real Estate a-and my job is to get contracts from the stores in the area- 
+<i>Brynhilda’s fur bristles a bit at the sound of the company’s name.</i>
+Pengi: -a-and this is my big break to get enough money to [words get smaller and smaller as Pengi trails off] afford the lessons and…
+[[Bear.CondShoe]]
 ===
