@@ -22,15 +22,16 @@ namespace Manager
             Debug.Assert(gameConfiguration != null);
             Debug.Assert(runner != null);
             Debug.Assert(memory != null);
+            Debug.Assert(dialogueUiManager != null);
+            
+            // set up
+            runner.startNode = gameConfiguration.saveData.currentYarnNode;
             
             // attach auto save node
             runner.onNodeStart.AddListener(AutoSaveNode);
-
-            // todo: load all saved variable to here
+            
             memory.defaultVariables = gameConfiguration.saveData.savedVariables.ToArray();
             memory.ResetToDefaults();
-            
-            runner.startNode = gameConfiguration.saveData.currentYarnNode;
         }
 
         private void AutoSaveNode(string currentNode)

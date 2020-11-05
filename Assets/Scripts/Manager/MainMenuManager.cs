@@ -24,7 +24,7 @@ namespace Manager
         public void OnClickContinue()
         {
             // todo: allow multiple save files in the future
-            gameConfiguration.saveData = gameConfiguration.autoSave;
+            gameConfiguration.saveData = new SaveData(gameConfiguration.autoSave);
             SceneManager.LoadScene("DialogScene");
             // SceneManager.LoadScene("SaveSelect");
         }

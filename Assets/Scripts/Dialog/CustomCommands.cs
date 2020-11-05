@@ -54,8 +54,8 @@ namespace Dialog
             Debug.Assert(prefabFadedAudio != null);
             Debug.Assert(headerSprite != null);
 
-            ChangeHeader(new[]{gameConfiguration.autoSave.lastHeader});
-            PlayAudio(new[]{gameConfiguration.autoSave.lastAudioName});
+            ChangeHeader(new[]{gameConfiguration.saveData.lastHeader});
+            PlayAudio(new[]{gameConfiguration.saveData.lastAudioName});
             
             dialogueRunner.AddCommandHandler(
                 "playAudio", // the name of the command

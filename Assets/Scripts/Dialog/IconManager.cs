@@ -8,21 +8,22 @@ using UnityEngine.Serialization;
 
 public class IconManager : MonoBehaviour
 {
+    public GameConfiguration gameConfiguration;
     public IconItem[] iconList;
     public GameObject prefabCharacterIcon;
 
     private PortraitItem _previousSpeaker;
     private PortraitItem _currentSpeaker;
+    private int _portraitIndex = 0;
     private bool _isLeft = true;
-    private int portraitIndex = 0;
 
     private const int PoolCapacity = 10;
-    private readonly int HashGoLeft = 0;
     private readonly List<PortraitItem> Pool = new List<PortraitItem>(PoolCapacity);
 
     private void Awake()
     {
         Debug.Assert(prefabCharacterIcon != null);
+        Debug.Assert(gameConfiguration != null);
 
         for (int i = 0; i < PoolCapacity; i++)
         {
@@ -30,6 +31,10 @@ public class IconManager : MonoBehaviour
             Debug.Assert(item != null);
             Pool.Add(item);
         }
+
+        _isLeft = gameConfiguration.saveData.isLeft;
+        InformSpeaker(gameConfiguration.saveData.currentSpeaker, true);
+        InformSpeaker(gameConfiguration.saveData.previousSpeaker, true);
     }
 
     public IconItem GetSprite(string speakerName)
@@ -52,25 +57,35 @@ public class IconManager : MonoBehaviour
 
     public bool InformSpeaker(string candidateSpeaker)
     {
+        return InformSpeaker(candidateSpeaker, false);
+    }
+
+
+    private bool InformSpeaker(string candidateSpeaker, bool isForced)
+    {
         candidateSpeaker = candidateSpeaker.Trim();
 
         if (candidateSpeaker.Equals(""))
         {
             // do nothing ??
-            return false;
+            return SaveState(false);
         }
 
         if (_currentSpeaker == null)
         {
             _currentSpeaker = GetSpeakerPortrait(candidateSpeaker);
-            _currentSpeaker.Speak();
-            return true;
+            if (!isForced)
+            {
+                _currentSpeaker.Speak();
+            }
+
+            return SaveState(true);
         }
 
         if (_currentSpeaker.IsSameSpeaker(candidateSpeaker))
         {
             // todo: change emotions???
-            return false;
+            return SaveState(false);
         }
 
         bool isBlocking = false;
@@ -88,7 +103,7 @@ public class IconManager : MonoBehaviour
         {
             _previousSpeaker.Leave();
         }
-        
+
         _previousSpeaker = _currentSpeaker;
         _currentSpeaker = newSpeaker;
 
@@ -101,17 +116,32 @@ public class IconManager : MonoBehaviour
             _currentSpeaker = GetSpeakerPortrait(candidateSpeaker);
             isBlocking = true;
         }
-        
-        _previousSpeaker.Idle();
-        _currentSpeaker.Speak();
 
+        if (!isForced)
+        {
+            _previousSpeaker.Idle();
+            _currentSpeaker.Speak();
+        }
+
+        return SaveState(isBlocking);
+    }
+
+    private bool SaveState(bool isBlocking)
+    {
+        gameConfiguration.autoSave.isLeft = !_isLeft;
+        gameConfiguration.autoSave.currentSpeaker = _currentSpeaker != null
+            ? _currentSpeaker.Speaker
+            : "";
+        gameConfiguration.autoSave.previousSpeaker = _previousSpeaker != null
+            ? _previousSpeaker.Speaker
+            : "";
         return isBlocking;
     }
 
     private PortraitItem GetSpeakerPortrait(string candidateSpeaker)
     {
-        PortraitItem portraitItem = Pool[portraitIndex];
-        portraitIndex = (portraitIndex + 1) % PoolCapacity;
+        PortraitItem portraitItem = Pool[_portraitIndex];
+        _portraitIndex = (_portraitIndex + 1) % PoolCapacity;
         portraitItem.Appear(GetSprite(candidateSpeaker), candidateSpeaker, _isLeft);
         _isLeft = !_isLeft;
         return portraitItem;

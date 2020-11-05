@@ -755,6 +755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1c396c803ec5f4d99eca121731e1e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
   iconList:
   - mainSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
     outlineSprite: {fileID: 21300000, guid: cae7311309040c549be0c4a13a3c8874, type: 3}

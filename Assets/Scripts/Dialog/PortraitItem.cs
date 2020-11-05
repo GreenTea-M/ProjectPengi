@@ -15,7 +15,7 @@ namespace Dialog
         private Vector3 _defaultPosition = new Vector3(18.75f, 8.49f, 0f);
         private IconItem _iconItem;
         private bool _isLeft;
-        private string _candidateSpeaker;
+        private string _speaker;
         private Animator _animator;
 
         private int HashAnimGoLeft = Animator.StringToHash("GoLeft");
@@ -23,6 +23,7 @@ namespace Dialog
         private int HashAnimIdle = Animator.StringToHash("Idle");
         private int HashAnimSpeak = Animator.StringToHash("Speak");
         private int HashAnimLeave = Animator.StringToHash("Leave");
+        public string Speaker => _speaker;
 
         private void Awake()
         {
@@ -72,7 +73,7 @@ namespace Dialog
         public void Appear(IconItem iconItem, string candidateSpeaker, bool isLeft)
         {
             _iconItem = iconItem;
-            _candidateSpeaker = candidateSpeaker;
+            _speaker = candidateSpeaker;
             _isLeft = isLeft;
             
             spriteRenderer.sprite = iconItem?.mainSprite;
@@ -83,7 +84,7 @@ namespace Dialog
 
         public bool IsSameSpeaker(string candidateSpeaker)
         {
-            return _candidateSpeaker.Equals(candidateSpeaker);
+            return _speaker.Equals(candidateSpeaker);
         }
 
         public void Leave()

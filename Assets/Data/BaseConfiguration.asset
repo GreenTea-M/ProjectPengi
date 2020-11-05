@@ -26,6 +26,9 @@ MonoBehaviour:
     lastAudioName: fishMarket
     lastHeader: carpentry
     savedVariables: []
+    isLeft: 1
+    currentSpeaker: 
+    previousSpeaker: 
   isSaveDirty: 0
   autoSave:
     name: 
@@ -35,3 +38,6 @@ MonoBehaviour:
     lastAudioName: fishMarket
     lastHeader: carpentry
     savedVariables: []
+    isLeft: 1
+    currentSpeaker: 
+    previousSpeaker: 

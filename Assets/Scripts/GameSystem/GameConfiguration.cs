@@ -43,6 +43,7 @@ public class GameConfiguration : ScriptableObject
 
     public void ResetSaveData()
     {
-        saveData = baseConfiguration.saveData;
+        saveData = new SaveData(baseConfiguration.saveData);
+        autoSave = new SaveData(baseConfiguration.saveData);
     }
 }

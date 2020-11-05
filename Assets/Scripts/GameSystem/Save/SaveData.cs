@@ -21,8 +21,37 @@ public class SaveData
     public string lastAudioName = "fishMarket";
     public string lastHeader = "carpentry";
     
-    public List<InMemoryVariableStorage.DefaultVariable> savedVariables;
+    public List<InMemoryVariableStorage.DefaultVariable> savedVariables = 
+        new List<InMemoryVariableStorage.DefaultVariable>();
+    public bool isLeft = true;
+    public string currentSpeaker = "";
+    public string previousSpeaker = "";
 
+    public SaveData(SaveData rhs)
+    {
+        name = rhs.name;
+        currentYarnNode = rhs.currentYarnNode;
+        lastDialog = rhs.lastDialog;
+        lastSprite = rhs.lastSprite;
+        lastAudioName = rhs.lastAudioName;
+        lastHeader = rhs.lastHeader;
+        isLeft = rhs.isLeft;
+        currentSpeaker = rhs.currentSpeaker;
+        previousSpeaker = rhs.previousSpeaker;
+
+        // todo: test out for optimization
+        // savedVariables.Capacity = rhs.savedVariables.Count;
+        foreach (var variable in rhs.savedVariables)
+        {
+            savedVariables.Add(new InMemoryVariableStorage.DefaultVariable()
+            {
+                name = variable.name,
+                type = variable.type,
+                value = variable.value
+            });
+        }
+    }
+    
     private SaveData()
     {
     }
