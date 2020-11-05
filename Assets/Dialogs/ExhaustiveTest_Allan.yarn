@@ -33,6 +33,7 @@ position: 722,290
 <<set $money to 1>>
 Cow: Thank you!
 <<set $cow_friendship = 1>>
+<<shake>>
 Cow: Yay!
 [[Continue|BuySomething]]
 [[Testing|CookieNotBought]]

@@ -12,10 +12,15 @@ namespace GameSystem.Editor
 
             GUI.enabled = Application.isPlaying;
 
-            GUILayout.Space(4f);
             GameConfiguration e = target as GameConfiguration;
-            if (GUILayout.Button("Reset"))
+            
+            GUILayout.Space(4f);
+            if (GUILayout.Button("Reset Save Data"))
                 e.ResetSaveData();
+            
+            GUILayout.Space(4f);
+            if (GUILayout.Button("Reset Options"))
+                e.ResetOptions();
         }
     }
 }

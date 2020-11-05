@@ -31,7 +31,7 @@ namespace Manager
 
         public void OnClickOptions()
         {
-            // todo: options
+            SceneManager.LoadScene("OptionScene");
         }
     }
 }

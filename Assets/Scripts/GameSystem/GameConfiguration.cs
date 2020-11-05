@@ -1,5 +1,6 @@
 using System;
 using GameSystem.Save;
+using TMPro;
 using Tomato.Core.GameSystem.Save;
 using UnityEngine;
 
@@ -21,7 +22,12 @@ public class GameConfiguration : ScriptableObject
     public float textRate = 0.025f;
     public float shakeStrength = 1f;
     public bool shouldShake = true;
+    public TMP_FontAsset fontAsset;
     public float fontSize = 18f;
+    [Range(0.6f,1f)]
+    public float textOpacity = 0.97f;
+    public Color fontColor = Color.black;
+    public bool enableTextFormatting = true; // todo: implement
     
     [Header("Save data")]
     public SaveData saveData;
@@ -45,5 +51,16 @@ public class GameConfiguration : ScriptableObject
     {
         saveData = new SaveData(baseConfiguration.saveData);
         autoSave = new SaveData(baseConfiguration.saveData);
+    }
+
+    public void ResetOptions()
+    {
+        textRate = baseConfiguration.textRate;
+        shouldShake = baseConfiguration.shouldShake;
+        fontAsset = baseConfiguration.fontAsset;
+        fontSize = baseConfiguration.fontSize;
+        textOpacity = baseConfiguration.textOpacity;
+        fontColor = baseConfiguration.fontColor;
+        enableTextFormatting = baseConfiguration.enableTextFormatting;
     }
 }

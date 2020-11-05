@@ -18,7 +18,7 @@ namespace RoboRyanTron.Unite2017.Events
         [Tooltip("Response to invoke when Event is raised.")]
         public UnityEvent Response;
 
-        private void OnEnable()
+        protected void OnEnable()
         {
             Event.RegisterListener(this);
         }

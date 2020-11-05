@@ -42,8 +42,8 @@ PlayerSettings:
   m_SplashScreenLogos: []
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
-  defaultScreenWidth: 2224
-  defaultScreenHeight: 1668
+  defaultScreenWidth: 1112
+  defaultScreenHeight: 834
   defaultScreenWidthWeb: 2224
   defaultScreenHeightWeb: 1668
   m_StereoRenderingPath: 0
@@ -127,6 +127,8 @@ PlayerSettings:
     Others: 0
   bundleVersion: 1.0
   preloadedAssets:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

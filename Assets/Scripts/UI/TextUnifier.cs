@@ -12,20 +12,28 @@ namespace UI
         public GameConfiguration gameConfiguration;
         private TextMeshProUGUI _text;
 
-        private void Awake()
+        protected new void OnEnable()
         {
-            Debug.Assert(Event != null);
-            Debug.Assert(gameConfiguration != null);
+            base.OnEnable();
             
             Response.AddListener(UpdateFontSize);
-            
             _text = GetComponent<TextMeshProUGUI>();
             UpdateFontSize();
         }
 
+        private void Awake()
+        {
+            Debug.Assert(Event != null);
+            Debug.Assert(gameConfiguration != null);
+        }
+
         public void UpdateFontSize()
         {
+            _text.font = gameConfiguration.fontAsset;
             _text.fontSize = gameConfiguration.FontSize;
+            var newColor = gameConfiguration.fontColor;
+            newColor.a = gameConfiguration.textOpacity;
+            _text.color = newColor;
         }
     }
 }

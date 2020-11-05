@@ -14,30 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSaveSlots: 7
   baseConfiguration: {fileID: 11400000, guid: dcbf9e10567ae3f4e9278d0692211347, type: 2}
-  textRate: 0.025
+  textRate: 0.1
   shakeStrength: 1
   shouldShake: 1
+  fontAsset: {fileID: 11400000, guid: 6b468795670eb704fa2f2922aab14504, type: 2}
   fontSize: 18
+  textOpacity: 0.97
+  fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
+  enableTextFormatting: 1
   saveData:
     name: 
-    currentYarnNode: MyCookieScenario
-    lastDialog: "Grammy: Can I buy the cookie from you? \U0001F609"
-    lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
-    lastAudioName: fishMarket
-    lastHeader: carpentry
-    savedVariables: []
-    isLeft: 0
-    currentSpeaker: Grammy
-    previousSpeaker: Cow
-  isSaveDirty: 1
-  autoSave:
-    name: 
     currentYarnNode: Start
-    lastDialog: 'Cow: Hello! Can <color=ff00ff>you</color> <u>share</u> some <b>cookies</b>?'
+    lastDialog: 
     lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
     lastAudioName: fishMarket
     lastHeader: carpentry
     savedVariables: []
     isLeft: 1
     currentSpeaker: 
+    previousSpeaker: 
+  isSaveDirty: 1
+  autoSave:
+    name: 
+    currentYarnNode: GiveCookieScenario
+    lastDialog: Cement time!
+    lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
+    lastAudioName: fishMarket
+    lastHeader: carpentry
+    savedVariables: []
+    isLeft: 1
+    currentSpeaker: Cow
     previousSpeaker: 

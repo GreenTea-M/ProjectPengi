@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SaveSelect.unity
     guid: 581667b834e4e944a9f76848e4e5fbc4
+  - enabled: 1
+    path: Assets/Scenes/OptionScene.unity
+    guid: cd7cd7f04c3f47e49a34a79f9d108dfb
   m_configObjects: {}
