@@ -55,7 +55,6 @@ namespace Dialog
         private const int PoolSize = 10;
         private TextItem[] _textItems = new TextItem[PoolSize];
         private int _textIndex = 0;
-        private PortraitItem[] _portraitItems = new PortraitItem[PoolSize];
         private int _portraitIndex = 0;
         private string _lastSpeaker = "";
         private bool requestDialogWrite = false;
@@ -72,9 +71,6 @@ namespace Dialog
             {
                 _textItems[i] = Instantiate(dialogueItemPrefab).GetComponent<TextItem>();
                 _textItems[i].Activate();
-
-                _portraitItems[i] = Instantiate(dialoguePortraitPrefab).GetComponent<PortraitItem>();
-                _portraitItems[i].Activate();
             }
         }
 
@@ -115,17 +111,7 @@ namespace Dialog
 
             // todo: identify speaker
             string candidateSpeaker = text.Split(':')[0];
-            Sprite newSprite = iconManager.GetSprite(candidateSpeaker);
-            if (!candidateSpeaker.Equals(_lastSpeaker) || (newSprite == null && _lastSpeaker.Equals("")))
-            {
-                foreach (var portrait in _portraitItems)
-                {
-                    portrait.PushUpwards();
-                }
-
-                _portraitIndex++;
-                _portraitItems[_portraitIndex].SetToCenter(newSprite);
-            }
+            iconManager.InformSpeaker(candidateSpeaker);
 
             // todo: push every text upwards
             foreach (var item in _textItems)
@@ -139,7 +125,6 @@ namespace Dialog
             if (requestDialogWrite)
             {
                 gameConfiguration.autoSave.lastDialog = text;
-                gameConfiguration.autoSave.lastSprite = newSprite;
             }
             onLineUpdate.AddListener(textItem.UpdateLine);
 
@@ -379,10 +364,7 @@ namespace Dialog
                 item.gameObject.SetActive(shouldShow);
             }
 
-            foreach (var item in _portraitItems)
-            {
-                item.gameObject.SetActive(shouldShow);
-            }
+            iconManager.ShowElements(shouldShow);
         }
     }
 }

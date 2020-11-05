@@ -4,16 +4,29 @@ using UnityEngine;
 
 namespace Dialog
 {
+    [RequireComponent(typeof(Animator))]
     public class PortraitItem : MonoBehaviour
     {
         public float scrollDistance = 10f;
         public float scrollDuration = 0.25f;
         public SpriteRenderer spriteRenderer;
+        public SpriteRenderer outlineRenderer;
 
         private Vector3 _defaultPosition = new Vector3(18.75f, 8.49f, 0f);
+        private IconItem _iconItem;
+        private bool _isLeft;
+        private string _candidateSpeaker;
+        private Animator _animator;
+
+        private int HashAnimGoLeft = Animator.StringToHash("GoLeft");
+        private int HashAnimGoRight = Animator.StringToHash("GoRight");
+        private int HashAnimIdle = Animator.StringToHash("Idle");
+        private int HashAnimSpeak = Animator.StringToHash("Speak");
+        private int HashAnimLeave = Animator.StringToHash("Leave");
 
         private void Awake()
         {
+            _animator = GetComponent<Animator>();
             _defaultPosition = transform.position;
         }
 
@@ -54,6 +67,39 @@ namespace Dialog
         {
             // todo: improve magic numbers
             transform.position = new Vector3(-20f, 20f, 0f);
+        }
+
+        public void Appear(IconItem iconItem, string candidateSpeaker, bool isLeft)
+        {
+            _iconItem = iconItem;
+            _candidateSpeaker = candidateSpeaker;
+            _isLeft = isLeft;
+            
+            spriteRenderer.sprite = iconItem?.mainSprite;
+            outlineRenderer.sprite = iconItem?.outlineSprite;
+            
+            _animator.SetTrigger(isLeft ? HashAnimGoLeft : HashAnimGoRight);
+        }
+
+        public bool IsSameSpeaker(string candidateSpeaker)
+        {
+            Debug.LogWarning($"{candidateSpeaker} vs {_candidateSpeaker}: ${_candidateSpeaker.Equals(candidateSpeaker)}");
+            return _candidateSpeaker.Equals(candidateSpeaker);
+        }
+
+        public void Leave()
+        {
+            _animator.SetTrigger(HashAnimLeave);
+        }
+
+        public void Idle()
+        {
+            _animator.SetTrigger(HashAnimIdle);
+        }
+
+        public void Speak()
+        {
+            _animator.SetTrigger(HashAnimSpeak);
         }
     }
 }
