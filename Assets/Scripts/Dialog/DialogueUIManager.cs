@@ -189,7 +189,6 @@ namespace Dialog
                     }
 
                     yield return new WaitForSeconds(TextRate);
-                    yield return new WaitForSeconds(TextRate);
                 }
             }
             else
@@ -210,6 +209,8 @@ namespace Dialog
                 yield return null;
             }
 
+            userRequestedNextLine = false;
+
             // Avoid skipping lines if textSpeed == 0
             yield return new WaitForEndOfFrame();
 
@@ -218,7 +219,7 @@ namespace Dialog
 
             // todo: check if this works
             onLineUpdate.RemoveListener(textItem.UpdateLine);
-
+            
             onComplete();
         }
 

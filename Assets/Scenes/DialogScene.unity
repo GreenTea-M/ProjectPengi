@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 86176306}
   - component: {fileID: 86176307}
+  - component: {fileID: 86176308}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -189,10 +190,10 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1856837811}
-        m_TargetAssemblyTypeName: Dialog.DialogueUIManager, Assembly-CSharp
-        m_MethodName: MarkLineComplete
-        m_Mode: 1
+      - m_Target: {fileID: 86176308}
+        m_TargetAssemblyTypeName: Gameplay.InputManager, Assembly-CSharp
+        m_MethodName: ContinueText
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -248,6 +249,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 1384768401}
+--- !u!114 &86176308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86176305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058cf87cd6c64ebc9b64ec8c762daffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueUiManager: {fileID: 1856837811}
 --- !u!1 &113402248
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,6 +719,12 @@ MonoBehaviour:
   - mainSprite: {fileID: 21300000, guid: eb6e51fadf961da41901fc056d8f372b, type: 3}
     outlineSprite: {fileID: 21300000, guid: b0c207e066df3694ea767aa3a622c802, type: 3}
     name: Grammy
+  - mainSprite: {fileID: 21300000, guid: 4de52f2ed496f514797b62599a18d0a2, type: 3}
+    outlineSprite: {fileID: 21300000, guid: b98f0c17764e284499b7a5fe0fe54ebc, type: 3}
+    name: Pengi
+  - mainSprite: {fileID: 21300000, guid: eb6e51fadf961da41901fc056d8f372b, type: 3}
+    outlineSprite: {fileID: 21300000, guid: b0c207e066df3694ea767aa3a622c802, type: 3}
+    name: Old Mole
   prefabCharacterIcon: {fileID: 1312063759716704211, guid: 4b121c3180f530c499e5fc99a7bf8f64, type: 3}
 --- !u!114 &1066951501
 MonoBehaviour:
@@ -1191,12 +1211,18 @@ MonoBehaviour:
   puzzleList:
   - puzzlePrefab: {fileID: 8421363479306282890, guid: 1eaee38122a47e64f82956c52fdc7b32, type: 3}
     name: cement
+  - puzzlePrefab: {fileID: 8421363479306282890, guid: 1eaee38122a47e64f82956c52fdc7b32, type: 3}
+    name: teddy
+  - puzzlePrefab: {fileID: 8421363479306282890, guid: 1eaee38122a47e64f82956c52fdc7b32, type: 3}
+    name: peaceSign
+  - puzzlePrefab: {fileID: 8421363479306282890, guid: 1eaee38122a47e64f82956c52fdc7b32, type: 3}
+    name: frog
   headerList:
   - sprite: {fileID: 0}
     name: None
   - sprite: {fileID: 21300000, guid: 95c86df476a062e4a9cc33dd2bda7452, type: 3}
     name: fishMarket
-  - sprite: {fileID: 21300000, guid: f2acab2203d3efd47a7875a8951930fa, type: 3}
+  - sprite: {fileID: 21300000, guid: def7792b5a21a1746b5b810fca6b529e, type: 3}
     name: carpentry
   prefabFadedAudio: {fileID: 3517092227973703711, guid: ffb55a4e78a9f6d448375860b9d3c112, type: 3}
   dialogueRunner: {fileID: 1856837812}
@@ -1473,7 +1499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconManager: {fileID: 1066951500}
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
-  dialogueItemPrefab: {fileID: 4591295462529182215, guid: 68529dfee29934a4a86bc015f3b44c15, type: 3}
+  dialogueItemPrefab: {fileID: 6204617817215508044, guid: 248815e0165fb2d4784bf7ab96c6657a, type: 3}
   dialoguePortraitPrefab: {fileID: 1312063759716704211, guid: 4b121c3180f530c499e5fc99a7bf8f64, type: 3}
   dialogueOptionsPrefab: {fileID: 0}
   onDialogueStart:
@@ -1517,7 +1543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yarnScripts:
-  - {fileID: 2480198943629176163, guid: a5b48bfd63bffbd4496b2497ade026c3, type: 3}
+  - {fileID: 2480198943629176163, guid: 820ead3561191414e96d678eee1b79a7, type: 3}
   textLanguage: 
   variableStorage: {fileID: 1066951502}
   dialogueUI: {fileID: 1856837811}

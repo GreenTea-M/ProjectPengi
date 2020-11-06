@@ -24,7 +24,7 @@ MonoBehaviour:
   enableTextFormatting: 1
   saveData:
     name: 
-    currentYarnNode: Start
+    currentYarnNode: Bear.Intro
     lastDialog: 
     lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
     lastAudioName: fishMarket
@@ -36,7 +36,7 @@ MonoBehaviour:
   isSaveDirty: 0
   autoSave:
     name: 
-    currentYarnNode: Start
+    currentYarnNode: Bear.Intro
     lastDialog: 
     lastSprite: {fileID: 21300000, guid: 4de52f2ed496f514797b62599a18d0a2, type: 3}
     lastAudioName: fishMarket

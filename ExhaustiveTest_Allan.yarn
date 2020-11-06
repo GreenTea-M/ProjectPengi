@@ -1,8 +1,11 @@
-title: Start
+title: Bear.Intro
 tags: 
 colorID: 0
 position: 332,482
 ---
+Cow: Hello! Can <color=ff00ff>you</color> <u>share</u> some <b>cookies</b>?
+Cow: Please????? Please???
+Cow: Moo!
 Cow: Hello! Can <color=ff00ff>you</color> <u>share</u> some <b>cookies</b>?
 [[Yes|GiveCookieScenario]]
 [[No|MyCookieScenario]]

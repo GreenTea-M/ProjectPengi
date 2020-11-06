@@ -211,7 +211,7 @@
                     "name": "",
                     "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "ContinueText",
@@ -247,6 +247,28 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
+                    "action": "ContinueText",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b56b002-48cd-477e-a37d-17d66d3886ef",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ContinueText",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a80ffa0-86a2-490d-a6fa-af7bbb10d8f8",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "ContinueText",
                     "isComposite": false,
                     "isPartOfComposite": false

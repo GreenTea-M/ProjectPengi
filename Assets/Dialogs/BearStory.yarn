@@ -9,7 +9,7 @@ position: 58,183
 Pengi: WOooow what are these??
 Brynhilda: Well hello-
 Pengi: AHH!
-[Screen shakes? Theres so much screen shaking LOL what else can we do?? SFX? Both?]
+<<shake>>
 <b>BAM</b> 
 //
 <i>Having been enthralled in all the items around them, Pengi hadn’t noticed the arrival of Brynhilda, and SMASHED their head on the shelf, knocking all of the items onto the floor.</i>
@@ -90,7 +90,7 @@ tags: Intro
 colorID: 0
 position: -260,184
 ---
-[Fade in background of street? Will add in later version]
+// Fade in background of street? Will add in later version
 //
 Pengi: Okokok OK!
 Pengi: I got this!
@@ -98,9 +98,10 @@ Pengi: Phew.
 <i>This was Pengi's first real job. Their first actual, proper job.</i>
 Pengi: I really hope I don't mess it up.
 <i>They nervously adjust their tie and pull out a hankerchief to wipe thier beak.</i>
-<i>Hmmm<<textSpeed = 0.5/>>...<<textSpeed = 1/>>now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
+// <i>Hmmm<<textSpeed = 0.5/>>...<<textSpeed = 1/>>now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
+<i>Hmmm<textSpeed = 0.5/>...<textSpeed = 1/>now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
 //
-[The screen would shake here]
+<<shake>>
 HeLLLlllOOOoo youNG child.
 Pengi: Wha-what the?!
 -> Look around
@@ -123,18 +124,20 @@ Old Mole: You wouldn’t have happened to see my <b>Shoe</b>, no?
 <i>As impossible as it may seem she squints even harder, her eyes seemingly disappearing into her graying fur.</i>
 Pengi: UUuuhhhh no? Sorry, I'm pretty busy and I have toda-
 //
-[screen shakes again while next description plays:]
+<<shake>>
+// [screen shakes again while next description plays:]
 Pengi: Hey! My shirt-
 Old Mole: OOOOoooooOoh please young one, could you help me find my <b>Shoe</b>? 
 Old Mole: It’s very important to me and my knees aren’t what they used to be. I was just sitting on a bench and suddenly…
 <i>She raises her hands, her beaded bag rustling at the sudden movement.</i>
-[screen shakes again while next description plays]
+<<shake>>
+//[screen shakes again while next description plays]
 Old Mole: BAM! ITS GONE!!! 
 <i>Lowering her hands, her brow wrinkles.</i>
 //
-Old Mole:  [smaller text to signify she is muttering] ]I swear <b>The Market</b> was where I was, no? Hmmmm...must have wandered off, just like my shoe...oh dear…
+Old Mole:  <smaller text to signify she is muttering/>I swear <b>The Market</b> was where I was, no? Hmmmm...must have wandered off, just like my shoe...oh dear…
 Pengi: Did you just say...<b>The Market</b>?
-Old Mole: [normal text size] Yes dear! You know <b>The Market</b>, no? Just down the street, turn left, over the yellow bridge, through the stream, past the hill, over the red bridge - not the yellow one - and through the corn field. Best and only <b>Market</b> we have!
+Old Mole: <normal text size/> Yes dear! You know <b>The Market</b>, no? Just down the street, turn left, over the yellow bridge, through the stream, past the hill, over the red bridge - not the yellow one - and through the corn field. Best and only <b>Market</b> we have!
 Pengi: <Surprise/Confused>
 Old Mole: SO, could you help me?
 Pengi: <Confused> 
@@ -148,7 +151,7 @@ Pengi: <Surprised> Oh wait where can I meet you once I...annnnnd she’s gone.
 Pengi: <Normal> Alright. At least I know the way there now. 
 Pengi: It’s just...down the street, yes?
 //
-[Change to General Market Background, no character images here]
+// <Change to General Market Background, no character images here/>
 //
 Using their impeccable memory, Pengi began following the Old Mole's directions. 
 Panting, Pengi finally made it to <b>The Market</b>. 
@@ -184,7 +187,7 @@ Brynhilda: <Surprised> OH! Mole Lady! I haven’t seen her in years!
 Pengi: Wh-what? Years?? But she said she was here just a couple hours ago.
 Brynhilda: <Confused> Huh, I guess I missed her then. 
 <i>She peers outside the storefront window, her eyes squinting.</i>
-Brynhilda: <Confused> [smaller text as she mutters] Hmm...she usually comes here to say hi. I hope she's alright.
+Brynhilda: <Confused> <smaller text as she mutters> Hmm...she usually comes here to say hi. I hope she's alright.
 <i>She looks back at Pengi, her expression looking a bit more sombre.</i>
 Brynhilda: Sorry, it’s just...I was under the impression that she may have...left us. Made me think a little bit about the ending of things you know? 
 <i>She shakes her head a little, her fur rustling as she did so.</i>
@@ -200,11 +203,12 @@ I-
 Ummm-
 Brynhilda: Yes?
 Pengi: I-
-[Screen shakes???]
+<<shake>>
+// [Screen shakes???]
 Pengi: I’M SORRY!
 Brynhilda: <Surprised> Wha-what? 
 Pengi: I’m part of Grounded Real Estate a-and my job is to get contracts from the stores in the area- 
 <i>Brynhilda’s fur bristles a bit at the sound of the company’s name.</i>
-Pengi: -a-and this is my big break to get enough money to [words get smaller and smaller as Pengi trails off] afford the lessons and…
+Pengi: -a-and this is my big break to get enough money to <words get smaller and smaller as Pengi trails off/> afford the lessons and…
 [[Bear.CondShoe]]
 ===
