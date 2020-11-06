@@ -84,7 +84,7 @@ namespace Dialog
 
         public bool IsSameSpeaker(string candidateSpeaker)
         {
-            return _speaker.Equals(candidateSpeaker);
+            return _iconItem.IsSpeaker(candidateSpeaker);
         }
 
         public void Leave()
@@ -100,6 +100,11 @@ namespace Dialog
         public void Speak()
         {
             _animator.SetTrigger(HashAnimSpeak);
+        }
+
+        public string GetRealName()
+        {
+            return _iconItem.name;
         }
     }
 }

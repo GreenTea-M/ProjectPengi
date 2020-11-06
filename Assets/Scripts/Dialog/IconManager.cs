@@ -41,13 +41,14 @@ public class IconManager : MonoBehaviour
     {
         foreach (var iconItem in iconList)
         {
-            if (string.Equals(speakerName, iconItem.name, StringComparison.CurrentCultureIgnoreCase))
+            if (iconItem.IsSpeaker(speakerName))
             {
                 return iconItem;
             }
         }
 
-        return null;
+        Debug.LogWarning($"Speaker not found: {speakerName}. Defaulting...");
+        return iconList[0];
     }
 
     public void RemoveSpeaker(int count)
@@ -55,20 +56,22 @@ public class IconManager : MonoBehaviour
         // todo implement remove speaker
     }
 
-    public bool InformSpeaker(string candidateSpeaker)
+    public InformSpeakerReturn InformSpeaker(string candidateSpeaker)
     {
         return InformSpeaker(candidateSpeaker, false);
     }
 
 
-    private bool InformSpeaker(string candidateSpeaker, bool isForced)
+    private InformSpeakerReturn InformSpeaker(string candidateSpeaker, bool isForced)
     {
+        var ret = new InformSpeakerReturn();
         candidateSpeaker = candidateSpeaker.Trim();
 
         if (candidateSpeaker.Equals(""))
         {
             // do nothing ??
-            return SaveState(false);
+            ret.isBlocking = false;
+            return SaveState(ret);
         }
 
         if (_currentSpeaker == null)
@@ -79,16 +82,19 @@ public class IconManager : MonoBehaviour
                 _currentSpeaker.Speak();
             }
 
-            return SaveState(true);
+            ret.isBlocking = false;
+            ret.realName = _currentSpeaker.GetRealName();
+            return SaveState(ret);
         }
 
         if (_currentSpeaker.IsSameSpeaker(candidateSpeaker))
         {
             // todo: change emotions???
-            return SaveState(false);
+            ret.isBlocking = false;
+            ret.realName = _currentSpeaker.GetRealName();
+            return SaveState(ret);
         }
 
-        bool isBlocking = false;
         PortraitItem newSpeaker = null;
         if (_previousSpeaker == null)
         {
@@ -114,7 +120,7 @@ public class IconManager : MonoBehaviour
         else
         {
             _currentSpeaker = GetSpeakerPortrait(candidateSpeaker);
-            isBlocking = true;
+            ret.isBlocking = true;
         }
 
         if (!isForced)
@@ -123,10 +129,11 @@ public class IconManager : MonoBehaviour
             _currentSpeaker.Speak();
         }
 
-        return SaveState(isBlocking);
+        ret.realName = _currentSpeaker.GetRealName();
+        return SaveState(ret);
     }
 
-    private bool SaveState(bool isBlocking)
+    private InformSpeakerReturn SaveState(InformSpeakerReturn ret)
     {
         gameConfiguration.autoSave.isLeft = !_isLeft;
         gameConfiguration.autoSave.currentSpeaker = _currentSpeaker != null
@@ -135,7 +142,7 @@ public class IconManager : MonoBehaviour
         gameConfiguration.autoSave.previousSpeaker = _previousSpeaker != null
             ? _previousSpeaker.Speaker
             : "";
-        return isBlocking;
+        return ret;
     }
 
     private PortraitItem GetSpeakerPortrait(string candidateSpeaker)
@@ -160,4 +167,29 @@ public class IconItem
     [FormerlySerializedAs("sprite")] public Sprite mainSprite;
     public Sprite outlineSprite;
     public String name;
+    public String[] aliases;
+
+    public bool IsSpeaker(string speakerName)
+    {
+        if (string.Equals(speakerName, name, StringComparison.CurrentCultureIgnoreCase))
+        {
+            return true;
+        }
+
+        foreach (var alias in aliases)
+        {
+            if (string.Equals(speakerName, alias, StringComparison.CurrentCultureIgnoreCase))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+public class InformSpeakerReturn
+{
+    public bool isBlocking = false;
+    public string realName = "";
 }

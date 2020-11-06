@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Assertions.Comparers;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Yarn;
@@ -117,10 +118,23 @@ namespace Dialog
                 text = line.ID;
             }
 
+            // for empty //, we ignore them
+            if (text.Trim().Equals("//"))
+            {
+                userRequestedNextLine = true;
+                text = "";
+            }
+
             // todo: identify speaker
             var argSplit = text.Split(':');
-            isBlocking = iconManager.InformSpeaker(argSplit.Length != 1 ? argSplit[0] : "");
+            InformSpeakerReturn speakerInfo = iconManager.InformSpeaker(argSplit.Length != 1 ? argSplit[0] : "");
+            isBlocking = speakerInfo.isBlocking;
 
+            if (speakerInfo.realName.Length != 0)
+            {
+                text = text.Replace($"{argSplit[0]}:", $"{speakerInfo.realName}:");
+            }
+            
             // todo: push every text upwards
             foreach (var item in _textItems)
             {
@@ -146,7 +160,7 @@ namespace Dialog
             {
                 var stringBuilder = new StringBuilder();
                 var markupBuilder = new StringBuilder();
-                var originalTextSpeed = TextRate;
+                var textSpeedMultiplier = 1f;
                 // todo: do something about markup symbols
                 // todo: research text gui things that people may use
                 // todo: change text speed
@@ -162,7 +176,27 @@ namespace Dialog
                         if (c.Equals('>'))
                         {
                             AdjustMarkups(markupBuilder);
-                            stringBuilder.Append(markupBuilder);
+
+                            var markupText = markupBuilder.ToString().ToLower();
+                            if (markupText.Contains("textspeed"))
+                            {
+                                var parseArgs = markupText.Split('=');
+                                var tmpFloat = -1f;
+                                if (parseArgs.Length == 2 &&
+                                    float.TryParse(parseArgs[1].Replace(">", "").Replace("/", ""), out tmpFloat))
+                                {
+                                    textSpeedMultiplier = 1f/tmpFloat;
+                                }
+                                else
+                                {
+                                    Debug.LogWarning($"Failed to translate markup: {markupText}");
+                                }
+                            }
+                            else
+                            {
+                                stringBuilder.Append(markupBuilder);
+                            }
+
                             markupBuilder.Clear();
                         }
 
@@ -188,7 +222,7 @@ namespace Dialog
                         break;
                     }
 
-                    yield return new WaitForSeconds(TextRate);
+                    yield return new WaitForSeconds(TextRate * textSpeedMultiplier);
                 }
             }
             else
@@ -197,9 +231,6 @@ namespace Dialog
                 text = AdjustMarkups(text);
                 onLineUpdate?.Invoke(text);
             }
-
-            // We're now waiting for the player to move on to the next line
-            userRequestedNextLine = false;
 
             // Indicate to the rest of the game that the line has finished being delivered
             onLineFinishDisplaying?.Invoke();
@@ -219,7 +250,7 @@ namespace Dialog
 
             // todo: check if this works
             onLineUpdate.RemoveListener(textItem.UpdateLine);
-            
+
             onComplete();
         }
 

@@ -380,7 +380,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Old Mole: SO, could you help me?'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b468795670eb704fa2f2922aab14504, type: 2}
   m_sharedMaterial: {fileID: -1431132235025876290, guid: 6b468795670eb704fa2f2922aab14504, type: 2}
@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 2444540570648916390}
   - component: {fileID: 8472175922057156931}
   m_Layer: 5
-  m_Name: TextItem(Clone)
+  m_Name: TextItem2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
