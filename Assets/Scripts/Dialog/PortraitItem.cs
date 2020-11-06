@@ -10,7 +10,6 @@ namespace Dialog
         public float scrollDistance = 10f;
         public float scrollDuration = 0.25f;
         public SpriteRenderer spriteRenderer;
-        public SpriteRenderer outlineRenderer;
 
         private Vector3 _defaultPosition = new Vector3(18.75f, 8.49f, 0f);
         private IconItem _iconItem;
@@ -77,7 +76,6 @@ namespace Dialog
             _isLeft = isLeft;
             
             spriteRenderer.sprite = iconItem?.mainSprite;
-            outlineRenderer.sprite = iconItem?.outlineSprite;
             
             _animator.SetTrigger(isLeft ? HashAnimGoLeft : HashAnimGoRight);
         }
@@ -90,16 +88,19 @@ namespace Dialog
         public void Leave()
         {
             _animator.SetTrigger(HashAnimLeave);
+            spriteRenderer.sprite = _iconItem?.mainSprite;
         }
 
         public void Idle()
         {
             _animator.SetTrigger(HashAnimIdle);
+            spriteRenderer.sprite = _iconItem?.mainSprite;
         }
 
         public void Speak()
         {
             _animator.SetTrigger(HashAnimSpeak);
+            spriteRenderer.sprite = _iconItem?.outlineSprite;
         }
 
         public string GetRealName()

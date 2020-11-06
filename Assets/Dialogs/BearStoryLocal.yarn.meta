@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 85bd933472a1c7f4e9eb201d9784b4d1
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: 
+  stringIDs: []
+  compilationStatus: 0
+  isSuccesfullyCompiled: 0
+  compilationErrorMessage: "Error on line 39 at position 24:\nmismatched input '=='
+    expecting '('\r\n<<elseif grammyPicture == 1>>\r\n                       ^^"
+  baseLanguage: {instanceID: 0}
+  localizations: []

@@ -29,6 +29,7 @@ namespace Gameplay
         {
             _camera = Camera.main;
             _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+            // explode
             _rigidbody2D.AddForce(Random.insideUnitCircle * forceMultiplier, ForceMode2D.Impulse);
         }
 

@@ -244,6 +244,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a17e6a3a-df5d-4171-b740-a7af271d952b
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 86176308}
+        m_TargetAssemblyTypeName: Gameplay.InputManager, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3b2612fe-f642-434b-8ab8-381a8d351e86
+    m_ActionName: Player/OnPointDown[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1100,7 +1116,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1208,6 +1224,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
+  memoryStorage: {fileID: 1066951502}
+  inputManager: {fileID: 86176308}
   delayTime: 3
   audioList:
   - audioClip: {fileID: 8300000, guid: 8a65e0c933f22a24db5e0d1de55428e7, type: 3}
@@ -1216,13 +1234,15 @@ MonoBehaviour:
     name: fishMarket
   puzzleList:
   - puzzlePrefab: {fileID: 8421363479306282890, guid: 1eaee38122a47e64f82956c52fdc7b32, type: 3}
-    name: cement
-  - puzzlePrefab: {fileID: 8421363479306282890, guid: 1eaee38122a47e64f82956c52fdc7b32, type: 3}
+    name: shelf
+  - puzzlePrefab: {fileID: 8421363479306282890, guid: 1f44a147b69ccd14193234db9e2c1b87, type: 3}
     name: teddy
   - puzzlePrefab: {fileID: 8421363479306282890, guid: 1eaee38122a47e64f82956c52fdc7b32, type: 3}
     name: peaceSign
   - puzzlePrefab: {fileID: 8421363479306282890, guid: 1eaee38122a47e64f82956c52fdc7b32, type: 3}
     name: frog
+  - puzzlePrefab: {fileID: 8421363479306282890, guid: 1eaee38122a47e64f82956c52fdc7b32, type: 3}
+    name: cement
   headerList:
   - sprite: {fileID: 0}
     name: None
@@ -1230,6 +1250,25 @@ MonoBehaviour:
     name: fishMarket
   - sprite: {fileID: 21300000, guid: def7792b5a21a1746b5b810fca6b529e, type: 3}
     name: carpentry
+  shelfItemDataList:
+  - prefabShelfItem: {fileID: 4122080507588346039, guid: 1cea3cb0ef98e0f449c9a635e53f3ade, type: 3}
+    name: Peace Sign
+    variableName: peaceSign
+  - prefabShelfItem: {fileID: 2363746535120907186, guid: 592208125c612cb4d9c1d452391c7574, type: 3}
+    name: Peace Sign
+    variableName: toilet
+  - prefabShelfItem: {fileID: 4000650663974834255, guid: 0093d126ad4f24e47bef2e964eddd121, type: 3}
+    name: Peace Sign
+    variableName: grammyPicture
+  - prefabShelfItem: {fileID: 902587319452910465, guid: ecb078265f704af48b94c8b07a2917fd, type: 3}
+    name: Peace Sign
+    variableName: baseball
+  - prefabShelfItem: {fileID: 4913689857735188643, guid: c1617422e7f0a404684774c13cdfd446, type: 3}
+    name: Peace Sign
+    variableName: bagFilled
+  - prefabShelfItem: {fileID: 4913331961845726566, guid: 5b0342c669e39c545b863dca1279e4f0, type: 3}
+    name: Peace Sign
+    variableName: teddy
   prefabFadedAudio: {fileID: 3517092227973703711, guid: ffb55a4e78a9f6d448375860b9d3c112, type: 3}
   dialogueRunner: {fileID: 1856837812}
   dialogueUiManager: {fileID: 1856837811}
@@ -1341,7 +1380,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1633397014
 MonoBehaviour:
@@ -1549,7 +1588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yarnScripts:
-  - {fileID: 2480198943629176163, guid: 820ead3561191414e96d678eee1b79a7, type: 3}
+  - {fileID: 2480198943629176163, guid: 85bd933472a1c7f4e9eb201d9784b4d1, type: 3}
   textLanguage: 
   variableStorage: {fileID: 1066951502}
   dialogueUI: {fileID: 1856837811}
@@ -1735,7 +1774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3655679620357101713, guid: 55596369a7cb7d94c87a71658fa7e6d2, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3655679620357101713, guid: 55596369a7cb7d94c87a71658fa7e6d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1872,7 +1911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2615843728546989044, guid: e867dc319a43f334f80162bc3778062a, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2615843728546989044, guid: e867dc319a43f334f80162bc3778062a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

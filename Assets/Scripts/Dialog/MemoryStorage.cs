@@ -12,12 +12,6 @@ namespace Dialog
     /// todo: speed up by using dirty flags
     public class MemoryStorage : InMemoryVariableStorage
     {
-        public override void SetValue(string variableName, float floatValue)
-        {
-            Debug.Log($"{variableName} = {floatValue}");
-            base.SetValue(variableName, floatValue);
-        }
-
         public void Write(SaveData saveData)
         {
             saveData.savedVariables.Clear();

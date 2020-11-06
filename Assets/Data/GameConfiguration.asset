@@ -24,7 +24,7 @@ MonoBehaviour:
   enableTextFormatting: 1
   saveData:
     name: 
-    currentYarnNode: Bear.Intro
+    currentYarnNode: Bear.PuzzleStart
     lastDialog: 
     lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
     lastAudioName: fishMarket
