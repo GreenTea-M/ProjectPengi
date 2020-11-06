@@ -16,15 +16,15 @@ MonoBehaviour:
   baseConfiguration: {fileID: 11400000, guid: dcbf9e10567ae3f4e9278d0692211347, type: 2}
   textRate: 0.025
   shakeStrength: 1
-  shouldShake: 0
+  shouldShake: 1
   fontAsset: {fileID: 11400000, guid: 6b468795670eb704fa2f2922aab14504, type: 2}
-  fontSize: 18
+  fontSize: 12
   textOpacity: 0.97
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   enableTextFormatting: 1
   saveData:
     name: 
-    currentYarnNode: Bear.PuzzleStart
+    currentYarnNode: Bear.Intro
     lastDialog: 
     lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
     lastAudioName: fishMarket
@@ -36,12 +36,12 @@ MonoBehaviour:
   isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.PuzzleStart
-    lastDialog: Puzzle time!
+    currentYarnNode: Bear.EnterStore
+    lastDialog: 'Pengi: AHH!'
     lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
     lastAudioName: fishMarket
     lastHeader: carpentry
     savedVariables: []
-    isLeft: 0
-    currentSpeaker: Brynhilda
-    previousSpeaker: Pengi
+    isLeft: 1
+    currentSpeaker: Pengi
+    previousSpeaker: Brynhilda

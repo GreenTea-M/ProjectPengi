@@ -15,6 +15,7 @@ namespace Dialog
     /// </summary>
     /// <seealso cref="DialogueUI"/>
     ///  todo: add more documentation
+    ///  todo: add aliases in button options
     public class DialogueUIManager : Yarn.Unity.DialogueUIBehaviour
     {
         [FormerlySerializedAs("assetManager")] public IconManager iconManager;

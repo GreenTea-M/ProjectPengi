@@ -17,12 +17,10 @@ namespace Dialog
         private string _speaker;
         private Animator _animator;
 
-        private int HashAnimGoLeft = Animator.StringToHash("GoLeft");
-        private int HashAnimGoRight = Animator.StringToHash("GoRight");
-        private int HashAnimIdle = Animator.StringToHash("Idle");
-        private int HashAnimSpeak = Animator.StringToHash("Speak");
-        private int HashAnimLeave = Animator.StringToHash("Leave");
-        public string Speaker => _speaker;
+        private int HashIsActive = Animator.StringToHash("IsActive");
+        private int HashIsSpeaking = Animator.StringToHash("IsSpeaking");
+        private int HashIsLeft = Animator.StringToHash("IsLeft");
+        public string Speaker => GetRealName();
 
         private void Awake()
         {
@@ -77,7 +75,10 @@ namespace Dialog
             
             spriteRenderer.sprite = iconItem?.mainSprite;
             
-            _animator.SetTrigger(isLeft ? HashAnimGoLeft : HashAnimGoRight);
+            _animator.SetBool(HashIsLeft, isLeft);
+            _animator.SetBool(HashIsActive, true);
+            // todo: delete old code
+            // _animator.SetTrigger(isLeft ? HashAnimGoLeft : HashAnimGoRight);
         }
 
         public bool IsSameSpeaker(string candidateSpeaker)
@@ -87,19 +88,21 @@ namespace Dialog
 
         public void Leave()
         {
-            _animator.SetTrigger(HashAnimLeave);
+            _animator.SetBool(HashIsActive, false);
             spriteRenderer.sprite = _iconItem?.mainSprite;
         }
 
         public void Idle()
         {
-            _animator.SetTrigger(HashAnimIdle);
+            _animator.SetBool(HashIsActive, true);
+            _animator.SetBool(HashIsSpeaking, false);
             spriteRenderer.sprite = _iconItem?.mainSprite;
         }
 
         public void Speak()
         {
-            _animator.SetTrigger(HashAnimSpeak);
+            _animator.SetBool(HashIsActive, true);
+            _animator.SetBool(HashIsSpeaking, true);
             spriteRenderer.sprite = _iconItem?.outlineSprite;
         }
 

@@ -22,6 +22,7 @@ namespace Dialog
         public GameConfiguration gameConfiguration;
         public MemoryStorage memoryStorage;
         public InputManager inputManager;
+        public IconManager iconManager;
 
         [Header("Variables")] public float delayTime = 3f;
 
@@ -65,6 +66,7 @@ namespace Dialog
             Debug.Assert(headerSprite != null);
             Debug.Assert(memoryStorage != null);
             Debug.Assert(inputManager != null);
+            Debug.Assert(iconManager != null);
 
             ChangeHeader(new[] {gameConfiguration.saveData.lastHeader});
             PlayAudio(new[] {gameConfiguration.saveData.lastAudioName});
@@ -80,6 +82,20 @@ namespace Dialog
             dialogueRunner.AddCommandHandler("shake", Shake);
             dialogueRunner.AddCommandHandler("debugLog", DebugLog);
             dialogueRunner.AddCommandHandler("clearShelfItem", ClearShelfItem);
+            dialogueRunner.AddCommandHandler("resetSpeaker", ResetSpeaker);
+            dialogueRunner.AddCommandHandler("showShelf", ShowShelf);
+        }
+
+        private void ShowShelf(string[] parameters)
+        {
+            // todo: show shelf
+            Debug.LogWarning("todo: show shelf");
+        }
+
+        private void ResetSpeaker(string[] parameters)
+        {
+            // todo: improve ResetSpeaker
+            iconManager.RemoveSpeaker(2);
         }
 
         /// <summary>

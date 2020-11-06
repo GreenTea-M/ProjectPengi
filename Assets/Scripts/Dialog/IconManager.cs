@@ -53,7 +53,19 @@ public class IconManager : MonoBehaviour
 
     public void RemoveSpeaker(int count)
     {
-        // todo implement remove speaker
+        if (_previousSpeaker != null)
+        {
+            _previousSpeaker.Leave();
+            _previousSpeaker = null;
+        }
+
+        if (_currentSpeaker != null)
+        {
+            _currentSpeaker.Leave();
+            _currentSpeaker = null;
+        }
+        
+        Debug.Log("Removing speakers");
     }
 
     public InformSpeakerReturn InformSpeaker(string candidateSpeaker)
@@ -64,12 +76,23 @@ public class IconManager : MonoBehaviour
 
     private InformSpeakerReturn InformSpeaker(string candidateSpeaker, bool isForced)
     {
+        Debug.Log($"Speaker: {candidateSpeaker}");
         var ret = new InformSpeakerReturn();
         candidateSpeaker = candidateSpeaker.Trim();
 
         if (candidateSpeaker.Equals(""))
         {
             // do nothing ??
+            if (_currentSpeaker != null)
+            {
+                _currentSpeaker.Idle();
+            }
+
+            if (_previousSpeaker != null)
+            {
+                _previousSpeaker.Idle();
+            }
+            
             ret.isBlocking = false;
             return SaveState(ret);
         }
@@ -90,6 +113,7 @@ public class IconManager : MonoBehaviour
         if (_currentSpeaker.IsSameSpeaker(candidateSpeaker))
         {
             // todo: change emotions???
+            _currentSpeaker.Speak();
             ret.isBlocking = false;
             ret.realName = _currentSpeaker.GetRealName();
             return SaveState(ret);
@@ -123,11 +147,8 @@ public class IconManager : MonoBehaviour
             ret.isBlocking = true;
         }
 
-        if (!isForced)
-        {
-            _previousSpeaker.Idle();
-            _currentSpeaker.Speak();
-        }
+        _previousSpeaker.Idle();
+        _currentSpeaker.Speak();
 
         ret.realName = _currentSpeaker.GetRealName();
         return SaveState(ret);

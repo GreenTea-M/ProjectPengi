@@ -20,7 +20,6 @@ P: Oh my gosh, I’m so sorry!
  Brynhilda: <Smiling> Don’t be, you’d be surprised how common that is. I really need to make more sound when I enter a room. 
 <i>She bends down and begins to help pick up the items on the floor</i>
 <i>Pengi, feeling a flush of red creeping up to their face pick up...</i>
-
 [[Bear.PuzzleStart]]
 ===
 title: Bear.PuzzleStart
@@ -28,10 +27,33 @@ tags:
 colorID: 0
 position: 358,188
 ---
-Puzzle time!
-<<doPuzzle teddy>>
-<<doPuzzle peaceSign>>
-<<doPuzzle frog>>
+<<clearShelfItem>>
+<<if $puzzleDone == true>>
+    <<showShelf>>
+    [[Bear.PuzzleDone]]
+<<endif>>
+<<resetSpeaker 2>>
+<<doPuzzle shelf>>
+<<if $peaceSign == 1>>
+    <<set $peaceSign = 2>>
+    [[Bear.PeaceDialogue]]
+<<elseif $toilet == 1>>
+    <<set $toilet = 2>>
+    [[Bear.ToiletDialogue]]
+<<elseif $grammyPicture == 1>>
+    <<set $grammyPicture = 2>>
+    [[Bear.GrammyPictureDialogue]]
+<<elseif $baseball == 1>>
+    <<set $baseball = 2>>
+    [[Bear.BaseBallDialogue]]
+<<elseif $teddy == 1>>
+    <<set $teddy = 2>>
+    [[Bear.TeddyDialogue]]
+<<elseif $marble == 1>>
+    <<set $marble = 2>>
+    [[Bear.MarbleDialogue]]
+<<endif>>
+<<debugLog This should not be happening>>
 [[I am all done|Bear.PuzzleDone]]
 ===
 title: Bear.PuzzleDone
@@ -209,4 +231,119 @@ Pengi: I’m part of Grounded Real Estate a-and my job is to get contracts from 
 <i>Brynhilda’s fur bristles a bit at the sound of the company’s name.</i>
 Pengi: -a-and this is my big break to get enough money to <words get smaller and smaller as Pengi trails off/> afford the lessons and…
 [[Bear.CondShoe]]
+===
+title: Bear.PeaceDialogue
+tags: 
+colorID: 0
+position: 357,-295
+---
+P: <i>Picks up a large carving of a peace sign. There’s faded writing on it and you need both hands to carry it.</i>
+P: Woah, what is this? And why is it so <voffset=-0.5em>heavy</voffset>?
+B: You’re holding the first ever sign this store had. Used to hang right outside the door. My <size=90%>great-<size=100%>great-<size=110%>great-<size=100%>grandfather carved it himself when he started the place. As you can guess, he was a bit of a hippy.  He was a huge fan of trees, so he took up woodworking. It turns out a space for creation is compatible with the values of peace, love, and happiness, so this place got fairly popular at the time. Stuck around ever since.
+[[Bear.PuzzleStart]]
+===
+title: Bear.ToiletDialogue
+tags: 
+colorID: 0
+position: 867,698
+---
+P: …
+P: This is a roll of toilet paper.
+P: Made of wood.
+B: They can’t all be winners, kid.
+P: Paper is processed wood! Is this some kind of artistic statement?
+B: No, my great great great grand aunt Brianna was just crazy. And an inventor. She also made a wooden toilet, a wooden bathtub ...
+B: They didn’t catch on.
+[[Bear.PuzzleStart]]
+===
+title: Bear.GrammyPictureDialogue
+tags: 
+colorID: 0
+position: 689,-261
+---
+P: Ooh! Another picture. Is this polar bear you?
+B: Sure is. That’s great Grammy Ribitha and my 5 siblings. She was a family friend of our parents before their passing. She took us in afterward. Old girl’s still here and kicking!
+<<shortPause>>
+B: <b><Heartfelt></b> We owe her everything.
+[[Bear.PuzzleStart]]
+===
+title: Bear.BaseBallDialogue
+tags: 
+colorID: 0
+position: -275,530
+---
+Baseball dialogue <voffset=1em>here
+[[Okay|Bear.PuzzleStart]]
+===
+title: Bear.TeddyDialogue
+tags: 
+colorID: 0
+position: 58,-230
+---
+P: Big fan?
+B: Oh yes. <i>*chuckles knowingly*</i> That’s my <size=90%>great-<size=100%>great-<size=110%>great-<size=120%>great-<size=130%>great-<size=100%>grandfather! You know the whole thing about carrying a <size=120%>big<size=100%> stick? My <size=90%>great-<size=100%>great-<size=113%>great-<size=125%>great-<size=135%>great-<size=100%>grandmother was the one that made him the stick! It’s a truly charming tale of two bears and their love of wood-based items…
+<i>She trails off, as if reliving a wonderful childhood memory (even though she wasn’t alive back then).</i>
+[[Bear.PuzzleStart]]
+===
+title: Bear.MarbleDialogue
+tags: 
+colorID: 0
+position: -137,802
+---
+P: A marble collection? Are these your kid’s?
+B: Nope. We have a thing for woodworking in this family. When we get to a certain skill level, we make a set of marbles, and everyone gets one.
+<<showItem orangeMarble>> 
+// <<debugLog todo unimplemented showItem>>
+// show penguin orange marble
+B: This one is mine. Want to see some more?
+P: Sure!
+B: Okay, which one first?
+// (Rewriting this part a bit to be 3 waves of options)
+[[The one that’s stripped with different bands of light and dark wood.|Bear.BrettaMarble]]
+[[The one that’s shaped like a 20 sided die.|Bear.BrodyMarble]]
+[[The one that has three sections: one made of bamboo, one that’s black with a white triangular patch, and one that’s dark brown with sharp black needle shapes.|Bear.BrianMarble]]
+===
+title: Bear.BrettaMarble
+tags: 
+colorID: 0
+position: 126,1042
+---
+B: This is my sister Bretta’s. She runs a chair shop in CITY NAME
+-> The one that’s medium brown, with a white swirl running across the surface.
+    B:  That’s great grandpa Breppa’s. He loves Banjos. That’s actually a string incorporated into the marble.
+-> The one that’s pockmarked by varying sized holes.
+	B:  This is cousin Brie’s. She makes cheese for a living. Yes, we make jokes.
+[[Bear.Marble.End]]
+===
+title: Bear.BrodyMarble
+tags: 
+colorID: 0
+position: 384,1039
+---
+B:  Uncle Brody’s work. He’s a pretty big nerd.
+-> The one that’s white, black and brown.
+    B:  That’s my mom’s. Her name was Brittney.
+-> The one with jagged lines that might be rectangles?
+    B:  My nephew’s name is Brick and he wanted to do his namesake pattern. It’s a little rough, but he was insistent on being the youngest ever to have made the marbles. Good kid.
+[[Bear.Marble.End]]
+===
+title: Bear.BrianMarble
+tags: 
+colorID: 0
+position: 651,1034
+---
+B: My dad’s. His name was Brian.
+-> The one that has a line running down the middle.
+    B:  That’s Bran’s. No one knows how we’re related to him, but he’s family. It opens up like a matryoshka doll.
+-> The one that has a maze printed onto its surface.
+	B:  Brianna’s my niece, and likes to show how smart she is at every opportunity. She’s in Med School right now.
+[[Bear.Marble.End]]
+===
+title: Bear.Marble.End
+tags: 
+colorID: 0
+position: 380,556
+---
+B: Alright, that’s enough for now.
+[[Bear.PuzzleStart]]
 ===
