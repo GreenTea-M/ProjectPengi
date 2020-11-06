@@ -97,8 +97,10 @@ namespace Dialog
 
         private void Shake(string[] parameter)
         {
-            Debug.Log("Shake!!");
-            _impulseSignal.GenerateImpulse(gameConfiguration.ShakeStrength);
+            if (gameConfiguration.shouldShake)
+            {
+                _impulseSignal.GenerateImpulse(gameConfiguration.ShakeStrength);
+            }
         }
 
         #region PlayAudio

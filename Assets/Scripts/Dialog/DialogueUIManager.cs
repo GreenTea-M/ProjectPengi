@@ -134,7 +134,7 @@ namespace Dialog
             {
                 text = text.Replace($"{argSplit[0]}:", $"{speakerInfo.realName}:");
             }
-            
+
             // todo: push every text upwards
             foreach (var item in _textItems)
             {
@@ -156,80 +156,84 @@ namespace Dialog
                 yield return new WaitForSeconds(0.03f);
             }
 
-            if (TextRate > 0.0f)
+            if (TextRate <= 0f)
             {
-                var stringBuilder = new StringBuilder();
-                var markupBuilder = new StringBuilder();
-                var textSpeedMultiplier = 1f;
-                // todo: do something about markup symbols
-                // todo: research text gui things that people may use
-                // todo: change text speed
+                gameConfiguration.textRate = 0f;
+            }
 
-                foreach (var c in text)
+            var stringBuilder = new StringBuilder();
+            var markupBuilder = new StringBuilder();
+            var textSpeedMultiplier = 1f;
+            // todo: do something about markup symbols
+            // todo: research text gui things that people may use
+            // todo: change text speed
+
+            foreach (var c in text)
+            {
+                #region for hiding markup
+
+                if (markupBuilder.Length != 0)
                 {
-                    #region for hiding markup
+                    markupBuilder.Append(c);
 
-                    if (markupBuilder.Length != 0)
+                    if (c.Equals('>'))
                     {
-                        markupBuilder.Append(c);
+                        AdjustMarkups(markupBuilder);
 
-                        if (c.Equals('>'))
+                        var markupText = markupBuilder.ToString().ToLower();
+                        if (!gameConfiguration.enableTextFormatting)
                         {
-                            AdjustMarkups(markupBuilder);
-
-                            var markupText = markupBuilder.ToString().ToLower();
-                            if (markupText.Contains("textspeed"))
+                            // don't do text formatting
+                        }
+                        else if (markupText.Contains("textspeed"))
+                        {
+                            var parseArgs = markupText.Split('=');
+                            if (parseArgs.Length == 1)
                             {
-                                var parseArgs = markupText.Split('=');
-                                var tmpFloat = -1f;
-                                if (parseArgs.Length == 2 &&
-                                    float.TryParse(parseArgs[1].Replace(">", "").Replace("/", ""), out tmpFloat))
-                                {
-                                    textSpeedMultiplier = 1f/tmpFloat;
-                                }
-                                else
-                                {
-                                    Debug.LogWarning($"Failed to translate markup: {markupText}");
-                                }
+                                textSpeedMultiplier = 1f;
+                            }
+                            else if (parseArgs.Length == 2 &&
+                                     float.TryParse(parseArgs[1].Replace(">", "")
+                                         .Replace("/", ""), out var tmpFloat))
+                            {
+                                textSpeedMultiplier = 1f / tmpFloat;
                             }
                             else
                             {
-                                stringBuilder.Append(markupBuilder);
+                                Debug.LogWarning($"Failed to translate markup: {markupText}");
                             }
-
-                            markupBuilder.Clear();
+                        }
+                        else
+                        {
+                            stringBuilder.Append(markupBuilder);
                         }
 
-                        continue;
+                        markupBuilder.Clear();
                     }
 
-                    if (c.Equals('<'))
-                    {
-                        markupBuilder.Append(c);
-                        continue;
-                    }
-
-                    #endregion for hiding markup
-
-                    stringBuilder.Append(c);
-                    onLineUpdate?.Invoke(stringBuilder.ToString());
-                    if (userRequestedNextLine)
-                    {
-                        // We've requested a skip of the entire line.
-                        // Display all of the text immediately.
-                        text = AdjustMarkups(text);
-                        onLineUpdate?.Invoke(text);
-                        break;
-                    }
-
-                    yield return new WaitForSeconds(TextRate * textSpeedMultiplier);
+                    continue;
                 }
-            }
-            else
-            {
-                // Display the entire line immediately if textSpeed <= 0
-                text = AdjustMarkups(text);
-                onLineUpdate?.Invoke(text);
+
+                if (c.Equals('<'))
+                {
+                    markupBuilder.Append(c);
+                    continue;
+                }
+
+                #endregion for hiding markup
+
+                stringBuilder.Append(c);
+                onLineUpdate?.Invoke(stringBuilder.ToString());
+                if (userRequestedNextLine)
+                {
+                    // We've requested a skip of the entire line.
+                    // Display all of the text immediately.
+                    text = AdjustMarkups(text);
+                    onLineUpdate?.Invoke(text);
+                    break;
+                }
+
+                yield return new WaitForSeconds(TextRate * textSpeedMultiplier);
             }
 
             // Indicate to the rest of the game that the line has finished being delivered

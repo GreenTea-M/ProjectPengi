@@ -16,7 +16,7 @@ MonoBehaviour:
   baseConfiguration: {fileID: 11400000, guid: dcbf9e10567ae3f4e9278d0692211347, type: 2}
   textRate: 0.025
   shakeStrength: 1
-  shouldShake: 1
+  shouldShake: 0
   fontAsset: {fileID: 11400000, guid: 6b468795670eb704fa2f2922aab14504, type: 2}
   fontSize: 18
   textOpacity: 0.97
@@ -36,12 +36,12 @@ MonoBehaviour:
   isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.EnterStore
-    lastDialog: "P: Oh my gosh, I\u2019m so sorry!"
+    currentYarnNode: Bear.PuzzleStart
+    lastDialog: Puzzle time!
     lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
     lastAudioName: fishMarket
     lastHeader: carpentry
     savedVariables: []
-    isLeft: 1
-    currentSpeaker: P
-    previousSpeaker: Brynhilda
+    isLeft: 0
+    currentSpeaker: Brynhilda
+    previousSpeaker: Pengi
