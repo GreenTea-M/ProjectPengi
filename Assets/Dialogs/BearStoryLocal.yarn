@@ -3,6 +3,7 @@ tags: Store
 colorID: 0
 position: 58,183
 ---
+<<changeBackground carpentry>>
 <i>The bell on the door jingles in a delicate manner as Pengi enters the warm shop filled with an assortment of breathtaking, handcrafted items.</i>
 <i>Breathing in the welcoming scent of sawdust and maple, Pengi takes a few steps into the shop before noticing a shelf full of odd looking bits and bobs. Pengi walks over to it, leaning in to take a closer look at the shelf’s contents.</i>
 
@@ -27,13 +28,23 @@ tags:
 colorID: 0
 position: 358,188
 ---
+<<changeBackground none>>
 <<clearShelfItem>>
+<<showItem shelf>>
+<<resetSpeaker 2>>
 <<if $puzzleDone == true>>
-    <<showShelf>>
+    <<doPuzzle shelf full>>
+    <<hideDialogue>>
+    <<wait 3>>
+    <<clearShelfItem>>
+    <<hideItem shelf>>
+    <<changeBackground carpentry>>
+    <<showDialogue>>
     [[Bear.PuzzleDone]]
 <<endif>>
-<<resetSpeaker 2>>
 <<doPuzzle shelf>>
+<<hideItem shelf>>
+<<changeBackground shelf>>
 <<if $peaceSign == 1>>
     <<set $peaceSign = 2>>
     [[Bear.PeaceDialogue]]
@@ -95,6 +106,7 @@ colorID: 5
 position: 1377,713
 ---
 Bear doesn't give signature
+<<gameEnd>>
 ===
 title: Bear.JustifyDream
 tags: 
@@ -112,6 +124,7 @@ tags: Intro
 colorID: 0
 position: -260,184
 ---
+<<changeBackground street>>
 // Fade in background of street? Will add in later version
 //
 Pengi: Okokok OK!
@@ -171,7 +184,7 @@ Pengi: <Surprised> Oh wait where can I meet you once I...annnnnd she’s gone.
 Pengi: <Normal> Alright. At least I know the way there now. 
 Pengi: It’s just...down the street, yes?
 //
-// <Change to General Market Background, no character images here/>
+<<changeBackground generalMarket>>
 //
 Using their impeccable memory, Pengi began following the Old Mole's directions. 
 Panting, Pengi finally made it to <b>The Market</b>. 

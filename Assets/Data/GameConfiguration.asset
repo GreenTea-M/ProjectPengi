@@ -24,7 +24,7 @@ MonoBehaviour:
   enableTextFormatting: 1
   saveData:
     name: 
-    currentYarnNode: Bear.Intro
+    currentYarnNode: Bear.EnterStore
     lastDialog: 
     lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
     lastAudioName: fishMarket
@@ -36,12 +36,33 @@ MonoBehaviour:
   isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.EnterStore
-    lastDialog: 'Pengi: AHH!'
+    currentYarnNode: Bear.BegSignature
+    lastDialog: Bear doesn't give signature
     lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
     lastAudioName: fishMarket
     lastHeader: carpentry
-    savedVariables: []
-    isLeft: 1
-    currentSpeaker: Pengi
-    previousSpeaker: Brynhilda
+    savedVariables:
+    - name: grammyPicture
+      value: 2
+      type: 0
+    - name: baseball
+      value: 2
+      type: 0
+    - name: peaceSign
+      value: 2
+      type: 0
+    - name: marble
+      value: 2
+      type: 0
+    - name: toilet
+      value: 2
+      type: 0
+    - name: teddy
+      value: 2
+      type: 0
+    - name: puzzleDone
+      value: True
+      type: 2
+    isLeft: 0
+    currentSpeaker: Brynhilda
+    previousSpeaker: Pengi

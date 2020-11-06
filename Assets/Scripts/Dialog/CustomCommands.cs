@@ -31,9 +31,11 @@ namespace Dialog
         [Tooltip("Puzzles should have PuzzleParent script")]
         public PuzzleItem[] puzzleList;
 
-        public SpriteItem[] headerList;
+        [FormerlySerializedAs("headerList")] public SpriteItem[] backgroundList;
 
         public ShelfItemData[] shelfItemDataList;
+
+        public ShowableItemData[] showableItemDataList;
 
         [Header("Prefabs")] public GameObject prefabFadedAudio;
 
@@ -52,6 +54,7 @@ namespace Dialog
         private Action _onComplete;
         private CinemachineImpulseSource _impulseSignal;
         private ShelfItem _shownShelfItem;
+        private List<ShowableItem> _itemShownList = new List<ShowableItem>();
 
         private const string PuzzleShelfArg = "shelf";
 
@@ -83,13 +86,69 @@ namespace Dialog
             dialogueRunner.AddCommandHandler("debugLog", DebugLog);
             dialogueRunner.AddCommandHandler("clearShelfItem", ClearShelfItem);
             dialogueRunner.AddCommandHandler("resetSpeaker", ResetSpeaker);
-            dialogueRunner.AddCommandHandler("showShelf", ShowShelf);
+            dialogueRunner.AddCommandHandler("showItem", ShowItem);
+            dialogueRunner.AddCommandHandler("hideItem", HideItem);
+            dialogueRunner.AddCommandHandler("showDialogue", ShowDialogue);
+            dialogueRunner.AddCommandHandler("hideDialogue", HideDialogue);
+            dialogueRunner.AddCommandHandler("gameEnd", GameEnd);
         }
 
-        private void ShowShelf(string[] parameters)
+        private void GameEnd(string[] parameters)
         {
-            // todo: show shelf
-            Debug.LogWarning("todo: show shelf");
+            Debug.LogWarning("The game has ended!");
+        }
+
+        private void HideDialogue(string[] parameters)
+        {
+            ShowElements(false);
+        }
+
+        private void ShowDialogue(string[] parameters)
+        {
+            ShowElements(true);
+        }
+
+        private void ShowItem(string[] parameters)
+        {
+            if (parameters.Length == 0)
+            {
+                Debug.LogWarning("YarnCommand: ShowItem has not parameters");
+                return;
+            }
+
+            foreach (var showableItemData in showableItemDataList)
+            {
+                if (showableItemData.Match(parameters[0]))
+                {
+                    var obj = Instantiate(showableItemData.prefab).GetComponent<ShowableItem>();
+                    obj.SetData(showableItemData);
+                    _itemShownList.Add(obj);
+                    return;
+                }
+            }
+
+            Debug.LogWarning($"ShowItem: Unknown item: {parameters[0]}");
+        }
+
+        private void HideItem(string[] parameters)
+        {
+            if (parameters.Length == 0)
+            {
+                Debug.LogWarning("YarnCommand: ShowItem has not parameters");
+                return;
+            }
+
+            for (int i = _itemShownList.Count - 1; i >= 0; i--)
+            {
+                if (_itemShownList[i].Match(parameters[0]))
+                {
+                    _itemShownList[i].SelfDestroy();
+                    _itemShownList.RemoveAt(i);
+                    return;
+                }
+            }
+
+            Debug.LogWarning($"HideItem: Unknown item: {parameters[0]}");
         }
 
         private void ResetSpeaker(string[] parameters)
@@ -113,8 +172,10 @@ namespace Dialog
                 return;
             }
 
+            Debug.Log($"Change Header: {parameters[0]}");
+
             string searchTerm = parameters[0].ToUpper();
-            foreach (var item in headerList)
+            foreach (var item in backgroundList)
             {
                 if (!item.name.ToUpper().Equals(searchTerm)) continue;
 
@@ -194,6 +255,12 @@ namespace Dialog
 
         private void ClearShelfItem(string[] parameters)
         {
+            for (int i = _shelfItemList.Count - 1; i >= 0; i--)
+            {
+                Destroy(_shelfItemList[i].gameObject);
+                _shelfItemList.RemoveAt(i);
+            }
+
             if (_shownShelfItem == null) return;
             Destroy(_shownShelfItem.gameObject);
             _shownShelfItem = null;
@@ -202,10 +269,9 @@ namespace Dialog
         private void DoPuzzle(string[] parameters, System.Action onComplete)
         {
             // todo??? puzzle shelf no args???
-            if (parameters.Length != 1)
+            if (parameters.Length == 0)
             {
                 Debug.LogWarning("No such command doPuzzle with no arguments");
-                _onComplete.Invoke();
                 return;
             }
 
@@ -213,7 +279,7 @@ namespace Dialog
             {
                 _onComplete = onComplete;
                 ShowElements(false);
-                DoShelfPuzzle();
+                DoShelfPuzzle(parameters);
                 return;
             }
 
@@ -236,7 +302,7 @@ namespace Dialog
             onComplete.Invoke();
         }
 
-        private void DoShelfPuzzle()
+        private void DoShelfPuzzle(string[] parameters)
         {
             // todo: make shelf appear
 
@@ -250,7 +316,14 @@ namespace Dialog
                 shelfItem.Initialize(shelfItemData, this);
             }
 
-            inputManager.SetInputState(InputState.Shelving);
+            if (parameters.Length == 2 && parameters[1].Equals("full", StringComparison.InvariantCultureIgnoreCase))
+            {
+                _onComplete.Invoke();
+            }
+            else
+            {
+                inputManager.SetInputState(InputState.Shelving);
+            }
         }
 
         public void InformShelfItemTouched(ShelfItem shelfItem)
@@ -270,7 +343,7 @@ namespace Dialog
                 {
                     shelfItem.Display();
                 }
-                
+
                 _shelfItemList.RemoveAt(i);
             }
 
@@ -376,6 +449,18 @@ namespace Dialog
         {
             Debug.Assert(prefabShelfItem != null);
             return Object.Instantiate(prefabShelfItem).GetComponent<ShelfItem>();
+        }
+    }
+
+    [Serializable]
+    public class ShowableItemData
+    {
+        public GameObject prefab;
+        public string name;
+
+        public bool Match(string s)
+        {
+            return string.Equals(s, name, StringComparison.InvariantCultureIgnoreCase);
         }
     }
 }

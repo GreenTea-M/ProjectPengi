@@ -64,8 +64,6 @@ public class IconManager : MonoBehaviour
             _currentSpeaker.Leave();
             _currentSpeaker = null;
         }
-        
-        Debug.Log("Removing speakers");
     }
 
     public InformSpeakerReturn InformSpeaker(string candidateSpeaker)
@@ -76,7 +74,6 @@ public class IconManager : MonoBehaviour
 
     private InformSpeakerReturn InformSpeaker(string candidateSpeaker, bool isForced)
     {
-        Debug.Log($"Speaker: {candidateSpeaker}");
         var ret = new InformSpeakerReturn();
         candidateSpeaker = candidateSpeaker.Trim();
 
