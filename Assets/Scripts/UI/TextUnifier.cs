@@ -10,6 +10,9 @@ namespace UI
     public class TextUnifier : GameEventListener
     {
         public GameConfiguration gameConfiguration;
+        public float textFontMultiplier = 1f;
+        public bool shouldIgnoreColor = false;
+        
         private TextMeshProUGUI _text;
 
         protected new void OnEnable()
@@ -30,10 +33,13 @@ namespace UI
         public void UpdateFontSize()
         {
             _text.font = gameConfiguration.fontAsset;
-            _text.fontSize = gameConfiguration.FontSize;
-            var newColor = gameConfiguration.fontColor;
-            newColor.a = gameConfiguration.textOpacity;
-            _text.color = newColor;
+            _text.fontSize = gameConfiguration.FontSize * textFontMultiplier;
+            if (shouldIgnoreColor)
+            {
+                var newColor = gameConfiguration.fontColor;
+                newColor.a = gameConfiguration.textOpacity;
+                _text.color = newColor;
+            }
         }
     }
 }

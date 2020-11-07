@@ -53,6 +53,7 @@ public class IconManager : MonoBehaviour
 
     public void RemoveSpeaker(int count)
     {
+        // todo: stuff
         if (_previousSpeaker != null)
         {
             _previousSpeaker.Leave();
@@ -63,6 +64,23 @@ public class IconManager : MonoBehaviour
         {
             _currentSpeaker.Leave();
             _currentSpeaker = null;
+        }
+    }
+
+    public void RemoveSpeaker(string name)
+    {
+        if (_currentSpeaker != null && _currentSpeaker.IsSameSpeaker(name))
+        {
+            _currentSpeaker.Leave();
+            _isLeft = _currentSpeaker.IsLeft;
+            _currentSpeaker = _previousSpeaker;
+        }
+        
+        if (_previousSpeaker != null && _previousSpeaker.IsSameSpeaker(name))
+        {
+            _previousSpeaker.Leave();
+            _isLeft = _previousSpeaker.IsLeft;
+            _previousSpeaker = null;
         }
     }
 

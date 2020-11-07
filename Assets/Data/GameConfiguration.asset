@@ -25,26 +25,23 @@ MonoBehaviour:
   saveData:
     name: 
     currentYarnNode: Bear.Intro
-    lastDialog: 
+    lastDialog: 'Pengi: Okokok OK!'
     lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
-    lastAudioName: fishMarket
+    lastAudioName: OldMole
     lastHeader: carpentry
     savedVariables: []
     isLeft: 1
-    currentSpeaker: 
+    currentSpeaker: Pengi
     previousSpeaker: 
-  isSaveDirty: 1
+  isSaveDirty: 0
   autoSave:
     name: 
-    currentYarnNode: Bear.EnterStore
-    lastDialog: "<i>Breathing in the welcoming scent of sawdust and maple, Pengi
-      takes a few steps into the shop before noticing a shelf full of odd looking
-      bits and bobs. Pengi walks over to it, leaning in to take a closer look at
-      the shelf\u2019s contents.</i>"
+    currentYarnNode: Bear.Intro
+    lastDialog: 'Pengi: Okokok OK!'
     lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
-    lastAudioName: fishMarket
+    lastAudioName: OldMole
     lastHeader: carpentry
     savedVariables: []
-    isLeft: 0
-    currentSpeaker: 
+    isLeft: 1
+    currentSpeaker: Pengi
     previousSpeaker: 

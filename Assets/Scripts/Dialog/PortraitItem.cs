@@ -21,6 +21,7 @@ namespace Dialog
         private int HashIsSpeaking = Animator.StringToHash("IsSpeaking");
         private int HashIsLeft = Animator.StringToHash("IsLeft");
         public string Speaker => GetRealName();
+        public bool IsLeft => _isLeft;
 
         private void Awake()
         {

@@ -13,15 +13,14 @@ tags:
 colorID: 0
 position: 390,196
 ---
-<<doPuzzle cement>>
-Cement time!
+[[Give Cookie???|PathingTest.Start]]
 ===
 title: MyCookieScenario
 tags: 
 colorID: 0
 position: 600,624
 ---
-Grammy: Can I buy the cookie from you? 😉
+Cow: Can I buy the cookie from you? 😉
 [[Yes|CookieBought]]
 [[No|CookieNotBought]]
 ===
@@ -33,17 +32,15 @@ position: 722,290
 <<set $money to 1>>
 Cow: Thank you!
 <<set $cow_friendship = 1>>
-<<shake>>
 Cow: Yay!
 [[Continue|BuySomething]]
-[[Testing|CookieNotBought]]
 ===
 title: CookieNotBought
 tags: 
 colorID: 0
 position: 1063,357
 ---
-Brynhilda: Swag
+Empty Text
 ===
 title: BuySomething
 tags: 

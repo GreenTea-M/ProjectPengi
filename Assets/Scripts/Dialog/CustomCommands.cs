@@ -9,6 +9,7 @@ using GameSystem;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Yarn.Unity;
 using Object = UnityEngine.Object;
@@ -23,8 +24,10 @@ namespace Dialog
         public MemoryStorage memoryStorage;
         public InputManager inputManager;
         public IconManager iconManager;
+        public SpriteRenderer blackScreen;
 
         [Header("Variables")] public float delayTime = 3f;
+        public float fadeRate = 0.05f;
 
         [Header("Assets")] public AudioItem[] audioList;
 
@@ -57,6 +60,14 @@ namespace Dialog
         private List<ShowableItem> _itemShownList = new List<ShowableItem>();
 
         private const string PuzzleShelfArg = "shelf";
+        private State _state = State.None;
+        private float alpha = 0f;
+
+        private enum State
+        {
+            None,
+            GameEnding
+        }
 
         private void Awake()
         {
@@ -70,6 +81,7 @@ namespace Dialog
             Debug.Assert(memoryStorage != null);
             Debug.Assert(inputManager != null);
             Debug.Assert(iconManager != null);
+            Debug.Assert(blackScreen != null);
 
             ChangeHeader(new[] {gameConfiguration.saveData.lastHeader});
             PlayAudio(new[] {gameConfiguration.saveData.lastAudioName});
@@ -86,6 +98,7 @@ namespace Dialog
             dialogueRunner.AddCommandHandler("debugLog", DebugLog);
             dialogueRunner.AddCommandHandler("clearShelfItem", ClearShelfItem);
             dialogueRunner.AddCommandHandler("resetSpeaker", ResetSpeaker);
+            dialogueRunner.AddCommandHandler("removeSpeaker", ResetSpeaker);
             dialogueRunner.AddCommandHandler("showItem", ShowItem);
             dialogueRunner.AddCommandHandler("hideItem", HideItem);
             dialogueRunner.AddCommandHandler("showDialogue", ShowDialogue);
@@ -93,9 +106,40 @@ namespace Dialog
             dialogueRunner.AddCommandHandler("gameEnd", GameEnd);
         }
 
+        private void Start()
+        {
+            blackScreen.gameObject.SetActive(false);
+        }
+
+        private void Update()
+        {
+            switch (_state)
+            {
+                case State.None:
+                    break;
+                case State.GameEnding:
+                    alpha += fadeRate * Time.deltaTime;
+                    var blackScreenColor = blackScreen.color;
+                    blackScreenColor.a = alpha;
+                    blackScreen.color = blackScreenColor;
+
+                    if (alpha >= 1f)
+                    {
+                        SceneManager.LoadScene("EndGameScene");
+                    }
+
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        // Note: not using Coroutine to allow for smoother fade
         private void GameEnd(string[] parameters)
         {
-            Debug.LogWarning("The game has ended!");
+            _lastAudio.FadeOut();
+            blackScreen.gameObject.SetActive(true);
+            _state = State.GameEnding;
         }
 
         private void HideDialogue(string[] parameters)
@@ -154,6 +198,16 @@ namespace Dialog
         private void ResetSpeaker(string[] parameters)
         {
             // todo: improve ResetSpeaker
+            float num;
+            if (parameters.Length == 1 && float.TryParse(parameters[0], out num))
+            {
+                iconManager.RemoveSpeaker(2);
+            }
+            else
+            {
+                iconManager.RemoveSpeaker(String.Join(" ", parameters));
+            }
+
             iconManager.RemoveSpeaker(2);
         }
 
@@ -203,6 +257,13 @@ namespace Dialog
 
         #region PlayAudio
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <example>
+        /// <<playAudio audioName>>
+        /// </example>
+        /// <param name="parameters"></param>
         private void PlayAudio(string[] parameters)
         {
             if (parameters.Length != 1)

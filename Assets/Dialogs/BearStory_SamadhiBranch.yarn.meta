@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f73fdd7058b2dec4aaaa4f9c96700901
+guid: f81a6875dca38884f8c44d1da0198dd1
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -8,11 +8,11 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
-  baseLanguageID: en-US
+  baseLanguageID: 
   stringIDs: []
-  compilationStatus: 1
+  compilationStatus: 0
   isSuccesfullyCompiled: 0
-  compilationErrorMessage: "Error on line 122 at position 17:\nmismatched input 'to'
+  compilationErrorMessage: "Error on line 110 at position 17:\nmismatched input 'to'
     expecting '('\r\n<<set Signature to 1>>\r\r\n                ^^"
   baseLanguage: {instanceID: 0}
   localizations: []

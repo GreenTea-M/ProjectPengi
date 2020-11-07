@@ -18,7 +18,7 @@ MonoBehaviour:
   shakeStrength: 1
   shouldShake: 1
   fontAsset: {fileID: 11400000, guid: 6b468795670eb704fa2f2922aab14504, type: 2}
-  fontSize: 18
+  fontSize: 12
   textOpacity: 0.97
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   enableTextFormatting: 1

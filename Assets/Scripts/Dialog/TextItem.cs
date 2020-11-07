@@ -38,6 +38,7 @@ namespace Dialog
 
         public void PushUpwards()
         {
+            uiText.text = "";
             layoutGroup.gameObject.SetActive(false);
             StopAllCoroutines();
             StartCoroutine(DoPushUpwards(scrollDistance));
