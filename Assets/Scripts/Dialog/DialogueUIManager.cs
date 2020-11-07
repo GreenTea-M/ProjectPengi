@@ -30,6 +30,9 @@ namespace Dialog
 
         [Tooltip("Prefab for the options")] public GameObject dialogueOptionsPrefab;
 
+        public String[] markupWholeWhitelist;
+        public String[] markupPhraseWhitelist;
+        
         private bool userRequestedNextLine = false;
 
         private System.Action<int> currentOptionSelectionHandler;
@@ -169,6 +172,7 @@ namespace Dialog
             // todo: research text gui things that people may use
             // todo: change text speed
 
+            bool isSkipping = false;
             foreach (var c in text)
             {
                 #region for hiding markup
@@ -182,7 +186,7 @@ namespace Dialog
                         AdjustMarkups(markupBuilder);
 
                         var markupText = markupBuilder.ToString().ToLower();
-                        if (!gameConfiguration.enableTextFormatting)
+                        if (!gameConfiguration.enableTextFormatting  || !IsWhiteListed(markupText))
                         {
                             // don't do text formatting
                         }
@@ -229,12 +233,14 @@ namespace Dialog
                 {
                     // We've requested a skip of the entire line.
                     // Display all of the text immediately.
-                    text = AdjustMarkups(text);
-                    onLineUpdate?.Invoke(text);
-                    break;
+                    isSkipping = true;
+                    userRequestedNextLine = false;
                 }
 
-                yield return new WaitForSeconds(TextRate * textSpeedMultiplier);
+                if (!isSkipping)
+                {
+                    yield return new WaitForSeconds(TextRate * textSpeedMultiplier);
+                }
             }
 
             // Indicate to the rest of the game that the line has finished being delivered
@@ -257,6 +263,30 @@ namespace Dialog
             onLineUpdate.RemoveListener(textItem.UpdateLine);
 
             onComplete();
+        }
+
+        private bool IsWhiteListed(string markupText)
+        {
+            // todo: not in white list
+            foreach (var wholeMarkup in markupWholeWhitelist)
+            {
+                if (wholeMarkup.Equals(markupText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            foreach (var phraseMarkup in markupPhraseWhitelist)
+            {
+                if (markupText.Contains(phraseMarkup))
+                {
+                    return true;
+                }
+            }
+            
+            Debug.Log($"Delete: {markupText}");
+            
+            return false;
         }
 
         private void AdjustMarkups(StringBuilder markupBuilder)

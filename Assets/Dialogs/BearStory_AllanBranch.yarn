@@ -3,6 +3,7 @@ tags: Store
 colorID: 0
 position: 58,183
 ---
+<<changeBackground carpentry>>
 <i>The bell on the door jingles in a delicate manner as Pengi enters the warm shop filled with an assortment of breathtaking, handcrafted items.</i>
 <i>Breathing in the welcoming scent of sawdust and maple, Pengi takes a few steps into the shop before noticing a shelf full of odd looking bits and bobs. Pengi walks over to it, leaning in to take a closer look at the shelf’s contents.</i>
 
@@ -20,7 +21,6 @@ P: Oh my gosh, I’m so sorry!
  Brynhilda: <Smiling> Don’t be, you’d be surprised how common that is. I really need to make more sound when I enter a room. 
 <i>She bends down and begins to help pick up the items on the floor</i>
 <i>Pengi, feeling a flush of red creeping up to their face pick up...</i>
-
 [[Bear.PuzzleStart]]
 ===
 title: Bear.PuzzleStart
@@ -28,11 +28,23 @@ tags:
 colorID: 0
 position: 358,188
 ---
+<<changeBackground none>>
 <<clearShelfItem>>
+<<showItem shelf>>
+<<resetSpeaker 2>>
 <<if $puzzleDone == true>>
+    <<doPuzzle shelf full>>
+    <<hideDialogue>>
+    <<wait 3>>
+    <<clearShelfItem>>
+    <<hideItem shelf>>
+    <<changeBackground carpentry>>
+    <<showDialogue>>
     [[Bear.PuzzleDone]]
 <<endif>>
 <<doPuzzle shelf>>
+<<hideItem shelf>>
+<<changeBackground shelf>>
 <<if $peaceSign == 1>>
     <<set $peaceSign = 2>>
     [[Bear.PeaceDialogue]]
@@ -94,6 +106,7 @@ colorID: 5
 position: 1377,713
 ---
 Bear doesn't give signature
+<<gameEnd>>
 ===
 title: Bear.JustifyDream
 tags: 
@@ -111,6 +124,7 @@ tags: Intro
 colorID: 0
 position: -260,184
 ---
+<<changeBackground street>>
 // Fade in background of street? Will add in later version
 //
 Pengi: Okokok OK!
@@ -119,8 +133,8 @@ Pengi: Phew.
 <i>This was Pengi's first real job. Their first actual, proper job.</i>
 Pengi: I really hope I don't mess it up.
 <i>They nervously adjust their tie and pull out a hankerchief to wipe thier beak.</i>
-// <i>Hmmm<<textSpeed = 0.5/>>...<<textSpeed = 1/>>now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
-<i>Hmmm<textSpeed = 0.5/>...<textSpeed = 1/>now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
+// <i>Hmmm<<textSpeed=0.5/>>...<<textSpeed = 1/>>now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
+<i>Hmmm<textSpeed=0.1/>...<textSpeed = 1/> now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
 //
 <<shake>>
 HeLLLlllOOOoo youNG child.
@@ -154,9 +168,9 @@ Old Mole: It’s very important to me and my knees aren’t what they used to be
 Old Mole: BAM! ITS GONE!!! 
 <i>Lowering her hands, her brow wrinkles.</i>
 //
-Old Mole:  <smaller text to signify she is muttering/>I swear <b>The Market</b> was where I was, no? Hmmmm...must have wandered off, just like my shoe...oh dear…
-Pengi: Did you just say...<b>The Market</b>?
-Old Mole: <normal text size/> Yes dear! You know <b>The Market</b>, no? Just down the street, turn left, over the yellow bridge, through the stream, past the hill, over the red bridge - not the yellow one - and through the corn field. Best and only <b>Market</b> we have!
+Old Mole:  <size=75%>I swear <b>The Market</b> was where I was, no? Hmmmm... must have wandered off, just like my shoe... oh dear...
+Pengi: Did you just say... <b>The Market</b>?
+Old Mole: Yes dear! You know <b>The Market</b>, no? Just down the street, turn left, over the yellow bridge, through the stream, past the hill, over the red bridge - not the yellow one - and through the corn field. Best and only <b>Market</b> we have!
 Pengi: <Surprise/Confused>
 Old Mole: SO, could you help me?
 Pengi: <Confused> 
@@ -170,7 +184,7 @@ Pengi: <Surprised> Oh wait where can I meet you once I...annnnnd she’s gone.
 Pengi: <Normal> Alright. At least I know the way there now. 
 Pengi: It’s just...down the street, yes?
 //
-// <Change to General Market Background, no character images here/>
+<<changeBackground generalMarket>>
 //
 Using their impeccable memory, Pengi began following the Old Mole's directions. 
 Panting, Pengi finally made it to <b>The Market</b>. 
@@ -206,7 +220,7 @@ Brynhilda: <Surprised> OH! Mole Lady! I haven’t seen her in years!
 Pengi: Wh-what? Years?? But she said she was here just a couple hours ago.
 Brynhilda: <Confused> Huh, I guess I missed her then. 
 <i>She peers outside the storefront window, her eyes squinting.</i>
-Brynhilda: <Confused> <smaller text as she mutters> Hmm...she usually comes here to say hi. I hope she's alright.
+Brynhilda: <Confused><size=80%>Hmm...she usually comes here to say hi. I hope she's alright.
 <i>She looks back at Pengi, her expression looking a bit more sombre.</i>
 Brynhilda: Sorry, it’s just...I was under the impression that she may have...left us. Made me think a little bit about the ending of things you know? 
 <i>She shakes her head a little, her fur rustling as she did so.</i>
@@ -237,17 +251,23 @@ colorID: 0
 position: 357,-295
 ---
 P: <i>Picks up a large carving of a peace sign. There’s faded writing on it and you need both hands to carry it.</i>
-P: Woah, what is this? And why is it so <voffset=-0.5em>heavy</voffset>?
+P: Woah, what is this? And why is it so <voffset=-0.5em>heavy?
 B: You’re holding the first ever sign this store had. Used to hang right outside the door. My <size=90%>great-<size=100%>great-<size=110%>great-<size=100%>grandfather carved it himself when he started the place. As you can guess, he was a bit of a hippy.  He was a huge fan of trees, so he took up woodworking. It turns out a space for creation is compatible with the values of peace, love, and happiness, so this place got fairly popular at the time. Stuck around ever since.
-[[Okay|Bear.PuzzleStart]]
+[[Bear.PuzzleStart]]
 ===
 title: Bear.ToiletDialogue
 tags: 
 colorID: 0
-position: 724,621
+position: 867,698
 ---
-Toilet dialogue here
-[[Okay|Bear.PuzzleStart]]
+P: …
+P: This is a roll of toilet paper.
+P: Made of wood.
+B: They can’t all be winners, kid.
+P: Paper is processed wood! Is this some kind of artistic statement?
+B: No, my great great great grand aunt Brianna was just crazy. And an inventor. She also made a wooden toilet, a wooden bathtub ...
+B: They didn’t catch on.
+[[Bear.PuzzleStart]]
 ===
 title: Bear.GrammyPictureDialogue
 tags: 
@@ -258,15 +278,15 @@ P: Ooh! Another picture. Is this polar bear you?
 B: Sure is. That’s great Grammy Ribitha and my 5 siblings. She was a family friend of our parents before their passing. She took us in afterward. Old girl’s still here and kicking!
 <<shortPause>>
 B: <b><Heartfelt></b> We owe her everything.
-[[Okay|Bear.PuzzleStart]]
+[[Bear.PuzzleStart]]
 ===
 title: Bear.BaseBallDialogue
 tags: 
 colorID: 0
-position: -102,584
+position: -275,530
 ---
 Baseball dialogue <voffset=1em>here
-[[Okay|Bear.PuzzleStart]]
+[[Bear.PuzzleStart]]
 ===
 title: Bear.TeddyDialogue
 tags: 
@@ -276,12 +296,12 @@ position: 58,-230
 P: Big fan?
 B: Oh yes. <i>*chuckles knowingly*</i> That’s my <size=90%>great-<size=100%>great-<size=110%>great-<size=120%>great-<size=130%>great-<size=100%>grandfather! You know the whole thing about carrying a <size=120%>big<size=100%> stick? My <size=90%>great-<size=100%>great-<size=113%>great-<size=125%>great-<size=135%>great-<size=100%>grandmother was the one that made him the stick! It’s a truly charming tale of two bears and their love of wood-based items…
 <i>She trails off, as if reliving a wonderful childhood memory (even though she wasn’t alive back then).</i>
-[[Okay|Bear.PuzzleStart]]
+[[Bear.PuzzleStart]]
 ===
 title: Bear.MarbleDialogue
 tags: 
 colorID: 0
-position: 295,704
+position: -137,802
 ---
 P: A marble collection? Are these your kid’s?
 B: Nope. We have a thing for woodworking in this family. When we get to a certain skill level, we make a set of marbles, and everyone gets one.
@@ -292,24 +312,51 @@ B: This one is mine. Want to see some more?
 P: Sure!
 B: Okay, which one first?
 // (Rewriting this part a bit to be 3 waves of options)
--> P: The one that’s stripped with different bands of light and dark wood.
-	B:  This is my sister Bretta’s. She runs a chair shop in CITY NAME
-     -> The one that’s medium brown, with a white swirl running across the surface.
-	B:  That’s great grandpa Breppa’s. He loves Banjos. That’s actually a string incorporated into the marble.
-     -> The one that’s pockmarked by varying sized holes.
+[[The one that’s stripped with different bands of light and dark wood.|Bear.BrettaMarble]]
+[[The one that’s shaped like a 20 sided die.|Bear.BrodyMarble]]
+[[The one that has three sections: one made of bamboo, one that’s black with a white triangular patch, and one that’s dark brown with sharp black needle shapes.|Bear.BrianMarble]]
+===
+title: Bear.BrettaMarble
+tags: 
+colorID: 0
+position: 126,1042
+---
+B: This is my sister Bretta’s. She runs a chair shop in CITY NAME
+-> The one that’s medium brown, with a white swirl running across the surface.
+    B:  That’s great grandpa Breppa’s. He loves Banjos. That’s actually a string incorporated into the marble.
+-> The one that’s pockmarked by varying sized holes.
 	B:  This is cousin Brie’s. She makes cheese for a living. Yes, we make jokes.
--> P: The one that’s shaped like a 20 sided die.
-	B:  Uncle Brody’s work. He’s a pretty big nerd.
-     -> The one that’s white, black and brown.
-	B:  That’s my mom’s. Her name was Brittney.
-     -> The one with jagged lines that might be rectangles?
-	B:  My nephew’s name is Brick and he wanted to do his namesake pattern. It’s a little rough, but he was insistent on being the youngest ever to have made the marbles. Good kid.
--> P: The one that has three sections: one made of bamboo, one that’s black with a white triangular patch, and one that’s dark brown with sharp black needle shapes.
-	B: My dad’s. His name was Brian.
-     -> The one that has a line running down the middle.
-	B:  That’s Bran’s. No one knows how we’re related to him, but he’s family. It opens up like a matryoshka doll.
-     -> The one that has a maze printed onto its surface.
+[[Bear.Marble.End]]
+===
+title: Bear.BrodyMarble
+tags: 
+colorID: 0
+position: 384,1039
+---
+B:  Uncle Brody’s work. He’s a pretty big nerd.
+-> The one that’s white, black and brown.
+    B:  That’s my mom’s. Her name was Brittney.
+-> The one with jagged lines that might be rectangles?
+    B:  My nephew’s name is Brick and he wanted to do his namesake pattern. It’s a little rough, but he was insistent on being the youngest ever to have made the marbles. Good kid.
+[[Bear.Marble.End]]
+===
+title: Bear.BrianMarble
+tags: 
+colorID: 0
+position: 651,1034
+---
+B: My dad’s. His name was Brian.
+-> The one that has a line running down the middle.
+    B:  That’s Bran’s. No one knows how we’re related to him, but he’s family. It opens up like a matryoshka doll.
+-> The one that has a maze printed onto its surface.
 	B:  Brianna’s my niece, and likes to show how smart she is at every opportunity. She’s in Med School right now.
+[[Bear.Marble.End]]
+===
+title: Bear.Marble.End
+tags: 
+colorID: 0
+position: 380,556
+---
 B: Alright, that’s enough for now.
-[[Okay|Bear.PuzzleStart]]
+[[Bear.PuzzleStart]]
 ===

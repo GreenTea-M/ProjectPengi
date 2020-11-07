@@ -1987,6 +1987,22 @@ MonoBehaviour:
   dialogueItemPrefab: {fileID: 6204617817215508044, guid: 248815e0165fb2d4784bf7ab96c6657a, type: 3}
   dialoguePortraitPrefab: {fileID: 1312063759716704211, guid: 4b121c3180f530c499e5fc99a7bf8f64, type: 3}
   dialogueOptionsPrefab: {fileID: 0}
+  markupWholeWhitelist:
+  - <i>
+  - </i>
+  - <u>
+  - </u>
+  - <b>
+  - </b>
+  - </voffset>
+  - </size>
+  - </color>
+  - </textSpeed>
+  markupPhraseWhitelist:
+  - <voffset=
+  - <size=
+  - <textSpeed=
+  - <color=
   onDialogueStart:
     m_PersistentCalls:
       m_Calls: []
@@ -2028,7 +2044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yarnScripts:
-  - {fileID: 2480198943629176163, guid: 85bd933472a1c7f4e9eb201d9784b4d1, type: 3}
+  - {fileID: 2480198943629176163, guid: f73fdd7058b2dec4aaaa4f9c96700901, type: 3}
   textLanguage: 
   variableStorage: {fileID: 1066951502}
   dialogueUI: {fileID: 1856837811}
