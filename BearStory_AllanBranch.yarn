@@ -200,6 +200,13 @@ What greets them first are the various sounds and smells of people chatting, foo
 //
 [[Bear.EnterStore]]
 ===
+title: Bear.Signature
+tags: 
+colorID: 1
+position: 1665,55
+---
+Empty Text
+===
 title: Bear.CondShoe
 tags: 
 colorID: 3
@@ -373,6 +380,7 @@ position: 380,556
 ---
 B: Alright, that’s enough for now.
 [[Bear.PuzzleStart]]
+===
 ===
 title: Fish.Start
 tags: 
