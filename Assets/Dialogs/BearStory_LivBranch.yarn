@@ -1,0 +1,315 @@
+title: Bear.EnterStore
+tags: Store
+colorID: 0
+position: 58,183
+---
+<i>The bell on the door jingles in a delicate manner as Pengi enters the warm shop filled with an assortment of breathtaking, handcrafted items.</i>
+<i>Breathing in the welcoming scent of sawdust and maple, Pengi takes a few steps into the shop before noticing a shelf full of odd looking bits and bobs. Pengi walks over to it, leaning in to take a closer look at the shelf’s contents.</i>
+
+Pengi: WOooow what are these??
+Brynhilda: Well hello-
+Pengi: AHH!
+<<shake>>
+<b>BAM</b> 
+//
+<i>Having been enthralled in all the items around them, Pengi hadn’t noticed the arrival of Brynhilda, and SMASHED their head on the shelf, knocking all of the items onto the floor.</i>
+Brynhilda: -there.
+P: Oh my gosh, I’m so sorry! 
+<i>Pengi hurriedly gets to their knees, trying to pick up the items which were now strewn all across the shop floor.</i>
+<i>Brynhilda lets out a warm and hearty laugh</i>
+ Brynhilda: <Smiling> Don’t be, you’d be surprised how common that is. I really need to make more sound when I enter a room. 
+<i>She bends down and begins to help pick up the items on the floor</i>
+<i>Pengi, feeling a flush of red creeping up to their face pick up...</i>
+
+[[Bear.PuzzleStart]]
+===
+title: Bear.PuzzleStart
+tags: 
+colorID: 0
+position: 358,188
+---
+<<clearShelfItem>>
+<<if $puzzleDone == true>>
+    [[Bear.PuzzleDone]]
+<<endif>>
+<<doPuzzle shelf>>
+<<if $peaceSign == 1>>
+    <<set $peaceSign = 2>>
+    [[Bear.PeaceDialogue]]
+<<elseif $toilet == 1>>
+    <<set $toilet = 2>>
+    [[Bear.ToiletDialogue]]
+<<elseif $grammyPicture == 1>>
+    <<set $grammyPicture = 2>>
+    [[Bear.GrammyPictureDialogue]]
+<<elseif $baseball == 1>>
+    <<set $baseball = 2>>
+    [[Bear.BaseBallDialogue]]
+<<elseif $teddy == 1>>
+    <<set $teddy = 2>>
+    [[Bear.TeddyDialogue]]
+<<elseif $marble == 1>>
+    <<set $marble = 2>>
+    [[Bear.MarbleDialogue]]
+<<endif>>
+<<debugLog This should not be happening>>
+[[I am all done|Bear.PuzzleDone]]
+===
+title: Bear.PuzzleDone
+tags: 
+colorID: 2
+position: 722,162
+---
+Brynhilda: <Smiling> Thank you kindly for your help.
+<i>She smiles softly down at the tiny penguin.</i>
+Pengi: <Nervous> Nervously replies Ahhaha well, it WAS technically my fault. 
+Brynhilda: <Normal> Well not everyone helps you see, most actually run away in fright. My appearance can be a little intimidating at times. She chuckles to herself. 
+Brynhilda: Oh! I almost forgot, my name’s Brynhilda and welcome to The Builder Bear.
+Brynhilda: How can I help you today…umm
+Pengi: <Smiling> Pengi.
+Brynhilda: <Beaming?/Smiling>Pengi!
+Brynhilda: What an absolutely delightful name! 
+<i>Her eyes beam as she says this, betraying the excitement she was having to finally having a customer in her store.</i>
+Brynhilda: So, what can I do for you today?
+//[[Well...I guess I’m looking for a...Shoe?|Bear.Shoe]]
+[[I’m here on behalf of Grounded Real Estate.|Bear.GetSignature]]
+===
+title: Bear.GetSignature
+tags: 
+colorID: 5
+position: 1042,404
+---
+Pengi: Ummm, well.
+<i>They straighten their back and adjust their tie.</i>
+Pengi: I’m here on behalf of Grounded Real Estate to ask you if you would be willing to sign this document signing over possession of this lot. You and a few other shops on this street own the plots on which your businesses have been built and my company is looking to acquire these for a new project; The Menagerie Mall!. 
+<i>Pengi notices that as they are saying this, Brynhilda’s face slowly becomes much more stern, her nose crinkling and fur standing up in what appears to be a barely contained sense of outrage at their sudden all-business approach.</i>
+Pengi: Uh-uhmm.
+Brynhilda: <Tense Smiling or Neutral> I’m sorry, but I think you need to leave.
+[[I just want a little bit of your time.|Bear.BegSignature]]
+[[I-I’m sorry!|Bear.JustifyDream]]
+===
+title: Bear.BegSignature
+tags: 
+colorID: 5
+position: 1377,713
+---
+Bear doesn't give signature
+===
+title: Bear.JustifyDream
+tags: 
+colorID: 1
+position: 1367,244
+---
+Pengi: <Nervously> I-I’m sorry! I really am 
+Pengi: It wasn’t my idea to do this to you, and if I didn’t have to, I wouldn’t ask you to.
+Pengi: <Normal> But it’s my dream to be a pilot, a-and I promise you will be compensated so you can relocate, but I really need this if anyone at my firm is going to respect me enough to promote me, so I can afford the lessons… 
+<i>Pengi trails off, realizing the rude tone they had just taken with her after asking her to sign her store away and not thinking about how she might feel about their intrusion.</i>
+[[Bear.Signature]]
+===
+title: Bear.Intro
+tags: Intro
+colorID: 0
+position: -260,184
+---
+// Fade in background of street? Will add in later version
+//
+Pengi: Okokok OK!
+Pengi: I got this!
+<i>Pengi lets out a deep sigh.</i>
+<i>This was Pengi's first real job. Their first actual, proper job.</i>
+Pengi: I really hope I don't mess it up.
+<i>They nervously adjust their tie and pull out a hankerchief to wipe thier beak.</i>
+// <i>Hmmm<<textSpeed = 0.5/>>...<<textSpeed = 1/>>now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
+<i>Hmmm<textSpeed = 0.5/>...<textSpeed = 1/>now where exactly is this <b>‘Market’</b>? I need to get this done befor-</i>
+//
+<<shake>>
+HeLLLlllOOOoo there, youNGSTER!
+Pengi: Wha-what the?!
+-> Look around
+    <i>Pengi looks around, confused</i>
+    HellooOOOoooo HELLlooOoo over heeereee!
+    <i>They waddle around to look behind them. Still nothing.</i>
+    Down! LooOOkk DOwn!
+    <i>Surprised, Pengi looks down to see an Old Mole looking up at them through foggy glasses.</i>
+-> Look down
+    <i>They look down and see...nothing?</i>
+    Oh young one, bEHinNND you!
+    <i>Pengi turns around and still sees...nothing?</i>
+    Look down dear.
+    <i>Looking down once again, they are greeted with the face of wrinkled Old Mole</i>
+Pengi: O-oh, hello there!?
+<i>She squints up at the well dressed bird through tiny glasses and beady, black eyes.</i>
+Old Mole: You wouldn’t have happened to see my <b>Shoe</b>, no?
+<i>As impossible as it may seem she squints even harder, her eyes seemingly disappearing into her graying fur.</i>
+Pengi: UUuuhhhh no? Look, I'm sorry bu-
+//
+<<shake>>
+// [screen shakes again while next description plays:]
+Pengi: Hey! My shirt!
+Old Mole: OOOOoooooOoh please young one, could you help me find my <b>Shoe</b>? 
+Old Mole: It’s very important to me and my knees aren’t what they used to be. I was just sitting on a bench and suddenly…
+<i>She raises her hands, her beaded bag rustling at the sudden movement.</i>
+<<shake>>
+//[screen shakes again while next description plays]
+Old Mole: WHAM! ITS GONE!!! 
+<i>Lowering her hands, her brow wrinkles.</i>
+//
+Old Mole: <size=80%>I swear <b>The Market</b> was where I was, no? <size=60%>Hmmmm...must have wandered off, just like my shoe...oh dear… <size=100%>
+Pengi: Sorry, did you just say <b>The Market</b>?
+Old Mole: <normal text size/> Yes dear! You know <b>The Market</b>, no? Just down the street, turn left, over the yellow bridge, through the stream, past the hill, over the red bridge - not the yellow one - and through the corn field. Best and only <b>Market</b> we have!
+Pengi: <Surprise/Confused>
+Old Mole: SO, can you help me?
+Pengi: <Confused> 
+<i>Pengi paused. They figured it wouldn't hurt to help a little right? Especially where they were headed to <b>The Market</b> already.</i>
+Pengi: Fine. <i>Pengi said through a sigh.</i>
+Old Mole: OH! Goodness, thank yoU!!! 
+//
+Old Mole: When you find it and bring it back, I’ll be sure to present a proper thank you gift.
+<i>She smiles sweetly, and with a curious glint in her eyes promptly turns and walks away at a surprisingly brisk pace.</i>
+Pengi: <Surprised> Oh wait where can I meet you once I... annnnnd she’s gone.
+Pengi: <Normal> Alright. At least I know the way there now. 
+Pengi: It’s just... down the street, yes?
+//
+// <Change to General Market Background, no character images here/>
+//
+<i>Using their impeccable memory, Pengi began following the Old Mole's directions.</i> 
+<i>Panting, Pengi finally made it to <b>The Market</b>.</i>
+<i>What greets them first are the various sounds and smells of people chatting, food cooking and so on. Next came the sights: a street filled with various shops, all seemingly different and random compared to the next. Overwhelmed by the smells and sounds surrounding the area, Pengi rushes into the nearest store.</i>
+//
+[[Bear.EnterStore]]
+===
+title: Bear.Signature
+tags: 
+colorID: 1
+position: 1665,55
+---
+Empty Text
+===
+title: Bear.CondShoe
+tags: 
+colorID: 2
+position: 1312,-221
+---
+Empty Text
+===
+title: Bear.Shoe
+tags: 
+colorID: 2
+position: 994,-60
+---
+Pengi: Well...I guess I’m looking for a...Shoe? 
+<i>Brynhilda’s looks down at the little penguin in confusion.</i>
+Brynhilda: <Confusion> A Shoe? I’m sorry, but we’re a carpentry store. Unfortunately we don’t have any shoes on sale.
+Pengi: Ah! No, I mean that I’m looking for a lost shoe. There’s this Old Mole lady and she left it somewhere at this market?
+Brynhilda: <Confused> Mole Lady?
+Brynhilda: <Surprised> OH! Mole Lady! I haven’t seen her in years!
+Pengi: Wh-what? Years?? But she said she was here just a couple hours ago.
+Brynhilda: <Confused> Huh, I guess I missed her then. 
+<i>She peers outside the storefront window, her eyes squinting.</i>
+Brynhilda: <Confused> <smaller text as she mutters> Hmm...she usually comes here to say hi. I hope she's alright.
+<i>She looks back at Pengi, her expression looking a bit more sombre.</i>
+Brynhilda: Sorry, it’s just...I was under the impression that she may have...left us. Made me think a little bit about the ending of things you know? 
+<i>She shakes her head a little, her fur rustling as she did so.</i>
+Brynhilda: <Sad> What am I saying? 
+Brynhilda: <Normal> Sorry, I shouldn’t be talking about such a heavy topic with a customer. 
+Pengi: No no no don’t apologize. I understand.  
+<i>Pengi looks at the sawdust covered floor, shuffling their feet a little.</i>
+Pengi: <Sad> I...I’ve always wanted to fly. But I can’t do it naturally you know? I...I really want to do it at least once! Just to know what it feels like! So I really want to enroll in flight school.
+Brynhilda: <Smiling> I wholeheartedly support this venture. What’s stopping you from going after it?
+Pengi: <Nervous> Ah-
+Well-
+I-
+Ummm-
+Brynhilda: Yes?
+Pengi: I-
+<<shake>>
+// [Screen shakes???]
+Pengi: I’M SORRY!
+Brynhilda: <Surprised> Wha-what? 
+Pengi: I’m part of Grounded Real Estate a-and my job is to get contracts from the stores in the area- 
+<i>Brynhilda’s fur bristles a bit at the sound of the company’s name.</i>
+Pengi: -a-and this is my big break to get enough money to <words get smaller and smaller as Pengi trails off/> afford the lessons and…
+[[Bear.CondShoe]]
+===
+title: Bear.PeaceDialogue
+tags: 
+colorID: 0
+position: 357,-295
+---
+P: <i>Picks up a large carving of a peace sign. There’s faded writing on it and you need both hands to carry it.</i>
+P: Woah, what is this? And why is it so <voffset=-0.5em>heavy</voffset>?
+B: You’re holding the first ever sign this store had. Used to hang right outside the door. My <size=90%>great-<size=100%>great-<size=110%>great-<size=100%>grandfather carved it himself when he started the place. As you can guess, he was a bit of a hippy.  He was a huge fan of trees, so he took up woodworking. It turns out a space for creation is compatible with the values of peace, love, and happiness, so this place got fairly popular at the time. Stuck around ever since.
+[[Okay|Bear.PuzzleStart]]
+===
+title: Bear.ToiletDialogue
+tags: 
+colorID: 0
+position: 724,621
+---
+Toilet dialogue here
+[[Okay|Bear.PuzzleStart]]
+===
+title: Bear.GrammyPictureDialogue
+tags: 
+colorID: 0
+position: 689,-261
+---
+P: Ooh! Another picture. Is this polar bear you?
+B: Sure is. That’s great Grammy Ribitha and my 5 siblings. She was a family friend of our parents before their passing. She took us in afterward. Old girl’s still here and kicking!
+<<shortPause>>
+B: <b><Heartfelt></b> We owe her everything.
+[[Okay|Bear.PuzzleStart]]
+===
+title: Bear.BaseBallDialogue
+tags: 
+colorID: 0
+position: -102,584
+---
+Baseball dialogue <voffset=1em>here
+[[Okay|Bear.PuzzleStart]]
+===
+title: Bear.TeddyDialogue
+tags: 
+colorID: 0
+position: 58,-230
+---
+P: Big fan?
+B: Oh yes. <i>*chuckles knowingly*</i> That’s my <size=90%>great-<size=100%>great-<size=110%>great-<size=120%>great-<size=130%>great-<size=100%>grandfather! You know the whole thing about carrying a <size=120%>big<size=100%> stick? My <size=90%>great-<size=100%>great-<size=113%>great-<size=125%>great-<size=135%>great-<size=100%>grandmother was the one that made him the stick! It’s a truly charming tale of two bears and their love of wood-based items…
+<i>She trails off, as if reliving a wonderful childhood memory (even though she wasn’t alive back then).</i>
+[[Okay|Bear.PuzzleStart]]
+===
+title: Bear.MarbleDialogue
+tags: 
+colorID: 0
+position: 295,704
+---
+P: A marble collection? Are these your kid’s?
+B: Nope. We have a thing for woodworking in this family. When we get to a certain skill level, we make a set of marbles, and everyone gets one.
+<<showItem orangeMarble>> 
+// <<debugLog todo unimplemented showItem>>
+// show penguin orange marble
+B: This one is mine. Want to see some more?
+P: Sure!
+B: Okay, which one first?
+// (Rewriting this part a bit to be 3 waves of options)
+-> P: The one that’s stripped with different bands of light and dark wood.
+	B:  This is my sister Bretta’s. She runs a chair shop in CITY NAME
+     -> The one that’s medium brown, with a white swirl running across the surface.
+	B:  That’s great grandpa Breppa’s. He loves Banjos. That’s actually a string incorporated into the marble.
+     -> The one that’s pockmarked by varying sized holes.
+	B:  This is cousin Brie’s. She makes cheese for a living. Yes, we make jokes.
+-> P: The one that’s shaped like a 20 sided die.
+	B:  Uncle Brody’s work. He’s a pretty big nerd.
+     -> The one that’s white, black and brown.
+	B:  That’s my mom’s. Her name was Brittney.
+     -> The one with jagged lines that might be rectangles?
+	B:  My nephew’s name is Brick and he wanted to do his namesake pattern. It’s a little rough, but he was insistent on being the youngest ever to have made the marbles. Good kid.
+-> P: The one that has three sections: one made of bamboo, one that’s black with a white triangular patch, and one that’s dark brown with sharp black needle shapes.
+	B: My dad’s. His name was Brian.
+     -> The one that has a line running down the middle.
+	B:  That’s Bran’s. No one knows how we’re related to him, but he’s family. It opens up like a matryoshka doll.
+     -> The one that has a maze printed onto its surface.
+	B:  Brianna’s my niece, and likes to show how smart she is at every opportunity. She’s in Med School right now.
+B: Alright, that’s enough for now.
+[[Okay|Bear.PuzzleStart]]
+===
