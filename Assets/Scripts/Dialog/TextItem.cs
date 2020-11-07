@@ -21,6 +21,7 @@ namespace Dialog
         
         private readonly List<Button> _buttons = new List<Button>();
         private Vector3 _defaultPosition = new Vector3(9.044f, 9.358f, 0f);
+        private int _currentTextMax;
 
         private void Awake()
         {
@@ -110,6 +111,18 @@ namespace Dialog
             {
                 button.gameObject.SetActive(false);
             }
+        }
+
+        public void SetInitialText(string text)
+        {
+            uiText.maxVisibleCharacters = 0;
+            uiText.text = text;
+            _currentTextMax = text.Length;
+        }
+
+        public void ShowCharacters(int count)
+        {
+            uiText.maxVisibleCharacters = count;
         }
     }
 }

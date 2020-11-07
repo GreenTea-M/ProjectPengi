@@ -129,7 +129,7 @@ namespace Dialog
                 text = "";
             }
 
-            // todo: identify speaker
+            // identifies speaker
             var argSplit = text.Split(':');
             InformSpeakerReturn speakerInfo = iconManager.InformSpeaker(argSplit.Length != 1 ? argSplit[0] : "");
             isBlocking = speakerInfo.isBlocking;
@@ -139,7 +139,8 @@ namespace Dialog
                 text = text.Replace($"{argSplit[0]}:", $"{speakerInfo.realName}:");
             }
 
-            // todo: push every text upwards
+            // push every text upwards
+            // this is a remnant of a scrolling ui we used to plan
             foreach (var item in _textItems)
             {
                 item.PushUpwards();
@@ -153,7 +154,7 @@ namespace Dialog
                 gameConfiguration.autoSave.lastDialog = text;
             }
 
-            onLineUpdate.AddListener(textItem.UpdateLine);
+            // onLineUpdate.AddListener(textItem.UpdateLine);
 
             while (isBlocking && !userRequestedNextLine)
             {
@@ -172,7 +173,6 @@ namespace Dialog
             // todo: research text gui things that people may use
             // todo: change text speed
 
-            bool isSkipping = false;
             foreach (var c in text)
             {
                 #region for hiding markup
@@ -228,20 +228,29 @@ namespace Dialog
                 #endregion for hiding markup
 
                 stringBuilder.Append(c);
-                onLineUpdate?.Invoke(stringBuilder.ToString());
+            }
+
+            var formattedString = stringBuilder.ToString();
+            var textLength = formattedString.Length;
+            textItem.SetInitialText(formattedString);
+            
+            bool isSkipping = false;
+            for (int i = 0; i < textLength; i++)
+            {
+                // onLineUpdate?.Invoke(stringBuilder.ToString());
+
                 if (userRequestedNextLine)
                 {
-                    // We've requested a skip of the entire line.
-                    // Display all of the text immediately.
-                    isSkipping = true;
                     userRequestedNextLine = false;
+                    break;
                 }
-
-                if (!isSkipping)
-                {
-                    yield return new WaitForSeconds(TextRate * textSpeedMultiplier);
-                }
+                
+                textItem.ShowCharacters(i);
+                yield return new WaitForSeconds(TextRate * textSpeedMultiplier);
             }
+            
+            // i don't know why the last character's not shown sometimes
+            textItem.ShowCharacters(textLength + 10);
 
             // Indicate to the rest of the game that the line has finished being delivered
             onLineFinishDisplaying?.Invoke();
@@ -259,8 +268,7 @@ namespace Dialog
             // Hide the text and prompt
             onLineEnd?.Invoke();
 
-            // todo: check if this works
-            onLineUpdate.RemoveListener(textItem.UpdateLine);
+            // onLineUpdate.RemoveListener(textItem.UpdateLine);
 
             onComplete();
         }

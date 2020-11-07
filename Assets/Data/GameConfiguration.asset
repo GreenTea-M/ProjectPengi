@@ -24,24 +24,45 @@ MonoBehaviour:
   enableTextFormatting: 1
   saveData:
     name: 
-    currentYarnNode: Bear.Intro
-    lastDialog: 'Pengi: Okokok OK!'
+    currentYarnNode: Bear.PuzzleStart
+    lastDialog: 
     lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
-    lastAudioName: OldMole
+    lastAudioName: fishMarket
     lastHeader: carpentry
     savedVariables: []
     isLeft: 1
-    currentSpeaker: Pengi
+    currentSpeaker: 
     previousSpeaker: 
-  isSaveDirty: 0
+  isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.Intro
-    lastDialog: 'Pengi: Okokok OK!'
+    currentYarnNode: Bear.MarbleDialogue
+    lastDialog: 'Brynhilda: Okay, which one first?'
     lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
-    lastAudioName: OldMole
+    lastAudioName: BrynhildaBear
     lastHeader: carpentry
-    savedVariables: []
+    savedVariables:
+    - name: toilet
+      value: 2
+      type: 0
+    - name: baseball
+      value: 2
+      type: 0
+    - name: grammyPicture
+      value: 2
+      type: 0
+    - name: teddy
+      value: 2
+      type: 0
+    - name: peaceSign
+      value: 2
+      type: 0
+    - name: marble
+      value: 2
+      type: 0
+    - name: puzzleDone
+      value: True
+      type: 2
     isLeft: 1
-    currentSpeaker: Pengi
-    previousSpeaker: 
+    currentSpeaker: Brynhilda
+    previousSpeaker: Pengi
