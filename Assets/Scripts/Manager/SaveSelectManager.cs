@@ -19,9 +19,10 @@ namespace Manager
 
         private void Start()
         {
+            throw new NotImplementedException();
             // do auto save first
             var autoSaveButton = Instantiate(saveSlotPrefab).GetComponent<UiSaveSlot>();
-            autoSaveButton.SetSaveData(gameConfiguration.autoSave);
+            // autoSaveButton.SetSaveData(gameConfiguration.autoSave);
             var autoRt = autoSaveButton.GetComponent<RectTransform>();
             autoRt.SetParent(panelParent);
             autoRt.localScale = Vector3.one;

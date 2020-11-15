@@ -118,6 +118,7 @@ namespace GameSystem.Save
             BinaryFormatter formatter = new BinaryFormatter();
             string path = GetPath(slotExecutor);
             FileStream stream = new FileStream(path, FileMode.Create);
+            Debug.Log(path);
 
             try
             {

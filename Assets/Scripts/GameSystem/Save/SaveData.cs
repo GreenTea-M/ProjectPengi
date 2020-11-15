@@ -29,6 +29,25 @@ public class SaveData
 
     public SaveData(SaveData rhs)
     {
+        Overwrite(rhs);
+    }
+    
+    private SaveData()
+    {
+    }
+
+    protected internal static SaveData AsNull()
+    {
+        return new SaveData();
+    }
+
+    public static SaveData AsNewGame()
+    {
+        return new SaveData();
+    }
+
+    public void Overwrite(SaveData rhs)
+    {
         name = rhs.name;
         currentYarnNode = rhs.currentYarnNode;
         lastDialog = rhs.lastDialog;
@@ -50,19 +69,5 @@ public class SaveData
                 value = variable.value
             });
         }
-    }
-    
-    private SaveData()
-    {
-    }
-
-    protected internal static SaveData AsNull()
-    {
-        return new SaveData();
-    }
-
-    public static SaveData AsNewGame()
-    {
-        return new SaveData();
     }
 }

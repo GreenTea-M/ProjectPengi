@@ -44,7 +44,7 @@ namespace GameSystem.Save
          * exception error
          */
             _button = GetComponent<Button>();
-            var saveIo = gameConfiguration.saveIo;
+            var saveIo = gameConfiguration.SaveIo;
             Assert.IsTrue(saveIo != null);
             _button.interactable = saveIo.RequestExecutor()
                 .AtSlotIndex(_index)
@@ -62,11 +62,13 @@ namespace GameSystem.Save
 
         private void OnClick()
         {
+            throw new NotImplementedException();
+            
             // todo: load save slot and go to destination
             if (_saveData != null)
             {
-                gameConfiguration.saveData = _saveData;
-                gameConfiguration.autoSave = _saveData;
+                // gameConfiguration.saveData = _saveData;
+                // gameConfiguration.autoSave = _saveData;
 
                 SceneManager.LoadScene("DialogScene");
             }

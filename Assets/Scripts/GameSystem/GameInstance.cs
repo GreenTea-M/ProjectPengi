@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using GameSystem.Save;
 using Tomato.Core.GameSystem.Save;
 using UnityEngine;
@@ -11,9 +13,6 @@ using Yarn.Unity;
 /// It may house some other variables for prototyping but those should be enclosed in either of the
 /// two types of components that this Instance should hold.
 /// </remarks>
-/// <example>
-/// To access GameInstance, call <c>GameConfiguration.GetGameInstance</c>.
-/// </example>
 /// <see cref="GameConfiguration"/>
 public class GameInstance : MonoBehaviour
 {
@@ -22,15 +21,8 @@ public class GameInstance : MonoBehaviour
     [Header("Variables")] [Tooltip("Used to access configurations that may be relevant for gameplay and debugging")]
     public GameConfiguration gameConfiguration;
 
-    [Tooltip("Required component for YarnSpinner")]
-    public DialogueRunner dialogueRunner;
-
-    [Header("Debug GameSave")] [Tooltip("Toggle whether to use a supplied SaveGame")]
-    public bool useDebugGameSave = false;
-
-    [Tooltip("Save data for a specific debugging case. If null, SaveLocator uses null Save Data.")]
-    public DebugSaveData debugSaveData;
-
+    private List<SaveClient> saveClientList = new List<SaveClient>();
+    
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -43,20 +35,43 @@ public class GameInstance : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        // endregion singleton pattern
 
-        // init
-        SaveLocator = new SaveLocator();
-
-        // debug
-        if (useDebugGameSave && debugSaveData != null)
-        {
-            SaveLocator.Provide(debugSaveData.saveData);
-        }
+        gameConfiguration.gameInstance = this;
     }
 
-    public static GameInstance Instance => _instance;
+    private void Start()
+    {
+        // todo run slow coroutine for saving???
+    }
 
-    public SaveLocator SaveLocator { get; private set; }
-    public SaveIO SaveIO { get; private set; }
+    public SaveClient RequestSaveAccess()
+    {
+        var client = new SaveClient();
+        saveClientList.Add(client);
+        return client;
+    }
+
+    public void RemoveSaveClient(SaveClient saveClient)
+    {
+        saveClientList.Remove(saveClient);
+    }
+
+    public void InformAutoSaveWrite()
+    {
+        // todo: write on index 0
+        // stop all coroutines and save
+    }
+
+    public void WriteOnAutoSave()
+    {
+        // make all writers write
+        foreach (var saveClient in saveClientList)
+        {
+            saveClient.TryAutoSaveWrite();
+        }
+        gameConfiguration.SaveIo.RequestExecutor()
+            .AtSlotIndex(0)
+            .UsingSaveData(gameConfiguration.GetAutoSave())
+            .OverwriteSlot();
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Text;
+using GameSystem.Save;
 using UnityEngine;
 using UnityEngine.Assertions.Comparers;
 using UnityEngine.Events;
@@ -16,7 +17,7 @@ namespace Dialog
     /// <seealso cref="DialogueUI"/>
     ///  todo: add more documentation
     ///  todo: add aliases in button options
-    public class DialogueUIManager : Yarn.Unity.DialogueUIBehaviour
+    public class DialogueUIManager : Yarn.Unity.DialogueUIBehaviour, SaveClientCallback
     {
         [FormerlySerializedAs("assetManager")] public IconManager iconManager;
 
@@ -65,6 +66,8 @@ namespace Dialog
         private int _portraitIndex = 0;
         private string _lastSpeaker = "";
         private bool requestDialogWrite = false;
+        private SaveClient saveClient;
+        private string _lastDialog;
 
         private float TextRate => gameConfiguration.textRate;
 
@@ -74,11 +77,23 @@ namespace Dialog
             set => isBlocking = value;
         }
 
+        private void OnEnable()
+        {
+            saveClient = gameConfiguration.RequestSaveAccess(this);
+        }
+
+        private void OnDisable()
+        {
+            gameConfiguration.ReleaseSaveAccess(saveClient);
+            saveClient = null;
+        }
+
         private void Awake()
         {
             Debug.Assert(gameConfiguration != null);
             Debug.Assert(_textItems != null);
             Debug.Assert(iconManager != null);
+
 
             for (int i = 0; i < PoolSize; i++)
             {
@@ -151,7 +166,7 @@ namespace Dialog
             textItem.SetToCenter();
             if (requestDialogWrite)
             {
-                gameConfiguration.autoSave.lastDialog = text;
+                saveClient.autoSave.lastDialog = text;
             }
 
             // onLineUpdate.AddListener(textItem.UpdateLine);
@@ -233,6 +248,7 @@ namespace Dialog
             var formattedString = stringBuilder.ToString();
             var textLength = formattedString.Length;
             textItem.SetInitialText(formattedString);
+            _lastDialog = formattedString;
             
             bool isSkipping = false;
             for (int i = 0; i < textLength; i++)
@@ -276,9 +292,10 @@ namespace Dialog
         private bool IsWhiteListed(string markupText)
         {
             // todo: not in white list
+            string markupLower = markupText.ToLower();
             foreach (var wholeMarkup in markupWholeWhitelist)
             {
-                if (wholeMarkup.Equals(markupText, StringComparison.InvariantCultureIgnoreCase))
+                if (wholeMarkup.ToLower().Equals(markupLower))
                 {
                     return true;
                 }
@@ -286,7 +303,7 @@ namespace Dialog
 
             foreach (var phraseMarkup in markupPhraseWhitelist)
             {
-                if (markupText.Contains(phraseMarkup))
+                if (markupLower.Contains(phraseMarkup.ToLower()))
                 {
                     return true;
                 }
@@ -446,7 +463,7 @@ namespace Dialog
         public void RequestLastDialogWrite()
         {
             requestDialogWrite = true;
-            gameConfiguration.autoSave.lastDialog = "";
+            saveClient.autoSave.lastDialog = "";
         }
 
         public void ShowElements(bool shouldShow)
@@ -457,6 +474,11 @@ namespace Dialog
             }
 
             iconManager.ShowElements(shouldShow);
+        }
+
+        public void WriteAutoSave()
+        {
+            saveClient.autoSave.lastDialog = _lastDialog;
         }
     }
 }

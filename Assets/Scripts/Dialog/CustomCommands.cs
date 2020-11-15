@@ -6,6 +6,7 @@ using System.Linq;
 using Cinemachine;
 using Gameplay;
 using GameSystem;
+using GameSystem.Save;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Audio;
@@ -18,7 +19,7 @@ namespace Dialog
 {
     // todo: play current song being played??? on load
     [RequireComponent(typeof(CinemachineImpulseSource))]
-    public class CustomCommands : MonoBehaviour
+    public class CustomCommands : MonoBehaviour, SaveClientCallback
     {
         public GameConfiguration gameConfiguration;
         public MemoryStorage memoryStorage;
@@ -68,6 +69,23 @@ namespace Dialog
             None,
             GameEnding
         }
+        
+        private SaveClient _saveClient;
+        private string _lastAudioName;
+
+        private void OnEnable()
+        {
+            if (_saveClient == null)
+            {
+                _saveClient = gameConfiguration.RequestSaveAccess(this);
+            }
+        }
+
+        private void OnDisable()
+        {
+            gameConfiguration.ReleaseSaveAccess(_saveClient);
+            _saveClient = null;
+        }
 
         private void Awake()
         {
@@ -82,9 +100,14 @@ namespace Dialog
             Debug.Assert(inputManager != null);
             Debug.Assert(iconManager != null);
             Debug.Assert(blackScreen != null);
+            
+            if (_saveClient == null)
+            {
+                _saveClient = gameConfiguration.RequestSaveAccess(this);
+            }
 
-            ChangeHeader(new[] {gameConfiguration.saveData.lastHeader});
-            PlayAudio(new[] {gameConfiguration.saveData.lastAudioName});
+            ChangeHeader(new[] {_saveClient.currentSave.lastHeader});
+            PlayAudio(new[] {_saveClient.currentSave.lastAudioName});
 
             dialogueRunner.AddCommandHandler(
                 "playAudio", // the name of the command
@@ -283,7 +306,7 @@ namespace Dialog
 
                 _lastAudio = GetNewAudio();
                 _lastAudio.FadeIn(audioItem.audioClip, this);
-                gameConfiguration.autoSave.lastAudioName = audioItem.name;
+                _lastAudioName = audioItem.name;
 
                 return;
             }
@@ -475,6 +498,11 @@ namespace Dialog
             // Make the main camera look at this target
             Camera.main.transform.LookAt(target.transform);
         } */
+        
+        public void WriteAutoSave()
+        {
+            _saveClient.autoSave.lastAudioName = _lastAudioName;
+        }
     }
 
 

@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Dialog;
 using Gameplay;
+using GameSystem.Save;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class IconManager : MonoBehaviour
+public class IconManager : MonoBehaviour, SaveClientCallback
 {
     public GameConfiguration gameConfiguration;
     public IconItem[] iconList;
@@ -19,7 +20,22 @@ public class IconManager : MonoBehaviour
 
     private const int PoolCapacity = 10;
     private readonly List<PortraitItem> Pool = new List<PortraitItem>(PoolCapacity);
+    private SaveClient _saveClient;
 
+    private void OnEnable()
+    {
+        if (_saveClient == null)
+        {
+            _saveClient = gameConfiguration.RequestSaveAccess(this);
+        }
+    }
+
+    private void OnDisable()
+    {
+        gameConfiguration.ReleaseSaveAccess(_saveClient);
+        _saveClient = null;
+    }
+    
     private void Awake()
     {
         Debug.Assert(prefabCharacterIcon != null);
@@ -31,10 +47,15 @@ public class IconManager : MonoBehaviour
             Debug.Assert(item != null);
             Pool.Add(item);
         }
+        
+        if (_saveClient == null)
+        {
+            _saveClient = gameConfiguration.RequestSaveAccess(this);
+        }
 
-        _isLeft = gameConfiguration.saveData.isLeft;
-        InformSpeaker(gameConfiguration.saveData.currentSpeaker, true);
-        InformSpeaker(gameConfiguration.saveData.previousSpeaker, true);
+        _isLeft = _saveClient.currentSave.isLeft;
+        InformSpeaker(_saveClient.currentSave.currentSpeaker, true);
+        InformSpeaker(_saveClient.currentSave.previousSpeaker, true);
     }
 
     public IconItem GetSprite(string speakerName)
@@ -169,15 +190,9 @@ public class IconManager : MonoBehaviour
         return SaveState(ret);
     }
 
+    // todo: delete
     private InformSpeakerReturn SaveState(InformSpeakerReturn ret)
     {
-        gameConfiguration.autoSave.isLeft = !_isLeft;
-        gameConfiguration.autoSave.currentSpeaker = _currentSpeaker != null
-            ? _currentSpeaker.Speaker
-            : "";
-        gameConfiguration.autoSave.previousSpeaker = _previousSpeaker != null
-            ? _previousSpeaker.Speaker
-            : "";
         return ret;
     }
 
@@ -194,6 +209,17 @@ public class IconManager : MonoBehaviour
     {
         if (_currentSpeaker != null) _currentSpeaker.gameObject.SetActive(shouldShow);
         if (_previousSpeaker != null) _previousSpeaker.gameObject.SetActive(shouldShow);
+    }
+
+    public void WriteAutoSave()
+    {
+        _saveClient.autoSave.isLeft = !_isLeft;
+        _saveClient.autoSave.currentSpeaker = _currentSpeaker != null
+            ? _currentSpeaker.Speaker
+            : "";
+        _saveClient.autoSave.previousSpeaker = _previousSpeaker != null
+            ? _previousSpeaker.Speaker
+            : "";
     }
 }
 
