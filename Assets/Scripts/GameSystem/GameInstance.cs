@@ -30,18 +30,11 @@ public class GameInstance : MonoBehaviour
             Destroy(this);
             return;
         }
-        else
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
 
         gameConfiguration.gameInstance = this;
-    }
-
-    private void Start()
-    {
-        // todo run slow coroutine for saving???
     }
 
     public SaveClient RequestSaveAccess()
@@ -54,12 +47,6 @@ public class GameInstance : MonoBehaviour
     public void RemoveSaveClient(SaveClient saveClient)
     {
         saveClientList.Remove(saveClient);
-    }
-
-    public void InformAutoSaveWrite()
-    {
-        // todo: write on index 0
-        // stop all coroutines and save
     }
 
     public void WriteOnAutoSave()

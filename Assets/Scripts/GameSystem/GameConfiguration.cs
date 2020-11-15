@@ -45,6 +45,8 @@ public class GameConfiguration : ScriptableObject
     private SaveIO saveIo;
     public GameInstance gameInstance;
 
+    public static int AutoSaveIndex = 0;
+
     private void Awake()
     {
         saveIo = new SaveIO(this);
@@ -89,5 +91,20 @@ public class GameConfiguration : ScriptableObject
     public SaveData GetAutoSave()
     {
         return autoSave;
+    }
+
+    public void LoadData(int slotIndex)
+    {
+        var tmpSave = SaveIo.RequestExecutor()
+            .AtSlotIndex(slotIndex)
+            .LoadSlot();
+        if (tmpSave != null)
+        {
+            currentSave = tmpSave;
+        }
+        else
+        {
+            Debug.LogError($"Failed to load slot index: {slotIndex}");
+        }
     }
 }

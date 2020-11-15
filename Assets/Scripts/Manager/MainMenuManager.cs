@@ -18,15 +18,20 @@ namespace Manager
             continueButton.interactable = gameConfiguration.isSaveDirty;
         }
 
-        private void OnEnable()
-        {
-            saveClient = gameConfiguration.RequestSaveAccess(this);
-        }
-
-        private void OnDisable()
+        private void OnDestroy()
         {
             gameConfiguration.ReleaseSaveAccess(saveClient);
             saveClient = null;
+        }
+
+        private void Start()
+        {
+            saveClient = gameConfiguration.RequestSaveAccess(this);
+            
+            // disable continue when auto save does not exist
+            continueButton.interactable = gameConfiguration.SaveIo.RequestExecutor()
+                .AtSlotIndex(GameConfiguration.AutoSaveIndex)
+                .DoesExist();
         }
 
         public void OnClickNewGame()
@@ -38,8 +43,7 @@ namespace Manager
         public void OnClickContinue()
         {
             // todo: allow multiple save files in the future
-            throw new NotImplementedException();
-            saveClient.currentSave.Overwrite(saveClient.autoSave);
+            gameConfiguration.LoadData(GameConfiguration.AutoSaveIndex);
             SceneManager.LoadScene("DialogScene");
             // SceneManager.LoadScene("SaveSelect");
         }

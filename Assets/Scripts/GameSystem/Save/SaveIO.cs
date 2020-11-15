@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -21,6 +22,14 @@ namespace GameSystem.Save
     public class SaveIO
     {
         public GameConfiguration gameConfiguration;
+
+#if UNITY_WEBGL
+        [DllImport("__Internal")]
+        private static extern void SyncFiles();
+
+        [DllImport("__Internal")]
+        private static extern void Hello();
+#endif
 
         public SaveIO(GameConfiguration gameConfiguration)
         {
@@ -103,7 +112,7 @@ namespace GameSystem.Save
         private string GetPath(SlotExecutor slotExecutor)
         {
             return Application.persistentDataPath + "/savedata"
-                                                  + slotExecutor.slotIndex + ".matosav";
+                                                  + slotExecutor.slotIndex + ".json";
         }
 
         private bool OverwriteSlot(SlotExecutor slotExecutor)
@@ -115,10 +124,20 @@ namespace GameSystem.Save
 
             bool result = true;
 
+
+            string path = GetPath(slotExecutor);
+            string jsonString = JsonUtility.ToJson(slotExecutor.saveData);
+            File.WriteAllText(path, jsonString);
+
+#if UNITY_WEBGL
+            if (Application.platform == RuntimePlatform.WebGLPlayer)
+            {
+                SyncFiles();
+            }
+#elif UNITY_STANDALONE_WIN
             BinaryFormatter formatter = new BinaryFormatter();
             string path = GetPath(slotExecutor);
             FileStream stream = new FileStream(path, FileMode.Create);
-            Debug.Log(path);
 
             try
             {
@@ -133,12 +152,16 @@ namespace GameSystem.Save
             {
                 stream.Close();
             }
+#else
+            Debug.LogError("Saving not supported on current platform");
+#endif
 
             return result;
         }
 
         private bool DoesExist(SlotExecutor slotExecutor)
         {
+            Debug.Log(GetPath(slotExecutor));
             return File.Exists(GetPath(slotExecutor));
         }
 
@@ -149,6 +172,15 @@ namespace GameSystem.Save
 
             if (File.Exists(path))
             {
+                var jsonString = File.ReadAllText(path);
+                result = JsonUtility.FromJson<SaveData>(jsonString);
+
+#if UNITY_WEBGL
+                if (Application.platform == RuntimePlatform.WebGLPlayer)
+                {
+                    SyncFiles();
+                }
+#elif UNITY_STANDALONE_WIN
                 BinaryFormatter formatter = new BinaryFormatter();
                 FileStream stream = new FileStream(path, FileMode.Open);
 
@@ -156,14 +188,18 @@ namespace GameSystem.Save
                 {
                     result = (SaveData) formatter.Deserialize(stream);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     // todo: specify the three exceptions here
+                    Debug.LogError(ex.Message);
                 }
                 finally
                 {
                     stream.Close();
                 }
+#else
+            Debug.LogError("Saving not supported on current platform");
+#endif
             }
             else
             {

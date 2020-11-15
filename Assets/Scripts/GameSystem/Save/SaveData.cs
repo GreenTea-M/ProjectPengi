@@ -17,12 +17,12 @@ public class SaveData
     public string name = "";
     public string currentYarnNode = "Start";
     public string lastDialog = "";
-    public Sprite lastSprite = null;
     public string lastAudioName = "fishMarket";
     public string lastHeader = "carpentry";
     
     public List<InMemoryVariableStorage.DefaultVariable> savedVariables = 
         new List<InMemoryVariableStorage.DefaultVariable>();
+    
     public bool isLeft = true;
     public string currentSpeaker = "";
     public string previousSpeaker = "";
@@ -51,7 +51,6 @@ public class SaveData
         name = rhs.name;
         currentYarnNode = rhs.currentYarnNode;
         lastDialog = rhs.lastDialog;
-        lastSprite = rhs.lastSprite;
         lastAudioName = rhs.lastAudioName;
         lastHeader = rhs.lastHeader;
         isLeft = rhs.isLeft;
