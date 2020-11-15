@@ -13,20 +13,26 @@ namespace Dialog
 
         private Vector3 _defaultPosition = new Vector3(18.75f, 8.49f, 0f);
         private IconItem _iconItem;
-        private bool _isLeft;
         private string _speaker;
         private Animator _animator;
 
         private int HashIsActive = Animator.StringToHash("IsActive");
         private int HashIsSpeaking = Animator.StringToHash("IsSpeaking");
         private int HashIsLeft = Animator.StringToHash("IsLeft");
+        private bool _isActive = false;
+        
         public string Speaker => GetRealName();
-        public bool IsLeft => _isLeft;
+        public bool IsActive => _isActive;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
             _defaultPosition = transform.position;
+        }
+
+        private void OnDisable()
+        {
+            _isActive = false;
         }
 
         public void PushUpwards()
@@ -68,18 +74,19 @@ namespace Dialog
             transform.position = new Vector3(-20f, 20f, 0f);
         }
 
-        public void Appear(IconItem iconItem, string candidateSpeaker, bool isLeft)
+        public void Setup(IconItem iconItem, string candidateSpeaker)
         {
+            Debug.Log($"Speaking: {candidateSpeaker}");
             _iconItem = iconItem;
             _speaker = candidateSpeaker;
-            _isLeft = isLeft;
-            
             spriteRenderer.sprite = iconItem?.mainSprite;
-            
-            _animator.SetBool(HashIsLeft, isLeft);
+        }
+
+        public void Appear(bool isLeft)
+        {
+            this._isActive = true;
+            _animator.SetBool(HashIsLeft, IsSameSpeaker(IconManager.mainSpeakerName));
             _animator.SetBool(HashIsActive, true);
-            // todo: delete old code
-            // _animator.SetTrigger(isLeft ? HashAnimGoLeft : HashAnimGoRight);
         }
 
         public bool IsSameSpeaker(string candidateSpeaker)
@@ -89,12 +96,16 @@ namespace Dialog
 
         public void Leave()
         {
+            _isActive = false;
+            _animator.SetBool(HashIsLeft, IsSameSpeaker(IconManager.mainSpeakerName));
             _animator.SetBool(HashIsActive, false);
             spriteRenderer.sprite = _iconItem?.mainSprite;
         }
 
         public void Idle()
         {
+            _isActive = true;
+            _animator.SetBool(HashIsLeft, IsSameSpeaker(IconManager.mainSpeakerName));
             _animator.SetBool(HashIsActive, true);
             _animator.SetBool(HashIsSpeaking, false);
             spriteRenderer.sprite = _iconItem?.mainSprite;
@@ -102,6 +113,8 @@ namespace Dialog
 
         public void Speak()
         {
+            _isActive = true;
+            _animator.SetBool(HashIsLeft, IsSameSpeaker(IconManager.mainSpeakerName));
             _animator.SetBool(HashIsActive, true);
             _animator.SetBool(HashIsSpeaking, true);
             spriteRenderer.sprite = _iconItem?.outlineSprite;

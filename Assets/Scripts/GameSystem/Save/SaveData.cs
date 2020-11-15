@@ -58,7 +58,7 @@ public class SaveData
         previousSpeaker = rhs.previousSpeaker;
 
         // todo: test out for optimization
-        // savedVariables.Capacity = rhs.savedVariables.Count;
+        savedVariables.Clear();
         foreach (var variable in rhs.savedVariables)
         {
             savedVariables.Add(new InMemoryVariableStorage.DefaultVariable()

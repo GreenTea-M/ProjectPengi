@@ -69,7 +69,7 @@ namespace Dialog
             None,
             GameEnding
         }
-        
+
         private SaveClient _saveClient;
         private string _lastAudioName;
 
@@ -100,7 +100,7 @@ namespace Dialog
             Debug.Assert(inputManager != null);
             Debug.Assert(iconManager != null);
             Debug.Assert(blackScreen != null);
-            
+
             if (_saveClient == null)
             {
                 _saveClient = gameConfiguration.RequestSaveAccess(this);
@@ -220,9 +220,8 @@ namespace Dialog
 
         private void ResetSpeaker(string[] parameters)
         {
-            // todo: improve ResetSpeaker
-            float num;
-            if (parameters.Length == 1 && float.TryParse(parameters[0], out num))
+            Debug.Log($"ResetSpeaker: {string.Join(" ", parameters)}");
+            if (parameters.Length == 1 && float.TryParse(parameters[0], out _))
             {
                 iconManager.RemoveSpeaker(2);
             }
@@ -230,8 +229,6 @@ namespace Dialog
             {
                 iconManager.RemoveSpeaker(String.Join(" ", parameters));
             }
-
-            iconManager.RemoveSpeaker(2);
         }
 
         /// <summary>
@@ -322,6 +319,7 @@ namespace Dialog
                 Debug.Assert(fadedAudio != null);
                 return fadedAudio;
             }
+
             else
             {
                 return Pool.Pop();
@@ -414,6 +412,7 @@ namespace Dialog
         {
             _shownShelfItem = shelfItem;
             inputManager.SetInputState(InputState.Normal);
+
             bool isDone = true;
             for (int i = _shelfItemList.Count - 1; i >= 0; i--)
             {
@@ -498,7 +497,7 @@ namespace Dialog
             // Make the main camera look at this target
             Camera.main.transform.LookAt(target.transform);
         } */
-        
+
         public void WriteAutoSave()
         {
             _saveClient.autoSave.lastAudioName = _lastAudioName;

@@ -9,12 +9,14 @@ using UnityEngine.Serialization;
 
 public class IconManager : MonoBehaviour, SaveClientCallback
 {
+    public static string mainSpeakerName = "Pengi";
+    
     public GameConfiguration gameConfiguration;
     public IconItem[] iconList;
     public GameObject prefabCharacterIcon;
 
-    private PortraitItem _previousSpeaker;
-    private PortraitItem _currentSpeaker;
+    private PortraitItem _mainSpeaker;
+    private PortraitItem _otherSpeaker;
     private int _portraitIndex = 0;
     private bool _isLeft = true;
 
@@ -35,7 +37,7 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         gameConfiguration.ReleaseSaveAccess(_saveClient);
         _saveClient = null;
     }
-    
+
     private void Awake()
     {
         Debug.Assert(prefabCharacterIcon != null);
@@ -47,7 +49,7 @@ public class IconManager : MonoBehaviour, SaveClientCallback
             Debug.Assert(item != null);
             Pool.Add(item);
         }
-        
+
         if (_saveClient == null)
         {
             _saveClient = gameConfiguration.RequestSaveAccess(this);
@@ -74,34 +76,46 @@ public class IconManager : MonoBehaviour, SaveClientCallback
 
     public void RemoveSpeaker(int count)
     {
-        // todo: stuff
-        if (_previousSpeaker != null)
+        int removedCount = 0;
+
+        if (removedCount > count)
         {
-            _previousSpeaker.Leave();
-            _previousSpeaker = null;
+            return;
         }
 
-        if (_currentSpeaker != null)
+        if (_mainSpeaker != null)
         {
-            _currentSpeaker.Leave();
-            _currentSpeaker = null;
+            _mainSpeaker.Leave();
+            _mainSpeaker = null;
+            removedCount++;
+        }
+
+        if (removedCount > count)
+        {
+            return;
+        }
+
+        if (_otherSpeaker != null)
+        {
+            _otherSpeaker.Leave();
+            _otherSpeaker = null;
         }
     }
 
-    public void RemoveSpeaker(string name)
+    public void RemoveSpeaker(string speakerName)
     {
-        if (_currentSpeaker != null && _currentSpeaker.IsSameSpeaker(name))
+        if (_otherSpeaker != null && _otherSpeaker.IsSameSpeaker(speakerName))
         {
-            _currentSpeaker.Leave();
-            _isLeft = _currentSpeaker.IsLeft;
-            _currentSpeaker = _previousSpeaker;
+            Debug.Log($"Speaker leaving: {speakerName}");
+            _otherSpeaker.Leave();
+            _otherSpeaker = null;
         }
-        
-        if (_previousSpeaker != null && _previousSpeaker.IsSameSpeaker(name))
+
+        if (_mainSpeaker != null && _mainSpeaker.IsSameSpeaker(speakerName))
         {
-            _previousSpeaker.Leave();
-            _isLeft = _previousSpeaker.IsLeft;
-            _previousSpeaker = null;
+            Debug.Log($"Speaker leaving: {speakerName}");
+            _mainSpeaker.Leave();
+            _mainSpeaker = null;
         }
     }
 
@@ -110,6 +124,31 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         return InformSpeaker(candidateSpeaker, false);
     }
 
+    private void Speak(PortraitItem currentSpeaker)
+    {
+        if (currentSpeaker == null)
+        {
+            if (_mainSpeaker != null)
+            {
+                _mainSpeaker.Idle();
+            }
+
+            if (_otherSpeaker != null)
+            {
+                _otherSpeaker.Idle();
+            }
+
+            return;
+        }
+
+        var otherSpeaker = _mainSpeaker == currentSpeaker ? _otherSpeaker : _mainSpeaker;
+
+        currentSpeaker.Speak();
+        if (otherSpeaker != null)
+        {
+            otherSpeaker.Idle();
+        }
+    }
 
     private InformSpeakerReturn InformSpeaker(string candidateSpeaker, bool isForced)
     {
@@ -119,78 +158,51 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         if (candidateSpeaker.Equals(""))
         {
             // do nothing ??
-            if (_currentSpeaker != null)
-            {
-                _currentSpeaker.Idle();
-            }
-
-            if (_previousSpeaker != null)
-            {
-                _previousSpeaker.Idle();
-            }
-            
+            Speak(null);
             ret.isBlocking = false;
             return SaveState(ret);
         }
 
-        if (_currentSpeaker == null)
+        if (_mainSpeaker != null && _mainSpeaker.IsSameSpeaker(candidateSpeaker))
         {
-            _currentSpeaker = GetSpeakerPortrait(candidateSpeaker);
-            if (!isForced)
-            {
-                _currentSpeaker.Speak();
-            }
-
-            ret.isBlocking = false;
-            ret.realName = _currentSpeaker.GetRealName();
+            ret.realName = _mainSpeaker.GetRealName();
+            Speak(_mainSpeaker);
             return SaveState(ret);
         }
 
-        if (_currentSpeaker.IsSameSpeaker(candidateSpeaker))
+        if (_otherSpeaker != null && _otherSpeaker.IsSameSpeaker(candidateSpeaker))
         {
-            // todo: change emotions???
-            _currentSpeaker.Speak();
-            ret.isBlocking = false;
-            ret.realName = _currentSpeaker.GetRealName();
+            ret.realName = _otherSpeaker.GetRealName();
+            Speak(_otherSpeaker);
             return SaveState(ret);
         }
 
-        PortraitItem newSpeaker = null;
-        if (_previousSpeaker == null)
+        // did not match current speakers
+        var currentSpeaker = GetSpeakerPortrait(candidateSpeaker);
+        if (currentSpeaker.IsSameSpeaker(mainSpeakerName))
         {
-            // do nothing lol
-        }
-        else if (_previousSpeaker.IsSameSpeaker(candidateSpeaker))
-        {
-            newSpeaker = _previousSpeaker;
-            _isLeft = !_isLeft; // swap
-        }
-        else
-        {
-            _previousSpeaker.Leave();
+            // we know that main speaker is null
+            _mainSpeaker = currentSpeaker;
+            Speak(_mainSpeaker); // must be in here
+            ret.isBlocking = !isForced;
+            ret.realName = _mainSpeaker.GetRealName();
+            return SaveState(ret);
         }
 
-        _previousSpeaker = _currentSpeaker;
-        _currentSpeaker = newSpeaker;
-
-        if (_currentSpeaker != null && _currentSpeaker.IsSameSpeaker(candidateSpeaker))
+        if (_otherSpeaker != null)
         {
-            // todo: change emotions???
-        }
-        else
-        {
-            _currentSpeaker = GetSpeakerPortrait(candidateSpeaker);
-            ret.isBlocking = true;
+            // we have replace the other speaker
+            _otherSpeaker.Leave();
         }
 
-        _previousSpeaker.Idle();
-        _currentSpeaker.Speak();
-
-        ret.realName = _currentSpeaker.GetRealName();
+        _otherSpeaker = currentSpeaker;
+        Speak(_otherSpeaker); // must be here
+        ret.isBlocking = !isForced;
+        ret.realName = _otherSpeaker.GetRealName();
         return SaveState(ret);
     }
 
-    // todo: delete
+// todo: delete
     private InformSpeakerReturn SaveState(InformSpeakerReturn ret)
     {
         return ret;
@@ -198,27 +210,30 @@ public class IconManager : MonoBehaviour, SaveClientCallback
 
     private PortraitItem GetSpeakerPortrait(string candidateSpeaker)
     {
-        PortraitItem portraitItem = Pool[_portraitIndex];
-        _portraitIndex = (_portraitIndex + 1) % PoolCapacity;
-        portraitItem.Appear(GetSprite(candidateSpeaker), candidateSpeaker, _isLeft);
-        _isLeft = !_isLeft;
+        PortraitItem portraitItem = null;
+        do
+        {
+            portraitItem = Pool[_portraitIndex];
+            _portraitIndex = (_portraitIndex + 1) % PoolCapacity;
+        } while (portraitItem.IsActive);
+        portraitItem.Setup(GetSprite(candidateSpeaker), candidateSpeaker);
         return portraitItem;
     }
 
     public void ShowElements(bool shouldShow)
     {
-        if (_currentSpeaker != null) _currentSpeaker.gameObject.SetActive(shouldShow);
-        if (_previousSpeaker != null) _previousSpeaker.gameObject.SetActive(shouldShow);
+        if (_otherSpeaker != null) _otherSpeaker.gameObject.SetActive(shouldShow);
+        if (_mainSpeaker != null) _mainSpeaker.gameObject.SetActive(shouldShow);
     }
 
     public void WriteAutoSave()
     {
         _saveClient.autoSave.isLeft = !_isLeft;
-        _saveClient.autoSave.currentSpeaker = _currentSpeaker != null
-            ? _currentSpeaker.Speaker
+        _saveClient.autoSave.currentSpeaker = _otherSpeaker != null
+            ? _otherSpeaker.Speaker
             : "";
-        _saveClient.autoSave.previousSpeaker = _previousSpeaker != null
-            ? _previousSpeaker.Speaker
+        _saveClient.autoSave.previousSpeaker = _mainSpeaker != null
+            ? _mainSpeaker.Speaker
             : "";
     }
 }

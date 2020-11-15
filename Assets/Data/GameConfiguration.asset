@@ -22,11 +22,10 @@ MonoBehaviour:
   textOpacity: 0.97
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   enableTextFormatting: 1
-  saveData:
+  currentSave:
     name: 
-    currentYarnNode: Bear.PuzzleStart
+    currentYarnNode: Bear.Intro
     lastDialog: 
-    lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
     lastAudioName: fishMarket
     lastHeader: carpentry
     savedVariables: []
@@ -36,33 +35,36 @@ MonoBehaviour:
   isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.MarbleDialogue
-    lastDialog: 'Brynhilda: Okay, which one first?'
-    lastSprite: {fileID: 21300000, guid: 6ca0add2bd6d1124997e4a5cac91335d, type: 3}
+    currentYarnNode: Fish.Start
+    lastDialog: 'Pengi: On to the next one.'
     lastAudioName: BrynhildaBear
     lastHeader: carpentry
     savedVariables:
     - name: toilet
       value: 2
       type: 0
-    - name: baseball
-      value: 2
-      type: 0
-    - name: grammyPicture
-      value: 2
-      type: 0
     - name: teddy
-      value: 2
-      type: 0
-    - name: peaceSign
       value: 2
       type: 0
     - name: marble
       value: 2
       type: 0
+    - name: baseball
+      value: 2
+      type: 0
+    - name: peaceSign
+      value: 2
+      type: 0
+    - name: grammyPicture
+      value: 2
+      type: 0
     - name: puzzleDone
       value: True
       type: 2
-    isLeft: 1
+    - name: manager
+      value: 1
+      type: 0
+    isLeft: 0
     currentSpeaker: Brynhilda
     previousSpeaker: Pengi
+  gameInstance: {fileID: 0}
