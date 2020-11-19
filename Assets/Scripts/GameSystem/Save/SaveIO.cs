@@ -135,7 +135,7 @@ namespace GameSystem.Save
                 SyncFiles();
             }
 #elif UNITY_STANDALONE_WIN
-            BinaryFormatter formatter = new BinaryFormatter();
+            /*BinaryFormatter formatter = new BinaryFormatter();
             string path = GetPath(slotExecutor);
             FileStream stream = new FileStream(path, FileMode.Create);
 
@@ -151,7 +151,7 @@ namespace GameSystem.Save
             finally
             {
                 stream.Close();
-            }
+            }*/
 #else
             Debug.LogError("Saving not supported on current platform");
 #endif
@@ -181,7 +181,7 @@ namespace GameSystem.Save
                     SyncFiles();
                 }
 #elif UNITY_STANDALONE_WIN
-                BinaryFormatter formatter = new BinaryFormatter();
+                /*BinaryFormatter formatter = new BinaryFormatter();
                 FileStream stream = new FileStream(path, FileMode.Open);
 
                 try
@@ -196,7 +196,7 @@ namespace GameSystem.Save
                 finally
                 {
                     stream.Close();
-                }
+                }*/
 #else
             Debug.LogError("Saving not supported on current platform");
 #endif

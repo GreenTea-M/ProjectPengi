@@ -581,7 +581,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &588269064
 GameObject:
@@ -678,7 +678,7 @@ Transform:
   m_Children:
   - {fileID: 1841103444}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1066951497
 GameObject:
@@ -871,7 +871,7 @@ PrefabInstance:
     - target: {fileID: 3409404816141919931, guid: 2ce7349bcde73714097d32440fc16539,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3409404816141919931, guid: 2ce7349bcde73714097d32440fc16539,
         type: 3}
@@ -1095,7 +1095,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.9686275, g: 0.854902, b: 0.76470596, a: 0}
+  m_BackGroundColor: {r: 0.95686275, g: 0.8, b: 0.8, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1942,7 +1942,7 @@ PrefabInstance:
     - target: {fileID: 3655679620357101713, guid: 55596369a7cb7d94c87a71658fa7e6d2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3655679620357101713, guid: 55596369a7cb7d94c87a71658fa7e6d2,
         type: 3}
@@ -2180,7 +2180,7 @@ PrefabInstance:
     - target: {fileID: 2615843728546989044, guid: e867dc319a43f334f80162bc3778062a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2615843728546989044, guid: e867dc319a43f334f80162bc3778062a,
         type: 3}

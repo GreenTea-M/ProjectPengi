@@ -17,7 +17,7 @@ MonoBehaviour:
   textRate: 0.025
   shakeStrength: 1
   shouldShake: 1
-  fontAsset: {fileID: 11400000, guid: 6b468795670eb704fa2f2922aab14504, type: 2}
+  fontAsset: {fileID: 11400000, guid: dc35776587d58074b9f6a9b0249e7b65, type: 2}
   fontSize: 12
   textOpacity: 0.97
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
@@ -35,36 +35,13 @@ MonoBehaviour:
   isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Fish.Start
-    lastDialog: 'Pengi: On to the next one.'
-    lastAudioName: BrynhildaBear
+    currentYarnNode: Bear.Intro
+    lastDialog: <i>As impossible as it may seem she squints even harder, her eyes
+      seemingly disappearing into her graying fur.</i>
+    lastAudioName: fishMarket
     lastHeader: carpentry
-    savedVariables:
-    - name: toilet
-      value: 2
-      type: 0
-    - name: teddy
-      value: 2
-      type: 0
-    - name: marble
-      value: 2
-      type: 0
-    - name: baseball
-      value: 2
-      type: 0
-    - name: peaceSign
-      value: 2
-      type: 0
-    - name: grammyPicture
-      value: 2
-      type: 0
-    - name: puzzleDone
-      value: True
-      type: 2
-    - name: manager
-      value: 1
-      type: 0
+    savedVariables: []
     isLeft: 0
-    currentSpeaker: Brynhilda
-    previousSpeaker: Pengi
+    currentSpeaker: 
+    previousSpeaker: 
   gameInstance: {fileID: 0}

@@ -177,6 +177,7 @@ MonoBehaviour:
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
   textFontMultiplier: 1
   shouldIgnoreColor: 0
+  shouldIgnoreSize: 0
 --- !u!1 &5498867982737714706
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.8509804, b: 0.7647059, a: 1}
+  m_Color: {r: 0.95686275, g: 0.8, b: 0.8, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

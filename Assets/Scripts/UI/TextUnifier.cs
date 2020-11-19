@@ -12,6 +12,7 @@ namespace UI
         public GameConfiguration gameConfiguration;
         public float textFontMultiplier = 1f;
         public bool shouldIgnoreColor = false;
+        public bool shouldIgnoreSize = false;
         
         private TextMeshProUGUI _text;
 
@@ -33,7 +34,12 @@ namespace UI
         public void UpdateFontSize()
         {
             _text.font = gameConfiguration.fontAsset;
-            _text.fontSize = gameConfiguration.FontSize * textFontMultiplier;
+            
+            if (!shouldIgnoreSize)
+            {
+                _text.fontSize = gameConfiguration.FontSize * textFontMultiplier;
+            }
+            
             if (shouldIgnoreColor)
             {
                 var newColor = gameConfiguration.fontColor;
