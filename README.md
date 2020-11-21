@@ -10,3 +10,5 @@ Credits:
 * renner*
 * Poppins. The Poppins Project Authors (https://github.com/itfoundry/Poppins)
 * Open Sans
+* Nunito
+* Outline shader https://github.com/cakeslice/Outline-Effect
