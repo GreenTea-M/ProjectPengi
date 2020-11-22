@@ -3,6 +3,7 @@ using Dialog;
 using RoboRyanTron.Unite2017.Events;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI
 {
@@ -11,10 +12,11 @@ namespace UI
     {
         public GameConfiguration gameConfiguration;
         public float textFontMultiplier = 1f;
-        public bool shouldIgnoreColor = false;
+        [FormerlySerializedAs("shouldIgnoreColor")] public bool shouldIgnoreAlpha = false;
         public bool shouldIgnoreSize = false;
         
         private TextMeshProUGUI _text;
+        private Color _color;
 
         protected new void OnEnable()
         {
@@ -22,6 +24,7 @@ namespace UI
             
             Response.AddListener(UpdateFontSize);
             _text = GetComponent<TextMeshProUGUI>();
+            _color = _text.color;
             UpdateFontSize();
         }
 
@@ -40,12 +43,9 @@ namespace UI
                 _text.fontSize = gameConfiguration.FontSize * textFontMultiplier;
             }
             
-            if (shouldIgnoreColor)
-            {
-                var newColor = gameConfiguration.fontColor;
-                newColor.a = gameConfiguration.textOpacity;
-                _text.color = newColor;
-            }
+            var newColor = gameConfiguration.fontColor;
+            newColor.a = shouldIgnoreAlpha ? _color.a : gameConfiguration.textOpacity;
+            _text.color = newColor;
         }
     }
 }
