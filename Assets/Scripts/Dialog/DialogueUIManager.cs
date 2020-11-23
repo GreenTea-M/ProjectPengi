@@ -141,6 +141,7 @@ namespace Dialog
             userRequestedNextLine = false;
 
             string text = localisationProvider.GetLocalisedTextForLine(line);
+            text = text.Trim();
 
             if (text == null)
             {
@@ -179,7 +180,8 @@ namespace Dialog
                 gameConfiguration.textRate = 0f;
             }
 
-            var stringBuilder = new StringBuilder();
+            var formattedStringBuilder = new StringBuilder();
+            var cleanStringBuilder = new StringBuilder();
             var markupBuilder = new StringBuilder();
             var textSpeedMultiplier = 1f;
             // todo: do something about markup symbols
@@ -223,7 +225,7 @@ namespace Dialog
                         }
                         else
                         {
-                            stringBuilder.Append(markupBuilder);
+                            formattedStringBuilder.Append(markupBuilder);
                         }
 
                         markupBuilder.Clear();
@@ -240,11 +242,12 @@ namespace Dialog
 
                 #endregion for hiding markup
 
-                stringBuilder.Append(c);
+                formattedStringBuilder.Append(c);
+                cleanStringBuilder.Append(c);
             }
 
-            var formattedString = stringBuilder.ToString();
-            var textLength = formattedString.Length;
+            var formattedString = formattedStringBuilder.ToString();
+            var textLength = cleanStringBuilder.Length;
             character.SetInitialText(formattedString);
             _lastDialog = formattedString;
             
@@ -255,6 +258,7 @@ namespace Dialog
 
                 if (userRequestedNextLine)
                 {
+                    Debug.Log($"Force break at {i} out of {textLength}");
                     userRequestedNextLine = false;
                     break;
                 }
@@ -274,6 +278,7 @@ namespace Dialog
                 yield return null;
             }
 
+            Debug.Log("Next line");
             userRequestedNextLine = false;
 
             // Avoid skipping lines if textSpeed == 0
