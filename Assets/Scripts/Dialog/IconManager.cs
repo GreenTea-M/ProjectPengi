@@ -66,13 +66,6 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         _narratingCharacter = narratingCharacter.Instantiate(this);
         _mainCharacter = mainCharacter.Instantiate(this);
 
-        for (int i = 0; i < PoolCapacity; i++)
-        {
-            var item = Instantiate(prefabCharacterIcon).GetComponent<PortraitItem>();
-            Debug.Assert(item != null);
-            _pool.Add(item);
-        }
-
         if (_saveClient == null)
         {
             _saveClient = gameConfiguration.RequestSaveAccess(this);

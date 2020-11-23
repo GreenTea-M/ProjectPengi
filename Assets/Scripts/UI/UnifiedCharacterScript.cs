@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
@@ -10,23 +11,29 @@ namespace UI
 {
     public class UnifiedCharacterScript : MonoBehaviour
     {
-        public Transform stageLocation;
+        [Header("Locations")] public Transform stageLocation;
         public Transform exitLocation;
-        public SpriteRenderer sprite;
+        public Transform alternativeTextLocation;
+
+        [Header("Child components")] public SpriteRenderer sprite;
         public TextMeshProUGUI dialogueText;
         public Transform layoutGroup;
         public GameObject uiButton;
         public Canvas textCanvas;
         public Canvas buttonCanvas;
         public float transitionSpeed = 10f;
+        public float textTransitionSpeed = 20f;
 
         private CharacterData _data;
         private State _state = State.Hidden;
+        private TextState _textState = TextState.Default;
         private CharacterType _characterType = CharacterType.Narrator;
         private bool _isSpeaking = false;
         private int _currentTextMax;
         private IconManager _iconManager;
         private List<Button> _buttons = new List<Button>();
+        private Vector3 _defaultTextLocation;
+        private IEnumerator textMovementCoroutine;
 
         private enum State
         {
@@ -35,6 +42,14 @@ namespace UI
             Idling,
             Speaking,
             Disappearing
+        }
+
+        private enum TextState
+        {
+            Default,
+            ToAlternative,
+            Alternative,
+            ToDefault
         }
 
         private void Awake()
@@ -46,6 +61,8 @@ namespace UI
 
         private void Start()
         {
+            _defaultTextLocation = dialogueText.transform.position;
+
             dialogueText.text = "";
 
             if (buttonCanvas != null)
@@ -71,10 +88,43 @@ namespace UI
                         _state = State.Speaking;
                         _iconManager.informSpeakerReturnValue.dialogueBlocker.Unblock();
                     }
+
                     break;
                 case State.Speaking:
                     break;
                 case State.Disappearing:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            switch (_textState)
+            {
+                case TextState.Default:
+                    break;
+                case TextState.ToAlternative:
+                    if (dialogueText.transform.position != alternativeTextLocation.position)
+                    {
+                        dialogueText.transform.position = Vector3.MoveTowards(dialogueText.transform.position,
+                            alternativeTextLocation.position, textTransitionSpeed * Time.deltaTime);
+                    }
+                    else
+                    {
+                        _textState = TextState.Alternative;
+                    }
+                    break;
+                case TextState.Alternative:
+                    break;
+                case TextState.ToDefault:
+                    if (dialogueText.transform.position != _defaultTextLocation)
+                    {
+                        dialogueText.transform.position = Vector3.MoveTowards(dialogueText.transform.position,
+                            _defaultTextLocation, textTransitionSpeed * Time.deltaTime);
+                    }
+                    else
+                    {
+                        _textState = TextState.Default;
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -97,6 +147,7 @@ namespace UI
                     {
                         _state = State.Idling;
                     }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -185,13 +236,16 @@ namespace UI
         {
             Debug.Assert(_characterType == CharacterType.Main);
             buttonCanvas.gameObject.SetActive(true);
-            
+
             while (_buttons.Count < optionsLength)
             {
                 Button newButton = Instantiate(uiButton, layoutGroup).GetComponent<Button>();
                 newButton.gameObject.SetActive(false);
                 _buttons.Add(newButton);
             }
+
+            // move text to alternative location
+            _textState = TextState.ToAlternative;
         }
 
         public void ActivateButtons(int i, UnityAction call)
@@ -217,7 +271,11 @@ namespace UI
             {
                 button.gameObject.SetActive(false);
             }
+
             buttonCanvas.gameObject.SetActive(false);
+
+            // move text to old location
+            _textState = TextState.ToDefault;
         }
     }
 
