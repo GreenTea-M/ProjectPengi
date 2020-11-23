@@ -39,8 +39,7 @@ namespace Dialog
         public PuzzleItem[] puzzleList;
 
         [FormerlySerializedAs("headerList")] 
-        public SpriteItem[] backgroundList;
-        public BackgroundItem[] backgroundList2;
+        public BackgroundItem[] backgroundList;
 
         public ShelfItemData[] shelfItemDataList;
 
@@ -112,13 +111,13 @@ namespace Dialog
             }
             
             // initialize backgrounds
-            _backgroundScriptList = new BackgroundScript[backgroundList2.Length];
-            for (int i = 0; i < backgroundList2.Length; i++)
+            _backgroundScriptList = new BackgroundScript[backgroundList.Length];
+            for (int i = 0; i < backgroundList.Length; i++)
             {
-                var script = Instantiate(backgroundList2[i].prefab)
+                var script = Instantiate(backgroundList[i].prefab)
                     .GetComponent<BackgroundScript>();
                 Debug.Assert(script != null);
-                script.SetData(backgroundList2[i]);
+                script.SetData(backgroundList[i]);
                 _backgroundScriptList[i] = script;
             }
 

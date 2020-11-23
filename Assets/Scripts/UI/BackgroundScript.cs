@@ -12,6 +12,8 @@ namespace UI
         public SpriteRenderer[] allSpriteRenderers;
         public float transitionDuration = 1f;
 
+        private float _allAlpha = 0f;
+
         enum State
         {
             None,
@@ -32,22 +34,25 @@ namespace UI
                 switch (_state)
                 {
                     case State.None:
-                        bgColor.a = 0f;
+                        _allAlpha = 0f;
+                        bgColor.a = _allAlpha;
                         bg.color = bgColor;
                         break;
                     case State.Appearing:
-                        bgColor.a += Time.deltaTime * transitionDuration;
+                        _allAlpha += Time.deltaTime * transitionDuration;
+                        bgColor.a = _allAlpha;
                         bg.color = bgColor;
-                        if (bgColor.a >= 1f)
+                        if (_allAlpha >= 1f)
                         {
                             _state = State.Shown;
                         }
                         break;
                     case State.Disappearing:
                         // todo: improve fade
-                        bgColor.a -= Time.deltaTime * transitionDuration;
+                        _allAlpha -= Time.deltaTime * transitionDuration;
+                        bgColor.a = _allAlpha;
                         bg.color = bgColor;
-                        if (bgColor.a <= 0f)
+                        if (_allAlpha <= 0f)
                         {
                             _state = State.None;
                             gameObject.SetActive(false);

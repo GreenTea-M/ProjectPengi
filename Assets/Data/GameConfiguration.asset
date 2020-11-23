@@ -35,8 +35,8 @@ MonoBehaviour:
   isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.Intro
-    lastDialog: 'Pengi: I got this!'
+    currentYarnNode: Bear.PuzzleStart
+    lastDialog: 
     lastAudioName: fishMarket
     lastHeader: carpentry
     savedVariables: []

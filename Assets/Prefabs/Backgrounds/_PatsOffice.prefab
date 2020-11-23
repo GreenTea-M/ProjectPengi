@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1581524287658895973}
   - component: {fileID: 626195400779668839}
   m_Layer: 0
-  m_Name: PatsOffice
+  m_Name: _PatsOffice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,6 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38baa2f6a69e41869d1077073855353b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allParts:
+  allSpriteRenderers:
   - {fileID: 1581524287658895973}
   transitionDuration: 1
