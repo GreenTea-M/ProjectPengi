@@ -29,6 +29,7 @@ H: Can I buy the cookie from you? 😉
 A: No! I will buy the cookie!
 <<changeBackground generalMarket>>
 B: Me... buy cookie!
+H: He. He. He.
 [[Yes|CookieBought]]
 [[No|CookieNotBought]]
 ===

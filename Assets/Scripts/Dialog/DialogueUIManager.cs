@@ -61,8 +61,6 @@ namespace Dialog
 
         public DialogueBlocker dialogueBlocker = new DialogueBlocker();
 
-        private const int PoolSize = 10;
-        private TextItem[] _textItems = new TextItem[PoolSize];
         private int _textIndex = 0;
         private int _portraitIndex = 0;
         private string _lastSpeaker = "";
@@ -102,15 +100,7 @@ namespace Dialog
         private void Awake()
         {
             Debug.Assert(gameConfiguration != null);
-            Debug.Assert(_textItems != null);
             Debug.Assert(iconManager != null);
-
-
-            for (int i = 0; i < PoolSize; i++)
-            {
-                _textItems[i] = Instantiate(dialogueItemPrefab).GetComponent<TextItem>();
-                _textItems[i].Activate();
-            }
         }
 
         public override Dialogue.HandlerExecutionType RunLine(Line line, ILineLocalisationProvider localisationProvider,
@@ -258,7 +248,6 @@ namespace Dialog
 
                 if (userRequestedNextLine)
                 {
-                    Debug.Log($"Force break at {i} out of {textLength}");
                     userRequestedNextLine = false;
                     break;
                 }
@@ -278,7 +267,6 @@ namespace Dialog
                 yield return null;
             }
 
-            Debug.Log("Next line");
             userRequestedNextLine = false;
 
             // Avoid skipping lines if textSpeed == 0
@@ -367,7 +355,6 @@ namespace Dialog
             }
 
             onOptionsStart?.Invoke();
-            Debug.Log("OptionStart");
 
             // Wait until the chooser has been used and then removed 
             while (waitingForOptionSelection)
@@ -375,7 +362,6 @@ namespace Dialog
                 yield return null;
             }
 
-            Debug.Log("OptionEnd");
             iconManager.HideAllButtons();
 
             onOptionsEnd?.Invoke();
@@ -472,10 +458,11 @@ namespace Dialog
 
         public void ShowElements(bool shouldShow)
         {
-            foreach (var item in _textItems)
-            {
-                item.gameObject.SetActive(shouldShow);
-            }
+            throw new NotImplementedException();
+            // foreach (var item in _textItems)
+            // {
+            //     item.gameObject.SetActive(shouldShow);
+            // }
 
             iconManager.ShowElements(shouldShow);
         }

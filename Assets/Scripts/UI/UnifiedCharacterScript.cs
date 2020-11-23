@@ -21,11 +21,13 @@ namespace UI
         public GameObject uiButton;
         public Canvas textCanvas;
         public Canvas buttonCanvas;
+        public Vector3 offsetIncrement = new Vector3(1f, -1f);
         public float transitionSpeed = 10f;
         public float textTransitionSpeed = 20f;
+        public float inactiveZ = 1f;
 
         private CharacterData _data;
-        private State _state = State.Hidden;
+        public State _state = State.Hidden;
         private TextState _textState = TextState.Default;
         private CharacterType _characterType = CharacterType.Narrator;
         private bool _isSpeaking = false;
@@ -34,14 +36,20 @@ namespace UI
         private List<Button> _buttons = new List<Button>();
         private Vector3 _defaultTextLocation;
         private IEnumerator textMovementCoroutine;
+        private Vector3 _idleTargetPosition;
 
-        private enum State
+        public string RealName => _data.name;
+
+        // todo: convert to private
+        public enum State
         {
             Hidden,
             Appearing,
             Idling,
             Speaking,
-            Disappearing
+            Disappearing,
+            ToRepositionIdling,
+            RepostitionIdling
         }
 
         private enum TextState
@@ -88,11 +96,23 @@ namespace UI
                         _state = State.Speaking;
                         _iconManager.informSpeakerReturnValue.dialogueBlocker.Unblock();
                     }
-
                     break;
                 case State.Speaking:
                     break;
                 case State.Disappearing:
+                    break;
+                case State.ToRepositionIdling:
+                    if (sprite.transform.position != _idleTargetPosition)
+                    {
+                        sprite.transform.position = Vector3.MoveTowards(sprite.transform.position,
+                            _idleTargetPosition, textTransitionSpeed * Time.deltaTime);
+                    }
+                    else
+                    {
+                        _state = State.RepostitionIdling;
+                    }
+                    break;
+                case State.RepostitionIdling:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -154,11 +174,6 @@ namespace UI
             }
         }
 
-        public TextMeshProUGUI Speak()
-        {
-            throw new NotImplementedException();
-        }
-
         public void SetData(CharacterData characterData, IconManager iconManager)
         {
             _iconManager = iconManager;
@@ -201,17 +216,30 @@ namespace UI
                     case State.Speaking:
                         // keep the state
                         break;
+                    case State.ToRepositionIdling:
+                        // go to speak immediately
+                        _state = State.Speaking;
+                        break;
                     case State.Disappearing:
                         Debug.LogWarning("UpdateStatus: This should not happen");
+                        break;
+                    case State.RepostitionIdling:
+                        _state = State.Appearing;
+                        _iconManager.informSpeakerReturnValue.dialogueBlocker.Block();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
             }
 
-            if (_characterType == CharacterType.Side && !_isSpeaking)
+            if (_characterType == CharacterType.Side && !_isSpeaking && _state != State.Hidden)
             {
-                // offset the queue???
+                // check index in active characters
+                int currentIndex = _iconManager.GetSideCharacterIndex(this);
+                Debug.Assert(currentIndex != -1);
+                _idleTargetPosition = stageLocation.position + (currentIndex * offsetIncrement);
+                _idleTargetPosition.z = inactiveZ;
+                _state = State.ToRepositionIdling;
             }
 
             textCanvas.gameObject.SetActive(false);

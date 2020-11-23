@@ -296,7 +296,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2777298629420424835}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -518,6 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageLocation: {fileID: 7248697340453849371}
   exitLocation: {fileID: 936405846802146890}
+  alternativeTextLocation: {fileID: 0}
   sprite: {fileID: 7248697338972137716}
   dialogueText: {fileID: 9073485691271360794}
   layoutGroup: {fileID: 0}
@@ -526,6 +527,7 @@ MonoBehaviour:
   textCanvas: {fileID: 3935526452063400098}
   buttonCanvas: {fileID: 0}
   transitionSpeed: 20
+  textTransitionSpeed: 20
 --- !u!1 &7248697340453849372
 GameObject:
   m_ObjectHideFlags: 0

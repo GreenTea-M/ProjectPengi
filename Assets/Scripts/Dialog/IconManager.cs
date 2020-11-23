@@ -171,6 +171,8 @@ public class IconManager : MonoBehaviour, SaveClientCallback
     {    
         // find out who is the active speaker
         // arrange accordingly
+        bool shouldRearrange = false;
+        
         if (_narratingCharacter.IsSimilar(candidateSpeaker))
         {
             currentSpeaking = _narratingCharacter;
@@ -185,9 +187,16 @@ public class IconManager : MonoBehaviour, SaveClientCallback
                 if (character.IsSimilar(candidateSpeaker))
                 {
                     currentSpeaking = character;
+                    shouldRearrange = true;
                     break;
                 }
             }
+        }
+
+        if (shouldRearrange)
+        {
+            _activeCharacterList.Remove(currentSpeaking);
+            _activeCharacterList.Insert(0, currentSpeaking);
         }
 
         _narratingCharacter.UpdateStatus();
@@ -199,6 +208,7 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         }
 
         informSpeakerReturnValue.character = currentSpeaking;
+        informSpeakerReturnValue.realName = currentSpeaking.RealName;
 
         return informSpeakerReturnValue;
         
@@ -333,6 +343,11 @@ public class IconManager : MonoBehaviour, SaveClientCallback
     public void HideAllButtons()
     {
         _mainCharacter.HideAllButtons();
+    }
+
+    public int GetSideCharacterIndex(UnifiedCharacterScript unifiedCharacterScript)
+    {
+        return _activeCharacterList.IndexOf(unifiedCharacterScript);
     }
 }
 

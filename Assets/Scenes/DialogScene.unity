@@ -821,14 +821,14 @@ MonoBehaviour:
   - name: Byrnhilda
     aliases:
     - B
-    prefab: {fileID: 3613125057938647323, guid: 9b469aef651ec7c4dbb168ec65e99585,
+    prefab: {fileID: 4384204903600273468, guid: ee7bbb5eb571b9e44a7532a256f80db1,
       type: 3}
     characterType: 2
   - name: Grammy
     aliases:
     - G
     - GF
-    prefab: {fileID: 3613125057938647323, guid: 9b469aef651ec7c4dbb168ec65e99585,
+    prefab: {fileID: 4384204903600273468, guid: ee7bbb5eb571b9e44a7532a256f80db1,
       type: 3}
     characterType: 2
   - name: Old Mole
@@ -848,13 +848,13 @@ MonoBehaviour:
   - name: Asomeone
     aliases:
     - A
-    prefab: {fileID: 3613125057938647323, guid: 9b469aef651ec7c4dbb168ec65e99585,
+    prefab: {fileID: 4384204903600273468, guid: ee7bbb5eb571b9e44a7532a256f80db1,
       type: 3}
     characterType: 2
   - name: Hank
     aliases:
     - H
-    prefab: {fileID: 3613125057938647323, guid: 9b469aef651ec7c4dbb168ec65e99585,
+    prefab: {fileID: 4384204903600273468, guid: ee7bbb5eb571b9e44a7532a256f80db1,
       type: 3}
     characterType: 2
   mainCharacter:
