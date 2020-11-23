@@ -1,11 +1,13 @@
-title: Start
+title: Test.Start
 tags: 
 colorID: 0
-position: 332,482
+position: 327,487
 ---
 <<playAudio fishMarket>>
-Cow: Hello! Can <color=ff00ff>you</color> <u>share</u> some <b>cookies</b>?
-[[Yes|GiveCookieScenario]]
+<<changeBackground sunset>>
+<<loadCharacters A B Paul Mole Lady Hank>>
+Pengi: Hello! Can <color=ff00ff>you</color> <u>share</u> some <b>cookies</b>?
+[[Yes|MyCookieScenario]]
 [[No|MyCookieScenario]]
 ===
 title: GiveCookieScenario
@@ -20,7 +22,9 @@ tags:
 colorID: 0
 position: 600,624
 ---
-Cow: Can I buy the cookie from you? 😉
+H: Can I buy the cookie from you? 😉
+A: No! I will buy the cookie!
+B: Me... buy cookie!
 [[Yes|CookieBought]]
 [[No|CookieNotBought]]
 ===
