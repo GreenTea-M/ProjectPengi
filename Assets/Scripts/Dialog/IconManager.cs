@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Dialog;
 using Gameplay;
 using GameSystem.Save;
+using Others;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -64,7 +65,7 @@ public class IconManager : MonoBehaviour, SaveClientCallback
     {
         foreach (var iconItem in iconList)
         {
-            if (iconItem.IsSpeaker(speakerName))
+            if (iconItem.IsSimilar(speakerName))
             {
                 return iconItem;
             }
@@ -239,30 +240,10 @@ public class IconManager : MonoBehaviour, SaveClientCallback
 }
 
 [Serializable]
-public class IconItem
+public class IconItem : DataItem
 {
     [FormerlySerializedAs("sprite")] public Sprite mainSprite;
     public Sprite outlineSprite;
-    public String name;
-    public String[] aliases;
-
-    public bool IsSpeaker(string speakerName)
-    {
-        if (string.Equals(speakerName, name, StringComparison.CurrentCultureIgnoreCase))
-        {
-            return true;
-        }
-
-        foreach (var alias in aliases)
-        {
-            if (string.Equals(speakerName, alias, StringComparison.CurrentCultureIgnoreCase))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
 }
 
 public class InformSpeakerReturn

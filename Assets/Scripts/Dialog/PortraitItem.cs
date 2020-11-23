@@ -91,7 +91,7 @@ namespace Dialog
 
         public bool IsSameSpeaker(string candidateSpeaker)
         {
-            return _iconItem.IsSpeaker(candidateSpeaker);
+            return _iconItem.IsSimilar(candidateSpeaker);
         }
 
         public void Leave()

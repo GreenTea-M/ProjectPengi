@@ -24,7 +24,7 @@ MonoBehaviour:
   enableTextFormatting: 1
   currentSave:
     name: 
-    currentYarnNode: Bear.Intro
+    currentYarnNode: Test.Start
     lastDialog: 
     lastAudioName: fishMarket
     lastHeader: carpentry
@@ -36,8 +36,7 @@ MonoBehaviour:
   autoSave:
     name: 
     currentYarnNode: Bear.Intro
-    lastDialog: <i>As impossible as it may seem she squints even harder, her eyes
-      seemingly disappearing into her graying fur.</i>
+    lastDialog: 'Pengi: I got this!'
     lastAudioName: fishMarket
     lastHeader: carpentry
     savedVariables: []

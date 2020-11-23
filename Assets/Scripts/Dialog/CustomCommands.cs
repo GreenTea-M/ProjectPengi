@@ -7,6 +7,8 @@ using Cinemachine;
 using Gameplay;
 using GameSystem;
 using GameSystem.Save;
+using Others;
+using UI;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Audio;
@@ -26,6 +28,7 @@ namespace Dialog
         public InputManager inputManager;
         public IconManager iconManager;
         public SpriteRenderer blackScreen;
+        public LocationPlate locationPlate;
 
         [Header("Variables")] public float delayTime = 3f;
         public float fadeRate = 0.05f;
@@ -35,7 +38,9 @@ namespace Dialog
         [Tooltip("Puzzles should have PuzzleParent script")]
         public PuzzleItem[] puzzleList;
 
-        [FormerlySerializedAs("headerList")] public SpriteItem[] backgroundList;
+        [FormerlySerializedAs("headerList")] 
+        public SpriteItem[] backgroundList;
+        public BackgroundItem[] backgroundList2;
 
         public ShelfItemData[] shelfItemDataList;
 
@@ -48,7 +53,6 @@ namespace Dialog
         public DialogueRunner dialogueRunner;
 
         public DialogueUIManager dialogueUiManager;
-        public SpriteRenderer headerSprite;
 
         private FadedAudio _lastAudio = null;
 
@@ -62,7 +66,8 @@ namespace Dialog
 
         private const string PuzzleShelfArg = "shelf";
         private State _state = State.None;
-        private float alpha = 0f;
+        private float _alpha = 0f;
+        private BackgroundScript[] _backgroundScriptList;
 
         private enum State
         {
@@ -72,6 +77,7 @@ namespace Dialog
 
         private SaveClient _saveClient;
         private string _lastAudioName;
+        private BackgroundScript _currentBg;
 
         private void OnEnable()
         {
@@ -95,7 +101,6 @@ namespace Dialog
             Debug.Assert(dialogueRunner != null);
             Debug.Assert(dialogueUiManager != null);
             Debug.Assert(prefabFadedAudio != null);
-            Debug.Assert(headerSprite != null);
             Debug.Assert(memoryStorage != null);
             Debug.Assert(inputManager != null);
             Debug.Assert(iconManager != null);
@@ -104,6 +109,17 @@ namespace Dialog
             if (_saveClient == null)
             {
                 _saveClient = gameConfiguration.RequestSaveAccess(this);
+            }
+            
+            // initialize backgrounds
+            _backgroundScriptList = new BackgroundScript[backgroundList2.Length];
+            for (int i = 0; i < backgroundList2.Length; i++)
+            {
+                var script = Instantiate(backgroundList2[i].prefab)
+                    .GetComponent<BackgroundScript>();
+                Debug.Assert(script != null);
+                script.SetData(backgroundList2[i]);
+                _backgroundScriptList[i] = script;
             }
 
             ChangeHeader(new[] {_saveClient.currentSave.lastHeader});
@@ -141,12 +157,12 @@ namespace Dialog
                 case State.None:
                     break;
                 case State.GameEnding:
-                    alpha += fadeRate * Time.deltaTime;
+                    _alpha += fadeRate * Time.deltaTime;
                     var blackScreenColor = blackScreen.color;
-                    blackScreenColor.a = alpha;
+                    blackScreenColor.a = _alpha;
                     blackScreen.color = blackScreenColor;
 
-                    if (alpha >= 1f)
+                    if (_alpha >= 1f)
                     {
                         SceneManager.LoadScene("EndGameScene");
                     }
@@ -243,22 +259,30 @@ namespace Dialog
         {
             if (parameters.Length != 1)
             {
+                Debug.LogWarning("changeHeader has no parameters");
                 return;
             }
 
             Debug.Log($"Change Header: {parameters[0]}");
 
-            string searchTerm = parameters[0].ToUpper();
-            foreach (var item in backgroundList)
+            string searchTerm = parameters[0];
+            foreach (var bg in _backgroundScriptList)
             {
-                if (!item.name.ToUpper().Equals(searchTerm)) continue;
-
-                headerSprite.sprite = item.sprite;
-
-                return;
+                if (bg.IsSimilar(searchTerm))
+                {
+                    if (_currentBg != null)
+                    {
+                        _currentBg.Disappear();
+                    }
+                    _currentBg = bg;
+                    _currentBg.gameObject.SetActive(true);
+                    _currentBg.Appear();
+                    locationPlate.SetLocation(bg.DisplayName);
+                    return;
+                }
             }
 
-            headerSprite.sprite = null; //  default behavior when no sprite found
+            Debug.LogWarning($"Header not found: {parameters[0]}");
         }
 
         private void Shake(string[] parameter)
