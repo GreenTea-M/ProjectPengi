@@ -28,7 +28,6 @@ namespace UI
             }
             else
             {
-                Debug.Log(locationName);
                 text.text = locationName;
                 _animator.Play(HashStartLocationPlate);
             }

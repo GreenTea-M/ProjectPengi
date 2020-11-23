@@ -21,7 +21,7 @@ public class IconManager : MonoBehaviour, SaveClientCallback
     public CharacterData mainCharacter; // for none
     public CharacterData narratingCharacter; // for none
     public GameObject prefabCharacterIcon;
-    public InformSpeakerReturn informSpeakerReturnValue = InformSpeakerReturn.Null;
+    public InformSpeakerReturn informSpeakerReturnValue = new InformSpeakerReturn();
 
     private PortraitItem _mainSpeaker;
     private PortraitItem _otherSpeaker;
@@ -59,11 +59,11 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         _characterList = new UnifiedCharacterScript[characterDataList.Length];
         for (int i = 0; i < characterDataList.Length; i++)
         {
-            _characterList[i] = characterDataList[i].Instantiate();
+            _characterList[i] = characterDataList[i].Instantiate(this);
         }
 
-        _narratingCharacter = narratingCharacter.Instantiate();
-        _mainCharacter = mainCharacter.Instantiate();
+        _narratingCharacter = narratingCharacter.Instantiate(this);
+        _mainCharacter = mainCharacter.Instantiate(this);
 
         for (int i = 0; i < PoolCapacity; i++)
         {
@@ -172,7 +172,8 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         }
     }
 
-    private InformSpeakerReturn InformSpeaker(string candidateSpeaker, bool isForced)
+    private InformSpeakerReturn InformSpeaker(string candidateSpeaker, 
+        bool isForced)
     {    
         // find out who is the active speaker
         // arrange accordingly
@@ -195,13 +196,15 @@ public class IconManager : MonoBehaviour, SaveClientCallback
             }
         }
 
-        _narratingCharacter.UpdateStatus(this);
-        _mainCharacter.UpdateStatus(this);
+        _narratingCharacter.UpdateStatus();
+        _mainCharacter.UpdateStatus();
 
         foreach (var character in _activeCharacterList)
         {
-            character.UpdateStatus(this);
+            character.UpdateStatus();
         }
+
+        informSpeakerReturnValue.character = currentSpeaking;
 
         return informSpeakerReturnValue;
         
@@ -332,12 +335,12 @@ public class CharacterData : DataItem
     public GameObject prefab;
     public CharacterType characterType = CharacterType.Side;
 
-    public UnifiedCharacterScript Instantiate()
+    public UnifiedCharacterScript Instantiate(IconManager iconManager)
     {
         var script = Object.Instantiate(prefab)
             .GetComponent<UnifiedCharacterScript>();
         Debug.Assert(script != null);
-        script.SetData(this);
+        script.SetData(this, iconManager);
         return script;
     }
 }
@@ -345,9 +348,22 @@ public class CharacterData : DataItem
 public class InformSpeakerReturn
 {
     public UnifiedCharacterScript character;
-    public bool isBlocking = false;
+    public readonly DialogueBlocker dialogueBlocker = new DialogueBlocker();
     public string realName = "";
-    private bool _isNull = false;
-    public bool IsNull => _isNull;
-    public static InformSpeakerReturn Null = new InformSpeakerReturn { _isNull = true };
+}
+
+public class DialogueBlocker
+{
+    private bool _isBlocking = false;
+    public bool IsBlocking => _isBlocking;
+
+    public void Unblock()
+    {
+        _isBlocking = false;
+    }
+
+    public void Block()
+    {
+        _isBlocking = true;
+    }
 }

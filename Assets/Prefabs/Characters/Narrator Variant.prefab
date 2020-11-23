@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 7248697340177700487, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
       propertyPath: m_Name
-      value: _CharacterPortraitv03
+      value: Narrator Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6f644d83908a7f4fbf79a67ec00790e, type: 3}

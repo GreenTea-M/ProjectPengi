@@ -520,6 +520,7 @@ MonoBehaviour:
   exitLocation: {fileID: 936405846802146890}
   sprite: {fileID: 7248697338972137716}
   dialogueText: {fileID: 9073485691271360794}
+  transitionSpeed: 20
 --- !u!1 &7248697340453849372
 GameObject:
   m_ObjectHideFlags: 0

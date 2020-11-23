@@ -11,11 +11,14 @@ namespace UI
         public Transform exitLocation;
         public SpriteRenderer sprite;
         public TextMeshProUGUI dialogueText;
-        
+        public float transitionSpeed = 10f;
+
         private CharacterData _data;
         private State _state = State.Hidden;
         private CharacterType _characterType = CharacterType.Narrator;
         private bool _isSpeaking = false;
+        private int _currentTextMax;
+        private IconManager _iconManager;
 
         private enum State
         {
@@ -25,7 +28,7 @@ namespace UI
             Speaking,
             Disappearing
         }
-        
+
         private void Awake()
         {
             Debug.Assert(stageLocation != null);
@@ -36,7 +39,6 @@ namespace UI
         private void Start()
         {
             dialogueText.text = "";
-            
         }
 
         private void Update()
@@ -50,6 +52,11 @@ namespace UI
                     Appear();
                     break;
                 case State.Idling:
+                    if (_isSpeaking)
+                    {
+                        _state = State.Speaking;
+                        _iconManager.informSpeakerReturnValue.dialogueBlocker.Unblock();
+                    }
                     break;
                 case State.Speaking:
                     break;
@@ -65,10 +72,17 @@ namespace UI
             switch (_characterType)
             {
                 case CharacterType.Narrator:
+                    // do nothing
                     break;
                 case CharacterType.Main:
-                    break;
                 case CharacterType.Side:
+                    sprite.transform.position = Vector3.MoveTowards(sprite.transform.position,
+                        stageLocation.position,
+                        transitionSpeed * Time.deltaTime);
+                    if (sprite.transform.position == stageLocation.position)
+                    {
+                        _state = State.Idling;
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -80,8 +94,9 @@ namespace UI
             throw new NotImplementedException();
         }
 
-        public void SetData(CharacterData characterData)
+        public void SetData(CharacterData characterData, IconManager iconManager)
         {
+            _iconManager = iconManager;
             _data = characterData;
             _characterType = _data.characterType;
             // todo: set sprite???
@@ -92,14 +107,14 @@ namespace UI
             return _data.IsSimilar(candidateSpeaker);
         }
 
-        public void UpdateStatus(IconManager iconManager)
+        public void UpdateStatus()
         {
-            if (iconManager.currentSpeaking != this && _state != State.Hidden)
+            if (_iconManager.currentSpeaking != this && _state != State.Hidden)
             {
                 _state = State.Idling;
                 _isSpeaking = false;
             }
-            else
+            else if (_iconManager.currentSpeaking == this && _characterType != CharacterType.Narrator)
             {
                 _isSpeaking = true;
 
@@ -108,8 +123,10 @@ namespace UI
                     case State.Hidden:
                         // show up
                         _state = State.Appearing;
+                        _iconManager.informSpeakerReturnValue.dialogueBlocker.Block();
                         break;
                     case State.Appearing:
+                        _iconManager.informSpeakerReturnValue.dialogueBlocker.Block();
                         // just keep it up
                         break;
                     case State.Idling:
@@ -134,8 +151,21 @@ namespace UI
 
             dialogueText.text = "";
         }
+
+
+        public void SetInitialText(string text)
+        {
+            dialogueText.maxVisibleCharacters = 0;
+            dialogueText.text = text;
+            _currentTextMax = text.Length;
+        }
+
+        public void ShowCharacters(int count)
+        {
+            dialogueText.maxVisibleCharacters = count;
+        }
     }
-    
+
     public enum CharacterType
     {
         Narrator,

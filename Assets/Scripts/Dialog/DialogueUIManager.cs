@@ -59,7 +59,7 @@ namespace Dialog
 
         public DialogueRunner.StringUnityEvent onCommand;
 
-        public bool isBlocking = false;
+        public DialogueBlocker dialogueBlocker = new DialogueBlocker();
 
         private const int PoolSize = 10;
         private TextItem[] _textItems = new TextItem[PoolSize];
@@ -74,8 +74,18 @@ namespace Dialog
 
         public bool IsBlocking
         {
-            get => isBlocking;
-            set => isBlocking = value;
+            get => dialogueBlocker.IsBlocking;
+            set
+            {
+                if (value)
+                {
+                    dialogueBlocker.Block();
+                }
+                else
+                {
+                    dialogueBlocker.Unblock();
+                }
+            }
         }
 
         private void OnEnable()
@@ -149,7 +159,8 @@ namespace Dialog
             // identifies speaker
             var argSplit = text.Split(':');
             InformSpeakerReturn speakerInfo = iconManager.InformSpeaker(argSplit.Length != 1 ? argSplit[0] : "");
-            isBlocking = speakerInfo.isBlocking;
+            dialogueBlocker = speakerInfo.dialogueBlocker;
+            var character = speakerInfo.character;
 
             if (speakerInfo.realName.Length != 0)
             {
@@ -158,7 +169,7 @@ namespace Dialog
 
             // onLineUpdate.AddListener(textItem.UpdateLine);
 
-            while (isBlocking && !userRequestedNextLine)
+            while (dialogueBlocker.IsBlocking && !userRequestedNextLine)
             {
                 yield return new WaitForSeconds(0.03f);
             }
@@ -234,7 +245,7 @@ namespace Dialog
 
             var formattedString = stringBuilder.ToString();
             var textLength = formattedString.Length;
-            // textItem.SetInitialText(formattedString);
+            character.SetInitialText(formattedString);
             _lastDialog = formattedString;
             
             bool isSkipping = false;
@@ -248,12 +259,12 @@ namespace Dialog
                     break;
                 }
                 
-                // textItem.ShowCharacters(i);
+                character.ShowCharacters(i);
                 yield return new WaitForSeconds(TextRate * textSpeedMultiplier);
             }
             
             // i don't know why the last character's not shown sometimes
-            // textItem.ShowCharacters(textLength + 10);
+            character.ShowCharacters(textLength + 10);
 
             // Indicate to the rest of the game that the line has finished being delivered
             onLineFinishDisplaying?.Invoke();
