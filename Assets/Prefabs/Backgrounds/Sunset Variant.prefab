@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3293526873205918202}
   - component: {fileID: 48513778424229635}
+  - component: {fileID: 4830006043455447526}
   m_Layer: 0
   m_Name: SecondarySprite
   m_TagString: Untagged
@@ -81,6 +82,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4830006043455447526
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7936799728225808809}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac887b3b691eccd44a79f8dea4037abe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1053430036292480233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,6 +184,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: c80d8da2adb604742b9d8aece41a41fa,
         type: 3}
+    - target: {fileID: 1581524287658895973, guid: c79efa45993e80b46a1325a07b2d3dfc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581524287658895973, guid: c79efa45993e80b46a1325a07b2d3dfc,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c79efa45993e80b46a1325a07b2d3dfc, type: 3}
 --- !u!4 &1976019193694193291 stripped

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Text;
 using GameSystem.Save;
+using UI;
 using UnityEngine;
 using UnityEngine.Assertions.Comparers;
 using UnityEngine.Events;
@@ -144,6 +145,7 @@ namespace Dialog
                 text = "";
             }
 
+            // todo: deprecate
             // identifies speaker
             var argSplit = text.Split(':');
             InformSpeakerReturn speakerInfo = iconManager.InformSpeaker(argSplit.Length != 1 ? argSplit[0] : "");

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using Dialog;
 using Gameplay;
 using GameSystem.Save;
 using Others;
+using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Object = UnityEngine.Object;
 
 public class IconManager : MonoBehaviour, SaveClientCallback
 {
@@ -14,6 +17,8 @@ public class IconManager : MonoBehaviour, SaveClientCallback
     
     public GameConfiguration gameConfiguration;
     public IconItem[] iconList;
+    public CharacterData[] characterDataList;
+    public CharacterData defaultCharacter; // for none
     public GameObject prefabCharacterIcon;
 
     private PortraitItem _mainSpeaker;
@@ -24,6 +29,7 @@ public class IconManager : MonoBehaviour, SaveClientCallback
     private const int PoolCapacity = 10;
     private readonly List<PortraitItem> Pool = new List<PortraitItem>(PoolCapacity);
     private SaveClient _saveClient;
+    private UnifiedCharacterScript[] characterList;
 
     private void OnEnable()
     {
@@ -43,6 +49,12 @@ public class IconManager : MonoBehaviour, SaveClientCallback
     {
         Debug.Assert(prefabCharacterIcon != null);
         Debug.Assert(gameConfiguration != null);
+        
+        characterList = new UnifiedCharacterScript[characterDataList.Length];
+        for (int i = 0; i < characterDataList.Length; i++)
+        {
+            characterList[i] = characterDataList[i].Instantiate();
+        }
 
         for (int i = 0; i < PoolCapacity; i++)
         {
@@ -153,13 +165,35 @@ public class IconManager : MonoBehaviour, SaveClientCallback
 
     private InformSpeakerReturn InformSpeaker(string candidateSpeaker, bool isForced)
     {
-        var ret = new InformSpeakerReturn();
+        InformSpeakerReturn ret;
+
+        foreach (var characterScript in characterList)
+        {
+            InformSpeakerReturn value = characterScript.IsSimilar(candidateSpeaker);
+            if (!value.IsNull())
+            {
+                ret = value;
+            }
+        }
+
+        if (ret.IsNull())
+        {
+            ret = defaultCharacter.Activate();
+        }
+        else
+        {
+            defaultCharacter.Deactivate();
+        }
+
+        return ret;
+        
+        /*var ret = new InformSpeakerReturn();
         candidateSpeaker = candidateSpeaker.Trim();
 
         if (candidateSpeaker.Equals(""))
         {
             // do nothing ??
-            Speak(null);
+            Speak(defaultCharacter);
             ret.isBlocking = false;
             return SaveState(ret);
         }
@@ -200,7 +234,7 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         Speak(_otherSpeaker); // must be here
         ret.isBlocking = !isForced;
         ret.realName = _otherSpeaker.GetRealName();
-        return SaveState(ret);
+        return SaveState(ret);*/
     }
 
 // todo: delete
@@ -246,8 +280,27 @@ public class IconItem : DataItem
     public Sprite outlineSprite;
 }
 
+[Serializable]
+public class CharacterData : DataItem
+{
+    public GameObject prefab;
+    public CharacterType characterType = CharacterType.Narrator;
+
+    public UnifiedCharacterScript Instantiate()
+    {
+        var script = Object.Instantiate(prefab)
+            .GetComponent<UnifiedCharacterScript>();
+        Debug.Assert(script != null);
+        script.SetData(this);
+        return script;
+    }
+}
+
 public class InformSpeakerReturn
 {
+    public UnifiedCharacterScript character;
     public bool isBlocking = false;
     public string realName = "";
+    public bool isNull = false;
+    public bool IsNull => isNull;
 }
