@@ -335,8 +335,7 @@ namespace Dialog
             ILineLocalisationProvider localisationProvider,
             System.Action<int> selectOption)
         {
-            TextItem textItem = _textItems[_textIndex];
-            textItem.CreateButtons(optionsCollection.Options.Length);
+            iconManager.CreateButtons(optionsCollection.Options.Length);
 
             // Display each option in a button, and make it visible
             int i = 0;
@@ -347,7 +346,7 @@ namespace Dialog
 
             foreach (var optionString in optionsCollection.Options)
             {
-                textItem.ActivateButtons(i, () => SelectOption(optionString.ID));
+                iconManager.ActivateButtons(i, () => SelectOption(optionString.ID));
 
                 var optionText = localisationProvider.GetLocalisedTextForLine(optionString.Line);
 
@@ -357,12 +356,13 @@ namespace Dialog
                     optionText = optionString.Line.ID;
                 }
 
-                textItem.SetButtonText(i, optionText);
+                iconManager.SetButtonText(i, optionText);
 
                 i++;
             }
 
             onOptionsStart?.Invoke();
+            Debug.Log("OptionStart");
 
             // Wait until the chooser has been used and then removed 
             while (waitingForOptionSelection)
@@ -370,7 +370,8 @@ namespace Dialog
                 yield return null;
             }
 
-            textItem.HideAllButtons();
+            Debug.Log("OptionEnd");
+            iconManager.HideAllButtons();
 
             onOptionsEnd?.Invoke();
         }

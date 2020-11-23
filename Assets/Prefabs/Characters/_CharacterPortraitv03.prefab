@@ -220,12 +220,12 @@ GameObject:
   - component: {fileID: 6345220307030981101}
   - component: {fileID: 7929621991629926707}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: TextCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6412677138833811219
 RectTransform:
   m_ObjectHideFlags: 0
@@ -520,6 +520,11 @@ MonoBehaviour:
   exitLocation: {fileID: 936405846802146890}
   sprite: {fileID: 7248697338972137716}
   dialogueText: {fileID: 9073485691271360794}
+  layoutGroup: {fileID: 0}
+  uiButton: {fileID: 5498867982737714706, guid: b7fdd06db1f665c4f8c20a8ebad5bf9f,
+    type: 3}
+  textCanvas: {fileID: 3935526452063400098}
+  buttonCanvas: {fileID: 0}
   transitionSpeed: 20
 --- !u!1 &7248697340453849372
 GameObject:

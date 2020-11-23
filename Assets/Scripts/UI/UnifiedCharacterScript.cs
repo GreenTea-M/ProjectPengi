@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -11,6 +14,10 @@ namespace UI
         public Transform exitLocation;
         public SpriteRenderer sprite;
         public TextMeshProUGUI dialogueText;
+        public Transform layoutGroup;
+        public GameObject uiButton;
+        public Canvas textCanvas;
+        public Canvas buttonCanvas;
         public float transitionSpeed = 10f;
 
         private CharacterData _data;
@@ -19,6 +26,7 @@ namespace UI
         private bool _isSpeaking = false;
         private int _currentTextMax;
         private IconManager _iconManager;
+        private List<Button> _buttons = new List<Button>();
 
         private enum State
         {
@@ -39,6 +47,12 @@ namespace UI
         private void Start()
         {
             dialogueText.text = "";
+
+            if (buttonCanvas != null)
+            {
+                Camera _camera = Camera.main;
+                buttonCanvas.worldCamera = _camera;
+            }
         }
 
         private void Update()
@@ -149,12 +163,14 @@ namespace UI
                 // offset the queue???
             }
 
+            textCanvas.gameObject.SetActive(false);
             dialogueText.text = "";
         }
 
 
         public void SetInitialText(string text)
         {
+            textCanvas.gameObject.SetActive(true);
             dialogueText.maxVisibleCharacters = 0;
             dialogueText.text = text;
             _currentTextMax = text.Length;
@@ -163,6 +179,45 @@ namespace UI
         public void ShowCharacters(int count)
         {
             dialogueText.maxVisibleCharacters = count;
+        }
+
+        public void CreateButtons(int optionsLength)
+        {
+            Debug.Assert(_characterType == CharacterType.Main);
+            buttonCanvas.gameObject.SetActive(true);
+            
+            while (_buttons.Count < optionsLength)
+            {
+                Button newButton = Instantiate(uiButton, layoutGroup).GetComponent<Button>();
+                newButton.gameObject.SetActive(false);
+                _buttons.Add(newButton);
+            }
+        }
+
+        public void ActivateButtons(int i, UnityAction call)
+        {
+            Debug.Assert(_characterType == CharacterType.Main);
+            Debug.Assert(i < _buttons.Count);
+            _buttons[i].gameObject.SetActive(true);
+            _buttons[i].onClick.RemoveAllListeners();
+            _buttons[i].onClick.AddListener(call);
+        }
+
+        public void SetButtonText(int i, string optionText)
+        {
+            // todo: improve performance
+            var uiText = _buttons[i].GetComponentInChildren<TextMeshProUGUI>();
+            Debug.Assert(uiText != null);
+            uiText.text = optionText;
+        }
+
+        public void HideAllButtons()
+        {
+            foreach (var button in _buttons)
+            {
+                button.gameObject.SetActive(false);
+            }
+            buttonCanvas.gameObject.SetActive(false);
         }
     }
 

@@ -8,6 +8,7 @@ using GameSystem.Save;
 using Others;
 using UI;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
@@ -319,6 +320,26 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         }
         
         Debug.LogWarning($"ExitStage: Character {characterName} not in character list");
+    }
+
+    public void CreateButtons(int optionsLength)
+    {
+        _mainCharacter.CreateButtons(optionsLength);
+    }
+
+    public void ActivateButtons(int i, UnityAction action)
+    {
+        _mainCharacter.ActivateButtons(i, action);
+    }
+
+    public void SetButtonText(int i, string optionText)
+    {
+        _mainCharacter.SetButtonText(i, optionText);
+    }
+
+    public void HideAllButtons()
+    {
+        _mainCharacter.HideAllButtons();
     }
 }
 
