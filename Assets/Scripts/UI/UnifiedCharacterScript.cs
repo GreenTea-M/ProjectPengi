@@ -7,16 +7,15 @@ namespace UI
 {
     public class UnifiedCharacterScript : MonoBehaviour
     {
-        public Transform mainLocation;
-        public Transform sideLocation;
+        public Transform stageLocation;
+        public Transform exitLocation;
         public SpriteRenderer sprite;
         public TextMeshProUGUI dialogueText;
         
         private CharacterData _data;
         private State _state = State.Hidden;
         private CharacterType _characterType = CharacterType.Narrator;
-        
-        private static readonly InformSpeakerReturn Null = new InformSpeakerReturn { isNull = true };
+        private bool _isSpeaking = false;
 
         private enum State
         {
@@ -29,9 +28,15 @@ namespace UI
         
         private void Awake()
         {
-            Debug.Assert(mainLocation != null);
-            Debug.Assert(sideLocation != null);
+            Debug.Assert(stageLocation != null);
+            Debug.Assert(exitLocation != null);
             Debug.Assert(sprite != null);
+        }
+
+        private void Start()
+        {
+            dialogueText.text = "";
+            
         }
 
         private void Update()
@@ -82,22 +87,52 @@ namespace UI
             // todo: set sprite???
         }
 
-        public InformSpeakerReturn IsSimilar(string candidateSpeaker)
+        public bool IsSimilar(string candidateSpeaker)
         {
-            if (_data.IsSimilar(candidateSpeaker))
+            return _data.IsSimilar(candidateSpeaker);
+        }
+
+        public void UpdateStatus(IconManager iconManager)
+        {
+            if (iconManager.currentSpeaking != this && _state != State.Hidden)
             {
-                InformSpeakerReturn ret = new InformSpeakerReturn();
-                
-                // todo: change sprite
-                // todo: change state??
-                
-                return ret;
+                _state = State.Idling;
+                _isSpeaking = false;
             }
             else
             {
-                dialogueText.text = "";
-                return Null;
+                _isSpeaking = true;
+
+                switch (_state)
+                {
+                    case State.Hidden:
+                        // show up
+                        _state = State.Appearing;
+                        break;
+                    case State.Appearing:
+                        // just keep it up
+                        break;
+                    case State.Idling:
+                        // go to speak immediately
+                        _state = State.Speaking;
+                        break;
+                    case State.Speaking:
+                        // keep the state
+                        break;
+                    case State.Disappearing:
+                        Debug.LogWarning("UpdateStatus: This should not happen");
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
+
+            if (_characterType == CharacterType.Side && !_isSpeaking)
+            {
+                // offset the queue???
+            }
+
+            dialogueText.text = "";
         }
     }
     

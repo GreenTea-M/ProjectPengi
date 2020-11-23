@@ -142,6 +142,8 @@ namespace Dialog
             dialogueRunner.AddCommandHandler("showDialogue", ShowDialogue);
             dialogueRunner.AddCommandHandler("hideDialogue", HideDialogue);
             dialogueRunner.AddCommandHandler("gameEnd", GameEnd);
+            dialogueRunner.AddCommandHandler("enterStage", EnterStage);
+            dialogueRunner.AddCommandHandler("exitStage", ExitStage);
         }
 
         private void Start()
@@ -169,6 +171,22 @@ namespace Dialog
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void EnterStage(string[] parameter)
+        {
+            foreach (var characterName in parameter)
+            {
+                iconManager.EnterStage(characterName);
+            }
+        }
+
+        private void ExitStage(string[] parameter)
+        {
+            foreach (var characterName in parameter)
+            {
+                iconManager.ExitStage(characterName);
             }
         }
 

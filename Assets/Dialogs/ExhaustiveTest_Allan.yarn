@@ -5,7 +5,8 @@ position: 327,487
 ---
 <<playAudio fishMarket>>
 <<changeBackground sunset>>
-<<loadCharacters A B Paul Mole Lady Hank>>
+<<enterStage A B Paul Mole Hank>>
+Narrator say something
 Pengi: Hello! Can <color=ff00ff>you</color> <u>share</u> some <b>cookies</b>?
 [[Yes|MyCookieScenario]]
 [[No|MyCookieScenario]]

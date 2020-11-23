@@ -18,8 +18,10 @@ public class IconManager : MonoBehaviour, SaveClientCallback
     public GameConfiguration gameConfiguration;
     public IconItem[] iconList;
     public CharacterData[] characterDataList;
-    public CharacterData defaultCharacter; // for none
+    public CharacterData mainCharacter; // for none
+    public CharacterData narratingCharacter; // for none
     public GameObject prefabCharacterIcon;
+    public InformSpeakerReturn informSpeakerReturnValue = InformSpeakerReturn.Null;
 
     private PortraitItem _mainSpeaker;
     private PortraitItem _otherSpeaker;
@@ -27,9 +29,13 @@ public class IconManager : MonoBehaviour, SaveClientCallback
     private bool _isLeft = true;
 
     private const int PoolCapacity = 10;
-    private readonly List<PortraitItem> Pool = new List<PortraitItem>(PoolCapacity);
+    private readonly List<PortraitItem> _pool = new List<PortraitItem>(PoolCapacity);
     private SaveClient _saveClient;
-    private UnifiedCharacterScript[] characterList;
+    private UnifiedCharacterScript[] _characterList;
+    private UnifiedCharacterScript _mainCharacter;
+    private UnifiedCharacterScript _narratingCharacter;
+    private List<UnifiedCharacterScript> _activeCharacterList = new List<UnifiedCharacterScript>();
+    public UnifiedCharacterScript currentSpeaking;
 
     private void OnEnable()
     {
@@ -50,17 +56,20 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         Debug.Assert(prefabCharacterIcon != null);
         Debug.Assert(gameConfiguration != null);
         
-        characterList = new UnifiedCharacterScript[characterDataList.Length];
+        _characterList = new UnifiedCharacterScript[characterDataList.Length];
         for (int i = 0; i < characterDataList.Length; i++)
         {
-            characterList[i] = characterDataList[i].Instantiate();
+            _characterList[i] = characterDataList[i].Instantiate();
         }
+
+        _narratingCharacter = narratingCharacter.Instantiate();
+        _mainCharacter = mainCharacter.Instantiate();
 
         for (int i = 0; i < PoolCapacity; i++)
         {
             var item = Instantiate(prefabCharacterIcon).GetComponent<PortraitItem>();
             Debug.Assert(item != null);
-            Pool.Add(item);
+            _pool.Add(item);
         }
 
         if (_saveClient == null)
@@ -164,28 +173,37 @@ public class IconManager : MonoBehaviour, SaveClientCallback
     }
 
     private InformSpeakerReturn InformSpeaker(string candidateSpeaker, bool isForced)
-    {
-        InformSpeakerReturn ret;
-
-        foreach (var characterScript in characterList)
+    {    
+        // find out who is the active speaker
+        // arrange accordingly
+        if (_narratingCharacter.IsSimilar(candidateSpeaker))
         {
-            InformSpeakerReturn value = characterScript.IsSimilar(candidateSpeaker);
-            if (!value.IsNull())
-            {
-                ret = value;
-            }
-        }
-
-        if (ret.IsNull())
+            currentSpeaking = _narratingCharacter;
+        } else if (_mainCharacter.IsSimilar(candidateSpeaker))
         {
-            ret = defaultCharacter.Activate();
+            currentSpeaking = _mainCharacter;
         }
         else
         {
-            defaultCharacter.Deactivate();
+            foreach (var character in _activeCharacterList)
+            {
+                if (character.IsSimilar(candidateSpeaker))
+                {
+                    currentSpeaking = character;
+                    break;
+                }
+            }
         }
 
-        return ret;
+        _narratingCharacter.UpdateStatus(this);
+        _mainCharacter.UpdateStatus(this);
+
+        foreach (var character in _activeCharacterList)
+        {
+            character.UpdateStatus(this);
+        }
+
+        return informSpeakerReturnValue;
         
         /*var ret = new InformSpeakerReturn();
         candidateSpeaker = candidateSpeaker.Trim();
@@ -248,7 +266,7 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         PortraitItem portraitItem = null;
         do
         {
-            portraitItem = Pool[_portraitIndex];
+            portraitItem = _pool[_portraitIndex];
             _portraitIndex = (_portraitIndex + 1) % PoolCapacity;
         } while (portraitItem.IsActive);
         portraitItem.Setup(GetSprite(candidateSpeaker), candidateSpeaker);
@@ -271,6 +289,34 @@ public class IconManager : MonoBehaviour, SaveClientCallback
             ? _mainSpeaker.Speaker
             : "";
     }
+
+    public void EnterStage(string characterName)
+    {
+        foreach (var characterScript in _characterList)
+        {
+            if (characterScript.IsSimilar(characterName))
+            {
+                _activeCharacterList.Add(characterScript);
+                return;
+            }
+        }
+        
+        Debug.LogWarning($"EnterStage: Character {characterName} not in character list");
+    }
+
+    public void ExitStage(string characterName)
+    {
+        for (int i = 0; i < _activeCharacterList.Count; i--)
+        {
+            if (_activeCharacterList[i].IsSimilar(characterName))
+            {
+                _activeCharacterList.RemoveAt(i);
+                return;
+            }
+        }
+        
+        Debug.LogWarning($"ExitStage: Character {characterName} not in character list");
+    }
 }
 
 [Serializable]
@@ -284,7 +330,7 @@ public class IconItem : DataItem
 public class CharacterData : DataItem
 {
     public GameObject prefab;
-    public CharacterType characterType = CharacterType.Narrator;
+    public CharacterType characterType = CharacterType.Side;
 
     public UnifiedCharacterScript Instantiate()
     {
@@ -301,6 +347,7 @@ public class InformSpeakerReturn
     public UnifiedCharacterScript character;
     public bool isBlocking = false;
     public string realName = "";
-    public bool isNull = false;
-    public bool IsNull => isNull;
+    private bool _isNull = false;
+    public bool IsNull => _isNull;
+    public static InformSpeakerReturn Null = new InformSpeakerReturn { _isNull = true };
 }

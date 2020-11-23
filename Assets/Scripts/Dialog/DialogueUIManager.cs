@@ -156,21 +156,6 @@ namespace Dialog
                 text = text.Replace($"{argSplit[0]}:", $"{speakerInfo.realName}:");
             }
 
-            // push every text upwards
-            // this is a remnant of a scrolling ui we used to plan
-            foreach (var item in _textItems)
-            {
-                item.PushUpwards();
-            }
-
-            _textIndex = (_textIndex + 1) % PoolSize;
-            TextItem textItem = _textItems[_textIndex];
-            textItem.SetToCenter();
-            if (requestDialogWrite)
-            {
-                saveClient.autoSave.lastDialog = text;
-            }
-
             // onLineUpdate.AddListener(textItem.UpdateLine);
 
             while (isBlocking && !userRequestedNextLine)
@@ -249,7 +234,7 @@ namespace Dialog
 
             var formattedString = stringBuilder.ToString();
             var textLength = formattedString.Length;
-            textItem.SetInitialText(formattedString);
+            // textItem.SetInitialText(formattedString);
             _lastDialog = formattedString;
             
             bool isSkipping = false;
@@ -263,12 +248,12 @@ namespace Dialog
                     break;
                 }
                 
-                textItem.ShowCharacters(i);
+                // textItem.ShowCharacters(i);
                 yield return new WaitForSeconds(TextRate * textSpeedMultiplier);
             }
             
             // i don't know why the last character's not shown sometimes
-            textItem.ShowCharacters(textLength + 10);
+            // textItem.ShowCharacters(textLength + 10);
 
             // Indicate to the rest of the game that the line has finished being delivered
             onLineFinishDisplaying?.Invoke();
