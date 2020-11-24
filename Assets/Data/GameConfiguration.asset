@@ -24,7 +24,7 @@ MonoBehaviour:
   enableTextFormatting: 1
   currentSave:
     name: 
-    currentYarnNode: Test.Start
+    currentYarnNode: Bear.EnterStore
     lastDialog: 
     lastAudioName: fishMarket
     lastHeader: carpentry
@@ -35,7 +35,7 @@ MonoBehaviour:
   isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.PuzzleStart
+    currentYarnNode: Bear.EnterStore
     lastDialog: 
     lastAudioName: fishMarket
     lastHeader: carpentry

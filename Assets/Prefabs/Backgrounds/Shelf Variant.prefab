@@ -67,5 +67,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shelf Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1581524287658895973, guid: c79efa45993e80b46a1325a07b2d3dfc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 35e86cd65ed1d5942a3a7ea6e30a2bb2,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c79efa45993e80b46a1325a07b2d3dfc, type: 3}

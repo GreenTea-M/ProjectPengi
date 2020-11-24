@@ -526,8 +526,13 @@ MonoBehaviour:
     type: 3}
   textCanvas: {fileID: 3935526452063400098}
   buttonCanvas: {fileID: 0}
+  offsetIncrement: {x: 1, y: -1, z: 0}
   transitionSpeed: 20
   textTransitionSpeed: 20
+  inactiveZ: 1
+  speakFloatHeight: 0.125
+  speakFloatSpeed: 4
+  _state: 0
 --- !u!1 &7248697340453849372
 GameObject:
   m_ObjectHideFlags: 0

@@ -238,6 +238,24 @@ namespace Dialog
                 return;
             }
 
+            if (parameters[0].Equals("all", StringComparison.InvariantCultureIgnoreCase))
+            {
+                ChangeHeader(new[]{"None"});
+                return;
+            }
+
+            foreach (var parameter in parameters)
+            {
+                if (parameter.Equals("bg", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    ChangeHeader(new[]{"None"});
+                }
+                else
+                {
+                    
+                }
+            }
+
             for (int i = _itemShownList.Count - 1; i >= 0; i--)
             {
                 if (_itemShownList[i].Match(parameters[0]))

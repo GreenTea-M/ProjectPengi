@@ -24,13 +24,6 @@ public class IconManager : MonoBehaviour, SaveClientCallback
     public GameObject prefabCharacterIcon;
     public InformSpeakerReturn informSpeakerReturnValue = new InformSpeakerReturn();
 
-    private PortraitItem _mainSpeaker;
-    private PortraitItem _otherSpeaker;
-    private int _portraitIndex = 0;
-    private bool _isLeft = true;
-
-    private const int PoolCapacity = 10;
-    private readonly List<PortraitItem> _pool = new List<PortraitItem>(PoolCapacity);
     private SaveClient _saveClient;
     private UnifiedCharacterScript[] _characterList;
     private UnifiedCharacterScript _mainCharacter;
@@ -71,7 +64,6 @@ public class IconManager : MonoBehaviour, SaveClientCallback
             _saveClient = gameConfiguration.RequestSaveAccess(this);
         }
 
-        _isLeft = _saveClient.currentSave.isLeft;
         InformSpeaker(_saveClient.currentSave.currentSpeaker, true);
         InformSpeaker(_saveClient.currentSave.previousSpeaker, true);
     }
@@ -92,78 +84,17 @@ public class IconManager : MonoBehaviour, SaveClientCallback
 
     public void RemoveSpeaker(int count)
     {
-        int removedCount = 0;
-
-        if (removedCount > count)
-        {
-            return;
-        }
-
-        if (_mainSpeaker != null)
-        {
-            _mainSpeaker.Leave();
-            _mainSpeaker = null;
-            removedCount++;
-        }
-
-        if (removedCount > count)
-        {
-            return;
-        }
-
-        if (_otherSpeaker != null)
-        {
-            _otherSpeaker.Leave();
-            _otherSpeaker = null;
-        }
+        Debug.LogError("RemoveSpeaker not implemented");
     }
 
     public void RemoveSpeaker(string speakerName)
     {
-        if (_otherSpeaker != null && _otherSpeaker.IsSameSpeaker(speakerName))
-        {
-            Debug.Log($"Speaker leaving: {speakerName}");
-            _otherSpeaker.Leave();
-            _otherSpeaker = null;
-        }
-
-        if (_mainSpeaker != null && _mainSpeaker.IsSameSpeaker(speakerName))
-        {
-            Debug.Log($"Speaker leaving: {speakerName}");
-            _mainSpeaker.Leave();
-            _mainSpeaker = null;
-        }
+        Debug.LogError("RemoveSpeaker not implemented");
     }
 
     public InformSpeakerReturn InformSpeaker(string candidateSpeaker)
     {
         return InformSpeaker(candidateSpeaker, false);
-    }
-
-    private void Speak(PortraitItem currentSpeaker)
-    {
-        if (currentSpeaker == null)
-        {
-            if (_mainSpeaker != null)
-            {
-                _mainSpeaker.Idle();
-            }
-
-            if (_otherSpeaker != null)
-            {
-                _otherSpeaker.Idle();
-            }
-
-            return;
-        }
-
-        var otherSpeaker = _mainSpeaker == currentSpeaker ? _otherSpeaker : _mainSpeaker;
-
-        currentSpeaker.Speak();
-        if (otherSpeaker != null)
-        {
-            otherSpeaker.Idle();
-        }
     }
 
     private InformSpeakerReturn InformSpeaker(string candidateSpeaker, 
@@ -268,33 +199,27 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         return ret;
     }
 
-    private PortraitItem GetSpeakerPortrait(string candidateSpeaker)
-    {
-        PortraitItem portraitItem = null;
-        do
-        {
-            portraitItem = _pool[_portraitIndex];
-            _portraitIndex = (_portraitIndex + 1) % PoolCapacity;
-        } while (portraitItem.IsActive);
-        portraitItem.Setup(GetSprite(candidateSpeaker), candidateSpeaker);
-        return portraitItem;
-    }
-
     public void ShowElements(bool shouldShow)
     {
-        if (_otherSpeaker != null) _otherSpeaker.gameObject.SetActive(shouldShow);
-        if (_mainSpeaker != null) _mainSpeaker.gameObject.SetActive(shouldShow);
+        foreach (var characterScript in _characterList)
+        {
+            characterScript.gameObject.SetActive(shouldShow);
+        }
+        
+        _mainCharacter.gameObject.SetActive(shouldShow);
+        _narratingCharacter.gameObject.SetActive(shouldShow);
     }
 
     public void WriteAutoSave()
     {
-        _saveClient.autoSave.isLeft = !_isLeft;
-        _saveClient.autoSave.currentSpeaker = _otherSpeaker != null
-            ? _otherSpeaker.Speaker
-            : "";
-        _saveClient.autoSave.previousSpeaker = _mainSpeaker != null
-            ? _mainSpeaker.Speaker
-            : "";
+        Debug.LogError("WriteAutoSave not implemented");
+        // _saveClient.autoSave.isLeft = !_isLeft;
+        // _saveClient.autoSave.currentSpeaker = _otherSpeaker != null
+        //     ? _otherSpeaker.Speaker
+        //     : "";
+        // _saveClient.autoSave.previousSpeaker = _mainSpeaker != null
+        //     ? _mainSpeaker.Speaker
+        //     : "";
     }
 
     public void EnterStage(string characterName)
@@ -317,6 +242,7 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         {
             if (_activeCharacterList[i].IsSimilar(characterName))
             {
+                _activeCharacterList[i].Leave();
                 _activeCharacterList.RemoveAt(i);
                 return;
             }

@@ -37,6 +37,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1469536905405705998, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
       propertyPath: stageLocation
@@ -136,6 +141,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SideCharacter Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248697340453849372, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9073485691271360794, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
