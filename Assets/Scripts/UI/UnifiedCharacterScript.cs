@@ -25,6 +25,8 @@ namespace UI
         public float transitionSpeed = 10f;
         public float textTransitionSpeed = 20f;
         public float inactiveZ = 1f;
+        public float speakFloatHeight = 0.25f;
+        public float speakFloatSpeed = 2f;
 
         private CharacterData _data;
         public State _state = State.Hidden;
@@ -35,8 +37,8 @@ namespace UI
         private IconManager _iconManager;
         private List<Button> _buttons = new List<Button>();
         private Vector3 _defaultTextLocation;
-        private IEnumerator textMovementCoroutine;
         private Vector3 _idleTargetPosition;
+        private float _timeOffset;
 
         public string RealName => _data.name;
 
@@ -94,12 +96,18 @@ namespace UI
                     if (_isSpeaking)
                     {
                         _state = State.Speaking;
+                        _timeOffset = Time.time;
                         _iconManager.informSpeakerReturnValue.dialogueBlocker.Unblock();
                     }
+
                     break;
                 case State.Speaking:
+                    sprite.transform.position = stageLocation.position +
+                                                (Mathf.Abs(Mathf.Sin((Time.time - _timeOffset) *
+                                                            speakFloatSpeed)) * speakFloatHeight * Vector3.up);
                     break;
                 case State.Disappearing:
+                    Disappear();
                     break;
                 case State.ToRepositionIdling:
                     if (sprite.transform.position != _idleTargetPosition)
@@ -111,6 +119,7 @@ namespace UI
                     {
                         _state = State.RepostitionIdling;
                     }
+
                     break;
                 case State.RepostitionIdling:
                     break;
@@ -132,6 +141,7 @@ namespace UI
                     {
                         _textState = TextState.Alternative;
                     }
+
                     break;
                 case TextState.Alternative:
                     break;
@@ -145,6 +155,7 @@ namespace UI
                     {
                         _textState = TextState.Default;
                     }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -168,6 +179,29 @@ namespace UI
                         _state = State.Idling;
                     }
 
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void Disappear()
+        {
+            
+            switch (_characterType)
+            {
+                case CharacterType.Narrator:
+                    // do nothing
+                    break;
+                case CharacterType.Main:
+                case CharacterType.Side:
+                    sprite.transform.position = Vector3.MoveTowards(sprite.transform.position,
+                        exitLocation.position,
+                        transitionSpeed * Time.deltaTime);
+                    if (sprite.transform.position == exitLocation.position)
+                    {
+                        _state = State.Hidden;
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -212,6 +246,7 @@ namespace UI
                     case State.Idling:
                         // go to speak immediately
                         _state = State.Speaking;
+                        _timeOffset = Time.time;
                         break;
                     case State.Speaking:
                         // keep the state
@@ -219,6 +254,7 @@ namespace UI
                     case State.ToRepositionIdling:
                         // go to speak immediately
                         _state = State.Speaking;
+                        _timeOffset = Time.time;
                         break;
                     case State.Disappearing:
                         Debug.LogWarning("UpdateStatus: This should not happen");
@@ -240,6 +276,11 @@ namespace UI
                 _idleTargetPosition = stageLocation.position + (currentIndex * offsetIncrement);
                 _idleTargetPosition.z = inactiveZ;
                 _state = State.ToRepositionIdling;
+            }
+
+            if (_state == State.Idling)
+            {
+                _state = State.Appearing;
             }
 
             textCanvas.gameObject.SetActive(false);
@@ -304,6 +345,11 @@ namespace UI
 
             // move text to old location
             _textState = TextState.ToDefault;
+        }
+
+        public void Leave()
+        {
+            _state = State.Disappearing;
         }
     }
 

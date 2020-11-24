@@ -282,8 +282,13 @@ public class IconManager : MonoBehaviour, SaveClientCallback
 
     public void ShowElements(bool shouldShow)
     {
-        if (_otherSpeaker != null) _otherSpeaker.gameObject.SetActive(shouldShow);
-        if (_mainSpeaker != null) _mainSpeaker.gameObject.SetActive(shouldShow);
+        foreach (var characterScript in _characterList)
+        {
+            characterScript.gameObject.SetActive(shouldShow);
+        }
+        
+        _mainCharacter.gameObject.SetActive(shouldShow);
+        _narratingCharacter.gameObject.SetActive(shouldShow);
     }
 
     public void WriteAutoSave()
@@ -317,6 +322,7 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         {
             if (_activeCharacterList[i].IsSimilar(characterName))
             {
+                _activeCharacterList[i].Leave();
                 _activeCharacterList.RemoveAt(i);
                 return;
             }

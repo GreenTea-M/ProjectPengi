@@ -133,12 +133,6 @@ namespace Dialog
             string text = localisationProvider.GetLocalisedTextForLine(line);
             text = text.Trim();
 
-            if (text == null)
-            {
-                Debug.LogWarning($"Line {line.ID} doesn't have any localised text.");
-                text = line.ID;
-            }
-
             // for empty //, we ignore them
             if (text.Trim().Equals("//"))
             {
@@ -458,12 +452,6 @@ namespace Dialog
 
         public void ShowElements(bool shouldShow)
         {
-            throw new NotImplementedException();
-            // foreach (var item in _textItems)
-            // {
-            //     item.gameObject.SetActive(shouldShow);
-            // }
-
             iconManager.ShowElements(shouldShow);
         }
 
