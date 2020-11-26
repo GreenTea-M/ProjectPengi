@@ -72,6 +72,12 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 165.63614
       objectReference: {fileID: 0}
+    - target: {fileID: 7248697338972137716, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c4b0f7aed196da0468f4523e35298eb3,
+        type: 3}
     - target: {fileID: 7248697338972137717, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -140,7 +146,7 @@ PrefabInstance:
     - target: {fileID: 7248697340177700487, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
       propertyPath: m_Name
-      value: SideCharacter Variant
+      value: _SideCharacter Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7248697340453849372, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}

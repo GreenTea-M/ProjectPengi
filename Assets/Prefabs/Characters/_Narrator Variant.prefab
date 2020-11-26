@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: characterData.characterType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6412677138833811219, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -75,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 7248697340177700487, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
       propertyPath: m_Name
-      value: Narrator Variant
+      value: _Narrator Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6f644d83908a7f4fbf79a67ec00790e, type: 3}

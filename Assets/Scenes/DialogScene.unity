@@ -792,84 +792,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
-  iconList:
-  - name: Cow
-    aliases: []
-    mainSprite: {fileID: 21300000, guid: 4de52f2ed496f514797b62599a18d0a2, type: 3}
-    outlineSprite: {fileID: 21300000, guid: b98f0c17764e284499b7a5fe0fe54ebc, type: 3}
-  - name: Brynhilda
-    aliases:
-    - B
-    mainSprite: {fileID: 21300000, guid: 507f32a4a5be4874fa9319e37d9e674f, type: 3}
-    outlineSprite: {fileID: 21300000, guid: caf77793be916a8428d3ab87093daec8, type: 3}
-  - name: Grammy
-    aliases:
-    - GF
-    mainSprite: {fileID: 21300000, guid: eb6e51fadf961da41901fc056d8f372b, type: 3}
-    outlineSprite: {fileID: 21300000, guid: b0c207e066df3694ea767aa3a622c802, type: 3}
-  - name: Pengi
-    aliases:
-    - P
-    mainSprite: {fileID: 21300000, guid: 4de52f2ed496f514797b62599a18d0a2, type: 3}
-    outlineSprite: {fileID: 21300000, guid: b98f0c17764e284499b7a5fe0fe54ebc, type: 3}
-  - name: Old Mole
-    aliases:
-    - M
-    mainSprite: {fileID: 21300000, guid: a08f6b0dcb2077549963f7e4043c94f3, type: 3}
-    outlineSprite: {fileID: 21300000, guid: 42a09319c0dde7c46b84834f23dc24dc, type: 3}
-  characterDataList:
-  - name: Brynhilda
-    aliases:
-    - B
-    prefab: {fileID: 7721856675482816111, guid: 2d6cde523a7cab44da33f0a59e6bb49c,
-      type: 3}
-    characterType: 2
-  - name: Grammy
-    aliases:
-    - G
-    - GF
-    prefab: {fileID: 4183247458888187938, guid: 5b5895be60c0a59449f7b6aa2533c6ce,
-      type: 3}
-    characterType: 2
-  - name: Old Mole
-    aliases:
-    - M
-    - moleLady
-    - oldMole
-    - mole
-    prefab: {fileID: 6661086423002316218, guid: 39d0536adcf7f154bb4969bbaf234985,
-      type: 3}
-    characterType: 2
-  - name: Paul
-    aliases: []
-    prefab: {fileID: 4384204903600273468, guid: ee7bbb5eb571b9e44a7532a256f80db1,
-      type: 3}
-    characterType: 2
-  - name: Asomeone
-    aliases:
-    - A
-    prefab: {fileID: 4384204903600273468, guid: ee7bbb5eb571b9e44a7532a256f80db1,
-      type: 3}
-    characterType: 2
-  - name: Hank
-    aliases:
-    - H
-    prefab: {fileID: 4384204903600273468, guid: ee7bbb5eb571b9e44a7532a256f80db1,
-      type: 3}
-    characterType: 2
-  mainCharacter:
-    name: Pengi
-    aliases: []
-    prefab: {fileID: 5457296641195751246, guid: 4ac73c72d52938647883951cf453a57c,
-      type: 3}
-    characterType: 1
-  narratingCharacter:
-    name: 
-    aliases: []
-    prefab: {fileID: 3613125057938647323, guid: 9b469aef651ec7c4dbb168ec65e99585,
-      type: 3}
-    characterType: 0
-  prefabCharacterIcon: {fileID: 1312063759716704211, guid: 4b121c3180f530c499e5fc99a7bf8f64,
+  characterPrefabList:
+  - {fileID: 7721856675482816111, guid: 2d6cde523a7cab44da33f0a59e6bb49c, type: 3}
+  - {fileID: 4183247458888187938, guid: 5b5895be60c0a59449f7b6aa2533c6ce, type: 3}
+  - {fileID: 6661086423002316218, guid: 39d0536adcf7f154bb4969bbaf234985, type: 3}
+  mainCharacterPrefab: {fileID: 5457296641195751246, guid: 4ac73c72d52938647883951cf453a57c,
+    type: 3}
+  narratingCharacterPrefab: {fileID: 3613125057938647323, guid: 9b469aef651ec7c4dbb168ec65e99585,
     type: 3}
   currentSpeaking: {fileID: 0}
 --- !u!114 &1066951501
@@ -2207,11 +2136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconManager: {fileID: 1066951500}
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
-  dialogueItemPrefab: {fileID: 6204617817215508044, guid: 248815e0165fb2d4784bf7ab96c6657a,
-    type: 3}
-  dialoguePortraitPrefab: {fileID: 1312063759716704211, guid: 4b121c3180f530c499e5fc99a7bf8f64,
-    type: 3}
-  dialogueOptionsPrefab: {fileID: 0}
   markupWholeWhitelist:
   - <i>
   - </i>

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
-using Dialog;
 using Gameplay;
 using GameSystem.Save;
 using Others;
@@ -12,138 +11,137 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
-public class IconManager : MonoBehaviour, SaveClientCallback
+namespace Dialog
 {
-    public static string mainSpeakerName = "Pengi";
+    public class IconManager : MonoBehaviour, SaveClientCallback
+    {
+        public static string mainSpeakerName = "Pengi";
     
-    public GameConfiguration gameConfiguration;
-    public IconItem[] iconList;
-    public CharacterData[] characterDataList;
-    public CharacterData mainCharacter; // for none
-    public CharacterData narratingCharacter; // for none
-    public GameObject prefabCharacterIcon;
-    public InformSpeakerReturn informSpeakerReturnValue = new InformSpeakerReturn();
+        public GameConfiguration gameConfiguration;
+        public GameObject[] characterPrefabList;
+        public GameObject mainCharacterPrefab;
+        public GameObject narratingCharacterPrefab;
+        public InformSpeakerReturn informSpeakerReturnValue = new InformSpeakerReturn();
 
-    private SaveClient _saveClient;
-    private UnifiedCharacterScript[] _characterList;
-    private UnifiedCharacterScript _mainCharacter;
-    private UnifiedCharacterScript _narratingCharacter;
-    private List<UnifiedCharacterScript> _activeCharacterList = new List<UnifiedCharacterScript>();
-    public UnifiedCharacterScript currentSpeaking;
+        private SaveClient _saveClient;
+        private UnifiedCharacterScript[] _characterList;
+        private UnifiedCharacterScript _mainCharacter;
+        private UnifiedCharacterScript _narratingCharacter;
+        private List<UnifiedCharacterScript> _activeCharacterList = new List<UnifiedCharacterScript>();
+        public UnifiedCharacterScript currentSpeaking;
 
-    private void OnEnable()
-    {
-        if (_saveClient == null)
+        private void OnEnable()
         {
-            _saveClient = gameConfiguration.RequestSaveAccess(this);
-        }
-    }
-
-    private void OnDisable()
-    {
-        gameConfiguration.ReleaseSaveAccess(_saveClient);
-        _saveClient = null;
-    }
-
-    private void Awake()
-    {
-        Debug.Assert(prefabCharacterIcon != null);
-        Debug.Assert(gameConfiguration != null);
-        
-        _characterList = new UnifiedCharacterScript[characterDataList.Length];
-        for (int i = 0; i < characterDataList.Length; i++)
-        {
-            _characterList[i] = characterDataList[i].Instantiate(this);
-        }
-
-        _narratingCharacter = narratingCharacter.Instantiate(this);
-        _mainCharacter = mainCharacter.Instantiate(this);
-
-        if (_saveClient == null)
-        {
-            _saveClient = gameConfiguration.RequestSaveAccess(this);
-        }
-
-        InformSpeaker(_saveClient.currentSave.currentSpeaker, true);
-        InformSpeaker(_saveClient.currentSave.previousSpeaker, true);
-    }
-
-    public IconItem GetSprite(string speakerName)
-    {
-        foreach (var iconItem in iconList)
-        {
-            if (iconItem.IsSimilar(speakerName))
+            if (_saveClient == null)
             {
-                return iconItem;
+                _saveClient = gameConfiguration.RequestSaveAccess(this);
             }
         }
 
-        Debug.LogWarning($"Speaker not found: {speakerName}. Defaulting...");
-        return iconList[0];
-    }
-
-    public void RemoveSpeaker(int count)
-    {
-        Debug.LogError("RemoveSpeaker not implemented");
-    }
-
-    public void RemoveSpeaker(string speakerName)
-    {
-        Debug.LogError("RemoveSpeaker not implemented");
-    }
-
-    public InformSpeakerReturn InformSpeaker(string candidateSpeaker)
-    {
-        return InformSpeaker(candidateSpeaker, false);
-    }
-
-    private InformSpeakerReturn InformSpeaker(string candidateSpeaker, 
-        bool isForced)
-    {    
-        // find out who is the active speaker
-        // arrange accordingly
-        bool shouldRearrange = false;
-        
-        if (_narratingCharacter.IsSimilar(candidateSpeaker))
+        private void OnDisable()
         {
-            currentSpeaking = _narratingCharacter;
-        } else if (_mainCharacter.IsSimilar(candidateSpeaker))
-        {
-            currentSpeaking = _mainCharacter;
+            gameConfiguration.ReleaseSaveAccess(_saveClient);
+            _saveClient = null;
         }
-        else
+
+        private void Awake()
         {
-            foreach (var character in _activeCharacterList)
+            Debug.Assert(gameConfiguration != null);
+        
+            _characterList = new UnifiedCharacterScript[characterPrefabList.Length];
+            for (int i = 0; i < characterPrefabList.Length; i++)
             {
-                if (character.IsSimilar(candidateSpeaker))
+                _characterList[i] = InstantiateCharacter(characterPrefabList[i]);
+            }
+
+            _narratingCharacter = InstantiateCharacter(narratingCharacterPrefab);
+            _mainCharacter = InstantiateCharacter(mainCharacterPrefab);
+
+            if (_saveClient == null)
+            {
+                _saveClient = gameConfiguration.RequestSaveAccess(this);
+            }
+
+            InformSpeaker(_saveClient.currentSave.currentSpeaker, true);
+            InformSpeaker(_saveClient.currentSave.previousSpeaker, true);
+        }
+    
+        public UnifiedCharacterScript InstantiateCharacter(GameObject prefab)
+        {
+            var script = Object.Instantiate(prefab)
+                .GetComponent<UnifiedCharacterScript>();
+            Debug.Assert(script != null);
+            script.SetData(this);
+            return script;
+        }
+
+        public void RemoveSpeaker(int count)
+        {
+            Debug.LogError("RemoveSpeaker not implemented");
+        }
+
+        public void RemoveSpeaker(string speakerName)
+        {
+            Debug.LogError("RemoveSpeaker not implemented");
+        }
+
+        public InformSpeakerReturn InformSpeaker(string candidateSpeaker)
+        {
+            return InformSpeaker(candidateSpeaker, false);
+        }
+
+        private InformSpeakerReturn InformSpeaker(string candidateSpeaker, 
+            bool isForced)
+        {    
+            // find out who is the active speaker
+            // arrange accordingly
+            bool shouldRearrange = false;
+            
+            // extract description
+            var speakingParts = candidateSpeaker.Split(',');
+            candidateSpeaker = speakingParts[0];
+            var description = speakingParts.Length != 2 ? "" : speakingParts[1];
+        
+            if (_narratingCharacter.IsSimilar(candidateSpeaker))
+            {
+                currentSpeaking = _narratingCharacter;
+            } else if (_mainCharacter.IsSimilar(candidateSpeaker))
+            {
+                currentSpeaking = _mainCharacter;
+            }
+            else
+            {
+                foreach (var character in _activeCharacterList)
                 {
-                    currentSpeaking = character;
-                    shouldRearrange = true;
-                    break;
+                    if (character.IsSimilar(candidateSpeaker))
+                    {
+                        currentSpeaking = character;
+                        shouldRearrange = true;
+                        break;
+                    }
                 }
             }
-        }
 
-        if (shouldRearrange)
-        {
-            _activeCharacterList.Remove(currentSpeaking);
-            _activeCharacterList.Insert(0, currentSpeaking);
-        }
+            if (shouldRearrange)
+            {
+                _activeCharacterList.Remove(currentSpeaking);
+                _activeCharacterList.Insert(0, currentSpeaking);
+            }
 
-        _narratingCharacter.UpdateStatus();
-        _mainCharacter.UpdateStatus();
+            _narratingCharacter.UpdateStatus(description);
+            _mainCharacter.UpdateStatus(description);
 
-        foreach (var character in _activeCharacterList)
-        {
-            character.UpdateStatus();
-        }
+            foreach (var character in _activeCharacterList)
+            {
+                character.UpdateStatus(description);
+            }
 
-        informSpeakerReturnValue.character = currentSpeaking;
-        informSpeakerReturnValue.realName = currentSpeaking.RealName;
+            informSpeakerReturnValue.character = currentSpeaking;
+            informSpeakerReturnValue.realName = currentSpeaking.RealName;
 
-        return informSpeakerReturnValue;
+            return informSpeakerReturnValue;
         
-        /*var ret = new InformSpeakerReturn();
+            /*var ret = new InformSpeakerReturn();
         candidateSpeaker = candidateSpeaker.Trim();
 
         if (candidateSpeaker.Equals(""))
@@ -191,134 +189,119 @@ public class IconManager : MonoBehaviour, SaveClientCallback
         ret.isBlocking = !isForced;
         ret.realName = _otherSpeaker.GetRealName();
         return SaveState(ret);*/
-    }
+        }
 
 // todo: delete
-    private InformSpeakerReturn SaveState(InformSpeakerReturn ret)
-    {
-        return ret;
-    }
-
-    public void ShowElements(bool shouldShow)
-    {
-        foreach (var characterScript in _characterList)
+        private InformSpeakerReturn SaveState(InformSpeakerReturn ret)
         {
-            characterScript.gameObject.SetActive(shouldShow);
+            return ret;
         }
-        
-        _mainCharacter.gameObject.SetActive(shouldShow);
-        _narratingCharacter.gameObject.SetActive(shouldShow);
-    }
 
-    public void WriteAutoSave()
-    {
-        Debug.LogError("WriteAutoSave not implemented");
-        // _saveClient.autoSave.isLeft = !_isLeft;
-        // _saveClient.autoSave.currentSpeaker = _otherSpeaker != null
-        //     ? _otherSpeaker.Speaker
-        //     : "";
-        // _saveClient.autoSave.previousSpeaker = _mainSpeaker != null
-        //     ? _mainSpeaker.Speaker
-        //     : "";
-    }
-
-    public void EnterStage(string characterName)
-    {
-        foreach (var characterScript in _characterList)
+        public void ShowElements(bool shouldShow)
         {
-            if (characterScript.IsSimilar(characterName))
+            foreach (var characterScript in _characterList)
             {
-                _activeCharacterList.Add(characterScript);
-                return;
+                characterScript.gameObject.SetActive(shouldShow);
             }
-        }
         
-        Debug.LogWarning($"EnterStage: Character {characterName} not in character list");
-    }
+            _mainCharacter.gameObject.SetActive(shouldShow);
+            _narratingCharacter.gameObject.SetActive(shouldShow);
+        }
 
-    public void ExitStage(string characterName)
-    {
-        for (int i = 0; i < _activeCharacterList.Count; i--)
+        public void WriteAutoSave()
         {
-            if (_activeCharacterList[i].IsSimilar(characterName))
-            {
-                _activeCharacterList[i].Leave();
-                _activeCharacterList.RemoveAt(i);
-                return;
-            }
+            Debug.LogError("WriteAutoSave not implemented");
+            // _saveClient.autoSave.isLeft = !_isLeft;
+            // _saveClient.autoSave.currentSpeaker = _otherSpeaker != null
+            //     ? _otherSpeaker.Speaker
+            //     : "";
+            // _saveClient.autoSave.previousSpeaker = _mainSpeaker != null
+            //     ? _mainSpeaker.Speaker
+            //     : "";
         }
+
+        public void EnterStage(string characterName)
+        {
+            foreach (var characterScript in _characterList)
+            {
+                if (characterScript.IsSimilar(characterName))
+                {
+                    _activeCharacterList.Add(characterScript);
+                    return;
+                }
+            }
         
-        Debug.LogWarning($"ExitStage: Character {characterName} not in character list");
+            Debug.LogWarning($"EnterStage: Character {characterName} not in character list");
+        }
+
+        public void ExitStage(string characterName)
+        {
+            for (int i = 0; i < _activeCharacterList.Count; i--)
+            {
+                if (_activeCharacterList[i].IsSimilar(characterName))
+                {
+                    _activeCharacterList[i].Leave();
+                    _activeCharacterList.RemoveAt(i);
+                    return;
+                }
+            }
+        
+            Debug.LogWarning($"ExitStage: Character {characterName} not in character list");
+        }
+
+        public void CreateButtons(int optionsLength)
+        {
+            _mainCharacter.CreateButtons(optionsLength);
+        }
+
+        public void ActivateButtons(int i, UnityAction action)
+        {
+            _mainCharacter.ActivateButtons(i, action);
+        }
+
+        public void SetButtonText(int i, string optionText)
+        {
+            _mainCharacter.SetButtonText(i, optionText);
+        }
+
+        public void HideAllButtons()
+        {
+            _mainCharacter.HideAllButtons();
+        }
+
+        public int GetSideCharacterIndex(UnifiedCharacterScript unifiedCharacterScript)
+        {
+            return _activeCharacterList.IndexOf(unifiedCharacterScript);
+        }
     }
 
-    public void CreateButtons(int optionsLength)
+    [Serializable]
+    public class IconItem : DataItem
     {
-        _mainCharacter.CreateButtons(optionsLength);
+        [FormerlySerializedAs("sprite")] public Sprite mainSprite;
+        public Sprite outlineSprite;
     }
 
-    public void ActivateButtons(int i, UnityAction action)
+    public class InformSpeakerReturn
     {
-        _mainCharacter.ActivateButtons(i, action);
+        public UnifiedCharacterScript character;
+        public readonly DialogueBlocker dialogueBlocker = new DialogueBlocker();
+        public string realName = "";
     }
 
-    public void SetButtonText(int i, string optionText)
+    public class DialogueBlocker
     {
-        _mainCharacter.SetButtonText(i, optionText);
-    }
+        private bool _isBlocking = false;
+        public bool IsBlocking => _isBlocking;
 
-    public void HideAllButtons()
-    {
-        _mainCharacter.HideAllButtons();
-    }
+        public void Unblock()
+        {
+            _isBlocking = false;
+        }
 
-    public int GetSideCharacterIndex(UnifiedCharacterScript unifiedCharacterScript)
-    {
-        return _activeCharacterList.IndexOf(unifiedCharacterScript);
-    }
-}
-
-[Serializable]
-public class IconItem : DataItem
-{
-    [FormerlySerializedAs("sprite")] public Sprite mainSprite;
-    public Sprite outlineSprite;
-}
-
-[Serializable]
-public class CharacterData : DataItem
-{
-    public GameObject prefab;
-    public CharacterType characterType = CharacterType.Side;
-
-    public UnifiedCharacterScript Instantiate(IconManager iconManager)
-    {
-        var script = Object.Instantiate(prefab)
-            .GetComponent<UnifiedCharacterScript>();
-        Debug.Assert(script != null);
-        script.SetData(this, iconManager);
-        return script;
-    }
-}
-
-public class InformSpeakerReturn
-{
-    public UnifiedCharacterScript character;
-    public readonly DialogueBlocker dialogueBlocker = new DialogueBlocker();
-    public string realName = "";
-}
-
-public class DialogueBlocker
-{
-    private bool _isBlocking = false;
-    public bool IsBlocking => _isBlocking;
-
-    public void Unblock()
-    {
-        _isBlocking = false;
-    }
-
-    public void Block()
-    {
-        _isBlocking = true;
+        public void Block()
+        {
+            _isBlocking = true;
+        }
     }
 }

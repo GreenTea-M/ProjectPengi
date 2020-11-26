@@ -128,6 +128,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 5865a7f4fb4dc4c4bada2e861c6ad250,
         type: 3}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: characterData.aliases.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: characterData.name
+      value: Old Mole
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: characterData.aliases.Array.data[0]
+      value: M
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: characterData.aliases.Array.data[1]
+      value: moleLady
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: characterData.aliases.Array.data[2]
+      value: oldMole
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: characterData.aliases.Array.data[3]
+      value: mole
+      objectReference: {fileID: 0}
     - target: {fileID: 5488622361962496437, guid: ee7bbb5eb571b9e44a7532a256f80db1,
         type: 3}
       propertyPath: m_IsActive

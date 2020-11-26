@@ -24,7 +24,7 @@ MonoBehaviour:
   enableTextFormatting: 1
   currentSave:
     name: 
-    currentYarnNode: Bear.EnterStore
+    currentYarnNode: Bear.Intro
     lastDialog: 
     lastAudioName: fishMarket
     lastHeader: carpentry
