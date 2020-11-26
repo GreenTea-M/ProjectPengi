@@ -123,6 +123,9 @@ namespace Dialog
 
             ChangeHeader(new[] {_saveClient.currentSave.lastHeader});
             PlayAudio(new[] {_saveClient.currentSave.lastAudioName});
+            
+            // load all active characters
+            EnterStage(_saveClient.currentSave.activeCharacterList);
 
             dialogueRunner.AddCommandHandler(
                 "playAudio", // the name of the command
@@ -396,14 +399,19 @@ namespace Dialog
 
         private void ClearShelfItem(string[] parameters)
         {
-            for (int i = _shelfItemList.Count - 1; i >= 0; i--)
+            foreach (var shelfItem in _shelfItemList)
             {
-                Destroy(_shelfItemList[i].gameObject);
-                _shelfItemList.RemoveAt(i);
+                shelfItem.gameObject.SetActive(false);
             }
+            
+            // for (int i = _shelfItemList.Count - 1; i >= 0; i--)
+            // {
+            //     Destroy(_shelfItemList[i].gameObject);
+            //     _shelfItemList.RemoveAt(i);
+            // }
 
-            if (_shownShelfItem == null) return;
-            Destroy(_shownShelfItem.gameObject);
+            // if (_shownShelfItem == null) return;
+            // Destroy(_shownShelfItem.gameObject);
             _shownShelfItem = null;
         }
 
@@ -448,13 +456,19 @@ namespace Dialog
             // todo: make shelf appear
 
             // todo: give each item the call plus variable to change
-            _shelfItemList.Clear();
-            Debug.Assert(shelfItemDataList.Length > 0);
-            foreach (var shelfItemData in shelfItemDataList)
+            if (_shelfItemList.Count == 0)
             {
-                ShelfItem shelfItem = shelfItemData.CreateObject();
-                _shelfItemList.Add(shelfItem);
-                shelfItem.Initialize(shelfItemData, this);
+                foreach (var shelfItemData in shelfItemDataList)
+                {
+                    ShelfItem shelfItem = shelfItemData.CreateObject();
+                    _shelfItemList.Add(shelfItem);
+                    shelfItem.Initialize(shelfItemData, this);
+                }
+            }
+            
+            foreach (var _shelfItem in _shelfItemList)
+            {
+                _shelfItem.gameObject.SetActive(true);
             }
 
             if (parameters.Length == 2 && parameters[1].Equals("full", StringComparison.InvariantCultureIgnoreCase))
@@ -479,14 +493,13 @@ namespace Dialog
 
                 if (shelfItem != _shelfItemList[i])
                 {
-                    Destroy(_shelfItemList[i].gameObject);
+                    _shelfItemList[i].gameObject.SetActive(false);
+                    // Destroy(_shelfItemList[i].gameObject);
                 }
                 else
                 {
                     shelfItem.Display();
                 }
-
-                _shelfItemList.RemoveAt(i);
             }
 
             if (isDone)

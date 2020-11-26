@@ -1684,7 +1684,7 @@ MonoBehaviour:
     aliases: []
     prefab: {fileID: 1257187238813843970, guid: 71586d8ed883aca4691368df036eb43c,
       type: 3}
-    displayName: carpentry
+    displayName: Carpentry
   - name: fishMarket
     aliases: []
     prefab: {fileID: 5531682027992105529, guid: 8d70e8d375cf9f348af4bb9e5fa36c4e,

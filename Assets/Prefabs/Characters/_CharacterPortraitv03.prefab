@@ -516,6 +516,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c69a85a73f4d1184294c6e4672ed3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterData:
+    name: 
+    aliases: []
+    characterType: 2
+  defaultSprite:
+    name: 
+    aliases: []
+    defaultState:
+      sprite: {fileID: 0}
+      characterState: 0
+      color: {r: 1, g: 1, b: 1, a: 0.5019608}
+    alternativeStates: []
+  alternativeSprites: []
   stageLocation: {fileID: 7248697340453849371}
   exitLocation: {fileID: 936405846802146890}
   alternativeTextLocation: {fileID: 0}
@@ -532,7 +545,7 @@ MonoBehaviour:
   inactiveZ: 1
   speakFloatHeight: 0.125
   speakFloatSpeed: 4
-  _state: 0
+  characterState: 0
 --- !u!1 &7248697340453849372
 GameObject:
   m_ObjectHideFlags: 0

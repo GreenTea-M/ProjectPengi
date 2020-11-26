@@ -7,26 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 49890421840005544, guid: ee7bbb5eb571b9e44a7532a256f80db1,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 12.899
-      objectReference: {fileID: 0}
-    - target: {fileID: 49890421840005544, guid: ee7bbb5eb571b9e44a7532a256f80db1,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 8.956
-      objectReference: {fileID: 0}
-    - target: {fileID: 49890421840005544, guid: ee7bbb5eb571b9e44a7532a256f80db1,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 256.62463
-      objectReference: {fileID: 0}
-    - target: {fileID: 49890421840005544, guid: ee7bbb5eb571b9e44a7532a256f80db1,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 118.438385
-      objectReference: {fileID: 0}
     - target: {fileID: 4048220273235755172, guid: ee7bbb5eb571b9e44a7532a256f80db1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -40,12 +20,12 @@ PrefabInstance:
     - target: {fileID: 4384204903273656397, guid: ee7bbb5eb571b9e44a7532a256f80db1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.45
+      value: 18.37
       objectReference: {fileID: 0}
     - target: {fileID: 4384204903273656397, guid: ee7bbb5eb571b9e44a7532a256f80db1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.38
+      value: 8.388824
       objectReference: {fileID: 0}
     - target: {fileID: 4384204903600273468, guid: ee7bbb5eb571b9e44a7532a256f80db1,
         type: 3}
@@ -158,6 +138,18 @@ PrefabInstance:
       propertyPath: characterData.aliases.Array.data[3]
       value: mole
       objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: defaultSprite.defaultState.sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5865a7f4fb4dc4c4bada2e861c6ad250,
+        type: 3}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: defaultSprite.alternativeStates.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d38e7898524f2294595d855f04ce8081,
+        type: 3}
     - target: {fileID: 5488622361962496437, guid: ee7bbb5eb571b9e44a7532a256f80db1,
         type: 3}
       propertyPath: m_IsActive

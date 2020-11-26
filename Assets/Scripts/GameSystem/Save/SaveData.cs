@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Yarn.Unity;
@@ -26,6 +27,7 @@ public class SaveData
     public bool isLeft = true;
     public string currentSpeaker = "";
     public string previousSpeaker = "";
+    public string[] activeCharacterList;
 
     public SaveData(SaveData rhs)
     {
@@ -67,6 +69,15 @@ public class SaveData
                 type = variable.type,
                 value = variable.value
             });
+        }
+    }
+
+    public void SetActiveSpeakerList(List<UnifiedCharacterScript> activeCharacters)
+    {
+        activeCharacterList = new String[activeCharacters.Count];
+        for (int i = 0; i < activeCharacters.Count; i++)
+        {
+            activeCharacterList[i] = activeCharacters[i].RealName;
         }
     }
 }

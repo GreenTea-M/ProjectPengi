@@ -19,11 +19,21 @@ namespace Gameplay
         private CustomCommands _customCommands;
         private bool _isDone = false;
         private Rigidbody2D _rigidbody2DLoc;
-        private bool isDisplaying = false;
+        private bool _isDisplaying = false;
+        private bool _isInitialized = false;
+        private Vector3 _originalLocation = Vector3.zero;
+
+        private void OnEnable()
+        {
+            if (_isDone)
+            {
+                transform.position = _originalLocation;
+            }
+        }
 
         private void Update()
         {
-            if (!isDisplaying)
+            if (!_isDisplaying)
             {
                 return;
             }
@@ -38,12 +48,14 @@ namespace Gameplay
             }
             else
             {
-                isDisplaying = false;
+                _isDisplaying = false;
             }
         }
 
         public void Initialize(ShelfItemData shelfItemData, CustomCommands customCommands)
         {
+            _isInitialized = true;
+            _originalLocation = transform.position;
             _rigidbody2DLoc = GetComponent<Rigidbody2D>();
             Debug.Assert(_rigidbody2DLoc != null);
             Debug.Assert(GetComponent<Collider2D>() != null);
@@ -57,9 +69,10 @@ namespace Gameplay
                 case Value.Type.Null:
                     // not yet visited, explode
                     _rigidbody2DLoc.bodyType = RigidbodyType2D.Dynamic;
-                    _rigidbody2DLoc.AddForce(Random.insideUnitCircle * forceMultiplier, ForceMode2D.Impulse);
+                    // _rigidbody2DLoc.AddForce(Random.insideUnitCircle * forceMultiplier, ForceMode2D.Impulse);
                     break;
                 case Value.Type.Number:
+                    GetComponent<Collider2D>().enabled = false;
                     _isDone = true;
                     break;
                 case Value.Type.String:
@@ -94,7 +107,7 @@ namespace Gameplay
         {
             _rigidbody2DLoc.bodyType = RigidbodyType2D.Kinematic;
             _rigidbody2DLoc.simulated = false;
-            isDisplaying = true;
+            _isDisplaying = true;
         }
     }
 }

@@ -20,13 +20,13 @@ MonoBehaviour:
   fontAsset: {fileID: 11400000, guid: dc35776587d58074b9f6a9b0249e7b65, type: 2}
   fontSize: 12
   textOpacity: 0.97
-  fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
+  fontColor: {r: 0.2392157, g: 0.14117648, b: 0.25882354, a: 1}
   enableTextFormatting: 1
   currentSave:
     name: 
-    currentYarnNode: Bear.Intro
+    currentYarnNode: Bear.EnterStore
     lastDialog: 
-    lastAudioName: fishMarket
+    lastAudioName: OldMole
     lastHeader: carpentry
     savedVariables: []
     isLeft: 1
@@ -35,12 +35,12 @@ MonoBehaviour:
   isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.EnterStore
-    lastDialog: 
-    lastAudioName: fishMarket
+    currentYarnNode: Bear.PuzzleStart
+    lastDialog: <i>Pengi, feeling a flush of red creeping up to their face pick up...</i>
+    lastAudioName: BrynhildaBear
     lastHeader: carpentry
     savedVariables: []
-    isLeft: 0
+    isLeft: 1
     currentSpeaker: 
     previousSpeaker: 
   gameInstance: {fileID: 0}

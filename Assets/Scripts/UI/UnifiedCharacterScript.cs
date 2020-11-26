@@ -14,7 +14,7 @@ namespace UI
 {
     public class UnifiedCharacterScript : MonoBehaviour
     {
-        [Header("Data")] 
+        [Header("Data")]
         public CharacterData characterData;
         public SpriteEmote defaultSprite;
         public SpriteEmote[] alternativeSprites;        
@@ -38,7 +38,7 @@ namespace UI
 
         [FormerlySerializedAs("_state")] 
         public CharacterState characterState = CharacterState.Hidden;
-        private CharacterState previousState = CharacterState.Hidden;
+        private CharacterState _previousState = CharacterState.Hidden;
         private TextState _textState = TextState.Default;
         private CharacterType _characterType = CharacterType.Narrator;
         private bool _isSpeaking = false;
@@ -84,12 +84,12 @@ namespace UI
         private void Update()
         {
             
-            if (characterState != previousState)
+            if (characterState != _previousState)
             {
                 RefreshSprite();
                 
                 // We are exiting that state
-                switch (previousState)
+                switch (_previousState)
                 {
                     case CharacterState.Hidden:
                         break;
@@ -130,7 +130,7 @@ namespace UI
                         throw new ArgumentOutOfRangeException();
                 }
 
-                previousState = characterState;
+                _previousState = characterState;
             }
             
             switch (characterState)
@@ -361,7 +361,7 @@ namespace UI
                 }
             }
 
-            sprite.sprite = bestSpriteData.GetBestSprite(characterState);
+            bestSpriteData.GetBestSprite(sprite, characterState);
         }
 
 
@@ -453,7 +453,7 @@ namespace UI
         public SpriteSubItem defaultState;
         public SpriteSubItem[] alternativeStates;
 
-        public Sprite GetBestSprite(CharacterState characterState)
+        public void GetBestSprite(SpriteRenderer spriteRenderer, CharacterState characterState)
         {
             var bestState = defaultState;
             foreach (var state in alternativeStates)
@@ -465,7 +465,8 @@ namespace UI
                 }
             }
 
-            return bestState.sprite;
+            spriteRenderer.color = bestState.color;
+            spriteRenderer.sprite = bestState.sprite;
         }
     }
 
@@ -474,6 +475,7 @@ namespace UI
     {
         public Sprite sprite;
         public CharacterState characterState;
+        public Color color = Color.white;
     }
 
     public enum CharacterType

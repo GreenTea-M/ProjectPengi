@@ -277,7 +277,7 @@ PrefabInstance:
         type: 3}
       propertyPath: defaultSprite.alternativeStates.Array.data[0].sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b98f0c17764e284499b7a5fe0fe54ebc,
+      objectReference: {fileID: 21300000, guid: 83eb62a968b10934e8e9e55283f1abf2,
         type: 3}
     - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
@@ -295,6 +295,46 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 804661e9190b5af45a951a46b73c5338,
         type: 3}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: defaultSprite.alternativeStates.Array.data[0].color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: defaultSprite.alternativeStates.Array.data[0].color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: defaultSprite.alternativeStates.Array.data[0].color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: defaultSprite.alternativeStates.Array.data[0].color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].defaultState.color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].defaultState.color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].defaultState.color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].defaultState.color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2777298629420424835, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
       propertyPath: m_IsActive

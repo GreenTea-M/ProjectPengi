@@ -77,7 +77,7 @@ namespace Dialog
 
         public void RemoveSpeaker(int count)
         {
-            Debug.LogError("RemoveSpeaker not implemented");
+            Debug.LogWarning("Deprecated: Remove Speaker");
         }
 
         public void RemoveSpeaker(string speakerName)
@@ -210,7 +210,7 @@ namespace Dialog
 
         public void WriteAutoSave()
         {
-            Debug.LogError("WriteAutoSave not implemented");
+            _saveClient.autoSave.SetActiveSpeakerList(_activeCharacterList);
             // _saveClient.autoSave.isLeft = !_isLeft;
             // _saveClient.autoSave.currentSpeaker = _otherSpeaker != null
             //     ? _otherSpeaker.Speaker
@@ -226,12 +226,28 @@ namespace Dialog
             {
                 if (characterScript.IsSimilar(characterName))
                 {
-                    _activeCharacterList.Add(characterScript);
+                    if (!DoesActiveCharacterListContain(characterName))
+                    {
+                        _activeCharacterList.Add(characterScript);
+                    }
                     return;
                 }
             }
         
             Debug.LogWarning($"EnterStage: Character {characterName} not in character list");
+        }
+
+        private bool DoesActiveCharacterListContain(string characterName)
+        {
+            foreach (var characterScript in _activeCharacterList)
+            {
+                if (characterScript.IsSimilar(characterName))
+                {
+                    return true;
+                }
+            }
+            
+            return false;
         }
 
         public void ExitStage(string characterName)

@@ -93,5 +93,17 @@ PrefabInstance:
       propertyPath: characterData.aliases.Array.data[1]
       value: GF
       objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: defaultSprite.defaultState.sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f4f2b062a7b879846afe310375cc1c11,
+        type: 3}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: defaultSprite.alternativeStates.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f2845c7b4122344f8b84663d7a5a953,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee7bbb5eb571b9e44a7532a256f80db1, type: 3}

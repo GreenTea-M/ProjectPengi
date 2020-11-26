@@ -126,6 +126,7 @@ namespace GameSystem.Save
 
 
             string path = GetPath(slotExecutor);
+            Debug.Log(path);
             string jsonString = JsonUtility.ToJson(slotExecutor.saveData);
             File.WriteAllText(path, jsonString);
 
