@@ -33,13 +33,17 @@ MonoBehaviour:
     fontName: Karla
   - fontAsset: {fileID: 11400000, guid: 6b468795670eb704fa2f2922aab14504, type: 2}
     fontName: Nunito Sans
+  characterPrefabList:
+  - {fileID: 7721856675482816111, guid: 2d6cde523a7cab44da33f0a59e6bb49c, type: 3}
+  - {fileID: 4183247458888187938, guid: 5b5895be60c0a59449f7b6aa2533c6ce, type: 3}
+  - {fileID: 6661086423002316218, guid: 39d0536adcf7f154bb4969bbaf234985, type: 3}
   textRate: 0.025
-  shouldShake: 1
+  shouldShake: 0
   fontIndex: 0
   fontSize: 12
   textOpacity: 0.97
   enableTextFormatting: 1
-  volume: 1
+  volume: 0.75
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
@@ -55,9 +59,13 @@ MonoBehaviour:
   isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.Intro
-    lastDialog: 
-    lastAudioName: fishMarket
+    currentYarnNode: Bear.EnterStore
+    lastDialog: What greets them first are the various sounds and smells of people
+      chatting, food cooking and so on. Next came the sights, a street filled with
+      various shops, all seemingly different and random compared to the next. Overwhelmed
+      by the smells and sounds surrounding the area Pengi rushes into the nearest
+      store.
+    lastAudioName: OldMole
     lastHeader: carpentry
     savedVariables: []
     isLeft: 1

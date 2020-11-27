@@ -139,7 +139,8 @@ namespace Dialog
             InformSpeakerReturn speakerInfo = iconManager.InformSpeaker(argSplit.Length != 1 ? argSplit[0] : "");
             dialogueBlocker = speakerInfo.dialogueBlocker;
             var character = speakerInfo.character;
-
+            _lastSpeaker = speakerInfo.realName;
+            
             if (speakerInfo.realName.Length != 0)
             {
                 text = text.Replace($"{argSplit[0]}:", $"{speakerInfo.realName}:");
@@ -223,10 +224,11 @@ namespace Dialog
                 cleanStringBuilder.Append(c);
             }
 
-            var formattedString = formattedStringBuilder.ToString();
+            var formattedString = gameConfiguration.EnableTextFormatting ? 
+                formattedStringBuilder.ToString() : cleanStringBuilder.ToString();
             var textLength = cleanStringBuilder.Length;
             character.SetInitialText(formattedString);
-            _lastDialog = formattedString;
+            _lastDialog = cleanStringBuilder.ToString();
             
             bool isSkipping = false;
             for (int i = 0; i < textLength; i++)
@@ -440,7 +442,6 @@ namespace Dialog
         public void RequestLastDialogWrite()
         {
             requestDialogWrite = true;
-            saveClient.autoSave.lastDialog = "";
         }
 
         public void ShowElements(bool shouldShow)
@@ -450,6 +451,7 @@ namespace Dialog
 
         public void WriteAutoSave()
         {
+            saveClient.autoSave.currentSpeaker = _lastSpeaker;
             saveClient.autoSave.lastDialog = _lastDialog;
         }
     }

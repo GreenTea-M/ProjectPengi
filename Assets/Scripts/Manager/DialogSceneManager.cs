@@ -21,6 +21,7 @@ namespace Manager
         
         private SaveClient _saveClient;
         private GameInstance _gameInstance;
+        private bool _isSaveDirty = false;
 
         private void OnEnable()
         {
@@ -61,11 +62,14 @@ namespace Manager
 
         private void AutoSaveNode(string currentNode)
         {
-            gameConfiguration.isSaveDirty = true;
+            if (_isSaveDirty)
+            {
+                // write on save client
+                _saveClient.autoSave.currentYarnNode = currentNode;
+                _gameInstance.WriteOnAutoSave();
+            }
             
-            // write on save client
-            _saveClient.autoSave.currentYarnNode = currentNode;
-            _gameInstance.WriteOnAutoSave();
+            _isSaveDirty = true;
         }
 
         public void WriteAutoSave()

@@ -1,8 +1,10 @@
 using System;
 using GameSystem.Save;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace GameSystem
 {
@@ -18,7 +20,9 @@ namespace GameSystem
         [Tooltip("This will be the game configuration used on new game")]
         public GameConfiguration baseConfiguration;
         public FontItem[] fontList;
+        public GameObject[] characterPrefabList;
 
+        #region Option variables
         [Header("Option variables")] 
         [Tooltip("The delay in seconds that each character shows up; If less than 0, show instantly")]
         public float textRate = 0.025f;
@@ -127,6 +131,15 @@ namespace GameSystem
         
         public Color fontColor = Color.black;
     
+        private readonly string KeyTextRate = "TextRate";
+        private readonly string KeyShouldShake = "ShakeStrength";
+        private readonly string KeyFontIndex = "FontIndex";
+        private readonly string KeyFontSize = "FontSize";
+        private readonly string KeyTextOpacity = "TextOpacity";
+        private readonly string KeyTextFormatting = "TextFormatting";
+        private readonly string KeyVolume = "Volume";
+        #endregion Option variables
+    
         [FormerlySerializedAs("saveData")]
         [Header("Save data")]
         [SerializeField]
@@ -143,14 +156,6 @@ namespace GameSystem
 
         public static int AutoSaveIndex = 0;
         private const float _shakeStrength = 1f;
-    
-        private readonly string KeyTextRate = "TextRate";
-        private readonly string KeyShouldShake = "ShakeStrength";
-        private readonly string KeyFontIndex = "FontIndex";
-        private readonly string KeyFontSize = "FontSize";
-        private readonly string KeyTextOpacity = "TextOpacity";
-        private readonly string KeyTextFormatting = "TextFormatting";
-        private readonly string KeyVolume = "Volume";
 
         private void Awake()
         {
@@ -210,6 +215,7 @@ namespace GameSystem
             textOpacity = baseConfiguration.textOpacity;
             fontColor = baseConfiguration.fontColor;
             enableTextFormatting = baseConfiguration.enableTextFormatting;
+            volume = baseConfiguration.volume;
         }
 
         public SaveClient RequestSaveAccess(SaveClientCallback saveClientCallback)
@@ -244,6 +250,27 @@ namespace GameSystem
             {
                 Debug.LogError($"Failed to load slot index: {slotIndex}");
             }
+        }
+
+        /// <summary>
+        /// Load default sprite for save slot thumbnails
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="currentSpeaker"></param>
+        public void LoadDefaultSprite(Image image, string currentSpeaker)
+        {
+            foreach (var character in characterPrefabList)
+            {
+                var characterScript = character.GetComponent<UnifiedCharacterScript>();
+                Debug.Log($"{characterScript.RealName} vs {currentSpeaker}");
+                if (characterScript.IsSimilar(currentSpeaker))
+                {
+                    image.sprite = characterScript.defaultSprite.defaultState.sprite;
+                    break;
+                }
+            }
+            
+            Debug.Log("Not found...");
         }
     }
     

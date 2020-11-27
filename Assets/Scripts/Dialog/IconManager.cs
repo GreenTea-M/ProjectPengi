@@ -19,7 +19,6 @@ namespace Dialog
         public static string mainSpeakerName = "Pengi";
     
         public GameConfiguration gameConfiguration;
-        public GameObject[] characterPrefabList;
         public GameObject mainCharacterPrefab;
         public GameObject narratingCharacterPrefab;
         public InformSpeakerReturn informSpeakerReturnValue = new InformSpeakerReturn();
@@ -48,7 +47,8 @@ namespace Dialog
         private void Awake()
         {
             Debug.Assert(gameConfiguration != null);
-        
+
+            var characterPrefabList = gameConfiguration.characterPrefabList;
             _characterList = new UnifiedCharacterScript[characterPrefabList.Length];
             for (int i = 0; i < characterPrefabList.Length; i++)
             {

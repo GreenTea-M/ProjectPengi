@@ -162,7 +162,6 @@ namespace GameSystem.Save
 
         private bool DoesExist(SlotExecutor slotExecutor)
         {
-            Debug.Log(GetPath(slotExecutor));
             return File.Exists(GetPath(slotExecutor));
         }
 
