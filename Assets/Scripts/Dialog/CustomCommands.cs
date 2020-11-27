@@ -325,7 +325,7 @@ namespace Dialog
 
         private void Shake(string[] parameter)
         {
-            if (gameConfiguration.shouldShake)
+            if (gameConfiguration.ShouldShake)
             {
                 _impulseSignal.GenerateImpulse(gameConfiguration.ShakeStrength);
             }

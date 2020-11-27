@@ -1,5 +1,6 @@
 using System;
 using Dialog;
+using GameSystem;
 using GameSystem.Save;
 using UnityEngine;
 using Yarn.Unity;

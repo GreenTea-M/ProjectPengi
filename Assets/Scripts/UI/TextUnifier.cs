@@ -1,5 +1,6 @@
 using System;
 using Dialog;
+using GameSystem;
 using RoboRyanTron.Unite2017.Events;
 using TMPro;
 using UnityEngine;
@@ -36,7 +37,7 @@ namespace UI
 
         public void UpdateFontSize()
         {
-            _text.font = gameConfiguration.fontAsset;
+            _text.font = gameConfiguration.FontAsset;
             
             if (!shouldIgnoreSize)
             {
@@ -44,7 +45,7 @@ namespace UI
             }
             
             var newColor = gameConfiguration.fontColor;
-            newColor.a = shouldIgnoreAlpha ? _color.a : gameConfiguration.textOpacity;
+            newColor.a = shouldIgnoreAlpha ? _color.a : gameConfiguration.TextOpacity;
             _text.color = newColor;
         }
     }

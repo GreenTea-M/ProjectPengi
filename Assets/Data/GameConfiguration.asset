@@ -14,33 +14,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSaveSlots: 7
   baseConfiguration: {fileID: 11400000, guid: dcbf9e10567ae3f4e9278d0692211347, type: 2}
+  fontList:
+  - fontAsset: {fileID: 11400000, guid: dc35776587d58074b9f6a9b0249e7b65, type: 2}
+    fontName: Nunito
+  - fontAsset: {fileID: 11400000, guid: d9a4b0be89ba17d4db1fb84d1a306862, type: 2}
+    fontName: renner*
+  - fontAsset: {fileID: 11400000, guid: 1db8899e05c16f244914770b9fbd192d, type: 2}
+    fontName: Poppins
+  - fontAsset: {fileID: 11400000, guid: f2d8582a013d08140a2dcd71b71e6981, type: 2}
+    fontName: Open Sans
+  - fontAsset: {fileID: 11400000, guid: 860c756b547795646a7bf1c25590b4ca, type: 2}
+    fontName: Montserrat
+  - fontAsset: {fileID: 11400000, guid: 7ee9b7578b2878b4da56bc004ecef80f, type: 2}
+    fontName: Comic Neue
+  - fontAsset: {fileID: 11400000, guid: 945c9683caefcbd459edb6ab02dcbd94, type: 2}
+    fontName: Hind
+  - fontAsset: {fileID: 11400000, guid: 668692f9483ec2b41be412847c5a8386, type: 2}
+    fontName: Karla
+  - fontAsset: {fileID: 11400000, guid: 6b468795670eb704fa2f2922aab14504, type: 2}
+    fontName: Nunito Sans
   textRate: 0.025
-  shakeStrength: 1
   shouldShake: 1
-  fontAsset: {fileID: 11400000, guid: dc35776587d58074b9f6a9b0249e7b65, type: 2}
+  fontIndex: 0
   fontSize: 12
   textOpacity: 0.97
-  fontColor: {r: 0.2392157, g: 0.14117648, b: 0.25882354, a: 1}
   enableTextFormatting: 1
+  fontColor: {r: 0.2392157, g: 0.14117648, b: 0.25882354, a: 1}
   currentSave:
     name: 
-    currentYarnNode: Bear.EnterStore
+    currentYarnNode: Bear.Intro
     lastDialog: 
-    lastAudioName: OldMole
+    lastAudioName: fishMarket
     lastHeader: carpentry
     savedVariables: []
     isLeft: 1
     currentSpeaker: 
     previousSpeaker: 
+    activeCharacterList: []
   isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.PuzzleStart
-    lastDialog: <i>Pengi, feeling a flush of red creeping up to their face pick up...</i>
-    lastAudioName: BrynhildaBear
+    currentYarnNode: Bear.Intro
+    lastDialog: 
+    lastAudioName: fishMarket
     lastHeader: carpentry
     savedVariables: []
     isLeft: 1
     currentSpeaker: 
     previousSpeaker: 
+    activeCharacterList: []
   gameInstance: {fileID: 0}

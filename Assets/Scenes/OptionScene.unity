@@ -177,7 +177,8 @@ MonoBehaviour:
       m_Calls: []
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
   textFontMultiplier: 1
-  shouldIgnoreColor: 0
+  shouldIgnoreAlpha: 0
+  shouldIgnoreSize: 0
 --- !u!114 &130189671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,7 +649,8 @@ MonoBehaviour:
       m_Calls: []
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
   textFontMultiplier: 1
-  shouldIgnoreColor: 0
+  shouldIgnoreAlpha: 0
+  shouldIgnoreSize: 0
 --- !u!114 &252153906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2969,7 +2971,7 @@ PrefabInstance:
     - target: {fileID: 5498867982737714707, guid: b7fdd06db1f665c4f8c20a8ebad5bf9f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -200
+      value: -183.25
       objectReference: {fileID: 0}
     - target: {fileID: 5498867982737714707, guid: b7fdd06db1f665c4f8c20a8ebad5bf9f,
         type: 3}
@@ -2979,7 +2981,7 @@ PrefabInstance:
     - target: {fileID: 5498867982737714707, guid: b7fdd06db1f665c4f8c20a8ebad5bf9f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 336
+      value: 302.50708
       objectReference: {fileID: 0}
     - target: {fileID: 5498867982737714707, guid: b7fdd06db1f665c4f8c20a8ebad5bf9f,
         type: 3}
@@ -3740,7 +3742,8 @@ MonoBehaviour:
       m_Calls: []
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
   textFontMultiplier: 1
-  shouldIgnoreColor: 0
+  shouldIgnoreAlpha: 0
+  shouldIgnoreSize: 0
 --- !u!114 &1161774428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4171,7 +4174,8 @@ MonoBehaviour:
       m_Calls: []
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
   textFontMultiplier: 1
-  shouldIgnoreColor: 0
+  shouldIgnoreAlpha: 0
+  shouldIgnoreSize: 0
 --- !u!114 &1260792738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4384,7 +4388,8 @@ MonoBehaviour:
       m_Calls: []
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
   textFontMultiplier: 1
-  shouldIgnoreColor: 0
+  shouldIgnoreAlpha: 0
+  shouldIgnoreSize: 0
 --- !u!114 &1288269704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5434,7 +5439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00003431953}
+  m_AnchoredPosition: {x: 0, y: -0.00014287716}
   m_SizeDelta: {x: 0.00000086869113, y: 438.40482}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1522803127
@@ -5592,23 +5597,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTime: 1
-  fontList:
-  - fontAsset: {fileID: 11400000, guid: 6b468795670eb704fa2f2922aab14504, type: 2}
-    fontName: Nunito Sans
-  - fontAsset: {fileID: 11400000, guid: d9a4b0be89ba17d4db1fb84d1a306862, type: 2}
-    fontName: renner*
-  - fontAsset: {fileID: 11400000, guid: 1db8899e05c16f244914770b9fbd192d, type: 2}
-    fontName: Poppins
-  - fontAsset: {fileID: 11400000, guid: f2d8582a013d08140a2dcd71b71e6981, type: 2}
-    fontName: Open Sans
-  - fontAsset: {fileID: 11400000, guid: 860c756b547795646a7bf1c25590b4ca, type: 2}
-    fontName: Montserrat
-  - fontAsset: {fileID: 11400000, guid: 7ee9b7578b2878b4da56bc004ecef80f, type: 2}
-    fontName: Comic Neue
-  - fontAsset: {fileID: 11400000, guid: 945c9683caefcbd459edb6ab02dcbd94, type: 2}
-    fontName: Hind
-  - fontAsset: {fileID: 11400000, guid: 668692f9483ec2b41be412847c5a8386, type: 2}
-    fontName: Karla
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
   onFontChangedEvent: {fileID: 11400000, guid: 239f350a56175a74eb2f22e140ad4a89, type: 2}
   textRateSample: {fileID: 252153906}
@@ -5711,7 +5699,8 @@ MonoBehaviour:
       m_Calls: []
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
   textFontMultiplier: 1
-  shouldIgnoreColor: 0
+  shouldIgnoreAlpha: 0
+  shouldIgnoreSize: 0
 --- !u!114 &1620673475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6527,7 +6516,7 @@ PrefabInstance:
     - target: {fileID: 5498867982737714707, guid: b7fdd06db1f665c4f8c20a8ebad5bf9f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 200
+      value: 181.21
       objectReference: {fileID: 0}
     - target: {fileID: 5498867982737714707, guid: b7fdd06db1f665c4f8c20a8ebad5bf9f,
         type: 3}
@@ -6537,7 +6526,7 @@ PrefabInstance:
     - target: {fileID: 5498867982737714707, guid: b7fdd06db1f665c4f8c20a8ebad5bf9f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 336
+      value: 298.42255
       objectReference: {fileID: 0}
     - target: {fileID: 5498867982737714707, guid: b7fdd06db1f665c4f8c20a8ebad5bf9f,
         type: 3}
@@ -6638,7 +6627,8 @@ MonoBehaviour:
       m_Calls: []
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
   textFontMultiplier: 1
-  shouldIgnoreColor: 0
+  shouldIgnoreAlpha: 0
+  shouldIgnoreSize: 0
 --- !u!114 &1972539872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6815,7 +6805,8 @@ MonoBehaviour:
       m_Calls: []
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
   textFontMultiplier: 1
-  shouldIgnoreColor: 0
+  shouldIgnoreAlpha: 0
+  shouldIgnoreSize: 0
 --- !u!114 &1984667477
 MonoBehaviour:
   m_ObjectHideFlags: 0

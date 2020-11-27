@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Text;
+using GameSystem;
 using GameSystem.Save;
 using UI;
 using UnityEngine;
@@ -60,7 +61,7 @@ namespace Dialog
         private SaveClient saveClient;
         private string _lastDialog;
 
-        private float TextRate => gameConfiguration.textRate;
+        private float TextRate => gameConfiguration.TextRate;
 
         public bool IsBlocking
         {
@@ -153,7 +154,7 @@ namespace Dialog
 
             if (TextRate <= 0f)
             {
-                gameConfiguration.textRate = 0f;
+                gameConfiguration.TextRate = 0f;
             }
 
             var formattedStringBuilder = new StringBuilder();
@@ -177,7 +178,7 @@ namespace Dialog
                         AdjustMarkups(markupBuilder);
 
                         var markupText = markupBuilder.ToString().ToLower();
-                        if (!gameConfiguration.enableTextFormatting  || !IsWhiteListed(markupText))
+                        if (!gameConfiguration.EnableTextFormatting  || !IsWhiteListed(markupText))
                         {
                             // don't do text formatting
                         }
