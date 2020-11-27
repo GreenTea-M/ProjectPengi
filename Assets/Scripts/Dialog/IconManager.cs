@@ -200,13 +200,16 @@ namespace Dialog
 
         public void ShowElements(bool shouldShow)
         {
-            foreach (var characterScript in _characterList)
+            if (!shouldShow)
             {
-                characterScript.gameObject.SetActive(shouldShow);
-            }
+                foreach (var characterScript in _characterList)
+                {
+                    characterScript.Leave();
+                }
         
-            _mainCharacter.gameObject.SetActive(shouldShow);
-            _narratingCharacter.gameObject.SetActive(shouldShow);
+                _mainCharacter.Leave();
+                _narratingCharacter.Leave();
+            }
         }
 
         public void WriteAutoSave()

@@ -9,8 +9,13 @@ namespace Gameplay
     public class InputManager : MonoBehaviour
     {
         public DialogueUIManager dialogueUiManager;
+        public float clickDelay = 0.25f;
+        
+        [HideInInspector]
+        public InputState inputState = InputState.Normal;
+        
         private Camera _camera;
-        private InputState _inputState = InputState.Normal;
+        private float _toleratedTime = 0f;
 
         private void Awake()
         {
@@ -21,38 +26,58 @@ namespace Gameplay
 
         public void ContinueText(InputAction.CallbackContext context)
         {
-            if (context.started)
+            if (context.started && Time.time > _toleratedTime)
             {
-                dialogueUiManager.MarkLineComplete();
+                switch (inputState)
+                {
+                    case InputState.Normal:
+                        dialogueUiManager.MarkLineComplete();
+                        break;
+                    case InputState.Shelving:
+                        break;
+                    case InputState.Pause:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
         }
 
         public void OnClick(InputAction.CallbackContext context)
         {
-            switch (_inputState)
+            if (context.started)
             {
-                case InputState.Normal:
-                    break;
-                case InputState.Shelving:
-                    var position = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-                    var hit = Physics2D.Raycast(position, Vector2.zero);
-                    if (hit)
+                var position = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                var hit = Physics2D.Raycast(position, Vector2.zero);
+
+                if (hit)
+                {
+                    var clickableItem = hit.transform.gameObject.GetComponent<IClickable>();
+
+                    switch (inputState)
                     {
-                        var shelfItem = hit.transform.gameObject.GetComponent<ShelfItem>();
-                        if (shelfItem != null)
-                        {
-                            shelfItem.OnClick();
-                        }
+                        case InputState.Normal:
+                        case InputState.Shelving:
+                            clickableItem?.OnClick();
+                            break;
+                        case InputState.Pause:
+                            // if we can cast it to ClickableItem, go activate
+                            (clickableItem as ClickableItem)?.OnClick();
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                }
             }
+            
+            // for mouse clicks:
+            ContinueText(context);
         }
 
-        public void SetInputState(InputState shelving)
+        public void SetInputState(InputState state)
         {
-            _inputState = shelving;
+            _toleratedTime = Time.time + clickDelay;
+            inputState = state;
         }
     }
     
@@ -60,6 +85,7 @@ namespace Gameplay
     public enum InputState
     {
         Normal,
-        Shelving
+        Shelving,
+        Pause
     }
 }

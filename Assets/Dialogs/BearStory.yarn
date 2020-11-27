@@ -41,9 +41,11 @@ position: 358,188
     <<hideItem shelf>>
     <<changeBackground carpentry>>
     <<showDialogue>>
+    <<fakeLastDialog Pengi Phew! I just finished arranging the shelves!>>
     [[Bear.PuzzleDone]]
 <<endif>>
 <<doPuzzle shelf>>
+<<fakeLastDialog Pengi I'm still arranging the shelves...>>
 <<hideItem shelf>>
 <<changeBackground shelf>>
 <<if $peaceSign == 1>>
@@ -66,6 +68,7 @@ position: 358,188
     [[Bear.MarbleDialogue]]
 <<endif>>
 <<debugLog This should not be happening>>
+Wait a sec...
 [[I guess it's all done now|Bear.PuzzleDone]]
 ===
 title: Bear.PuzzleDone

@@ -262,15 +262,12 @@ namespace GameSystem
             foreach (var character in characterPrefabList)
             {
                 var characterScript = character.GetComponent<UnifiedCharacterScript>();
-                Debug.Log($"{characterScript.RealName} vs {currentSpeaker}");
                 if (characterScript.IsSimilar(currentSpeaker))
                 {
                     image.sprite = characterScript.defaultSprite.defaultState.sprite;
                     break;
                 }
             }
-            
-            Debug.Log("Not found...");
         }
     }
     

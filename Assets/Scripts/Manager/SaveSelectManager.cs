@@ -25,38 +25,38 @@ namespace Manager
             // assumption: you cannot go here with auto save checked in main menu
             for (int i = 0; i < gameConfiguration.maxSaveSlots; i++)
             {
-                if (!CreateSaveSlot(i))
-                {
-                    break;
-                }
+                CreateSaveSlot(i);
             }
         }
 
-        private bool CreateSaveSlot(int index)
+        private void CreateSaveSlot(int index)
         {
-            if (!gameConfiguration.SaveIo.RequestExecutor()
+            SaveData saveData = null;
+            
+            if (gameConfiguration.SaveIo.RequestExecutor()
                 .AtSlotIndex(index)
                 .DoesExist())
             {
-                return false;
+                saveData = gameConfiguration.SaveIo.RequestExecutor()
+                    .AtSlotIndex(index)
+                    .LoadSlot();
             }
-            
-            var saveData = gameConfiguration.SaveIo.RequestExecutor()
-                .AtSlotIndex(index)
-                .LoadSlot();
 
             var saveSlotScript = Instantiate(saveSlotPrefab, panelParent)
                 .GetComponent<PengiSaveSlot>();
             Debug.Assert(saveSlotScript != null);
             saveSlotScript.LoadSaveData(this, saveData, index);
-
-            return true;
         }
 
         public void LoadSaveData(int index)
         {
             gameConfiguration.LoadData(index);
             SceneManager.LoadScene("DialogScene");
+        }
+
+        public void GoBack()
+        {
+            SceneManager.LoadScene("MainMenuScene");
         }
     }
 }

@@ -427,6 +427,7 @@ namespace UI
         public void Leave()
         {
             characterState = CharacterState.Disappearing;
+            dialogueText.text = "";
         }
     }
     

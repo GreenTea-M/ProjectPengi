@@ -3,6 +3,7 @@ using Dialog;
 using GameSystem;
 using GameSystem.Save;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Yarn.Unity;
 
 namespace Manager
@@ -76,6 +77,11 @@ namespace Manager
         {
             dialogueUiManager.RequestLastDialogWrite();
             memory.Write(_saveClient.autoSave);
+        }
+
+        public void GoBack()
+        {
+            SceneManager.LoadScene("MainMenuScene");
         }
     }
 }

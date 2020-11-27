@@ -93,6 +93,7 @@ namespace GameSystem
 
         public void FadeIn(AudioClip clip, CustomCommands commands)
         {
+            // _audioSource = GetComponent<AudioSource>();
             _parent = commands;
             _audioSource.clip = clip;
             _audioSource.volume = 0f;

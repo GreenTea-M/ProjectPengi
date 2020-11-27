@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Text;
+using Gameplay;
 using GameSystem;
 using GameSystem.Save;
 using UI;
@@ -22,6 +23,7 @@ namespace Dialog
     public class DialogueUIManager : Yarn.Unity.DialogueUIBehaviour, SaveClientCallback
     {
         [FormerlySerializedAs("assetManager")] public IconManager iconManager;
+        public InputManager inputManager;
 
         [Header("Critical")] public GameConfiguration gameConfiguration;
 
@@ -231,6 +233,7 @@ namespace Dialog
             _lastDialog = cleanStringBuilder.ToString();
             
             bool isSkipping = false;
+            // todo: text speed multiplier read
             for (int i = 0; i < textLength; i++)
             {
                 // onLineUpdate?.Invoke(stringBuilder.ToString());
@@ -242,6 +245,10 @@ namespace Dialog
                 }
                 
                 character.ShowCharacters(i);
+                while (inputManager.inputState == InputState.Pause)
+                {
+                    yield return new WaitForSeconds(1f/60f);
+                }
                 yield return new WaitForSeconds(TextRate * textSpeedMultiplier);
             }
             
@@ -453,6 +460,12 @@ namespace Dialog
         {
             saveClient.autoSave.currentSpeaker = _lastSpeaker;
             saveClient.autoSave.lastDialog = _lastDialog;
+        }
+
+        public void SetFakeLastDialog(string speaker, string message)
+        {
+            _lastSpeaker = speaker;
+            _lastDialog = message;
         }
     }
 }
