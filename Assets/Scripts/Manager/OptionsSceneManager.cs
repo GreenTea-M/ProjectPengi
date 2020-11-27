@@ -23,6 +23,7 @@ namespace Manager
         public Slider sliderTextRate;
         public Slider sliderTextSize;
         public Slider sliderTextOpacity;
+        public Slider sliderVolume;
         public TMP_Dropdown dropdownFont;
         public TMP_Dropdown dropdownShake;
         public TMP_Dropdown dropdownTextFormatting;
@@ -41,6 +42,7 @@ namespace Manager
             Debug.Assert(sliderTextRate != null);
             Debug.Assert(sliderTextRate != null);
             Debug.Assert(sliderTextOpacity != null);
+            Debug.Assert(sliderVolume != null);
             Debug.Assert(dropdownFont != null);
             Debug.Assert(dropdownShake != null);
             Debug.Assert(dropdownTextFormatting != null);
@@ -65,6 +67,7 @@ namespace Manager
             dropdownFont.onValueChanged.AddListener(OnFontChanged);
             dropdownShake.onValueChanged.AddListener(OnShakeChanged);
             dropdownTextFormatting.onValueChanged.AddListener(OnTextFormattingChanged);
+            sliderVolume.onValueChanged.AddListener(OnVolumeChanged);
         }
 
         private void UpdateValues()
@@ -76,6 +79,7 @@ namespace Manager
             dropdownFont.value = gameConfiguration.FontIndex;
             dropdownShake.value = gameConfiguration.ShouldShake ? 0 : 1;
             dropdownTextFormatting.value = gameConfiguration.EnableTextFormatting ? 0 : 1;
+            sliderVolume.value = gameConfiguration.volume;
             PlayerPrefs.Save();
         }
 
@@ -133,6 +137,12 @@ namespace Manager
         private void OnTextFormattingChanged(int value)
         {
             gameConfiguration.EnableTextFormatting = value == 0;
+            onFontChangedEvent.Raise();
+        }
+
+        private void OnVolumeChanged(float value)
+        {
+            gameConfiguration.Volume = value;
             onFontChangedEvent.Raise();
         }
 

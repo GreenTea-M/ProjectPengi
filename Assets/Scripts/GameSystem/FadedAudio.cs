@@ -8,17 +8,21 @@ namespace GameSystem
     [RequireComponent(typeof(AudioSource))]
     public class FadedAudio : MonoBehaviour
     {
+        public GameConfiguration gameConfiguration;
         public float changeRate = 1f;
         public float maxVolume = 0.35f;
         public float fadeOutRatio = 0.5f;
         
+        // for other things
+        
+        public bool playOnStart = false;
+        
         private AudioSource _audioSource;
         private AudioMixerGroup _audioMixerGroup;
-        private const string VolumeParam = "Volume";
-        private CustomCommands parent;
-        private State state = State.Nothing;
+        private CustomCommands _parent;
+        private State _state = State.Nothing;
 
-        private float fadeOutRate = 1f; 
+        private float _fadeOutRate = 1f; 
 
         private enum State
         {
@@ -32,18 +36,26 @@ namespace GameSystem
             _audioSource = GetComponent<AudioSource>();
         }
 
+        private void Start()
+        {
+            if (playOnStart)
+            {
+                FadeIn(GetComponent<AudioSource>().clip, null);
+            }
+        }
+
         private void Update()
         {
-            switch (state)
+            switch (_state)
             {
                 case State.Nothing:
                     break;
                 
                 case State.FadeIn:
-                    if (_audioSource.volume >= maxVolume)
+                    if (_audioSource.volume >= maxVolume * gameConfiguration.Volume)
                     {
-                        _audioSource.volume = maxVolume;
-                        state = State.Nothing;
+                        _audioSource.volume = maxVolume * gameConfiguration.Volume;
+                        _state = State.Nothing;
                     }
                     else
                     {
@@ -55,13 +67,16 @@ namespace GameSystem
                     if (_audioSource.volume <= 0f)
                     {
                         _audioSource.volume = 0f;
-                        state = State.Nothing;
+                        _state = State.Nothing;
                         _audioSource.Stop();
-                        parent.ReturnAudio(this);
+                        if (_parent != null)
+                        {
+                            _parent.ReturnAudio(this);
+                        }
                     }
                     else
                     {
-                        _audioSource.volume -= fadeOutRate * Time.deltaTime;
+                        _audioSource.volume -= _fadeOutRate * Time.deltaTime;
                     }
                     break;
                 
@@ -71,19 +86,24 @@ namespace GameSystem
             }
         }
 
+        public void OnOptionsChanged()
+        {
+            _state = State.FadeIn;
+        }
+
         public void FadeIn(AudioClip clip, CustomCommands commands)
         {
-            parent = commands;
+            _parent = commands;
             _audioSource.clip = clip;
             _audioSource.volume = 0f;
             _audioSource.Play();
-            state = State.FadeIn;
+            _state = State.FadeIn;
         }
 
         public void FadeOut()
         {
-            fadeOutRate = changeRate * fadeOutRatio;
-            state = State.FadeOut;
+            _fadeOutRate = changeRate * fadeOutRatio;
+            _state = State.FadeOut;
         }
     }
 }

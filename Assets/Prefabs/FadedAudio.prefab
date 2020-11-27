@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3517092227973703704}
   - component: {fileID: 3517092227973703705}
   - component: {fileID: 4939684179233824376}
+  - component: {fileID: 3124596790673466902}
   m_Layer: 0
   m_Name: FadedAudio
   m_TagString: Untagged
@@ -41,7 +42,8 @@ AudioSource:
   m_GameObject: {fileID: 3517092227973703711}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 94c4d4dbc6cb03d47971c685b4631975, type: 2}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 94c4d4dbc6cb03d47971c685b4631975,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -140,6 +142,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f3ae1d73ba5d54bad4ecb3783c6ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
   changeRate: 0.0625
   maxVolume: 0.25
   fadeOutRatio: 2
+  playOnStart: 0
+--- !u!114 &3124596790673466902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3517092227973703711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e839e4c12473014b9b3d3faccc0f61d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 239f350a56175a74eb2f22e140ad4a89, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4939684179233824376}
+        m_MethodName: OnOptionsChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

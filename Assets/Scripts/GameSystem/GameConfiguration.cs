@@ -115,6 +115,15 @@ namespace GameSystem
                 PlayerPrefs.SetInt(KeyTextFormatting, enableTextFormatting ? 1 : 0);
             }
         }
+
+        public float volume = 0.75f;
+        public float Volume { get => volume;
+            set
+            {
+                volume = value;
+                PlayerPrefs.SetFloat(KeyVolume, value);
+            } 
+        }
         
         public Color fontColor = Color.black;
     
@@ -134,7 +143,6 @@ namespace GameSystem
 
         public static int AutoSaveIndex = 0;
         private const float _shakeStrength = 1f;
-        private bool _isPrefSynced = false;
     
         private readonly string KeyTextRate = "TextRate";
         private readonly string KeyShouldShake = "ShakeStrength";
@@ -142,10 +150,12 @@ namespace GameSystem
         private readonly string KeyFontSize = "FontSize";
         private readonly string KeyTextOpacity = "TextOpacity";
         private readonly string KeyTextFormatting = "TextFormatting";
+        private readonly string KeyVolume = "Volume";
 
         private void Awake()
         {
             saveIo = new SaveIO(this);
+            SyncWithPlayerPref();
         }
 
         public float ShakeStrength => shouldShake ? _shakeStrength : 0f;
@@ -170,6 +180,18 @@ namespace GameSystem
                 fontSize = PlayerPrefs.GetFloat(KeyFontSize);
                 textOpacity = PlayerPrefs.GetFloat(KeyTextOpacity);
                 enableTextFormatting = PlayerPrefs.GetInt(KeyTextFormatting) == 1;
+                volume = PlayerPrefs.GetFloat(KeyVolume);
+            }
+            else
+            {
+                TextRate = textRate;
+                ShouldShake = shouldShake;
+                fontIndex = FontIndex;
+                FontSize = fontSize;
+                TextOpacity = textOpacity;
+                EnableTextFormatting = enableTextFormatting;
+                Volume = volume;
+                PlayerPrefs.Save();
             }
         }
 

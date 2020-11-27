@@ -39,7 +39,8 @@ MonoBehaviour:
   fontSize: 12
   textOpacity: 0.97
   enableTextFormatting: 1
-  fontColor: {r: 0.2392157, g: 0.14117648, b: 0.25882354, a: 1}
+  volume: 1
+  fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
     currentYarnNode: Bear.Intro
