@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using Gameplay;
 using GameSystem;
@@ -163,7 +164,7 @@ namespace Dialog
             var formattedStringBuilder = new StringBuilder();
             var cleanStringBuilder = new StringBuilder();
             var markupBuilder = new StringBuilder();
-            var textSpeedMultiplier = 1f;
+            var textMarks = new Queue<SpecialTextMark>();
             // todo: do something about markup symbols
             // todo: research text gui things that people may use
             // todo: change text speed
@@ -190,13 +191,23 @@ namespace Dialog
                             var parseArgs = markupText.Split('=');
                             if (parseArgs.Length == 1)
                             {
-                                textSpeedMultiplier = 1f;
+                                textMarks.Enqueue(new SpecialTextMark
+                                {
+                                    argument = "1",
+                                    effect = SpecialTextMark.Effect.TextSpeed,
+                                    index = cleanStringBuilder.Length
+                                });
                             }
                             else if (parseArgs.Length == 2 &&
                                      float.TryParse(parseArgs[1].Replace(">", "")
                                          .Replace("/", ""), out var tmpFloat))
                             {
-                                textSpeedMultiplier = 1f / tmpFloat;
+                                textMarks.Enqueue(new SpecialTextMark
+                                {
+                                    argument = $"{1f / tmpFloat}",
+                                    effect = SpecialTextMark.Effect.TextSpeed,
+                                    index = cleanStringBuilder.Length
+                                });
                             }
                             else
                             {
@@ -233,10 +244,24 @@ namespace Dialog
             _lastDialog = cleanStringBuilder.ToString();
             
             bool isSkipping = false;
-            // todo: text speed multiplier read
+            var textSpeedMultiplier = 1f;
             for (int i = 0; i < textLength; i++)
             {
-                // onLineUpdate?.Invoke(stringBuilder.ToString());
+                if (textMarks.Count != 0 && textMarks.Peek().index <= i)
+                {
+                    var effect = textMarks.Dequeue();
+                    switch (effect.effect)
+                    {
+                        case SpecialTextMark.Effect.TextSpeed:
+                            if (float.TryParse(effect.argument, out var value))
+                            {
+                                textSpeedMultiplier = value;
+                            }
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                }
 
                 if (userRequestedNextLine)
                 {
@@ -466,6 +491,18 @@ namespace Dialog
         {
             _lastSpeaker = speaker;
             _lastDialog = message;
+        }
+    }
+
+    public class SpecialTextMark
+    {
+        public string argument = "";
+        public int index = 0;
+        public Effect effect;
+
+        public enum Effect
+        {
+            TextSpeed
         }
     }
 }
