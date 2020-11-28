@@ -47,7 +47,7 @@ MonoBehaviour:
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
-    currentYarnNode: Bear.PuzzleStart
+    currentYarnNode: Intro.Dream
     lastDialog: 'Brynhilda: So, what can I do for you today?'
     lastAudioName: fishMarket
     lastHeader: carpentry

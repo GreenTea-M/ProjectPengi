@@ -2548,7 +2548,7 @@ MonoBehaviour:
     aliases: []
     prefab: {fileID: 1976019193694193293, guid: 51a21d1fe1a3c8147b6ccdf05b71a5bf,
       type: 3}
-    displayName: Dream...
+    displayName: 
   shelfItemDataList:
   - prefabShelfItem: {fileID: 4122080507588346039, guid: 1cea3cb0ef98e0f449c9a635e53f3ade,
       type: 3}
@@ -3454,6 +3454,8 @@ MonoBehaviour:
   yarnScripts:
   - {fileID: 2480198943629176163, guid: 820ead3561191414e96d678eee1b79a7, type: 3}
   - {fileID: 2480198943629176163, guid: a5b48bfd63bffbd4496b2497ade026c3, type: 3}
+  - {fileID: 2480198943629176163, guid: 158c82c1cbfd81e408f074d22a5f7e45, type: 3}
+  - {fileID: 2480198943629176163, guid: 9e7f4dec367a3974a87cc9c3bdd2d3fa, type: 3}
   textLanguage: 
   variableStorage: {fileID: 1066951502}
   dialogueUI: {fileID: 1856837811}
