@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f81a6875dca38884f8c44d1da0198dd1
+guid: 158c82c1cbfd81e408f074d22a5f7e45
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -8,11 +8,12 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
-  baseLanguageID: en-US
+  baseLanguageID: 
   stringIDs: []
   compilationStatus: 0
   isSuccesfullyCompiled: 0
-  compilationErrorMessage: "Error on line 110 at position 17:\nmismatched input 'to'
-    expecting '('\r\n<<set Signature to 1>>\r\n                ^^"
+  compilationErrorMessage: "Error on line 87 at position 13:\nmismatched input 'cuts'
+    expecting FORMAT_FUNCTION_EXPRESSION_START\r\n[Background cuts to shot of sunrise
+    over ocean]\r\r\n            ^^^^"
   baseLanguage: {instanceID: 0}
   localizations: []

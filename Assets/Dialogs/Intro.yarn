@@ -84,24 +84,24 @@ position: -1293,1
 
 P: Hello everyone, this is your captain speaking. Hope you all had a wonderful sleep and as you look over to the left side of the plane you can see sun rising over the ocean.
 
-[Background cuts to shot of sunrise over ocean]
+<<changeBackground sunset>>
 
 P: Ain’t it something?
 
-[The screen shakes as the music gets cut by a sharp noise to denote them being woken from their daydream.]
+// The screen shakes as the music gets cut by a sharp noise to denote them being woken from their daydream.
 
 P: Huh?
 
 ->Look for who said that
     <i>Pengi turns their head, looking for the source of the voice</i>
     PtC: The boss is going to find you slacking again, so stop dozing off.
-    [The screen shake and sound occur each time Paul tries to wake up Pengi]
+    // The screen shake and sound occur each time Paul tries to wake up Pengi
 
 ->Question the voice
 	P: Who said that?
 //dreamy looking text? like floating?
     PtC: Hehehe, it’s me, your conscience and I’m here to tell you to wake up.
-    [The screen shake and sound occur each time Paul tries to wake up Pengi]
+    // The screen shake and sound occur each time Paul tries to wake up Pengi
 
 P: Stop. Stop. Stop!
 [[Intro.Office]]
@@ -117,11 +117,11 @@ position: -1041,-6
 <<playAudio officeSFX>>
 <<enterStage Paul>>
 
-[A loud whack occurs as the screen fades to white and changes to the background of an office with Pengi wearing their usual business outfit]
+// A loud whack occurs as the screen fades to white and changes to the background of an office with Pengi wearing their usual business outfit
 
 <i>Wiping off the drool running down their face, Pengi opens their eyes and realizes they are back in their dour office, surrounded by the same coworkers, sitting on the desk they had been assigned a year ago. They sigh.</i>
 
-[The background noise changes to office noises]
+<<The background noise changes to office noises>>
 
 PtC: You were dreaming about flying again weren’t you?
 
