@@ -62,9 +62,6 @@ namespace Dialog
             {
                 _saveClient = gameConfiguration.RequestSaveAccess(this);
             }
-
-            InformSpeaker(_saveClient.currentSave.currentSpeaker, true);
-            InformSpeaker(_saveClient.currentSave.previousSpeaker, true);
         }
     
         public UnifiedCharacterScript InstantiateCharacter(GameObject prefab)

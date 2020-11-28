@@ -18,7 +18,7 @@ MonoBehaviour:
   - fontAsset: {fileID: 11400000, guid: dc35776587d58074b9f6a9b0249e7b65, type: 2}
     fontName: Nunito
   - fontAsset: {fileID: 11400000, guid: d9a4b0be89ba17d4db1fb84d1a306862, type: 2}
-    fontName: renner*
+    fontName: Jost*
   - fontAsset: {fileID: 11400000, guid: 1db8899e05c16f244914770b9fbd192d, type: 2}
     fontName: Poppins
   - fontAsset: {fileID: 11400000, guid: f2d8582a013d08140a2dcd71b71e6981, type: 2}
@@ -38,7 +38,7 @@ MonoBehaviour:
   - {fileID: 4183247458888187938, guid: 5b5895be60c0a59449f7b6aa2533c6ce, type: 3}
   - {fileID: 6661086423002316218, guid: 39d0536adcf7f154bb4969bbaf234985, type: 3}
   textRate: 0.025
-  shouldShake: 0
+  shouldShake: 1
   fontIndex: 0
   fontSize: 12
   textOpacity: 0.97
@@ -47,29 +47,33 @@ MonoBehaviour:
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
-    currentYarnNode: Bear.Intro
-    lastDialog: 
-    lastAudioName: fishMarket
+    currentYarnNode: Bear.ToiletDialogue
+    lastDialog: I'm still arranging the shelves...
+    lastAudioName: BrynhildaBear
     lastHeader: carpentry
-    savedVariables: []
+    savedVariables:
+    - name: toilet
+      value: 2
+      type: 0
     isLeft: 1
-    currentSpeaker: 
+    currentSpeaker: Pengi
     previousSpeaker: 
-    activeCharacterList: []
+    activeCharacterList:
+    - Brynhilda
   isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.EnterStore
-    lastDialog: What greets them first are the various sounds and smells of people
-      chatting, food cooking and so on. Next came the sights, a street filled with
-      various shops, all seemingly different and random compared to the next. Overwhelmed
-      by the smells and sounds surrounding the area Pengi rushes into the nearest
-      store.
-    lastAudioName: OldMole
+    currentYarnNode: Bear.PuzzleStart
+    lastDialog: "Brynhilda: They didn\u2019t really catch on..."
+    lastAudioName: BrynhildaBear
     lastHeader: carpentry
-    savedVariables: []
+    savedVariables:
+    - name: toilet
+      value: 2
+      type: 0
     isLeft: 1
-    currentSpeaker: 
+    currentSpeaker: Brynhilda
     previousSpeaker: 
-    activeCharacterList: []
+    activeCharacterList:
+    - Brynhilda
   gameInstance: {fileID: 0}
