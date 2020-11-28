@@ -61,33 +61,14 @@ MonoBehaviour:
   isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.CondShoe
-    lastDialog: "Pengi: -a-and this is my big break to get enough money to  afford
-      the lessons and\u2026"
+    currentYarnNode: Bear.BaseBallDialogue
+    lastDialog: I'm still arranging the shelves...
     lastAudioName: fishMarket
     lastHeader: carpentry
     savedVariables:
-    - name: teddy
-      value: 2
-      type: 0
-    - name: peaceSign
-      value: 2
-      type: 0
-    - name: marble
-      value: 2
-      type: 0
     - name: baseball
       value: 2
       type: 0
-    - name: toilet
-      value: 2
-      type: 0
-    - name: grammyPicture
-      value: 2
-      type: 0
-    - name: puzzleDone
-      value: True
-      type: 2
     isLeft: 1
     currentSpeaker: Pengi
     previousSpeaker: 

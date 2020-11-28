@@ -2472,6 +2472,8 @@ MonoBehaviour:
   iconManager: {fileID: 1066951500}
   blackScreen: {fileID: 1792762520}
   locationPlate: {fileID: 540369134}
+  sfxEffectPrefab: {fileID: 6656606104870877642, guid: 1476ed545379dab46b078203cda30bff,
+    type: 3}
   delayTime: 3
   fadeRate: 1
   audioList:
@@ -2483,6 +2485,8 @@ MonoBehaviour:
     name: OldMole
   - audioClip: {fileID: 8300000, guid: 0104f71950281e34897329d7da42b360, type: 3}
     name: BrynhildaBear
+  - audioClip: {fileID: 8300000, guid: ea4fe4272e9b15240a820d5dc0d13603, type: 3}
+    name: testSfx
   puzzleList:
   - puzzlePrefab: {fileID: 8421363479306282890, guid: 1eaee38122a47e64f82956c52fdc7b32,
       type: 3}

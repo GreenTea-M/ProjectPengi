@@ -324,6 +324,7 @@ tags:
 colorID: 0
 position: -275,530
 ---
+<<playSfx testSfx>>
 P: Is... is this trophy made out of wood?
 B: Yes it is, but that’s because my brother won it during the Mole Wars.
 P: Oh, right! I remember learning about that in school. There was a shortage of metal right?

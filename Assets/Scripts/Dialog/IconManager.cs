@@ -118,6 +118,11 @@ namespace Dialog
                         break;
                     }
                 }
+
+                if (!shouldRearrange)
+                {
+                    Debug.LogWarning($"Speaker not found: {candidateSpeaker}");
+                }
             }
 
             if (shouldRearrange)

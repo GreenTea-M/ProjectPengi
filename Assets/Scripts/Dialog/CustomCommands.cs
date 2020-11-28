@@ -21,7 +21,7 @@ namespace Dialog
 {
     // todo: play current song being played??? on load
     [RequireComponent(typeof(CinemachineImpulseSource))]
-    public class CustomCommands : MonoBehaviour, SaveClientCallback
+    public class CustomCommands : MonoBehaviour, SaveClientCallback, PoolableInstantAudio.IPooler
     {
         public GameConfiguration gameConfiguration;
         public MemoryStorage memoryStorage;
@@ -29,6 +29,7 @@ namespace Dialog
         public IconManager iconManager;
         public SpriteRenderer blackScreen;
         public LocationPlate locationPlate;
+        public GameObject sfxEffectPrefab;
 
         [Header("Variables")] public float delayTime = 3f;
         public float fadeRate = 0.05f;
@@ -67,6 +68,7 @@ namespace Dialog
         private State _state = State.None;
         private float _alpha = 0f;
         private BackgroundScript[] _backgroundScriptList;
+        private Stack<PoolableInstantAudio> _instantAudioPool = new Stack<PoolableInstantAudio>();
 
         private enum State
         {
@@ -148,6 +150,7 @@ namespace Dialog
             dialogueRunner.AddCommandHandler("enterStage", EnterStage);
             dialogueRunner.AddCommandHandler("exitStage", ExitStage);
             dialogueRunner.AddCommandHandler("fakeLastDialog", FakeLastDialog);
+            dialogueRunner.AddCommandHandler("playSfx", PlaySFX);
         }
 
         private void Start()
@@ -176,6 +179,42 @@ namespace Dialog
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private void PlaySFX(string[] parameters)
+        {
+            if (parameters.Length == 0)
+            {
+                Debug.Log("PlaySFX: no parameter");
+                return;
+            }
+            
+            string searchTerm = parameters[0].ToUpper();
+            foreach (var audioItem in audioList)
+            {
+                if (!audioItem.name.ToUpper().Equals(searchTerm)) continue;
+                
+                AudioClip audioClip = audioItem.audioClip;
+                Debug.Assert(audioClip != null);
+
+                PoolableInstantAudio sfx;
+                if (_instantAudioPool.Count == 0)
+                {
+                    sfx = Instantiate(sfxEffectPrefab).GetComponent<PoolableInstantAudio>();
+                    sfx.Initialize();
+                }
+                else
+                {
+                    sfx = _instantAudioPool.Pop();
+                }
+            
+                Debug.Assert(sfx != null);
+                sfx.Play(this, audioClip);
+
+                return;
+            }
+            
+            Debug.Log($"Audio clip not found for: {searchTerm}");
         }
 
         private void EnterStage(string[] parameter)
@@ -558,6 +597,11 @@ namespace Dialog
         public void WriteAutoSave()
         {
             _saveClient.autoSave.lastAudioName = _lastAudioName;
+        }
+
+        public void ReturnInstantAudio(PoolableInstantAudio finished)
+        {
+            _instantAudioPool.Push(finished);
         }
     }
 
