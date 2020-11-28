@@ -47,8 +47,23 @@ MonoBehaviour:
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
-    currentYarnNode: Bear.PuzzleDone
-    lastDialog: Phew! I just finished arranging the shelves!
+    currentYarnNode: Bear.PuzzleStart
+    lastDialog: 'Brynhilda: So, what can I do for you today?'
+    lastAudioName: fishMarket
+    lastHeader: carpentry
+    savedVariables: []
+    isLeft: 1
+    currentSpeaker: Brynhilda
+    previousSpeaker: 
+    activeCharacterList:
+    - Brynhilda
+    - Grammy
+  isSaveDirty: 1
+  autoSave:
+    name: 
+    currentYarnNode: Bear.CondShoe
+    lastDialog: "Pengi: -a-and this is my big break to get enough money to  afford
+      the lessons and\u2026"
     lastAudioName: fishMarket
     lastHeader: carpentry
     savedVariables:
@@ -75,40 +90,6 @@ MonoBehaviour:
       type: 2
     isLeft: 1
     currentSpeaker: Pengi
-    previousSpeaker: 
-    activeCharacterList:
-    - Brynhilda
-  isSaveDirty: 1
-  autoSave:
-    name: 
-    currentYarnNode: Bear.Shoe
-    lastDialog: 'Brynhilda: So, what can I do for you today?'
-    lastAudioName: fishMarket
-    lastHeader: carpentry
-    savedVariables:
-    - name: teddy
-      value: 2
-      type: 0
-    - name: peaceSign
-      value: 2
-      type: 0
-    - name: marble
-      value: 2
-      type: 0
-    - name: baseball
-      value: 2
-      type: 0
-    - name: toilet
-      value: 2
-      type: 0
-    - name: grammyPicture
-      value: 2
-      type: 0
-    - name: puzzleDone
-      value: True
-      type: 2
-    isLeft: 1
-    currentSpeaker: Brynhilda
     previousSpeaker: 
     activeCharacterList:
     - Brynhilda

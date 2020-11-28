@@ -2,6 +2,7 @@ using System;
 using Dialog;
 using GameSystem;
 using GameSystem.Save;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Yarn.Unity;
@@ -19,6 +20,7 @@ namespace Manager
         public DialogueRunner runner;
         public MemoryStorage memory;
         public DialogueUIManager dialogueUiManager;
+        public AutoSaveText autoSaveText;
         
         private SaveClient _saveClient;
         private GameInstance _gameInstance;
@@ -68,6 +70,7 @@ namespace Manager
                 // write on save client
                 _saveClient.autoSave.currentYarnNode = currentNode;
                 _gameInstance.WriteOnAutoSave();
+                autoSaveText.AnimateText();
             }
             
             _isSaveDirty = true;
