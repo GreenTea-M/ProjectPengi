@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ec866e657ac3346a8dc305750470c7, type: 3}
   m_Name: GameConfiguration
   m_EditorClassIdentifier: 
-  maxSaveSlots: 7
+  maxSaveSlots: 12
   baseConfiguration: {fileID: 11400000, guid: dcbf9e10567ae3f4e9278d0692211347, type: 2}
   fontList:
   - fontAsset: {fileID: 11400000, guid: dc35776587d58074b9f6a9b0249e7b65, type: 2}
@@ -40,34 +40,77 @@ MonoBehaviour:
   textRate: 0.025
   shouldShake: 0
   fontIndex: 0
-  fontSize: 12
+  fontSize: 11
   textOpacity: 0.97
-  enableTextFormatting: 1
-  volume: 0.75
+  enableTextFormatting: 0
+  volume: 0.8415678
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
-    currentYarnNode: Bear.PuzzleStart
-    lastDialog: 
+    currentYarnNode: Bear.PuzzleDone
+    lastDialog: Phew! I just finished arranging the shelves!
     lastAudioName: fishMarket
     lastHeader: carpentry
-    savedVariables: []
+    savedVariables:
+    - name: teddy
+      value: 2
+      type: 0
+    - name: peaceSign
+      value: 2
+      type: 0
+    - name: marble
+      value: 2
+      type: 0
+    - name: baseball
+      value: 2
+      type: 0
+    - name: toilet
+      value: 2
+      type: 0
+    - name: grammyPicture
+      value: 2
+      type: 0
+    - name: puzzleDone
+      value: True
+      type: 2
     isLeft: 1
-    currentSpeaker: 
+    currentSpeaker: Pengi
     previousSpeaker: 
     activeCharacterList:
     - Brynhilda
   isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.PuzzleStart
-    lastDialog: Pengi, feeling a flush of red creeping up to their face pick up...
-    lastAudioName: BrynhildaBear
+    currentYarnNode: Bear.Shoe
+    lastDialog: 'Brynhilda: So, what can I do for you today?'
+    lastAudioName: fishMarket
     lastHeader: carpentry
-    savedVariables: []
+    savedVariables:
+    - name: teddy
+      value: 2
+      type: 0
+    - name: peaceSign
+      value: 2
+      type: 0
+    - name: marble
+      value: 2
+      type: 0
+    - name: baseball
+      value: 2
+      type: 0
+    - name: toilet
+      value: 2
+      type: 0
+    - name: grammyPicture
+      value: 2
+      type: 0
+    - name: puzzleDone
+      value: True
+      type: 2
     isLeft: 1
-    currentSpeaker: 
+    currentSpeaker: Brynhilda
     previousSpeaker: 
     activeCharacterList:
     - Brynhilda
+    - Grammy
   gameInstance: {fileID: 0}

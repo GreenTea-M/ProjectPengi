@@ -37,7 +37,7 @@ namespace UI
                         HighlightText();
                         break;
                     case SelectionState.Pressed:
-                        _buttonText.text = $"<b>>>></b> <u>{_optionText}</u> <b><<<</b>";
+                        _buttonText.text = $"<b>>>></b> <u>{_optionText}</u>";
                         break;
                     case SelectionState.Selected:
                         NormalText();
@@ -59,11 +59,11 @@ namespace UI
         {
             if (_count % 2 == 0)
             {
-                _buttonText.text = $">  <u>{_optionText}</u>  <";
+                _buttonText.text = $">  <u>{_optionText}</u>";
             }
             else
             {
-                _buttonText.text = $"> <u>{_optionText}</u> <";
+                _buttonText.text = $"> <u>{_optionText}</u>";
             }
         }
 
@@ -73,13 +73,13 @@ namespace UI
             switch (remainder)
             {
                 case 0:
-                    _buttonText.text = $"<b>></b>>> <u>{_optionText}</u> <<<b><</b>";
+                    _buttonText.text = $"<b>></b>>> <u>{_optionText}</u>";
                     break;
                 case 1:
-                    _buttonText.text = $"><b>></b>> <u>{_optionText}</u> <<b><</b><";
+                    _buttonText.text = $"><b>></b>> <u>{_optionText}</u>";
                     break;
                 case 2:
-                    _buttonText.text = $">><b>></b> <u>{_optionText}</u> <b><</b><<";
+                    _buttonText.text = $">><b>></b> <u>{_optionText}</u>";
                     break;
                 default:
                     break;

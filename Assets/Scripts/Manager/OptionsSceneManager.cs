@@ -22,7 +22,6 @@ namespace Manager
 
         public Slider sliderTextRate;
         public Slider sliderTextSize;
-        public Slider sliderTextOpacity;
         public Slider sliderVolume;
         public TMP_Dropdown dropdownFont;
         public TMP_Dropdown dropdownShake;
@@ -41,7 +40,6 @@ namespace Manager
             Debug.Assert(onFontChangedEvent != null);
             Debug.Assert(sliderTextRate != null);
             Debug.Assert(sliderTextRate != null);
-            Debug.Assert(sliderTextOpacity != null);
             Debug.Assert(sliderVolume != null);
             Debug.Assert(dropdownFont != null);
             Debug.Assert(dropdownShake != null);
@@ -63,7 +61,6 @@ namespace Manager
             // listeners
             sliderTextRate.onValueChanged.AddListener(OnTextRateChanged);
             sliderTextSize.onValueChanged.AddListener(OnTextSizeChanged);
-            sliderTextOpacity.onValueChanged.AddListener(OnTextOpacityChanged);
             dropdownFont.onValueChanged.AddListener(OnFontChanged);
             dropdownShake.onValueChanged.AddListener(OnShakeChanged);
             dropdownTextFormatting.onValueChanged.AddListener(OnTextFormattingChanged);
@@ -75,7 +72,6 @@ namespace Manager
             // default values
             sliderTextRate.value = gameConfiguration.TextRate;
             sliderTextSize.value = gameConfiguration.FontSize;
-            sliderTextOpacity.value = gameConfiguration.TextOpacity;
             dropdownFont.value = gameConfiguration.FontIndex;
             dropdownShake.value = gameConfiguration.ShouldShake ? 0 : 1;
             dropdownTextFormatting.value = gameConfiguration.EnableTextFormatting ? 0 : 1;
