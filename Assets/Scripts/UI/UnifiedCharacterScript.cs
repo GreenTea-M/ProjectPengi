@@ -44,7 +44,7 @@ namespace UI
         private bool _isSpeaking = false;
         private int _currentTextMax;
         private IconManager _iconManager;
-        private List<Button> _buttons = new List<Button>();
+        private List<SpecialButton> _buttons = new List<SpecialButton>();
         private Vector3 _defaultTextLocation;
         private Vector3 _idleTargetPosition;
         private float _timeOffset;
@@ -385,7 +385,7 @@ namespace UI
 
             while (_buttons.Count < optionsLength)
             {
-                Button newButton = Instantiate(uiButton, layoutGroup).GetComponent<Button>();
+                var newButton = Instantiate(uiButton, layoutGroup).GetComponent<SpecialButton>();
                 newButton.gameObject.SetActive(false);
                 _buttons.Add(newButton);
             }
@@ -405,10 +405,7 @@ namespace UI
 
         public void SetButtonText(int i, string optionText)
         {
-            // todo: improve performance
-            var uiText = _buttons[i].GetComponentInChildren<TextMeshProUGUI>();
-            Debug.Assert(uiText != null);
-            uiText.text = optionText;
+            _buttons[i].SetText(optionText);
         }
 
         public void HideAllButtons()

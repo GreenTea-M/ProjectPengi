@@ -1355,19 +1355,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 891557340, guid: 8d29f822e8fbccc41afa6b7b1fc68994, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -407.68115
       objectReference: {fileID: 0}
     - target: {fileID: 894994640, guid: 8d29f822e8fbccc41afa6b7b1fc68994, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.07381737
       objectReference: {fileID: 0}
     - target: {fileID: 894994640, guid: 8d29f822e8fbccc41afa6b7b1fc68994, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 894994640, guid: 8d29f822e8fbccc41afa6b7b1fc68994, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1662532093, guid: 8d29f822e8fbccc41afa6b7b1fc68994, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1409,7 +1409,7 @@ PrefabInstance:
     - target: {fileID: 4183826917175616291, guid: 8d29f822e8fbccc41afa6b7b1fc68994,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4183826917175616295, guid: 8d29f822e8fbccc41afa6b7b1fc68994,
         type: 3}

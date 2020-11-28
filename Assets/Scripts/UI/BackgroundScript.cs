@@ -11,6 +11,7 @@ namespace UI
         [FormerlySerializedAs("allParts")] 
         public SpriteRenderer[] allSpriteRenderers;
         public float transitionDuration = 1f;
+        public float maxAlpha = 1f;
 
         private float _allAlpha = 0f;
 
@@ -42,7 +43,7 @@ namespace UI
                         _allAlpha += Time.deltaTime * transitionDuration;
                         bgColor.a = _allAlpha;
                         bg.color = bgColor;
-                        if (_allAlpha >= 1f)
+                        if (_allAlpha >= maxAlpha)
                         {
                             _state = State.Shown;
                         }

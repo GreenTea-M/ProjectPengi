@@ -238,7 +238,7 @@ namespace Dialog
         {
             if (parameters.Length == 0)
             {
-                Debug.LogWarning("YarnCommand: ShowItem has not parameters");
+                Debug.LogWarning("YarnCommand: HideItem has not parameters");
                 return;
             }
 

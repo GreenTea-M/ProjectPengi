@@ -47,16 +47,13 @@ MonoBehaviour:
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
-    currentYarnNode: Bear.ToiletDialogue
-    lastDialog: I'm still arranging the shelves...
-    lastAudioName: BrynhildaBear
+    currentYarnNode: Bear.PuzzleStart
+    lastDialog: 
+    lastAudioName: fishMarket
     lastHeader: carpentry
-    savedVariables:
-    - name: toilet
-      value: 2
-      type: 0
+    savedVariables: []
     isLeft: 1
-    currentSpeaker: Pengi
+    currentSpeaker: 
     previousSpeaker: 
     activeCharacterList:
     - Brynhilda
@@ -64,15 +61,12 @@ MonoBehaviour:
   autoSave:
     name: 
     currentYarnNode: Bear.PuzzleStart
-    lastDialog: "Brynhilda: They didn\u2019t really catch on..."
+    lastDialog: Pengi, feeling a flush of red creeping up to their face pick up...
     lastAudioName: BrynhildaBear
     lastHeader: carpentry
-    savedVariables:
-    - name: toilet
-      value: 2
-      type: 0
+    savedVariables: []
     isLeft: 1
-    currentSpeaker: Brynhilda
+    currentSpeaker: 
     previousSpeaker: 
     activeCharacterList:
     - Brynhilda
