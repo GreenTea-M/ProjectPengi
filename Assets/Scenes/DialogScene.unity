@@ -1226,6 +1226,7 @@ MonoBehaviour:
   textFontMultiplier: 1
   shouldIgnoreAlpha: 0
   shouldIgnoreSize: 0
+  shouldIgnoreColor: 0
 --- !u!114 &670499634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1354,19 +1355,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 891557340, guid: 8d29f822e8fbccc41afa6b7b1fc68994, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -407.68115
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 894994640, guid: 8d29f822e8fbccc41afa6b7b1fc68994, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.07381737
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 894994640, guid: 8d29f822e8fbccc41afa6b7b1fc68994, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 894994640, guid: 8d29f822e8fbccc41afa6b7b1fc68994, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662532093, guid: 8d29f822e8fbccc41afa6b7b1fc68994, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1662532093, guid: 8d29f822e8fbccc41afa6b7b1fc68994, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1404,7 +1409,7 @@ PrefabInstance:
     - target: {fileID: 4183826917175616291, guid: 8d29f822e8fbccc41afa6b7b1fc68994,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4183826917175616295, guid: 8d29f822e8fbccc41afa6b7b1fc68994,
         type: 3}
@@ -2203,6 +2208,7 @@ MonoBehaviour:
   textFontMultiplier: 1
   shouldIgnoreAlpha: 0
   shouldIgnoreSize: 1
+  shouldIgnoreColor: 0
 --- !u!1 &1384768399
 GameObject:
   m_ObjectHideFlags: 0

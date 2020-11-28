@@ -15,6 +15,7 @@ namespace UI
         public float textFontMultiplier = 1f;
         [FormerlySerializedAs("shouldIgnoreColor")] public bool shouldIgnoreAlpha = false;
         public bool shouldIgnoreSize = false;
+        public bool shouldIgnoreColor = false;
         
         private TextMeshProUGUI _text;
         private Color _color;
@@ -43,10 +44,13 @@ namespace UI
             {
                 _text.fontSize = gameConfiguration.FontSize * textFontMultiplier;
             }
-            
-            var newColor = gameConfiguration.fontColor;
-            newColor.a = shouldIgnoreAlpha ? _color.a : gameConfiguration.TextOpacity;
-            _text.color = newColor;
+
+            if (!shouldIgnoreColor)
+            {
+                var newColor = gameConfiguration.fontColor;
+                newColor.a = shouldIgnoreAlpha ? _color.a : gameConfiguration.TextOpacity;
+                _text.color = newColor;
+            }
         }
     }
 }
