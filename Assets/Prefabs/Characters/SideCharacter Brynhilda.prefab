@@ -73,5 +73,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: c4b0f7aed196da0468f4523e35298eb3,
         type: 3}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: characterData.aliases.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: defaultSprite.alternativeStates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: characterData.name
+      value: Brynhilda
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: characterData.aliases.Array.data[0]
+      value: B
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: defaultSprite.defaultState.sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c4b0f7aed196da0468f4523e35298eb3,
+        type: 3}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: defaultSprite.alternativeStates.Array.data[0].characterState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: defaultSprite.alternativeStates.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2042264d818828340be7363917271568,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee7bbb5eb571b9e44a7532a256f80db1, type: 3}

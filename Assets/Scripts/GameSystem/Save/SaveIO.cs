@@ -126,6 +126,7 @@ namespace GameSystem.Save
 
 
             string path = GetPath(slotExecutor);
+            Debug.Log(path);
             string jsonString = JsonUtility.ToJson(slotExecutor.saveData);
             File.WriteAllText(path, jsonString);
 
@@ -161,7 +162,6 @@ namespace GameSystem.Save
 
         private bool DoesExist(SlotExecutor slotExecutor)
         {
-            Debug.Log(GetPath(slotExecutor));
             return File.Exists(GetPath(slotExecutor));
         }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Text;
+using Gameplay;
+using GameSystem;
 using GameSystem.Save;
 using UI;
 using UnityEngine;
@@ -21,16 +23,9 @@ namespace Dialog
     public class DialogueUIManager : Yarn.Unity.DialogueUIBehaviour, SaveClientCallback
     {
         [FormerlySerializedAs("assetManager")] public IconManager iconManager;
+        public InputManager inputManager;
 
         [Header("Critical")] public GameConfiguration gameConfiguration;
-
-        [Header("Prefabs")] [Tooltip("Prefab that contains the texts")]
-        public GameObject dialogueItemPrefab;
-
-        [Tooltip("Prefab that contains the portrait")]
-        public GameObject dialoguePortraitPrefab;
-
-        [Tooltip("Prefab for the options")] public GameObject dialogueOptionsPrefab;
 
         public String[] markupWholeWhitelist;
         public String[] markupPhraseWhitelist;
@@ -68,7 +63,7 @@ namespace Dialog
         private SaveClient saveClient;
         private string _lastDialog;
 
-        private float TextRate => gameConfiguration.textRate;
+        private float TextRate => gameConfiguration.TextRate;
 
         public bool IsBlocking
         {
@@ -146,7 +141,8 @@ namespace Dialog
             InformSpeakerReturn speakerInfo = iconManager.InformSpeaker(argSplit.Length != 1 ? argSplit[0] : "");
             dialogueBlocker = speakerInfo.dialogueBlocker;
             var character = speakerInfo.character;
-
+            _lastSpeaker = speakerInfo.realName;
+            
             if (speakerInfo.realName.Length != 0)
             {
                 text = text.Replace($"{argSplit[0]}:", $"{speakerInfo.realName}:");
@@ -161,7 +157,7 @@ namespace Dialog
 
             if (TextRate <= 0f)
             {
-                gameConfiguration.textRate = 0f;
+                gameConfiguration.TextRate = 0f;
             }
 
             var formattedStringBuilder = new StringBuilder();
@@ -185,7 +181,7 @@ namespace Dialog
                         AdjustMarkups(markupBuilder);
 
                         var markupText = markupBuilder.ToString().ToLower();
-                        if (!gameConfiguration.enableTextFormatting  || !IsWhiteListed(markupText))
+                        if (!gameConfiguration.EnableTextFormatting  || !IsWhiteListed(markupText))
                         {
                             // don't do text formatting
                         }
@@ -230,12 +226,14 @@ namespace Dialog
                 cleanStringBuilder.Append(c);
             }
 
-            var formattedString = formattedStringBuilder.ToString();
+            var formattedString = gameConfiguration.EnableTextFormatting ? 
+                formattedStringBuilder.ToString() : cleanStringBuilder.ToString();
             var textLength = cleanStringBuilder.Length;
             character.SetInitialText(formattedString);
-            _lastDialog = formattedString;
+            _lastDialog = cleanStringBuilder.ToString();
             
             bool isSkipping = false;
+            // todo: text speed multiplier read
             for (int i = 0; i < textLength; i++)
             {
                 // onLineUpdate?.Invoke(stringBuilder.ToString());
@@ -247,6 +245,10 @@ namespace Dialog
                 }
                 
                 character.ShowCharacters(i);
+                while (inputManager.inputState == InputState.Pause)
+                {
+                    yield return new WaitForSeconds(1f/60f);
+                }
                 yield return new WaitForSeconds(TextRate * textSpeedMultiplier);
             }
             
@@ -447,7 +449,6 @@ namespace Dialog
         public void RequestLastDialogWrite()
         {
             requestDialogWrite = true;
-            saveClient.autoSave.lastDialog = "";
         }
 
         public void ShowElements(bool shouldShow)
@@ -457,7 +458,14 @@ namespace Dialog
 
         public void WriteAutoSave()
         {
+            saveClient.autoSave.currentSpeaker = _lastSpeaker;
             saveClient.autoSave.lastDialog = _lastDialog;
+        }
+
+        public void SetFakeLastDialog(string speaker, string message)
+        {
+            _lastSpeaker = speaker;
+            _lastDialog = message;
         }
     }
 }

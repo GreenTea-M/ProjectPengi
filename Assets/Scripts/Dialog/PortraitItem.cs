@@ -13,7 +13,6 @@ namespace Dialog
 
         private Vector3 _defaultPosition = new Vector3(18.75f, 8.49f, 0f);
         private IconItem _iconItem;
-        private string _speaker;
         private Animator _animator;
 
         private int HashIsActive = Animator.StringToHash("IsActive");
@@ -78,7 +77,6 @@ namespace Dialog
         {
             Debug.Log($"Speaking: {candidateSpeaker}");
             _iconItem = iconItem;
-            _speaker = candidateSpeaker;
             spriteRenderer.sprite = iconItem?.mainSprite;
         }
 

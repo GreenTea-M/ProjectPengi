@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Dialog;
+using GameSystem;
 using RoboRyanTron.Unite2017.Events;
 using TMPro;
 using UnityEngine;
@@ -14,7 +15,6 @@ namespace Manager
     public class OptionsSceneManager : MonoBehaviour
     {
         public float breakTime = 1f;
-        public FontItem[] fontList;
 
         public GameConfiguration gameConfiguration;
         public GameEvent onFontChangedEvent;
@@ -23,6 +23,7 @@ namespace Manager
         public Slider sliderTextRate;
         public Slider sliderTextSize;
         public Slider sliderTextOpacity;
+        public Slider sliderVolume;
         public TMP_Dropdown dropdownFont;
         public TMP_Dropdown dropdownShake;
         public TMP_Dropdown dropdownTextFormatting;
@@ -41,10 +42,18 @@ namespace Manager
             Debug.Assert(sliderTextRate != null);
             Debug.Assert(sliderTextRate != null);
             Debug.Assert(sliderTextOpacity != null);
+            Debug.Assert(sliderVolume != null);
             Debug.Assert(dropdownFont != null);
             Debug.Assert(dropdownShake != null);
             Debug.Assert(dropdownTextFormatting != null);
             Debug.Assert(textRateSample != null);
+            
+            // set values for dropdown
+            dropdownFont.options.Clear();
+            foreach (var fontItem in gameConfiguration.fontList)
+            {
+                dropdownFont.options.Add(new TMP_Dropdown.OptionData(fontItem.fontName));
+            }
 
             UpdateValues();
 
@@ -58,17 +67,20 @@ namespace Manager
             dropdownFont.onValueChanged.AddListener(OnFontChanged);
             dropdownShake.onValueChanged.AddListener(OnShakeChanged);
             dropdownTextFormatting.onValueChanged.AddListener(OnTextFormattingChanged);
+            sliderVolume.onValueChanged.AddListener(OnVolumeChanged);
         }
 
         private void UpdateValues()
         {
             // default values
-            sliderTextRate.value = gameConfiguration.textRate;
-            sliderTextSize.value = gameConfiguration.fontSize;
-            sliderTextOpacity.value = gameConfiguration.textOpacity;
-            dropdownFont.value = GetTextAssetIndex(gameConfiguration.fontAsset);
-            dropdownShake.value = gameConfiguration.shouldShake ? 0 : 1;
-            dropdownTextFormatting.value = gameConfiguration.enableTextFormatting ? 0 : 1;
+            sliderTextRate.value = gameConfiguration.TextRate;
+            sliderTextSize.value = gameConfiguration.FontSize;
+            sliderTextOpacity.value = gameConfiguration.TextOpacity;
+            dropdownFont.value = gameConfiguration.FontIndex;
+            dropdownShake.value = gameConfiguration.ShouldShake ? 0 : 1;
+            dropdownTextFormatting.value = gameConfiguration.EnableTextFormatting ? 0 : 1;
+            sliderVolume.value = gameConfiguration.volume;
+            PlayerPrefs.Save();
         }
 
         private void TextReset()
@@ -97,7 +109,7 @@ namespace Manager
             {
                 TextReset();
             }
-            else if (startTime + gameConfiguration.textRate < Time.time)
+            else if (startTime + gameConfiguration.TextRate < Time.time)
             {
                 startTime = Time.time;
                 currentText.Append(fullText[index]);
@@ -108,9 +120,9 @@ namespace Manager
 
         private int GetTextAssetIndex(TMP_Asset textFont)
         {
-            for (int i = 0; i < fontList.Length; i++)
+            for (int i = 0; i < gameConfiguration.fontList.Length; i++)
             {
-                if (fontList[i].fontAsset == textFont)
+                if (gameConfiguration.fontList[i].fontAsset == textFont)
                 {
                     // found
                     return i;
@@ -124,32 +136,38 @@ namespace Manager
 
         private void OnTextFormattingChanged(int value)
         {
-            gameConfiguration.enableTextFormatting = value == 0;
+            gameConfiguration.EnableTextFormatting = value == 0;
+            onFontChangedEvent.Raise();
+        }
+
+        private void OnVolumeChanged(float value)
+        {
+            gameConfiguration.Volume = value;
             onFontChangedEvent.Raise();
         }
 
         private void OnShakeChanged(int value)
         {
-            gameConfiguration.shouldShake = value == 0;
+            gameConfiguration.ShouldShake = value == 0;
             onFontChangedEvent.Raise();
         }
 
         private void OnFontChanged(int value)
         {
-            Debug.Assert(value < fontList.Length);
-            gameConfiguration.fontAsset = fontList[value].fontAsset;
+            Debug.Assert(value < gameConfiguration.fontList.Length);
+            gameConfiguration.FontAsset = gameConfiguration.fontList[value].fontAsset;
             onFontChangedEvent.Raise();
         }
 
         private void OnTextOpacityChanged(float value)
         {
-            gameConfiguration.textOpacity = value;
+            gameConfiguration.TextOpacity = value;
             onFontChangedEvent.Raise();
         }
 
         private void OnTextRateChanged(float value)
         {
-            gameConfiguration.textRate = value;
+            gameConfiguration.TextRate = value;
             onFontChangedEvent.Raise();
             Debug.Log("Reset");
             TextReset();
@@ -157,7 +175,7 @@ namespace Manager
 
         private void OnTextSizeChanged(float value)
         {
-            gameConfiguration.fontSize = value;
+            gameConfiguration.FontSize = value;
             onFontChangedEvent.Raise();
         }
 
@@ -172,12 +190,5 @@ namespace Manager
         {
             SceneManager.LoadScene("MainMenuScene");
         }
-    }
-
-    [Serializable]
-    public class FontItem
-    {
-        public TMP_FontAsset fontAsset;
-        public string fontName;
     }
 }

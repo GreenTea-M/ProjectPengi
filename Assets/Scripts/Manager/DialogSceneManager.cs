@@ -1,7 +1,9 @@
 using System;
 using Dialog;
+using GameSystem;
 using GameSystem.Save;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Yarn.Unity;
 
 namespace Manager
@@ -20,6 +22,7 @@ namespace Manager
         
         private SaveClient _saveClient;
         private GameInstance _gameInstance;
+        private bool _isSaveDirty = false;
 
         private void OnEnable()
         {
@@ -60,17 +63,25 @@ namespace Manager
 
         private void AutoSaveNode(string currentNode)
         {
-            gameConfiguration.isSaveDirty = true;
+            if (_isSaveDirty)
+            {
+                // write on save client
+                _saveClient.autoSave.currentYarnNode = currentNode;
+                _gameInstance.WriteOnAutoSave();
+            }
             
-            // write on save client
-            _saveClient.autoSave.currentYarnNode = currentNode;
-            _gameInstance.WriteOnAutoSave();
+            _isSaveDirty = true;
         }
 
         public void WriteAutoSave()
         {
             dialogueUiManager.RequestLastDialogWrite();
             memory.Write(_saveClient.autoSave);
+        }
+
+        public void GoBack()
+        {
+            SceneManager.LoadScene("MainMenuScene");
         }
     }
 }

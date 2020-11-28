@@ -123,6 +123,9 @@ namespace Dialog
 
             ChangeHeader(new[] {_saveClient.currentSave.lastHeader});
             PlayAudio(new[] {_saveClient.currentSave.lastAudioName});
+            
+            // load all active characters
+            EnterStage(_saveClient.currentSave.activeCharacterList);
 
             dialogueRunner.AddCommandHandler(
                 "playAudio", // the name of the command
@@ -144,6 +147,7 @@ namespace Dialog
             dialogueRunner.AddCommandHandler("gameEnd", GameEnd);
             dialogueRunner.AddCommandHandler("enterStage", EnterStage);
             dialogueRunner.AddCommandHandler("exitStage", ExitStage);
+            dialogueRunner.AddCommandHandler("fakeLastDialog", FakeLastDialog);
         }
 
         private void Start()
@@ -322,7 +326,7 @@ namespace Dialog
 
         private void Shake(string[] parameter)
         {
-            if (gameConfiguration.shouldShake)
+            if (gameConfiguration.ShouldShake)
             {
                 _impulseSignal.GenerateImpulse(gameConfiguration.ShakeStrength);
             }
@@ -396,14 +400,19 @@ namespace Dialog
 
         private void ClearShelfItem(string[] parameters)
         {
-            for (int i = _shelfItemList.Count - 1; i >= 0; i--)
+            foreach (var shelfItem in _shelfItemList)
             {
-                Destroy(_shelfItemList[i].gameObject);
-                _shelfItemList.RemoveAt(i);
+                shelfItem.gameObject.SetActive(false);
             }
+            
+            // for (int i = _shelfItemList.Count - 1; i >= 0; i--)
+            // {
+            //     Destroy(_shelfItemList[i].gameObject);
+            //     _shelfItemList.RemoveAt(i);
+            // }
 
-            if (_shownShelfItem == null) return;
-            Destroy(_shownShelfItem.gameObject);
+            // if (_shownShelfItem == null) return;
+            // Destroy(_shownShelfItem.gameObject);
             _shownShelfItem = null;
         }
 
@@ -448,13 +457,19 @@ namespace Dialog
             // todo: make shelf appear
 
             // todo: give each item the call plus variable to change
-            _shelfItemList.Clear();
-            Debug.Assert(shelfItemDataList.Length > 0);
-            foreach (var shelfItemData in shelfItemDataList)
+            if (_shelfItemList.Count == 0)
             {
-                ShelfItem shelfItem = shelfItemData.CreateObject();
-                _shelfItemList.Add(shelfItem);
-                shelfItem.Initialize(shelfItemData, this);
+                foreach (var shelfItemData in shelfItemDataList)
+                {
+                    ShelfItem shelfItem = shelfItemData.CreateObject();
+                    _shelfItemList.Add(shelfItem);
+                    shelfItem.Initialize(shelfItemData, this);
+                }
+            }
+            
+            foreach (var _shelfItem in _shelfItemList)
+            {
+                _shelfItem.gameObject.SetActive(true);
             }
 
             if (parameters.Length == 2 && parameters[1].Equals("full", StringComparison.InvariantCultureIgnoreCase))
@@ -479,14 +494,13 @@ namespace Dialog
 
                 if (shelfItem != _shelfItemList[i])
                 {
-                    Destroy(_shelfItemList[i].gameObject);
+                    _shelfItemList[i].gameObject.SetActive(false);
+                    // Destroy(_shelfItemList[i].gameObject);
                 }
                 else
                 {
                     shelfItem.Display();
                 }
-
-                _shelfItemList.RemoveAt(i);
             }
 
             if (isDone)
@@ -524,38 +538,22 @@ namespace Dialog
             _onComplete.Invoke();
         }
 
-        private void ChangeIcon(string[] paremeters)
+        private void FakeLastDialog(String[] parameters)
         {
-            // todo: implement change icon
-        }
+            string message = "";
+            string speaker = "";
 
-        /* Example:
-         public void Awake() {
-        
-            // Create a new command called 'camera_look', which looks at a target.
-            dialogueRunner.AddCommandHandler(
-                "camera_look",     // the name of the command
-                CameraLookAtTarget // the method to run
-            );
-        }
-        
-        // The method that gets called when '<<camera_look>>' is run.
-        private void CameraLookAtTarget(string[] parameters) {
-        
-            // Take the first parameter, and use it to find the object
-            string targetName = parameters[0];
-            GameObject target = GameObject.Find(targetName);
-        
-            // Log an error if we can't find it
-            if (target == null) {
-                Debug.LogError($"Cannot make camera look at {targetName}:" + 
-                               "cannot find target");
-                return;
+            if (parameters.Length == 1)
+            {
+                message = parameters[0];
+            } else if (parameters.Length > 1)
+            {
+                speaker = parameters[0];
+                message = string.Join(" ", parameters.Skip(1));
             }
-        
-            // Make the main camera look at this target
-            Camera.main.transform.LookAt(target.transform);
-        } */
+
+            dialogueUiManager.SetFakeLastDialog(speaker, message);
+        }
 
         public void WriteAutoSave()
         {

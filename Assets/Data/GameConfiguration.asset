@@ -14,56 +14,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSaveSlots: 7
   baseConfiguration: {fileID: 11400000, guid: dcbf9e10567ae3f4e9278d0692211347, type: 2}
+  fontList:
+  - fontAsset: {fileID: 11400000, guid: dc35776587d58074b9f6a9b0249e7b65, type: 2}
+    fontName: Nunito
+  - fontAsset: {fileID: 11400000, guid: d9a4b0be89ba17d4db1fb84d1a306862, type: 2}
+    fontName: Jost*
+  - fontAsset: {fileID: 11400000, guid: 1db8899e05c16f244914770b9fbd192d, type: 2}
+    fontName: Poppins
+  - fontAsset: {fileID: 11400000, guid: f2d8582a013d08140a2dcd71b71e6981, type: 2}
+    fontName: Open Sans
+  - fontAsset: {fileID: 11400000, guid: 860c756b547795646a7bf1c25590b4ca, type: 2}
+    fontName: Montserrat
+  - fontAsset: {fileID: 11400000, guid: 7ee9b7578b2878b4da56bc004ecef80f, type: 2}
+    fontName: Comic Neue
+  - fontAsset: {fileID: 11400000, guid: 945c9683caefcbd459edb6ab02dcbd94, type: 2}
+    fontName: Hind
+  - fontAsset: {fileID: 11400000, guid: 668692f9483ec2b41be412847c5a8386, type: 2}
+    fontName: Karla
+  - fontAsset: {fileID: 11400000, guid: 6b468795670eb704fa2f2922aab14504, type: 2}
+    fontName: Nunito Sans
+  characterPrefabList:
+  - {fileID: 7721856675482816111, guid: 2d6cde523a7cab44da33f0a59e6bb49c, type: 3}
+  - {fileID: 4183247458888187938, guid: 5b5895be60c0a59449f7b6aa2533c6ce, type: 3}
+  - {fileID: 6661086423002316218, guid: 39d0536adcf7f154bb4969bbaf234985, type: 3}
   textRate: 0.025
-  shakeStrength: 1
-  shouldShake: 1
-  fontAsset: {fileID: 11400000, guid: dc35776587d58074b9f6a9b0249e7b65, type: 2}
+  shouldShake: 0
+  fontIndex: 0
   fontSize: 12
   textOpacity: 0.97
-  fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   enableTextFormatting: 1
+  volume: 0.75
+  fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
-    currentYarnNode: Bear.EnterStore
-    lastDialog: 
-    lastAudioName: fishMarket
-    lastHeader: carpentry
-    savedVariables: []
-    isLeft: 1
-    currentSpeaker: 
-    previousSpeaker: 
-  isSaveDirty: 1
-  autoSave:
-    name: 
-    currentYarnNode: Bear.PuzzleDone
-    lastDialog: 'Brynhilda: It turns out a space for creation is compatible with
-      the values of peace, love, and happiness, so this place got fairly popular
-      at the time. Stuck around ever since.'
+    currentYarnNode: Bear.ToiletDialogue
+    lastDialog: I'm still arranging the shelves...
     lastAudioName: BrynhildaBear
     lastHeader: carpentry
     savedVariables:
     - name: toilet
       value: 2
       type: 0
-    - name: grammyPicture
-      value: 2
-      type: 0
-    - name: baseball
-      value: 2
-      type: 0
-    - name: marble
-      value: 2
-      type: 0
-    - name: teddy
-      value: 2
-      type: 0
-    - name: peaceSign
-      value: 2
-      type: 0
-    - name: puzzleDone
-      value: True
-      type: 2
-    isLeft: 0
-    currentSpeaker: 
+    isLeft: 1
+    currentSpeaker: Pengi
     previousSpeaker: 
+    activeCharacterList:
+    - Brynhilda
+  isSaveDirty: 1
+  autoSave:
+    name: 
+    currentYarnNode: Bear.PuzzleStart
+    lastDialog: "Brynhilda: They didn\u2019t really catch on..."
+    lastAudioName: BrynhildaBear
+    lastHeader: carpentry
+    savedVariables:
+    - name: toilet
+      value: 2
+      type: 0
+    isLeft: 1
+    currentSpeaker: Brynhilda
+    previousSpeaker: 
+    activeCharacterList:
+    - Brynhilda
   gameInstance: {fileID: 0}

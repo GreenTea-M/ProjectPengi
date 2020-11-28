@@ -1,4 +1,5 @@
 using System;
+using GameSystem;
 using GameSystem.Save;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,12 +12,6 @@ namespace Manager
         public GameConfiguration gameConfiguration;
         public Button continueButton;
         public SaveClient saveClient;
-
-        private void Awake()
-        {
-            continueButton.enabled = gameConfiguration.isSaveDirty;
-            continueButton.interactable = gameConfiguration.isSaveDirty;
-        }
 
         private void OnDestroy()
         {
@@ -42,10 +37,9 @@ namespace Manager
 
         public void OnClickContinue()
         {
-            // todo: allow multiple save files in the future
-            gameConfiguration.LoadData(GameConfiguration.AutoSaveIndex);
-            SceneManager.LoadScene("DialogScene");
-            // SceneManager.LoadScene("SaveSelect");
+            // gameConfiguration.LoadData(GameConfiguration.AutoSaveIndex);
+            // SceneManager.LoadScene("DialogScene");
+            SceneManager.LoadScene("SaveSelect");
         }
 
         public void OnClickOptions()

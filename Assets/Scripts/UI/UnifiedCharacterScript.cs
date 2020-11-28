@@ -2,15 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Dialog;
+using Others;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
 {
     public class UnifiedCharacterScript : MonoBehaviour
     {
+        [Header("Data")]
+        public CharacterData characterData;
+        public SpriteEmote defaultSprite;
+        public SpriteEmote[] alternativeSprites;        
+        
         [Header("Locations")] public Transform stageLocation;
         public Transform exitLocation;
         public Transform alternativeTextLocation;
@@ -28,8 +36,9 @@ namespace UI
         public float speakFloatHeight = 0.25f;
         public float speakFloatSpeed = 2f;
 
-        private CharacterData _data;
-        public State _state = State.Hidden;
+        [FormerlySerializedAs("_state")] 
+        public CharacterState characterState = CharacterState.Hidden;
+        private CharacterState _previousState = CharacterState.Hidden;
         private TextState _textState = TextState.Default;
         private CharacterType _characterType = CharacterType.Narrator;
         private bool _isSpeaking = false;
@@ -39,20 +48,10 @@ namespace UI
         private Vector3 _defaultTextLocation;
         private Vector3 _idleTargetPosition;
         private float _timeOffset;
+        private string _description;
+        private string _oldDescription;
 
-        public string RealName => _data.name;
-
-        // todo: convert to private
-        public enum State
-        {
-            Hidden,
-            Appearing,
-            Idling,
-            Speaking,
-            Disappearing,
-            ToRepositionIdling,
-            RepostitionIdling
-        }
+        public string RealName => characterData.name;
 
         private enum TextState
         {
@@ -84,32 +83,82 @@ namespace UI
 
         private void Update()
         {
-            switch (_state)
+            
+            if (characterState != _previousState)
             {
-                case State.Hidden:
+                RefreshSprite();
+                
+                // We are exiting that state
+                switch (_previousState)
+                {
+                    case CharacterState.Hidden:
+                        break;
+                    case CharacterState.Appearing:
+                        break;
+                    case CharacterState.Idling:
+                        break;
+                    case CharacterState.Speaking:
+                        break;
+                    case CharacterState.Disappearing:
+                        break;
+                    case CharacterState.ToRepositionIdling:
+                        break;
+                    case CharacterState.RepostitionIdling:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                
+                // We are entering this state
+                switch (characterState)
+                {
+                    case CharacterState.Hidden:
+                        break;
+                    case CharacterState.Appearing:
+                        break;
+                    case CharacterState.Idling:
+                        break;
+                    case CharacterState.Speaking:
+                        break;
+                    case CharacterState.Disappearing:
+                        break;
+                    case CharacterState.ToRepositionIdling:
+                        break;
+                    case CharacterState.RepostitionIdling:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                _previousState = characterState;
+            }
+            
+            switch (characterState)
+            {
+                case CharacterState.Hidden:
                     // do nothing
                     break;
-                case State.Appearing:
+                case CharacterState.Appearing:
                     Appear();
                     break;
-                case State.Idling:
+                case CharacterState.Idling:
                     if (_isSpeaking)
                     {
-                        _state = State.Speaking;
+                        characterState = CharacterState.Speaking;
                         _timeOffset = Time.time;
                         _iconManager.informSpeakerReturnValue.dialogueBlocker.Unblock();
                     }
 
                     break;
-                case State.Speaking:
+                case CharacterState.Speaking:
                     sprite.transform.position = stageLocation.position +
                                                 (Mathf.Abs(Mathf.Sin((Time.time - _timeOffset) *
                                                             speakFloatSpeed)) * speakFloatHeight * Vector3.up);
                     break;
-                case State.Disappearing:
+                case CharacterState.Disappearing:
                     Disappear();
                     break;
-                case State.ToRepositionIdling:
+                case CharacterState.ToRepositionIdling:
                     if (sprite.transform.position != _idleTargetPosition)
                     {
                         sprite.transform.position = Vector3.MoveTowards(sprite.transform.position,
@@ -117,11 +166,11 @@ namespace UI
                     }
                     else
                     {
-                        _state = State.RepostitionIdling;
+                        characterState = CharacterState.RepostitionIdling;
                     }
 
                     break;
-                case State.RepostitionIdling:
+                case CharacterState.RepostitionIdling:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -176,7 +225,7 @@ namespace UI
                         transitionSpeed * Time.deltaTime);
                     if (sprite.transform.position == stageLocation.position)
                     {
-                        _state = State.Idling;
+                        characterState = CharacterState.Idling;
                     }
 
                     break;
@@ -200,7 +249,7 @@ namespace UI
                         transitionSpeed * Time.deltaTime);
                     if (sprite.transform.position == exitLocation.position)
                     {
-                        _state = State.Hidden;
+                        characterState = CharacterState.Hidden;
                     }
                     break;
                 default:
@@ -208,59 +257,57 @@ namespace UI
             }
         }
 
-        public void SetData(CharacterData characterData, IconManager iconManager)
+        public void SetData(IconManager iconManager)
         {
             _iconManager = iconManager;
-            _data = characterData;
-            _characterType = _data.characterType;
+            _characterType = characterData.characterType;
             // todo: set sprite???
         }
 
         public bool IsSimilar(string candidateSpeaker)
         {
-            return _data.IsSimilar(candidateSpeaker);
+            return characterData.IsSimilar(candidateSpeaker);
         }
 
-        public void UpdateStatus()
+        public void UpdateStatus(string description)
         {
-            if (_iconManager.currentSpeaking != this && _state != State.Hidden)
+            if (_iconManager.currentSpeaking != this && characterState != CharacterState.Hidden)
             {
-                _state = State.Idling;
+                characterState = CharacterState.Idling;
                 _isSpeaking = false;
             }
             else if (_iconManager.currentSpeaking == this && _characterType != CharacterType.Narrator)
             {
                 _isSpeaking = true;
-
-                switch (_state)
+                switch (characterState)
                 {
-                    case State.Hidden:
+                    case CharacterState.Hidden:
                         // show up
-                        _state = State.Appearing;
+                        characterState = CharacterState.Appearing;
                         _iconManager.informSpeakerReturnValue.dialogueBlocker.Block();
                         break;
-                    case State.Appearing:
+                    case CharacterState.Appearing:
                         _iconManager.informSpeakerReturnValue.dialogueBlocker.Block();
                         // just keep it up
                         break;
-                    case State.Idling:
+                    case CharacterState.Idling:
                         // go to speak immediately
-                        _state = State.Speaking;
+                        characterState = CharacterState.Speaking;
                         _timeOffset = Time.time;
                         break;
-                    case State.Speaking:
+                    case CharacterState.Speaking:
                         // keep the state
                         break;
-                    case State.ToRepositionIdling:
+                    case CharacterState.ToRepositionIdling:
                         // go to speak immediately
-                        _state = State.Speaking;
+                        characterState = CharacterState.Speaking;
                         _timeOffset = Time.time;
                         break;
-                    case State.Disappearing:
+                    case CharacterState.Disappearing:
                         Debug.LogWarning("UpdateStatus: This should not happen");
                         break;
-                    case State.RepostitionIdling:
-                        _state = State.Appearing;
+                    case CharacterState.RepostitionIdling:
+                        characterState = CharacterState.Appearing;
                         _iconManager.informSpeakerReturnValue.dialogueBlocker.Block();
                         break;
                     default:
@@ -268,23 +315,53 @@ namespace UI
                 }
             }
 
-            if (_characterType == CharacterType.Side && !_isSpeaking && _state != State.Hidden)
+            if (_characterType == CharacterType.Side && !_isSpeaking && characterState != CharacterState.Hidden)
             {
                 // check index in active characters
                 int currentIndex = _iconManager.GetSideCharacterIndex(this);
                 Debug.Assert(currentIndex != -1);
                 _idleTargetPosition = stageLocation.position + (currentIndex * offsetIncrement);
                 _idleTargetPosition.z = inactiveZ;
-                _state = State.ToRepositionIdling;
+                characterState = CharacterState.ToRepositionIdling;
             }
 
-            if (_state == State.Idling)
+            if (characterState == CharacterState.Idling)
             {
-                _state = State.Appearing;
+                characterState = CharacterState.Appearing;
+            }
+
+            
+
+            if (_isSpeaking)
+            {
+                _description = description.Trim();
+                if (!_description.Equals(_oldDescription))
+                {
+                    _oldDescription = _description;
+                    RefreshSprite();
+                }
+                
+                
             }
 
             textCanvas.gameObject.SetActive(false);
             dialogueText.text = "";
+        }
+
+        private void RefreshSprite()
+        {
+            // update sprite based on description + state
+            var bestSpriteData = defaultSprite;
+            foreach (var spriteData in alternativeSprites)
+            {
+                if (spriteData.IsSimilar(_description))
+                {
+                    bestSpriteData = spriteData;
+                    break;
+                }
+            }
+
+            bestSpriteData.GetBestSprite(sprite, characterState);
         }
 
 
@@ -349,8 +426,57 @@ namespace UI
 
         public void Leave()
         {
-            _state = State.Disappearing;
+            characterState = CharacterState.Disappearing;
+            dialogueText.text = "";
         }
+    }
+    
+    public enum CharacterState
+    {
+        Hidden,
+        Appearing,
+        Idling,
+        Speaking,
+        Disappearing,
+        ToRepositionIdling,
+        RepostitionIdling
+    }
+    
+    [Serializable]
+    public class CharacterData : DataItem
+    {
+        public CharacterType characterType = CharacterType.Side;
+    }
+
+    [Serializable]
+    public class SpriteEmote : DataItem
+    {
+        public SpriteSubItem defaultState;
+        public SpriteSubItem[] alternativeStates;
+
+        public void GetBestSprite(SpriteRenderer spriteRenderer, CharacterState characterState)
+        {
+            var bestState = defaultState;
+            foreach (var state in alternativeStates)
+            {
+                if (state.characterState == characterState)
+                {
+                    bestState = state;
+                    break;
+                }
+            }
+
+            spriteRenderer.color = bestState.color;
+            spriteRenderer.sprite = bestState.sprite;
+        }
+    }
+
+    [Serializable]
+    public class SpriteSubItem
+    {
+        public Sprite sprite;
+        public CharacterState characterState;
+        public Color color = Color.white;
     }
 
     public enum CharacterType
