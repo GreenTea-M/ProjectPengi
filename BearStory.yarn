@@ -4,6 +4,7 @@ colorID: 0
 position: 58,183
 ---
 <<changeBackground carpentry>>
+<<enterStage Brynhilda>>
 <<playAudio BrynhildaBear>>
 <i>The bell on the door jingles in a delicate manner as Pengi enters the warm shop filled with an assortment of breathtaking, handcrafted items.</i>
 <i>Breathing in the welcoming scent of sawdust and maple, Pengi takes a few steps into the shop before noticing a shelf full of odd looking bits and bobs. Pengi walks over to it, leaning in to take a closer look at the shelf’s contents.</i>
@@ -40,9 +41,11 @@ position: 358,188
     <<hideItem shelf>>
     <<changeBackground carpentry>>
     <<showDialogue>>
+    <<fakeLastDialog Pengi Phew! I just finished arranging the shelves!>>
     [[Bear.PuzzleDone]]
 <<endif>>
 <<doPuzzle shelf>>
+<<fakeLastDialog Pengi I'm still arranging the shelves...>>
 <<hideItem shelf>>
 <<changeBackground shelf>>
 <<if $peaceSign == 1>>
@@ -65,6 +68,7 @@ position: 358,188
     [[Bear.MarbleDialogue]]
 <<endif>>
 <<debugLog This should not be happening>>
+Wait a sec...
 [[I guess it's all done now|Bear.PuzzleDone]]
 ===
 title: Bear.PuzzleDone
@@ -72,6 +76,8 @@ tags:
 colorID: 2
 position: 723,174
 ---
+<<changeBackground carpentry>>
+<<enterStage B GF>>
 Brynhilda: <Smiling> Thank you kindly for your help.
 <i>She smiles softly down at the tiny penguin.</i>
 Pengi: <Nervous> Nervously replies Ahhaha well, it WAS technically my fault. 
@@ -143,6 +149,8 @@ colorID: 0
 position: -283,178
 ---
 <<changeBackground street>>
+<<enterStage oldMole>>
+// <<changeBackground patsOffice>>
 // Fade in background of street? Will add in later version
 <<playAudio OldMole>>
 Pengi: Okokok OK!
@@ -198,7 +206,7 @@ Old Mole: OH! Goodness, thank yoU!!!
 //
 Old Mole: When you find it and bring it back, I’ll be sure to present a proper thank you gift.
 <i>She smiles sweetly, and with a curious glint in her eyes promptly turns and walks away at a surprisingly brisk pace.</i>
-<<removeSpeaker Old Mole>>
+<<exitStage moleLady>>
 Pengi: <Surprised> Oh wait where can I meet you once I... annnnnd she’s gone.
 Pengi: <Normal> Alright. At least I know the way there now. 
 
@@ -209,7 +217,6 @@ Pengi: <Normal> Alright. At least I know the way there now.
 Using their impeccable memory, Pengi began following the Old Mole's directions. 
 Panting, Pengi finally made it to <b>The Market</b>. 
 What greets them first are the various sounds and smells of people chatting, food cooking and so on. Next came the sights, a street filled with various shops, all seemingly different and random compared to the next. Overwhelmed by the smells and sounds surrounding the area Pengi rushes into the nearest store. 
-//
 [[Bear.EnterStore]]
 ===
 title: Bear.CondShoe
