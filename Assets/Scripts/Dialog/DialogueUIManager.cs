@@ -241,7 +241,16 @@ namespace Dialog
                 formattedStringBuilder.ToString() : cleanStringBuilder.ToString();
             var textLength = cleanStringBuilder.Length;
             character.SetInitialText(formattedString);
-            _lastDialog = cleanStringBuilder.ToString();
+            var actualText = cleanStringBuilder.ToString();
+            if (actualText.Trim().Length == 0)
+            {
+                userRequestedNextLine = true;
+                textLength = 0;
+            }
+            else
+            {
+                _lastDialog = cleanStringBuilder.ToString();
+            }
             
             bool isSkipping = false;
             var textSpeedMultiplier = 1f;

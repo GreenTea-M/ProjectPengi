@@ -17,7 +17,7 @@ namespace Dialog
     public class IconManager : MonoBehaviour, SaveClientCallback
     {
         public static string mainSpeakerName = "Pengi";
-    
+
         public GameConfiguration gameConfiguration;
         public GameObject mainCharacterPrefab;
         public GameObject narratingCharacterPrefab;
@@ -63,7 +63,7 @@ namespace Dialog
                 _saveClient = gameConfiguration.RequestSaveAccess(this);
             }
         }
-    
+
         public UnifiedCharacterScript InstantiateCharacter(GameObject prefab)
         {
             var script = Object.Instantiate(prefab)
@@ -88,22 +88,23 @@ namespace Dialog
             return InformSpeaker(candidateSpeaker, false);
         }
 
-        private InformSpeakerReturn InformSpeaker(string candidateSpeaker, 
+        private InformSpeakerReturn InformSpeaker(string candidateSpeaker,
             bool isForced)
-        {    
+        {
             // find out who is the active speaker
             // arrange accordingly
             bool shouldRearrange = false;
-            
+
             // extract description
             var speakingParts = candidateSpeaker.Split(',');
             candidateSpeaker = speakingParts[0];
             var description = speakingParts.Length != 2 ? "" : speakingParts[1];
-        
+
             if (_narratingCharacter.IsSimilar(candidateSpeaker))
             {
                 currentSpeaking = _narratingCharacter;
-            } else if (_mainCharacter.IsSimilar(candidateSpeaker))
+            }
+            else if (_mainCharacter.IsSimilar(candidateSpeaker))
             {
                 currentSpeaking = _mainCharacter;
             }
@@ -143,7 +144,7 @@ namespace Dialog
             informSpeakerReturnValue.realName = currentSpeaking.RealName;
 
             return informSpeakerReturnValue;
-        
+
             /*var ret = new InformSpeakerReturn();
         candidateSpeaker = candidateSpeaker.Trim();
 
@@ -208,7 +209,7 @@ namespace Dialog
                 {
                     characterScript.Leave();
                 }
-        
+
                 _mainCharacter.Leave();
                 _narratingCharacter.Leave();
             }
@@ -228,18 +229,19 @@ namespace Dialog
 
         public void EnterStage(string characterName)
         {
+            if (DoesActiveCharacterListContain(characterName))
+            {
+                return;
+            }
+
             foreach (var characterScript in _characterList)
             {
                 if (characterScript.IsSimilar(characterName))
                 {
-                    if (!DoesActiveCharacterListContain(characterName))
-                    {
-                        _activeCharacterList.Add(characterScript);
-                    }
-                    return;
+                    _activeCharacterList.Add(characterScript);
                 }
             }
-        
+
             Debug.LogWarning($"EnterStage: Character {characterName} not in character list");
         }
 
@@ -252,7 +254,7 @@ namespace Dialog
                     return true;
                 }
             }
-            
+
             return false;
         }
 
@@ -267,7 +269,7 @@ namespace Dialog
                     return;
                 }
             }
-        
+
             Debug.LogWarning($"ExitStage: Character {characterName} not in character list");
         }
 
