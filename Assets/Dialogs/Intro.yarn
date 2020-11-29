@@ -1,6 +1,5 @@
 title: Intro.Mole
 tags: 
-colorID: 0
 position: -554,-6
 ---
 <<changeBackground street>>
@@ -39,13 +38,13 @@ Old Mole: You wouldn’t have happened to see my <b>Shoe</b>, no?
 Pengi: UUuuhhhh no? Look, I'm sorry bu-
 //
 <<shake>>
-// [screen shakes again while next description plays:]
+// screen shakes again while next description plays:
 Pengi: Hey! My shirt!
 Old Mole: OOOOoooooOoh please young one, could you help me find my <b>Shoe</b>? 
 Old Mole: It’s very important to me and my knees aren’t what they used to be. I was just sitting on a bench and suddenly…
 <i>She raises her hands, her beaded bag rustling at the sudden movement.</i>
 <<shake>>
-//[screen shakes again while next description plays]
+//screen shakes again while next description plays
 Old Mole: WHAM! ITS GONE!!! 
 <i>Lowering her hands, her brow wrinkles.</i>
 //
@@ -70,12 +69,13 @@ Pengi: <Normal> Alright. At least I know the way there now.
 <<changeBackground generalMarket>>
 <i>What greets them first are the various sounds and smells of people chatting, food cooking and so on. Next came the sights, a street filled with various shops, all seemingly different and random compared to the next. Overwhelmed by the smells and sounds surrounding the area Pengi rushes into the nearest store.</i>
 
-//fade to white and move to bearstory
+//fade to white and move to Hippo
+[[Hippo.Intro]]
 ===
 title: Intro.Dream
 tags: 
 colorID: 0
-position: -1293,1
+position: -1295,1
 ---
 <<changeBackground dream>>
 <<playAudio pilotDream>>
@@ -84,31 +84,33 @@ position: -1293,1
 
 P: Hello everyone, this is your captain speaking. Hope you all had a wonderful sleep and as you look over to the left side of the plane you can see sun rising over the ocean.
 
-<<changeBackground sunset>>
+//Background cuts to shot of sunrise over ocean
+<i>The morning sun's rays glisten through the clouds.</i>
 
 P: Ain’t it something?
 
-// The screen shakes as the music gets cut by a sharp noise to denote them being woken from their daydream.
+<<shake>>
+//<<playSFX softwhack>>
 
 P: Huh?
 
 ->Look for who said that
     <i>Pengi turns their head, looking for the source of the voice</i>
+//dreamy looking text? like floating?
     PtC: The boss is going to find you slacking again, so stop dozing off.
-    // The screen shake and sound occur each time Paul tries to wake up Pengi
+    The screen shake and sound occur each time Paul tries to wake up Pengi
 
 ->Question the voice
 	P: Who said that?
 //dreamy looking text? like floating?
     PtC: Hehehe, it’s me, your conscience and I’m here to tell you to wake up.
-    // The screen shake and sound occur each time Paul tries to wake up Pengi
+    The screen shake and sound occur each time Paul tries to wake up Pengi
 
 P: Stop. Stop. Stop!
 [[Intro.Office]]
 ===
 title: Intro.Office
 tags: 
-colorID: 0
 position: -1041,-6
 ---
 <<playAudio whackSFX>>
@@ -117,11 +119,7 @@ position: -1041,-6
 <<playAudio officeSFX>>
 <<enterStage Paul>>
 
-// A loud whack occurs as the screen fades to white and changes to the background of an office with Pengi wearing their usual business outfit
-
 <i>Wiping off the drool running down their face, Pengi opens their eyes and realizes they are back in their dour office, surrounded by the same coworkers, sitting on the desk they had been assigned a year ago. They sigh.</i>
-
-<<The background noise changes to office noises>>
 
 PtC: You were dreaming about flying again weren’t you?
 
@@ -149,7 +147,7 @@ PtC: Think she’s got an important assignment for you.
 title: Intro.Boss
 tags: 
 colorID: 0
-position: -792,-5
+position: -792,-7
 ---
 <<changeBackground Boss>>
 <<enterStage Patricia>>
@@ -239,3 +237,4 @@ P: ...
 //Fade out and add pause as we transition to a new area
 [[Intro.Mole]]
 ===
+
