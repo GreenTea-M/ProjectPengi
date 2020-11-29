@@ -25,6 +25,9 @@ namespace Manager
         private SaveClient _saveClient;
         private GameInstance _gameInstance;
         private bool _isSaveDirty = false;
+        private bool _isSaveDone = false;
+
+        public bool IsSaveDone => _isSaveDone;
 
         private void OnEnable()
         {
@@ -71,6 +74,7 @@ namespace Manager
                 _saveClient.autoSave.currentYarnNode = currentNode;
                 _gameInstance.WriteOnAutoSave();
                 autoSaveText.AnimateText();
+                _isSaveDone = true;
             }
             
             _isSaveDirty = true;

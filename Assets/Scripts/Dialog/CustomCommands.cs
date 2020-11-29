@@ -56,7 +56,7 @@ namespace Dialog
 
         private FadedAudio _lastAudio = null;
 
-        private static readonly Stack<FadedAudio> Pool = new Stack<FadedAudio>();
+        private readonly Stack<FadedAudio> Pool = new Stack<FadedAudio>();
         private List<ShelfItem> _shelfItemList = new List<ShelfItem>();
         private PuzzleParent _puzzle;
         private Action _onComplete;
@@ -238,8 +238,15 @@ namespace Dialog
         // Note: not using Coroutine to allow for smoother fade
         private void GameEnd(string[] parameters)
         {
-            _lastAudio.FadeOut();
-            blackScreen.gameObject.SetActive(true);
+            if (_lastAudio != null)
+            {
+                _lastAudio.FadeOut();
+            }
+
+            if (blackScreen != null)
+            {
+                blackScreen.gameObject.SetActive(true);
+            }
             _state = State.GameEnding;
         }
 
@@ -440,7 +447,6 @@ namespace Dialog
                 Debug.Assert(fadedAudio != null);
                 return fadedAudio;
             }
-
             else
             {
                 return Pool.Pop();

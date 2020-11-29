@@ -8,7 +8,7 @@ namespace UI
 {
     public class SpecialButton : Button
     {
-        private TextMeshProUGUI _buttonText;
+        protected TextMeshProUGUI buttonText;
         private string _optionText;
         private SelectionState _state;
         private const float Delay = 1f/4f;
@@ -37,13 +37,13 @@ namespace UI
                         HighlightText();
                         break;
                     case SelectionState.Pressed:
-                        _buttonText.text = $"<b>>>></b> <u>{_optionText}</u>";
+                        buttonText.text = $"<b>>>></b> <u>{_optionText}</u>";
                         break;
                     case SelectionState.Selected:
                         NormalText();
                         break;
                     case SelectionState.Disabled:
-                        _buttonText.text = $"{_optionText}";
+                        buttonText.text = $"{_optionText}";
                         break;
                     default:
                         break;
@@ -59,11 +59,11 @@ namespace UI
         {
             if (_count % 2 == 0)
             {
-                _buttonText.text = $">  <u>{_optionText}</u>";
+                buttonText.text = $">  <u>{_optionText}</u>";
             }
             else
             {
-                _buttonText.text = $"> <u>{_optionText}</u>";
+                buttonText.text = $"> <u>{_optionText}</u>";
             }
         }
 
@@ -73,13 +73,13 @@ namespace UI
             switch (remainder)
             {
                 case 0:
-                    _buttonText.text = $"<b>></b>>> <u>{_optionText}</u>";
+                    buttonText.text = $"<b>></b>>> <u>{_optionText}</u>";
                     break;
                 case 1:
-                    _buttonText.text = $"><b>></b>> <u>{_optionText}</u>";
+                    buttonText.text = $"><b>></b>> <u>{_optionText}</u>";
                     break;
                 case 2:
-                    _buttonText.text = $">><b>></b> <u>{_optionText}</u>";
+                    buttonText.text = $">><b>></b> <u>{_optionText}</u>";
                     break;
                 default:
                     break;
@@ -88,9 +88,9 @@ namespace UI
 
         public void SetText(string optionText)
         {
-            _buttonText = GetComponentInChildren<TextMeshProUGUI>();
+            buttonText = GetComponentInChildren<TextMeshProUGUI>();
             _optionText = optionText;
-            _buttonText.text = $"<u>{optionText}";
+            buttonText.text = $"<u>{optionText}";
             StopAllCoroutines();
             StartCoroutine(AnimateText());
         }

@@ -4,7 +4,6 @@ using Gameplay;
 using GameSystem;
 using TMPro;
 using UI;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 namespace Manager
@@ -22,6 +21,8 @@ namespace Manager
 
         public GameObject popupObject;
         public TextMeshProUGUI popupMessage;
+
+        public DialogSceneManager dialogSceneManager;
 
         private bool _isPaused = false;
         private SaveData _currentSaveData;
@@ -61,6 +62,11 @@ namespace Manager
                 // Pause
                 inputManager.SetInputState(InputState.Pause);
                 panelParent.gameObject.SetActive(true);
+            }
+
+            if (!dialogSceneManager.IsSaveDone)
+            {
+                panelParent.gameObject.SetActive(false);
             }
 
             _isPaused = !_isPaused;
