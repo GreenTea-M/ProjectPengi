@@ -8,11 +8,115 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
-  baseLanguageID: 
+  baseLanguageID: en-US
   stringIDs:
-  - Hippo-Start-0
+  - Hippo-Hippo.Intro-0
+  - Hippo-Hippo.Intro-1
+  - Hippo-Hippo.Intro-2
+  - Hippo-Hippo.Intro-3
+  - Hippo-Hippo.Intro-4
+  - Hippo-Hippo.Intro-5
+  - Hippo-Hippo.Intro-6
+  - Hippo-Hippo.Intro-7
+  - Hippo-Hippo.Intro-8
+  - Hippo-Hippo.Intro-9
+  - Hippo-Hippo.Intro-10
+  - Hippo-Hippo.Intro-11
+  - Hippo-Hippo.Intro-12
+  - Hippo-Hippo.Intro-13
+  - Hippo-Hippo.Intro-14
+  - Hippo-Hippo.Intro-15
+  - Hippo-Hippo.Intro-16
+  - Hippo-Hippo.Intro-17
+  - Hippo-Hippo.Intro-18
+  - Hippo-Hippo.Intro-19
+  - Hippo-Hippo.Intro-20
+  - Hippo-Hippo.Intro-21
+  - Hippo-Hippo.Intro-22
+  - Hippo-Hippo.Intro-23
+  - Hippo-Hippo.Intro-24
+  - Hippo-Hippo.Intro-25
+  - Hippo-Hippo.Intro-26
+  - Hippo-Hippo.Intro-27
+  - Hippo-Hippo.Intro-28
+  - Hippo-Hippo.Intro-29
+  - Hippo-Hippo.Intro-30
+  - Hippo-Hippo.Intro-31
+  - Hippo-Hippo.Intro-32
+  - Hippo-Hippo.Intro-33
+  - Hippo-Hippo.Intro-34
+  - Hippo-Hippo.Sign-35
+  - Hippo-Hippo.Sign-36
+  - Hippo-Hippo.Sign-37
+  - Hippo-Hippo.Sign-38
+  - Hippo-Hippo.Sign-39
+  - Hippo-Hippo.Sign-40
+  - Hippo-Hippo.Sign-41
+  - Hippo-Hippo.Sign-42
+  - Hippo-Hippo.Sign-43
+  - Hippo-Hippo.Sign-44
+  - Hippo-Hippo.Sign-45
+  - Hippo-Hippo.Sign-46
+  - Hippo-Hippo.Sign-47
+  - Hippo-Hippo.About-48
+  - Hippo-Hippo.About-49
+  - Hippo-Hippo.About-50
+  - Hippo-Hippo.About-51
+  - Hippo-Hippo.About-52
+  - Hippo-Hippo.About-53
+  - Hippo-Hippo.About-54
+  - Hippo-Hippo.About-55
+  - Hippo-Hippo.Angry-56
+  - Hippo-Hippo.Angry-57
+  - Hippo-Hippo.Depends-58
+  - Hippo-Hippo.Depends-59
+  - Hippo-Hippo.AskBook-60
+  - Hippo-Hippo.AskBook-61
+  - Hippo-Hippo.AskBook-62
+  - Hippo-Hippo.AskBook-63
+  - Hippo-Hippo.AskSupplements-64
+  - Hippo-Hippo.AskSupplements-65
+  - Hippo-Hippo.AskSupplements-66
+  - Hippo-Hippo.AskMethods-67
+  - Hippo-Hippo.AskMethods-68
+  - Hippo-Hippo.AskMethods-69
+  - Hippo-Hippo.AskMethods-70
+  - Hippo-Hippo.AskSomething-71
+  - Hippo-Hippo.AskSomething-72
+  - Hippo-Hippo.AskSomething-73
+  - Hippo-Hippo.AskSomething-74
+  - Hippo-Hippo.AskSomething-75
+  - Hippo-Hippo.AskSomething-76
+  - Hippo-Hippo.AskSomething-77
+  - Hippo-Hippo.AskSomething-78
+  - Hippo-Hippo.AskSomething-79
+  - Hippo-Hippo.AskSomething-80
+  - Hippo-Hippo.AskSomething-81
+  - Hippo-Hippo.AskSomething-82
+  - Hippo-Hippo.AskSomething-83
+  - Hippo-Hippo.AskSomething-84
+  - Hippo-Hippo.FindNotebook-85
+  - Hippo-Hippo.FindNotebook-86
+  - Hippo-Hippo.AskAboutTroubles-87
+  - Hippo-Hippo.AskAboutTroubles-88
+  - Hippo-Hippo.AskAboutTroubles-89
+  - Hippo-Hippo.AskAboutTroubles-90
+  - Hippo-Hippo.AskAboutTroubles-91
+  - Hippo-Hippo.AskAboutTroubles-92
+  - Hippo-Hippo.AskAboutTroubles-93
+  - Hippo-Hippo.AskAboutTroubles-94
+  - Hippo-Hippo.AskAboutTroubles-95
+  - Hippo-Hippo.AskAboutTroubles-96
+  - Hippo-Hippo.AskAboutTroubles-97
+  - Hippo-Hippo.AskAboutTroubles-98
+  - Hippo-Hippo.AskAboutTroubles-99
+  - Hippo-Hippo.GetSignature-100
+  - Hippo-Hippo.GetSignature-101
+  - Hippo-Hippo.FriendsWithHank-102
+  - Hippo-Hippo.FriendsWithHank-103
   compilationStatus: 1
   isSuccesfullyCompiled: 1
   compilationErrorMessage: 
-  baseLanguage: {instanceID: 0}
+  baseLanguage: {fileID: 7128917941130120860, guid: 9e7f4dec367a3974a87cc9c3bdd2d3fa,
+    type: 3}
   localizations: []

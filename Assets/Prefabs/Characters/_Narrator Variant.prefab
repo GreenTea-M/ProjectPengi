@@ -9,8 +9,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
+      propertyPath: characterData.aliases.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
       propertyPath: characterData.characterType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: characterData.aliases.Array.data[0]
+      value: Narrator
       objectReference: {fileID: 0}
     - target: {fileID: 6412677138833811219, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}

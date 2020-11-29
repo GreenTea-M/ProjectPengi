@@ -57,10 +57,7 @@ namespace Dialog
 
         public DialogueBlocker dialogueBlocker = new DialogueBlocker();
 
-        private int _textIndex = 0;
-        private int _portraitIndex = 0;
         private string _lastSpeaker = "";
-        private bool requestDialogWrite = false;
         private SaveClient saveClient;
         private string _lastDialog;
 
@@ -147,7 +144,12 @@ namespace Dialog
             if (speakerInfo.realName.Length != 0)
             {
                 text = text.Replace($"{argSplit[0]}:", $"{speakerInfo.realName}:");
+            } else if (speakerInfo.character.CharacterType == CharacterType.Narrator)
+            {
+                text = text.Replace($"{argSplit[0]}:", "");
             }
+
+            text = text.Trim();
 
             // onLineUpdate.AddListener(textItem.UpdateLine);
 
@@ -241,9 +243,17 @@ namespace Dialog
                 formattedStringBuilder.ToString() : cleanStringBuilder.ToString();
             var textLength = cleanStringBuilder.Length;
             character.SetInitialText(formattedString);
-            _lastDialog = cleanStringBuilder.ToString();
-            
-            bool isSkipping = false;
+            var actualText = cleanStringBuilder.ToString();
+            if (actualText.Trim().Length == 0)
+            {
+                userRequestedNextLine = true;
+                textLength = 0;
+            }
+            else
+            {
+                _lastDialog = cleanStringBuilder.ToString();
+            }
+
             var textSpeedMultiplier = 1f;
             for (int i = 0; i < textLength; i++)
             {
@@ -358,6 +368,7 @@ namespace Dialog
 
             currentOptionSelectionHandler = selectOption;
 
+            iconManager.InformShowingOptions();
             foreach (var optionString in optionsCollection.Options)
             {
                 iconManager.ActivateButtons(i, () => SelectOption(optionString.ID));
@@ -469,11 +480,6 @@ namespace Dialog
 
             waitingForOptionSelection = false;
             currentOptionSelectionHandler?.Invoke(optionID);
-        }
-
-        public void RequestLastDialogWrite()
-        {
-            requestDialogWrite = true;
         }
 
         public void ShowElements(bool shouldShow)

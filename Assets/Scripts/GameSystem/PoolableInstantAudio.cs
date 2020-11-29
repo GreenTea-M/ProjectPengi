@@ -7,8 +7,8 @@ namespace GameSystem
     public class PoolableInstantAudio : MonoBehaviour
     {
         public GameConfiguration gameConfiguration;
+        public AudioSource audioSource;
         
-        private AudioSource _audioSource;
         private State _state = State.Uninitialized;
         private IPooler _pooler;
 
@@ -28,7 +28,7 @@ namespace GameSystem
                 case State.Unused:
                     break;
                 case State.Playing:
-                    if (!_audioSource.isPlaying)
+                    if (!audioSource.isPlaying)
                     {
                         _state = State.Unused;
                         _pooler.ReturnInstantAudio(this);
@@ -46,7 +46,6 @@ namespace GameSystem
 
         public void Initialize()
         {
-            _audioSource = GetComponent<AudioSource>();
             _state = State.Unused;
         }
 
@@ -55,9 +54,9 @@ namespace GameSystem
             Debug.Assert(_state == State.Unused);
             
             _pooler = pooler;
-            _audioSource.volume = gameConfiguration.Volume;
-            _audioSource.clip = audioClip;
-            _audioSource.Play();
+            audioSource.volume = gameConfiguration.Volume;
+            audioSource.clip = audioClip;
+            audioSource.Play();
             _state = State.Playing;
         }
     }

@@ -102,11 +102,7 @@ namespace GameSystem
         public float TextOpacity
         {
             get => textOpacity;
-            set
-            {
-                textOpacity = value;
-                PlayerPrefs.SetFloat(KeyTextOpacity, textOpacity);
-            }
+            set => textOpacity = value;
         }
         
         public bool enableTextFormatting = true;
@@ -135,7 +131,8 @@ namespace GameSystem
         private readonly string KeyShouldShake = "ShakeStrength";
         private readonly string KeyFontIndex = "FontIndex";
         private readonly string KeyFontSize = "FontSize";
-        private readonly string KeyTextOpacity = "TextOpacity";
+        // todo: clean up
+        // private readonly string KeyTextOpacity = "TextOpacity";
         private readonly string KeyTextFormatting = "TextFormatting";
         private readonly string KeyVolume = "Volume";
         #endregion Option variables
@@ -146,9 +143,8 @@ namespace GameSystem
         private SaveData currentSave;
 
         [Header("Auto save (Do not touch)")] 
-        public bool isSaveDirty = false;
         [SerializeField]
-        private SaveData autoSave;
+        private SaveData autoSave = new SaveData();
 
         [Header("Other global stuff")] 
         private SaveIO saveIo;
@@ -183,7 +179,6 @@ namespace GameSystem
                 }
 
                 fontSize = PlayerPrefs.GetFloat(KeyFontSize);
-                textOpacity = PlayerPrefs.GetFloat(KeyTextOpacity);
                 enableTextFormatting = PlayerPrefs.GetInt(KeyTextFormatting) == 1;
                 volume = PlayerPrefs.GetFloat(KeyVolume);
             }
@@ -193,7 +188,6 @@ namespace GameSystem
                 ShouldShake = shouldShake;
                 fontIndex = FontIndex;
                 FontSize = fontSize;
-                TextOpacity = textOpacity;
                 EnableTextFormatting = enableTextFormatting;
                 Volume = volume;
                 PlayerPrefs.Save();

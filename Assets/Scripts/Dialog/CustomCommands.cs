@@ -56,7 +56,7 @@ namespace Dialog
 
         private FadedAudio _lastAudio = null;
 
-        private static readonly Stack<FadedAudio> Pool = new Stack<FadedAudio>();
+        private readonly Stack<FadedAudio> Pool = new Stack<FadedAudio>();
         private List<ShelfItem> _shelfItemList = new List<ShelfItem>();
         private PuzzleParent _puzzle;
         private Action _onComplete;
@@ -150,7 +150,9 @@ namespace Dialog
             dialogueRunner.AddCommandHandler("enterStage", EnterStage);
             dialogueRunner.AddCommandHandler("exitStage", ExitStage);
             dialogueRunner.AddCommandHandler("fakeLastDialog", FakeLastDialog);
+            dialogueRunner.AddCommandHandler("playSFX", PlaySFX);
             dialogueRunner.AddCommandHandler("playSfx", PlaySFX);
+            dialogueRunner.AddCommandHandler("playsfx", PlaySFX);
         }
 
         private void Start()
@@ -236,8 +238,15 @@ namespace Dialog
         // Note: not using Coroutine to allow for smoother fade
         private void GameEnd(string[] parameters)
         {
-            _lastAudio.FadeOut();
-            blackScreen.gameObject.SetActive(true);
+            if (_lastAudio != null)
+            {
+                _lastAudio.FadeOut();
+            }
+
+            if (blackScreen != null)
+            {
+                blackScreen.gameObject.SetActive(true);
+            }
             _state = State.GameEnding;
         }
 
@@ -348,14 +357,31 @@ namespace Dialog
             {
                 if (bg.IsSimilar(searchTerm))
                 {
+                    var previousBg = "";
+                    
                     if (_currentBg != null)
                     {
                         _currentBg.Disappear();
+                        previousBg = _currentBg.CodeName;
                     }
+                    
                     _currentBg = bg;
                     _currentBg.gameObject.SetActive(true);
                     _currentBg.Appear();
                     locationPlate.SetLocation(bg.DisplayName);
+                    
+                    // special cases
+                    // bad hard coding LMAO
+                    if (searchTerm.ToLower().Equals("sunset"))
+                    {
+                        iconManager.UpdateAlternativeTextLocation(TextAlternativeLocationState.Sunset);
+                    }
+
+                    if (previousBg.ToLower().Equals("sunset"))
+                    {
+                        iconManager.UpdateAlternativeTextLocation(TextAlternativeLocationState.Default);
+                    }
+                    
                     return;
                 }
             }
@@ -421,7 +447,6 @@ namespace Dialog
                 Debug.Assert(fadedAudio != null);
                 return fadedAudio;
             }
-
             else
             {
                 return Pool.Pop();

@@ -15,26 +15,26 @@ MonoBehaviour:
   maxSaveSlots: 7
   baseConfiguration: {fileID: 0}
   fontList: []
+  characterPrefabList: []
   textRate: 0.025
-  shouldShake: 0
+  shouldShake: 1
   fontIndex: 0
-  fontSize: 12
+  fontSize: 11
   textOpacity: 0.97
   enableTextFormatting: 1
   volume: 0.75
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
-    currentYarnNode: Bear.Intro
+    currentYarnNode: Intro.Dream
     lastDialog: 
-    lastAudioName: fishMarket
-    lastHeader: carpentry
+    lastAudioName: 
+    lastHeader: 
     savedVariables: []
     isLeft: 1
     currentSpeaker: 
     previousSpeaker: 
     activeCharacterList: []
-  isSaveDirty: 0
   autoSave:
     name: 
     currentYarnNode: Bear.Intro

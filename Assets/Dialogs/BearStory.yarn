@@ -3,6 +3,7 @@ tags: Store
 colorID: 0
 position: 58,183
 ---
+<<exitStage Hank>>
 <<changeBackground carpentry>>
 <<enterStage Brynhilda>>
 <<playAudio BrynhildaBear>>
@@ -324,7 +325,6 @@ tags:
 colorID: 0
 position: -275,530
 ---
-<<playSfx testSfx>>
 P: Is... is this trophy made out of wood?
 B: Yes it is, but that’s because my brother won it during the Mole Wars.
 P: Oh, right! I remember learning about that in school. There was a shortage of metal right?
@@ -414,6 +414,7 @@ tags:
 colorID: 0
 position: 3347,568
 ---
+<<exitStage GF B>>
 P: On to the next one.
 <<gameEnd>>
 ===
@@ -509,10 +510,11 @@ B: <Smiling> Thank you for your thoughts, but you don’t have to do anything.
 P: Well, whatever happens, I’ll do my best.
 P: See you later.
 <i>Pengi turns and promptly walks out the door. Brynhilda waves as the little penguin leaves and the door rattles shut. </i>
+<<exitStage B GF>>
 // [Brynhilda's profile leaves this frame]
 <i>As the door shuts behind them, Pengi pauses to think about what exactly they can do to help this family.</i>
 P: <Thoughtful> They mentioned they were having trouble with management...maybe something to do with that could help?
-<<set $manager to 1>>
+<<set $manager = 1>>
 P: Well, that for me to think about later. 
 [[Fish.Start]]
 ===

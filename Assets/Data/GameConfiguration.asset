@@ -37,37 +37,61 @@ MonoBehaviour:
   - {fileID: 7721856675482816111, guid: 2d6cde523a7cab44da33f0a59e6bb49c, type: 3}
   - {fileID: 4183247458888187938, guid: 5b5895be60c0a59449f7b6aa2533c6ce, type: 3}
   - {fileID: 6661086423002316218, guid: 39d0536adcf7f154bb4969bbaf234985, type: 3}
+  - {fileID: 370761829563420223, guid: 433475a9970f715468f070c67ba35a47, type: 3}
+  - {fileID: 898698160826162532, guid: 79ab8cc9850b30f48a34c0ba6d852ab5, type: 3}
+  - {fileID: 9116473933309794769, guid: 5fe80e9544eb6a9459968d53401de608, type: 3}
+  - {fileID: 9116473933309794769, guid: 5fe80e9544eb6a9459968d53401de608, type: 3}
   textRate: 0.025
   shouldShake: 1
   fontIndex: 0
   fontSize: 11
   textOpacity: 0.97
   enableTextFormatting: 1
-  volume: 0.8415678
+  volume: 0.75
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
-    currentYarnNode: Bear.Intro
-    lastDialog: 'Brynhilda: So, what can I do for you today?'
-    lastAudioName: fishMarket
-    lastHeader: carpentry
+    currentYarnNode: Bear.PuzzleDone
+    lastDialog: 
+    lastAudioName: 
+    lastHeader: 
     savedVariables: []
     isLeft: 1
-    currentSpeaker: Brynhilda
+    currentSpeaker: 
     previousSpeaker: 
     activeCharacterList:
     - Brynhilda
     - Grammy
-  isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.TeddyDialogue
-    lastDialog: I'm still arranging the shelves...
-    lastAudioName: fishMarket
-    lastHeader: carpentry
+    currentYarnNode: Fish.Start
+    lastDialog: 'Pengi: Well, that for me to think about later.'
+    lastAudioName: BrynhildaBear
+    lastHeader: 
     savedVariables:
+    - name: peaceSign
+      value: 2
+      type: 0
     - name: teddy
       value: 2
+      type: 0
+    - name: toilet
+      value: 2
+      type: 0
+    - name: baseball
+      value: 2
+      type: 0
+    - name: marble
+      value: 2
+      type: 0
+    - name: grammyPicture
+      value: 2
+      type: 0
+    - name: puzzleDone
+      value: True
+      type: 2
+    - name: manager
+      value: 1
       type: 0
     isLeft: 1
     currentSpeaker: Pengi
