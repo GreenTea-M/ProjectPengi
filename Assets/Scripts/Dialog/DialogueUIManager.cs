@@ -57,10 +57,7 @@ namespace Dialog
 
         public DialogueBlocker dialogueBlocker = new DialogueBlocker();
 
-        private int _textIndex = 0;
-        private int _portraitIndex = 0;
         private string _lastSpeaker = "";
-        private bool requestDialogWrite = false;
         private SaveClient saveClient;
         private string _lastDialog;
 
@@ -251,8 +248,7 @@ namespace Dialog
             {
                 _lastDialog = cleanStringBuilder.ToString();
             }
-            
-            bool isSkipping = false;
+
             var textSpeedMultiplier = 1f;
             for (int i = 0; i < textLength; i++)
             {
@@ -367,6 +363,7 @@ namespace Dialog
 
             currentOptionSelectionHandler = selectOption;
 
+            iconManager.InformShowingOptions();
             foreach (var optionString in optionsCollection.Options)
             {
                 iconManager.ActivateButtons(i, () => SelectOption(optionString.ID));
@@ -478,11 +475,6 @@ namespace Dialog
 
             waitingForOptionSelection = false;
             currentOptionSelectionHandler?.Invoke(optionID);
-        }
-
-        public void RequestLastDialogWrite()
-        {
-            requestDialogWrite = true;
         }
 
         public void ShowElements(bool shouldShow)

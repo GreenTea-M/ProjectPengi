@@ -260,7 +260,7 @@ namespace Dialog
 
         public void ExitStage(string characterName)
         {
-            for (int i = 0; i < _activeCharacterList.Count; i--)
+            for (int i = 0; i < _activeCharacterList.Count; i++)
             {
                 if (_activeCharacterList[i].IsSimilar(characterName))
                 {
@@ -291,11 +291,27 @@ namespace Dialog
         public void HideAllButtons()
         {
             _mainCharacter.HideAllButtons();
+            _narratingCharacter.ResetTextLocation();
         }
 
         public int GetSideCharacterIndex(UnifiedCharacterScript unifiedCharacterScript)
         {
             return _activeCharacterList.IndexOf(unifiedCharacterScript);
+        }
+
+        public void InformShowingOptions()
+        {
+            _narratingCharacter.SetTextAlternativeLocation();
+        }
+
+        public void UpdateAlternativeTextLocation(TextAlternativeLocationState alternativeLocationState)
+        {
+            _narratingCharacter.SetAlternativeLocationState(alternativeLocationState);
+            _mainCharacter.SetAlternativeLocationState(alternativeLocationState);
+            foreach (var characterScript in _characterList)
+            {
+                characterScript.SetAlternativeLocationState(alternativeLocationState);
+            }
         }
     }
 

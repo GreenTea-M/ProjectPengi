@@ -34,7 +34,7 @@ public class SaveData
         Overwrite(rhs);
     }
     
-    private SaveData()
+    public SaveData()
     {
     }
 

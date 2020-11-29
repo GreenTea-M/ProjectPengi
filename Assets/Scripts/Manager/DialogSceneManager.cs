@@ -78,7 +78,6 @@ namespace Manager
 
         public void WriteAutoSave()
         {
-            dialogueUiManager.RequestLastDialogWrite();
             memory.Write(_saveClient.autoSave);
         }
 

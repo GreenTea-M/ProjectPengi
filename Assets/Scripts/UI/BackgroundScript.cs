@@ -26,6 +26,7 @@ namespace UI
         private State _state = State.None;
         private BackgroundItem _backgroundItem;
         public string DisplayName => _backgroundItem.displayName;
+        public string CodeName => _backgroundItem.name;
 
         private void Update()
         {

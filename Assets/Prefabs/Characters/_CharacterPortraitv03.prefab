@@ -177,6 +177,7 @@ MonoBehaviour:
   textFontMultiplier: 1
   shouldIgnoreAlpha: 0
   shouldIgnoreSize: 0
+  shouldIgnoreColor: 0
 --- !u!1 &1469536905405705998
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +307,66 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &3403096360799950157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8691654462698329010}
+  m_Layer: 0
+  m_Name: SunsetAlternativeLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8691654462698329010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3403096360799950157}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.5, y: 7.53, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7248697340177700486}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6916076515755571268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2787528202914975804}
+  m_Layer: 0
+  m_Name: AlternativeTextLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2787528202914975804
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6916076515755571268}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.184, y: 7.23, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7248697340177700486}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7248697338972137718
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,6 +562,8 @@ Transform:
   - {fileID: 7248697340453849371}
   - {fileID: 7248697339851054838}
   - {fileID: 6412677138833811219}
+  - {fileID: 2787528202914975804}
+  - {fileID: 8691654462698329010}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -531,7 +594,10 @@ MonoBehaviour:
   alternativeSprites: []
   stageLocation: {fileID: 7248697340453849371}
   exitLocation: {fileID: 936405846802146890}
-  alternativeTextLocation: {fileID: 0}
+  alternativeTextTransform: {fileID: 2787528202914975804}
+  alternativeTextLocationList:
+  - transform: {fileID: 8691654462698329010}
+    state: 1
   sprite: {fileID: 7248697338972137716}
   dialogueText: {fileID: 9073485691271360794}
   layoutGroup: {fileID: 0}

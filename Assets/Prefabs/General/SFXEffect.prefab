@@ -140,3 +140,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d455a86491044498bf741548592ae9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
+  audioSource: {fileID: 6656606104870877641}

@@ -43,34 +43,30 @@ MonoBehaviour:
   fontSize: 11
   textOpacity: 0.97
   enableTextFormatting: 1
-  volume: 0.8415678
+  volume: 0.75
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
-    currentYarnNode: Bear.Intro
-    lastDialog: 'Brynhilda: So, what can I do for you today?'
-    lastAudioName: fishMarket
-    lastHeader: carpentry
+    currentYarnNode: Intro.Dream
+    lastDialog: 
+    lastAudioName: 
+    lastHeader: 
     savedVariables: []
     isLeft: 1
-    currentSpeaker: Brynhilda
+    currentSpeaker: 
     previousSpeaker: 
     activeCharacterList:
     - Brynhilda
     - Grammy
-  isSaveDirty: 1
   autoSave:
     name: 
-    currentYarnNode: Bear.TeddyDialogue
-    lastDialog: I'm still arranging the shelves...
-    lastAudioName: fishMarket
-    lastHeader: carpentry
-    savedVariables:
-    - name: teddy
-      value: 2
-      type: 0
+    currentYarnNode: Intro.Dream
+    lastDialog: 
+    lastAudioName: 
+    lastHeader: 
+    savedVariables: []
     isLeft: 1
-    currentSpeaker: Pengi
+    currentSpeaker: 
     previousSpeaker: 
     activeCharacterList:
     - Brynhilda

@@ -150,7 +150,9 @@ namespace Dialog
             dialogueRunner.AddCommandHandler("enterStage", EnterStage);
             dialogueRunner.AddCommandHandler("exitStage", ExitStage);
             dialogueRunner.AddCommandHandler("fakeLastDialog", FakeLastDialog);
+            dialogueRunner.AddCommandHandler("playSFX", PlaySFX);
             dialogueRunner.AddCommandHandler("playSfx", PlaySFX);
+            dialogueRunner.AddCommandHandler("playsfx", PlaySFX);
         }
 
         private void Start()
@@ -183,6 +185,7 @@ namespace Dialog
 
         private void PlaySFX(string[] parameters)
         {
+            Debug.Log("Playing sfx");
             if (parameters.Length == 0)
             {
                 Debug.Log("PlaySFX: no parameter");
@@ -348,14 +351,31 @@ namespace Dialog
             {
                 if (bg.IsSimilar(searchTerm))
                 {
+                    var previousBg = "";
+                    
                     if (_currentBg != null)
                     {
                         _currentBg.Disappear();
+                        previousBg = _currentBg.CodeName;
                     }
+                    
                     _currentBg = bg;
                     _currentBg.gameObject.SetActive(true);
                     _currentBg.Appear();
                     locationPlate.SetLocation(bg.DisplayName);
+                    
+                    // special cases
+                    // bad hard coding LMAO
+                    if (searchTerm.ToLower().Equals("sunset"))
+                    {
+                        iconManager.UpdateAlternativeTextLocation(TextAlternativeLocationState.Sunset);
+                    }
+
+                    if (previousBg.ToLower().Equals("sunset"))
+                    {
+                        iconManager.UpdateAlternativeTextLocation(TextAlternativeLocationState.Default);
+                    }
+                    
                     return;
                 }
             }

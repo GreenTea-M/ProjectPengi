@@ -22,7 +22,6 @@ namespace UI
 
             if (locationName.Equals(""))
             {
-                Debug.Log("Disappear plate now");
                 text.text = "";
                 _animator.Play(HashHidden);
             }

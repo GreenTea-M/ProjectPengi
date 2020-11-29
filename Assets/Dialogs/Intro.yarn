@@ -77,7 +77,7 @@ tags:
 colorID: 0
 position: -1295,1
 ---
-<<changeBackground dream>>
+<<changeBackground sunset>>
 <<playAudio pilotDream>>
 //clouds are moving, soft light??, maybe pengi moving back and forth?
 //SFX: radio sound? GOLD
@@ -90,7 +90,7 @@ P: Hello everyone, this is your captain speaking. Hope you all had a wonderful s
 P: Ain’t it something?
 
 <<shake>>
-//<<playSFX softwhack>>
+<<playSFX testSfx>>
 
 P: Huh?
 
