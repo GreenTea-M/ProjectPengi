@@ -13,17 +13,17 @@ position: -1037,-241
 //The music changes to something bassy that bros use to lift weights, but also pretentious like the classical music all premeds use for cram sessions.
 
 //BIG TEXT
-What’s up my fellow intellectual!
+<size=200%>What’s<textSpeed=0.2> </textSpeed>up<textSpeed=0.1> <textSpeed=4>my fellow intellectual!
 
 <i>The deep baritone of the voice shakes Pengi out of their confusion. </i>
 <<enterStage Hank>>
 <i>Looking towards the counter, Pengi met eyes with a hulking Hippo with biceps larger than Pengi’s whole body.</i> 
 
-H: Welcome to Hippo’s Campus bruh, the one stop shop for all things one needs to become the ultimate—
+H: Welcome to Hippo’s Campus<textSpeed=0.2> <textSpeed=0.25>bruh<textSpeed=0.025>,</textSpeed> the one stop shop for all things one needs to become the ultimate—
 
 //Hank flexes their muscles and the screen shakes from the force of his testosterone alone.
-
-H: —POLYMATH!
+<<shake>>
+H, jojo: <size=200%><b>—POLYMATH!
 
 <i>He lets out a booming laugh that shook Pengi to the core.</i>
 
@@ -88,7 +88,7 @@ position: -567,13
 -> Well, what parts do you not like?.
     [[Hippo.AskAboutTroubles]]
 
--> Well, you'd be happy to know that Grounded provides all the support you need!.
+-> Well, you'd be happy to know that\nGrounded provides all the support you need!.
     P: Well… you’d be happy to know that Grounded provides all its tenants with full support and low rental fees during their stay on our property! We are also well known for our world class customer support when it comes to utilities and other things you may need as a store owner!
 
     H: Last person gave the same pitch. And like before, it doesn’t excite me. If you have nothing more to add then I will politely decline your company's offer once again.
@@ -115,9 +115,13 @@ tags:
 colorID: 0
 position: -624,-541
 ---
+<<changeBackground hipposCampus>>
+// I'm playing safe, I encountered a weird location bug only for this node
 P: What exactly to do you sell in this store? I’m interested but still a little confused.
 
-H: Not at all fellow intellectual. Here at Hippo’s Campus we sell an assortment of goods ranging from books, supplements for the brain, to other methods of expanding one's mind.
+H: Not at all fellow intellectual. 
+
+H: Here at Hippo’s Campus we sell an assortment of goods ranging from books, supplements for the brain, to other methods of expanding one's mind.
 
 -> Ask about books. <<if $hippoAskBook neq true>>
     [[Hippo.AskBook]]
@@ -257,7 +261,8 @@ H: That’s kind of you to say. Unfortunately, the last person said the same thi
 
 P: Oh...
 
-H: They leave much to be desired on the negotiating front. Perhaps they’d even benefit from my own personal method of self-growth. But the last thing I want to do with them is sign off on my store and potentially leave me in a worse predicament than before.
+H: They leave much to be desired on the negotiating front. Perhaps they’d even benefit from my own personal method of self-growth.
+H: But the last thing I want to do with them is sign off on my store and potentially leave me in a worse predicament than before.
 
 -> Talk about negative projections for the Centre’s future.
     P: You may be interested in knowing then that this location is predicted to be in an economic decline within the near future. It would be wise to perhaps relocate your business to make sure you wouldn’t get caught up in the troubles.

@@ -2549,11 +2549,11 @@ MonoBehaviour:
     name: BrynhildaBear
   - audioClip: {fileID: 8300000, guid: ea4fe4272e9b15240a820d5dc0d13603, type: 3}
     name: testSfx
-  - audioClip: {fileID: 8300000, guid: ea4fe4272e9b15240a820d5dc0d13603, type: 3}
+  - audioClip: {fileID: 0}
     name: softWhack
   - audioClip: {fileID: 8300000, guid: ef9b5251ef0971540956071825acd965, type: 3}
     name: pilotDream
-  - audioClip: {fileID: 8300000, guid: ea4fe4272e9b15240a820d5dc0d13603, type: 3}
+  - audioClip: {fileID: 0}
     name: whackSfx
   - audioClip: {fileID: 8300000, guid: 8a65e0c933f22a24db5e0d1de55428e7, type: 3}
     name: officeBg
@@ -2626,7 +2626,8 @@ MonoBehaviour:
     prefab: {fileID: 627546365868416618, guid: 2c1beb3816000aa4b9dd446e25e29c1a, type: 3}
     displayName: Office
   - name: hipposCampus
-    aliases: []
+    aliases:
+    - hippocampus
     prefab: {fileID: 3814284084452676809, guid: f579f5b150e7e9747b027a2aa1ec9ab2,
       type: 3}
     displayName: Hippo's Campus

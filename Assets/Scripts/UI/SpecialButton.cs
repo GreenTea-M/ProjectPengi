@@ -73,13 +73,13 @@ namespace UI
             switch (remainder)
             {
                 case 0:
-                    buttonText.text = $"<b>></b>>> <u>{_optionText}</u>";
+                    buttonText.text = $"<b>></b>>> <b><u>{_optionText}</u>";
                     break;
                 case 1:
-                    buttonText.text = $"><b>></b>> <u>{_optionText}</u>";
+                    buttonText.text = $"><b>></b>> <b><u>{_optionText}</u>";
                     break;
                 case 2:
-                    buttonText.text = $">><b>></b> <u>{_optionText}</u>";
+                    buttonText.text = $">><b>></b> <b><u>{_optionText}</u>";
                     break;
                 default:
                     break;
@@ -88,6 +88,9 @@ namespace UI
 
         public void SetText(string optionText)
         {
+            // from http://digitalnativestudios.com/forum/index.php?topic=1199.0
+            optionText = optionText.Replace("\\n","\n");
+            
             buttonText = GetComponentInChildren<TextMeshProUGUI>();
             _optionText = optionText;
             buttonText.text = $"<u>{optionText}";

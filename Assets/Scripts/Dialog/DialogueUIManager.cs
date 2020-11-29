@@ -150,6 +150,8 @@ namespace Dialog
             }
 
             text = text.Trim();
+            // from http://digitalnativestudios.com/forum/index.php?topic=1199.0
+            text = text.Replace("\\n", "\n");
 
             // onLineUpdate.AddListener(textItem.UpdateLine);
 

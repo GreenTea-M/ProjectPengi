@@ -79,6 +79,7 @@ namespace Dialog
         private SaveClient _saveClient;
         private string _lastAudioName;
         private BackgroundScript _currentBg;
+        private string _lastLocation;
 
         private void OnEnable()
         {
@@ -364,7 +365,8 @@ namespace Dialog
                         _currentBg.Disappear();
                         previousBg = _currentBg.CodeName;
                     }
-                    
+
+                    _lastLocation = searchTerm;
                     _currentBg = bg;
                     _currentBg.gameObject.SetActive(true);
                     _currentBg.Appear();
@@ -622,6 +624,7 @@ namespace Dialog
         public void WriteAutoSave()
         {
             _saveClient.autoSave.lastAudioName = _lastAudioName;
+            _saveClient.autoSave.lastHeader = _lastLocation;
         }
 
         public void ReturnInstantAudio(PoolableInstantAudio finished)

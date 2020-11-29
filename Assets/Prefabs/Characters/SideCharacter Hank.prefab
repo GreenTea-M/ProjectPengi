@@ -74,6 +74,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
         type: 3}
+      propertyPath: alternativeSprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].aliases.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].alternativeStates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
       propertyPath: characterData.name
       value: Hank
       objectReference: {fileID: 0}
@@ -94,5 +109,67 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 093030d663cac7c4eaf448b98ab0012f,
         type: 3}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].name
+      value: jojo
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].defaultState.sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c2c1fb95d78b1084ebfebb4610a3612d,
+        type: 3}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].alternativeStates.Array.data[0].characterState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].alternativeStates.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1dac2c2052da2884d835a89cd29b5404,
+        type: 3}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].defaultState.color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].defaultState.color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].defaultState.color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].defaultState.color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].alternativeStates.Array.data[0].color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].alternativeStates.Array.data[0].color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].alternativeStates.Array.data[0].color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: alternativeSprites.Array.data[0].alternativeStates.Array.data[0].color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee7bbb5eb571b9e44a7532a256f80db1, type: 3}

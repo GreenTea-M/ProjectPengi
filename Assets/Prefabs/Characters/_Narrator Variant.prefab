@@ -14,6 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
+      propertyPath: defaultTextLocationList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
       propertyPath: characterData.characterType
       value: 0
       objectReference: {fileID: 0}
@@ -22,6 +27,16 @@ PrefabInstance:
       propertyPath: characterData.aliases.Array.data[0]
       value: Narrator
       objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: defaultTextLocationList.Array.data[0].state
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: defaultTextLocationList.Array.data[0].transform
+      value: 
+      objectReference: {fileID: 8858034713968051716}
     - target: {fileID: 6412677138833811219, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -94,3 +109,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6f644d83908a7f4fbf79a67ec00790e, type: 3}
+--- !u!4 &8858034713968051716 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3193864024157043096, guid: b6f644d83908a7f4fbf79a67ec00790e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6250131841347665820}
+  m_PrefabAsset: {fileID: 0}

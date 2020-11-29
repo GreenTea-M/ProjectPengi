@@ -24,6 +24,7 @@ namespace UI
         [FormerlySerializedAs("alternativeTextLocation")] public Transform alternativeTextTransform;
         public AlternativeTextLocationData[] defaultTextLocationList;
         public AlternativeTextLocationData[] alternativeTextLocationList;
+        public AlternativeTextLocationData[] alternativeStageLocationList;
         
         [Header("Child components")] public SpriteRenderer sprite;
         public TextMeshProUGUI dialogueText;
@@ -50,12 +51,14 @@ namespace UI
         private Vector3 _initialTextLocation;
         private Vector3 _idleTargetPosition;
         private float _timeOffset;
-        private string _description;
-        private string _oldDescription;
+        private string _description = "";
+        private string _oldDescription = "";
         private TextAlternativeLocationState _textAlternative = TextAlternativeLocationState.Default;
         private TextAlternativeLocationState _previousTextAlternative = TextAlternativeLocationState.Default;
         private Vector3 _alternativeTextLocation;
         private Vector3 _defaultTextLocation;
+        private TextAlternativeLocationState _jojoPreviousAltState;
+        private Vector3 _currentStagePosition;
 
         public string RealName => characterData.name;
         public CharacterType CharacterType => _characterType;
@@ -80,6 +83,7 @@ namespace UI
             _alternativeTextLocation = alternativeTextTransform.position;
             _initialTextLocation = dialogueText.transform.position;
             _defaultTextLocation = _initialTextLocation;
+            _currentStagePosition = stageLocation.position;
 
             dialogueText.text = "";
 
@@ -115,10 +119,14 @@ namespace UI
                         _timeOffset = Time.time;
                         _iconManager.informSpeakerReturnValue.dialogueBlocker.Unblock();
                     }
+                    else
+                    {
+                        sprite.transform.position = _currentStagePosition;
+                    }
 
                     break;
                 case CharacterState.Speaking:
-                    sprite.transform.position = stageLocation.position +
+                    sprite.transform.position = _currentStagePosition +
                                                 (Mathf.Abs(Mathf.Sin((Time.time - _timeOffset) *
                                                             speakFloatSpeed)) * speakFloatHeight * Vector3.up);
                     break;
@@ -166,8 +174,19 @@ namespace UI
                         break;
                     }
                 }
-
+                
                 _previousTextAlternative = _textAlternative;
+
+                _currentStagePosition = stageLocation.position;
+
+                foreach (var data in alternativeStageLocationList)
+                {
+                    if (data.state == _textAlternative)
+                    {
+                        _currentStagePosition = data.transform.position;
+                        break;
+                    }
+                }
 
                 switch (_textState)
                 {
@@ -231,9 +250,9 @@ namespace UI
                 case CharacterType.Main:
                 case CharacterType.Side:
                     sprite.transform.position = Vector3.MoveTowards(sprite.transform.position,
-                        stageLocation.position,
+                        _currentStagePosition,
                         transitionSpeed * Time.deltaTime);
-                    if (sprite.transform.position == stageLocation.position)
+                    if (sprite.transform.position == _currentStagePosition)
                     {
                         characterState = CharacterState.Idling;
                     }
@@ -330,7 +349,7 @@ namespace UI
                 // check index in active characters
                 int currentIndex = _iconManager.GetSideCharacterIndex(this);
                 Debug.Assert(currentIndex != -1);
-                _idleTargetPosition = stageLocation.position + (currentIndex * offsetIncrement);
+                _idleTargetPosition = _currentStagePosition + (currentIndex * offsetIncrement);
                 _idleTargetPosition.z = inactiveZ;
                 characterState = CharacterState.ToRepositionIdling;
             }
@@ -347,6 +366,18 @@ namespace UI
                 _description = description.Trim();
                 if (!_description.Equals(_oldDescription))
                 {
+                    // Ver bad hardcoding T.T
+                    if (_oldDescription.ToLower().Equals("jojo"))
+                    {
+                        _iconManager.UpdateAlternativeTextLocation(_jojoPreviousAltState);
+                    }
+
+                    if (_description.ToLower().Equals("jojo"))
+                    {
+                        _jojoPreviousAltState = _textAlternative;
+                        _iconManager.UpdateAlternativeTextLocation(TextAlternativeLocationState.Jojo);
+                    }
+                    
                     _oldDescription = _description;
                     RefreshSprite();
                 }
@@ -511,7 +542,8 @@ namespace UI
     public enum TextAlternativeLocationState
     {
         Default,
-        Sunset
+        Sunset,
+        Jojo
     }
 
     [Serializable]

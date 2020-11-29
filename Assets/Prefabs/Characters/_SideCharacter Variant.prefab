@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4825743774304477367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748923073107194692}
+  m_Layer: 0
+  m_Name: JojoLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &748923073107194692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4825743774304477367}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.504652, y: 6.5626373, z: -0.8486812}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4384204903600273469}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6377101390681325171
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +110,17 @@ PrefabInstance:
     - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
       propertyPath: defaultTextLocationList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: alternativeStageLocationList.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: alternativeTextLocationList.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
@@ -132,6 +172,36 @@ PrefabInstance:
       propertyPath: defaultTextLocationList.Array.data[0].state
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: alternativeTextLocationList.Array.data[1].transform
+      value: 
+      objectReference: {fileID: 8367048856479029027}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: alternativeTextLocationList.Array.data[1].state
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: alternativeStageLocationList.Array.data[0].state
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: alternativeStageLocationList.Array.data[0].transform
+      value: 
+      objectReference: {fileID: 748923073107194692}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: defaultTextLocationList.Array.data[1].transform
+      value: 
+      objectReference: {fileID: 8367048856479029027}
+    - target: {fileID: 1881041305573618648, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: defaultTextLocationList.Array.data[1].state
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2777298629420424835, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
       propertyPath: m_IsActive
@@ -141,6 +211,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3193864024157043096, guid: b6f644d83908a7f4fbf79a67ec00790e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6412677138833811219, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
@@ -176,12 +251,12 @@ PrefabInstance:
     - target: {fileID: 7248697340177700486, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 10.36
       objectReference: {fileID: 0}
     - target: {fileID: 7248697340177700486, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 7.95
       objectReference: {fileID: 0}
     - target: {fileID: 7248697340177700486, guid: b6f644d83908a7f4fbf79a67ec00790e,
         type: 3}
@@ -274,6 +349,12 @@ Transform:
 --- !u!4 &4384204903273656397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7248697339851054838, guid: b6f644d83908a7f4fbf79a67ec00790e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6363402598124547771}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8367048856479029027 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3193864024157043096, guid: b6f644d83908a7f4fbf79a67ec00790e,
     type: 3}
   m_PrefabInstance: {fileID: 6363402598124547771}
   m_PrefabAsset: {fileID: 0}

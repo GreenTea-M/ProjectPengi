@@ -12,6 +12,7 @@ namespace UI
 
         private int HashHidden = Animator.StringToHash("LocationPlateHidden");
         private int HashStartLocationPlate = Animator.StringToHash("StartLocationPlate");
+        private string _previousLocationName = "";
 
         public void SetLocation(string locationName)
         {
@@ -27,6 +28,13 @@ namespace UI
             }
             else
             {
+                if (_previousLocationName.Equals(locationName))
+                {
+                    return;
+                }
+
+                _previousLocationName = locationName;
+                
                 text.text = locationName;
                 _animator.Play(HashStartLocationPlate);
             }
