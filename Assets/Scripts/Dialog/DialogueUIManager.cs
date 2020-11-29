@@ -144,7 +144,12 @@ namespace Dialog
             if (speakerInfo.realName.Length != 0)
             {
                 text = text.Replace($"{argSplit[0]}:", $"{speakerInfo.realName}:");
+            } else if (speakerInfo.character.CharacterType == CharacterType.Narrator)
+            {
+                text = text.Replace($"{argSplit[0]}:", "");
             }
+
+            text = text.Trim();
 
             // onLineUpdate.AddListener(textItem.UpdateLine);
 

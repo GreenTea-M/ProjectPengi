@@ -185,7 +185,6 @@ namespace Dialog
 
         private void PlaySFX(string[] parameters)
         {
-            Debug.Log("Playing sfx");
             if (parameters.Length == 0)
             {
                 Debug.Log("PlaySFX: no parameter");

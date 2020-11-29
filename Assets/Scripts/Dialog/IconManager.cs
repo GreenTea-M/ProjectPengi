@@ -239,6 +239,7 @@ namespace Dialog
                 if (characterScript.IsSimilar(characterName))
                 {
                     _activeCharacterList.Add(characterScript);
+                    return;
                 }
             }
 

@@ -22,6 +22,7 @@ namespace UI
         [Header("Locations")] public Transform stageLocation;
         public Transform exitLocation;
         [FormerlySerializedAs("alternativeTextLocation")] public Transform alternativeTextTransform;
+        public AlternativeTextLocationData[] defaultTextLocationList;
         public AlternativeTextLocationData[] alternativeTextLocationList;
         
         [Header("Child components")] public SpriteRenderer sprite;
@@ -41,21 +42,23 @@ namespace UI
         public CharacterState characterState = CharacterState.Hidden;
         private CharacterState _previousState = CharacterState.Hidden;
         private TextState _textState = TextState.Default;
-        private TextState _previousTextState = TextState.Default;
         private CharacterType _characterType = CharacterType.Narrator;
         private bool _isSpeaking = false;
         private int _currentTextMax;
         private IconManager _iconManager;
         private List<SpecialButton> _buttons = new List<SpecialButton>();
-        private Vector3 _defaultTextLocation;
+        private Vector3 _initialTextLocation;
         private Vector3 _idleTargetPosition;
         private float _timeOffset;
         private string _description;
         private string _oldDescription;
         private TextAlternativeLocationState _textAlternative = TextAlternativeLocationState.Default;
+        private TextAlternativeLocationState _previousTextAlternative = TextAlternativeLocationState.Default;
         private Vector3 _alternativeTextLocation;
-        
+        private Vector3 _defaultTextLocation;
+
         public string RealName => characterData.name;
+        public CharacterType CharacterType => _characterType;
 
         private enum TextState
         {
@@ -74,7 +77,9 @@ namespace UI
 
         private void Start()
         {
-            _defaultTextLocation = dialogueText.transform.position;
+            _alternativeTextLocation = alternativeTextTransform.position;
+            _initialTextLocation = dialogueText.transform.position;
+            _defaultTextLocation = _initialTextLocation;
 
             dialogueText.text = "";
 
@@ -138,7 +143,7 @@ namespace UI
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (_textState != _previousTextState)
+            if (_textAlternative != _previousTextAlternative)
             {
                 _alternativeTextLocation = alternativeTextTransform.position;
 
@@ -151,7 +156,34 @@ namespace UI
                     }
                 }
                 
-                _previousTextState = _textState;
+                _defaultTextLocation = _initialTextLocation;
+
+                foreach (var data in defaultTextLocationList)
+                {
+                    if (data.state == _textAlternative)
+                    {
+                        _defaultTextLocation = data.transform.position;
+                        break;
+                    }
+                }
+
+                _previousTextAlternative = _textAlternative;
+
+                switch (_textState)
+                {
+                    case TextState.Default:
+                        _textState = TextState.ToDefault;
+                        break;
+                    case TextState.ToAlternative:
+                        break;
+                    case TextState.Alternative:
+                        _textState = TextState.Alternative;
+                        break;
+                    case TextState.ToDefault:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
 
             switch (_textState)

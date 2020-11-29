@@ -116,13 +116,13 @@ P: What exactly to do you sell in this store? I’m interested but still a littl
 
 H: Not at all fellow intellectual. Here at Hippo’s Campus we sell an assortment of goods ranging from books, supplements for the brain, to other methods of expanding one's mind.
 
--> Ask about books. <<if visited("Hippo.AskBook") is false>>
+-> Ask about books. <<if $hippoAskBook neq true>>
     [[Hippo.AskBook]]
 
--> Ask about supplements. <<if visited("Hippo.AskSupplements") is false>>
+-> Ask about supplements. <<if $hippoAskSupplements neq true>>
     [[Hippo.AskSupplements]]
 
--> Ask about other methods. <<if visited("Hippo.AskMethods") is false>>
+-> Ask about other methods. <<if $hippoAskMethods neq true>>
     [[Hippo.AskMethods]]
 
 -> Ask for signature..
@@ -130,7 +130,7 @@ H: Not at all fellow intellectual. Here at Hippo’s Campus we sell an assortmen
     [[Hippo.Sign]]
 
 //This next branch only if Ask about supplements
--> Ask if something.  <<if visited("Hippo.AskSomething") is false>>
+-> Ask if something.  <<if $hippoAskSupplements == true>>
     [[Hippo.AskSomething]]
 
 [[Hippo.About]]
@@ -161,6 +161,7 @@ H: You’d think right bruh? But nah, we got books about art, we got ‘genre’
 P: So you’re kind of like a bookstore?
 
 H: Part bookstore, part everything else. <i>He winks.</i>
+<<set $hippoAskBook = true>>
 [[Hippo.About]]
 ===
 title: Hippo.AskSupplements
@@ -173,6 +174,7 @@ P: Supplements? Like adderall to cram for a final?
 
 H: We have adderall, but that ain’t the only supplement. We got multivitamins, fish oils, anything to get that mind of yours to get the brain gains.
 //the Ask if something is wrong choice is opened
+<<set $hippoAskSupplements = true>>
 [[Hippo.About]]
 ===
 title: Hippo.AskMethods
@@ -185,6 +187,7 @@ P: What kind of other methods? Like... <i>Their voice softens to a whisper..</i>
 H: Hahaha. No, we are a legitimate business here. Those other methods would be non-western learning methods as well as exercise equipment for those who wish to follow in my own method.
 
 P: Oh!
+<<set $hippoAskMethods = true>>
 [[Hippo.About]]
 ===
 title: Hippo.AskSomething

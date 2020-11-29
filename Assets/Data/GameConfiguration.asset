@@ -37,6 +37,10 @@ MonoBehaviour:
   - {fileID: 7721856675482816111, guid: 2d6cde523a7cab44da33f0a59e6bb49c, type: 3}
   - {fileID: 4183247458888187938, guid: 5b5895be60c0a59449f7b6aa2533c6ce, type: 3}
   - {fileID: 6661086423002316218, guid: 39d0536adcf7f154bb4969bbaf234985, type: 3}
+  - {fileID: 370761829563420223, guid: 433475a9970f715468f070c67ba35a47, type: 3}
+  - {fileID: 898698160826162532, guid: 79ab8cc9850b30f48a34c0ba6d852ab5, type: 3}
+  - {fileID: 9116473933309794769, guid: 5fe80e9544eb6a9459968d53401de608, type: 3}
+  - {fileID: 9116473933309794769, guid: 5fe80e9544eb6a9459968d53401de608, type: 3}
   textRate: 0.025
   shouldShake: 1
   fontIndex: 0
@@ -47,7 +51,7 @@ MonoBehaviour:
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
-    currentYarnNode: Intro.Dream
+    currentYarnNode: Hippo.Intro
     lastDialog: 
     lastAudioName: 
     lastHeader: 
@@ -60,15 +64,17 @@ MonoBehaviour:
     - Grammy
   autoSave:
     name: 
-    currentYarnNode: Intro.Dream
-    lastDialog: 
-    lastAudioName: 
+    currentYarnNode: Hippo.About
+    lastDialog: "Pengi: W-w-what exactly do you have to help me on my intellectual\u2014was
+      it pilgrimage that you said? Yes! Pilgrimage. What do you have to help?"
+    lastAudioName: hippobgm
     lastHeader: 
     savedVariables: []
     isLeft: 1
-    currentSpeaker: 
+    currentSpeaker: Pengi
     previousSpeaker: 
     activeCharacterList:
+    - Hank
     - Brynhilda
     - Grammy
   gameInstance: {fileID: 0}

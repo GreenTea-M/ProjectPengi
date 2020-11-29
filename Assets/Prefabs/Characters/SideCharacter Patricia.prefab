@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4175653563927131651
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4384204903600273468, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: m_Name
+      value: SideCharacter Patricia
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384204903600273469, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384204903600273469, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384204903600273469, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384204903600273469, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384204903600273469, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384204903600273469, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384204903600273469, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384204903600273469, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384204903600273469, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384204903600273469, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384204903600273469, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: characterData.aliases.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: characterData.name
+      value: Patricia
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: characterData.aliases.Array.data[0]
+      value: PB
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: defaultSprite.defaultState.sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 29f0fd6cb1240bd4fa9657b1a5a29d0c,
+        type: 3}
+    - target: {fileID: 4779891416787557731, guid: ee7bbb5eb571b9e44a7532a256f80db1,
+        type: 3}
+      propertyPath: defaultSprite.alternativeStates.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a40fd929761895347a528bc15911c2d7,
+        type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ee7bbb5eb571b9e44a7532a256f80db1, type: 3}
