@@ -1,0 +1,403 @@
+title: Fish.Intro
+tags: 
+colorID: 0
+position: -2153,-249
+---
+//Switch to Bargain barrel background, The music sounds reminiscent of classic mafia music.
+<<changeBackground Bargain>>
+<<playAudio BGMBargain>>
+<<enterStage Alici>>
+<<set $FishChoices = 0>>
+<i>As Pengi enters the store, their eyes are bombarded by an assortment of odd items splayed everywhere for display and sale.</i>
+<i>The arrangements of these items seem to lack any rhyme or reason.</i>
+<i>A vending machine simultaneously selling candy bars and fish soup was propped up against the wall while barrels of coins, buttons and rice were against another.</i>  </i> 
+<i>The place seemed to be in utter chaos.</i>
+P: <i>This is the last place on the list I think…?</i>
+<i>Pengi looks around and doubles checks that they are in the right place. </i>
+P: <i>Is-Is-Is this even a real store?</i>
+P: Hello? Is anyone here?
+<i>From the back of the store comes the rolling clang of metals striking the floor, like someone had accidentally knocked over an antique collection of frying pans</i>. 
+<i>Because of course any self respecting store would have that available.</i> 
+<i>The door behind the counter opens as an anchovy wearing a high collar shirt and apron appears from behind it.</i>
+<i>The anchovy fish-eyes Pengi through his water filled tank before clearing his throat.</i>
+A: Hello my friend, name’s Alici. Nice of you to roll on into <b>The Bargain Barrel</b>.
+<i>His voice is shrouded by a thick italian accent and the water inside his tank.</i>
+<i>He approaches with his back straightened and casually wraps his arm around Pengi, pressing them forwards to walk around the store.</i>
+A: I see you have quite the… surprised look on your face. 
+A: We get that all the time here in <b>The Bargain Barrel</b>, but trust me when I say that we are business at its finest. 
+A: You see,
+A: <b>The Bargain Barrel</b> is the <size=125%>FUTURE</size> of retail.
+<i>He lets out a watery gurgle of a giggle.</i>
+
+-> Say nothing
+    <i>Alici nudges Pengi over to a display showcasing the latest smartphone released on the market, The Orange X, placed neatly next to a stack of actual oranges.</i>
+    A: We got a real deal here for you! Ever wanted to use an Orange smartphone while <i><b>eating</b></i> an orange? 
+    A: Well try our one for twenty bundle where we slap a bunch of oranges with your brand new Orange!
+
+-> Um...a little space please?
+    <i>Pengi clears their throat.</i>
+    P: E-e-excuse me sir, I’d appreciate it if you could give me a little bit of space. N-n-no offence, I appreciate your e-e-energy. I just like having some space.
+    <i>Alici pulls back his arm.</i>
+    <i>In fact, he pulls his entire body away, and Pengi notices the calm persona break a little and a hint of panic overtakes the fish.</i>
+    A: Ah, my apologies!
+    <i>Alici clears his throat again and regains his composure.</i>
+    A: Just a little too friendly I guess. Moving on.
+    P: <i><size=80%>Interesting...</size></i>
+    <i>Alici walks over to a display showcasing the latest smartphone released on the market, The Orange X, placed neatly next to a stack of actual fresh oranges.</i>
+    A: We got a real deal here for you. Ever wanted to use an Orange smartphone while <i><b>eating</b></i> an orange? 
+//variables for options available
+<<set $FishShoe to 1>>
+<<set $FishOrange to 1>>
+<<set $FishHistory to 1>>
+<<set $FishChoices to 0>>
+[[Fish.Choices]]
+===
+title: Fish.Choices
+tags: 
+colorID: 0
+position: -1583,-242
+---
+<<if $FishChoices == 3>>
+    [[Fish.DoneChoices]]
+<<endif>>
+-> Well you see, I’m looking for a...boot? <<if $FishShoe == 1>>
+    [[Fish.Shoe]]
+-> Inspect the Orange smartphone. <<if $FishOrange == 1>>
+    [[Fish.Orange]]
+-> Ask about the store’s history. <<if $FishHistory == 1>>
+    [[Fish.History]]
+===
+title: Fish.Shoe
+tags: 
+colorID: 0
+position: -1842,-518
+---
+<<set $FishShoe to 0>>
+<<set $FishChoices = $FishChoices + 1>>
+P: Well you see, I’m looking for a...boot? 
+<i>He looked thoughtfully around the store before shaking his fish-bowl head.</i>
+A: Hmmm...funnily enough, sold our last boot to a fellow just five minutes ago.
+A: Sorry kid.
+A: But don’t even worry about that! We have so many things to choose from!
+A: We are sure to not disappoint. 
+[[Fish.Choices]]
+===
+title: Fish.Orange
+tags: 
+colorID: 0
+position: -1586,-516
+---
+<<set $FishOrange to 0>>
+<<set $FishChoices = $FishChoices + 1>>
+<i>Pengi squints their eyes at the phone and notices the screen has a watermark on it.</i>
+P: A-are you sure that’s a new phone? It looks like it's a fake.
+<i>Eyes widening, Alici snatches the phone from its display and shoves it in his pocket.</i>
+<i>His sudden movement spills some of his tank water onto the hardwood floor.</i>
+A: That must have been our testing version!
+<i>A nervous stream of bubbles escape his mouth as he speaks..</i>
+A: Yes, yes, our testing version. Apologies, I’ll have to talk to our tech experts to get a real one working. 
+A: You know those tech idiots right? Too busy watching game streams to actually get the job done.
+P: Your store is also a tech...shop?
+A: Like I said… <b>The Bargain Barrel</b> is the future… hah ha…
+A: Now about these oranges-
+<i>His fisheye hastily looks back towards the pile of oranges.</i>
+P: <i>…</i>
+P: <i>This place is a little suspicious. </i>
+P: <i>I might be able to use that to get this fishy fellow to sign the document if I press further...</i>
+[[Fish.Choices]]
+===
+title: Fish.History
+tags: 
+colorID: 0
+position: -1307,-513
+---
+<<set $FishHistory to 0>>
+<<set $FishChoices = $FishChoices + 1>>
+P: So, this store has been here for a while?
+<i>Alici places a fin on his chest and lets out a laugh.</i>
+A: Ha! You have no idea kid!
+A: I’d say that we are the lifeblood of this little Menagerie. Without us, history wouldn’ have been all that deep. 
+A: I guess I wouldn’t have been anything without this life kid.
+<i>He frowns a little as he says this, a look of confusion crossing his eyes before letting out another chuckle.</i>
+A: Well..never got the chance to find out…
+A: <size=150%>BUT NEVER MIND THAT!</size>
+A: Anything I can help you find? 
+A: A glass of expi- I mean fermented apples? Or perhaps a rust- I MEAN some antique copper plates? 
+[[Fish.Choices]]
+===
+title: Fish.DoneChoices
+tags: 
+colorID: 0
+position: -1029,-239
+---
+P: <i>I’m not really sure what to do.</i>
+P: <i>This place seems very fishy and if I press on he might <b>sign the document</b>.</i>
+P: <i>But...</i>
+P: <i>I also feel like there is more to this <b>fish’s story</b> than meets the eye...</i>
+P: <i>...</i>
+P: <i>I guess I’ll…</i> 
+
+-> Pressure Alici on my suspicions…
+    [[Fish.Investigate]]
+
+-> Dig deeper on Alici’s history....
+    P: Can you tell me more about this place? And how it got to selling Oranges with oranges?
+    <i>He freezes in place before looking down Pengi.</i>
+    A: Wow wow! What’s with all the questions here…
+    <i>He squints.</i>
+    A: You a cop or something?
+
+    -> Tell him you’re a cop (Lie).
+        P: <i>Maybe I can find out more about him if I just tell this <size= 80%>smalllll-itty-bitty lie</size>.</i>
+	    [[Fish.Cop]]
+
+    -> Ask for signature (Truth).
+        [[Fish.Sign]]
+
+-> Ask for his signature.
+    [[Fish.Sign]]
+===
+title: Fish.Investigate
+tags: 
+colorID: 0
+position: -1026,-513
+---
+P: You know, this whole store has been kind of a question mark since I came in…
+A: I’m telling you, we’re legit. Just, just, just don’t mind the smartphone, how about these?
+<i>Alici brings attention to the furniture section of the store, specifically to the stained futon mattresses on display.</i>
+A: Real pristine bedsheets for all your sleeping needs.
+P: They have stains on them...
+A: It’s part of the looks… oh how do kids call it these days?
+A: The aesthetic; rustic and antique!
+<i>Pengi takes a look around and notices that when he looks to the backdoor behind the counter Alici’s face tenses.</i>
+P: What’s behind there?
+A: <size=125%>Nothing!</size> Nothing at all!
+P: Well you seem pretty nervous about it...if it's nothing, can i take a look? 
+<i>Alici seems visibly taken aback.</i>
+A: Listen, I don’t want no trouble. I’m just running a simple family business here, all right? Real legitimate. Take whatever the hell you want. The futons, the oranges, my watch, my gun—
+P: You have a gun?!
+A: N-n-no! That was a joke, I’m a joker see! 
+<i>He lifts his blazer and reveals a handgun tucked inside. He lets out a gurgle.</i>
+<<shake>>
+A: N-n-no! That ain’t supposed to be here. I’m legit, legit I swear!
+-> Rush towards the backdoor.
+    <i>Pengi rushes to the backdoor behind the counter. Alici chases after them but is too late. Behind the door are rows of desks sitting in the dark with poker chips laying on top of each one.</i>
+    P: Wha-what’s this!? 
+    P: Are you running a gambling den?!
+    <i>Alici’s tries to say something, uttering gibberish noises before collapsing to his knees and cries.</i>
+    A: Yes! 
+    <i>He holds his fish bowl in his hands spilling half the water out of it.</i>
+    A: Yes, I am <textSpeed=0.075>...
+    A: There’s nothing I can do about it. 
+    A: My family made me do it. They said-they said it was all for the family.
+    P: Are you an actual mafioso?! Like with all the illegal stuff?
+    A: I am!
+    <i>He begins to shake and gurgle, sloshing more water onto the floor</i>
+    <i>Pengi hands their handkerchief to Alici who wipes the water off the front of his bowl.</i>
+    <i>His shoulders slouched down in defeat.</i>
+    A: They wanted me to handle our little front, but…
+    A: I can’t handle it no more!
+    A: I’m not made for a life of crime! I couldn’t even sell you a freaking futon!
+    P: <i>Hmmm. This place is no good for this guy. Maybe him signing is actually a good thing?</i>
+    P: How about I get this trouble off your hands then? I represent a company interested in taking over the centre. They’ll even give you some money to start their businesses somewhere else.
+    A: W-wait...really?
+    A: But...the family will probably find out...
+    P: I don't think that's any worse than how your are living right now.
+    <i>Alici looks down at his two flippers then around at the tables in the darklit backroom.</i>
+    A: You know what...
+    A: Give me the damn paper, Imma sign it and use that money to do...something. 
+    A: Anything but this.
+//fade to white
+    [[Fish.EndInvestigate]]
+
+-> Run away
+	<i>Pengi take a step back in fright.</i>
+	<<shake>>
+	P: <size=150%>THAT’S A REAL GUN!</size>
+	A: No! Don’t worry about it! Don’t tell anyone kid, ya hear?
+	P: I-I swear I won’t! 
+	P: Just please don’t hurt me!
+	A: I wont kid! Swears it, I’ve never even used this old thing!
+	P: Ye-yeah.
+	//<<playSFX SFXrunning>>
+	<i>Pengi suddenly turns around and books it towards the front door.</i>
+	[[Fish.EndPanic]]
+===
+title: Fish.Cop
+tags: 
+colorID: 0
+position: -710,173
+---
+P: Not a cop, but a private investigator. What are you going to do about it sir?
+<i>For a moment, Alici’s panic shows through the cracks of his calm demeanor.</i>
+A: That’s a real funny joke there friend. But I’ll have to ask you to stop cause it’s rude to impersonate an investigator.
+P: <i>Oh god, am I really going to impersonate an officer?</i>
+-> Commit to the bit.
+	<i>Pengi straightens their back and looks Alici dead in the eye.</i>
+    P: I’m not joking. Look at all this weird stuff you’re selling. Smartphones with oranges, skateboards with dresses, antique swords with furniture. Who are you trying to fool? Yourself?
+    <i>A stream of bubbles leaves Alici’s mouth as he begins to stutter.</i>
+    A: W-What do you want me to say? W-We are the innovation of modern—
+    P: Cut it with that innovation malarkey. You and I both know this store is a front!
+    <i>Alici begins muttering more gibberish. As he does so, Pengi takes a look around the store. When they look towards the  backdoor behind the counter Alici shrieks.</i>
+    P: <i>Hmmm. Very interesting.</i>
+    [[Bring up the backdoor|Fish.EndGoodCop]]
+    [[Threaten with SWAT raid|Fish.EndBadCop]]
+
+-> Chicken out.
+    P: Oh man, what am I even doing?
+    <i>Pengi looks up at the fish who is now flowing in confusion.</i>
+    P: I-
+    P: I’m actually a member of Grounded Real Estates and we want to buy the rights to your store. 
+    P: Sorry for all the trouble and stuff.
+    <i>There is a small pause before Alici responds, his voice curdling with anger.</i>
+    A: OH? So you WERE impersonating an officer of the law?
+    A: HAH! And now you wanna buy my shop?
+    <i>He lets out a roaring laugh while holding his belly.</i>
+    <i>Pengi winces at this sudden sound.</i>
+    A: I’ll be nice kid.
+    A: Leave.
+    <i>He squints his watery eye down at the shivering penguin</i>
+    A: Or thing’s will get ugly in here. .
+    [[Fish.EndPanic]]
+===
+title: Fish.Sign
+tags: 
+colorID: 0
+position: -739,-232
+---
+P: Actually, I’m a representative of Grounded Real Estates and I wanted to share with you our new proposition for the store owners at this Centre!
+A: Oh I see now, you the guy’s who’ve been poaching my store huh? 
+A: Think you guys can come in here, all big men like, and just steal from the working class?
+<i>With his voice rising, Alici grabs one of the metal Louisville Sluggers from the sports and swiss cheese section.</i>
+P: <i>What is happening?! Is he going full mafioso on me?</i>
+A: I’m about to bust your head in like a watermelon if you don’t walk out this store kiddo. Scram!
+[[Fish.EndPanic]]
+===
+title: Fish.EndInvestigate
+tags: 
+colorID: 0
+position: -1035,-783
+---
+<i>As Alici walks away from his life of crime, Pengi pulls out a lollipop from their pocket.</i>
+P: <i>Just another day in Menagerie Centre.</i> 
+P: <i>Heh. This place never changes,</i>
+P: <i>always sucking the soles of everyone who lives here.</i>
+P: <i> The only person it didn’t was that poor dame I never managed to save—</i>
+A: Hey buddy, you gonna stay looking all melancholy all day?
+A: I need to close the store before leaving it for good.
+P: O-oh! Sorry, my bad!
+//fade to white
+//variables: sign, no help
+<<set $signature = $signature + 1>>
+<<set $ASign = true>>
+<<set $AHelp = false>>
+[[Fish.End]]
+===
+title: Fish.EndPanic
+tags: 
+colorID: 0
+position: -388,-234
+---
+<<exitStage Alici>>
+<<changeBackground generalMarket>>
+<<playAudio Market>>
+<i>Pengi rushes out of The Bargain Barrel. Hiding around the corner, they bend over while trying to catch their breath.</i>
+
+P: <i>What a disaster! Who knew actual gangsters operated here, and I didn’t even get a signature.</i>
+P: Damn!</i>
+//fade to white
+//variables: no sign, no help
+<<set $ASign = false>>
+<<set $AHelp = false>>
+[[Fish.End]]
+===
+title: Fish.EndGoodCop
+tags: 
+colorID: 0
+position: -377,169
+---
+P: And that backdoor. I know what you’re hiding back there, and you can’t keep up with it for long.
+<i>Alici’s tries to say something, uttering gibberish noises before collapsing to his knees and cries.</i>
+<i>Finally, he collapses onto his knees and cries.</i>
+A: All right, all right you got me! I can’t do this no more! 
+A: My family made me do it. They said-they said it was all for the family
+<i>He holds his fish bowl in his hands spilling half the water out of it.</i>
+A: Stop with the stupid family, and the stupid gambling den!
+A: I don’t want anything to do with this store, just take me away somewhere safe!
+<i>His shoulders slouched down in defeat.</i> 
+P: <i>This is more serious than I thought! I thought he was just selling pirated smartphones at worse, not an actual mafioso!</i>
+P: <i>Plus, he doesn’t seem to be doing too good.</i>
+-> Hand him a handkerchief.
+    <i>Pengi hands their handkerchief to Alici who wipes the water off the front of his bowl.</i>
+    A: They wanted me to handle our little front, but…
+    A: I can’t handle it no more!
+
+->Is there anything I can do to help?
+	P: Is there anything I can do to help? 
+	A: Nah kid.
+	<i>He answers through sniffles and coughs.</i>
+    A: This family would make you fish food if they found out you helped. 
+    A: Best keep out of it.
+
+P:...
+P: I can’t help you personally, I think it’s best that you leave this life, this store and start somewhere new. 
+P: <i>I should probably mention the contract now...it’ll help him.</i>
+P: <i>Right?</i>
+P: I-I hear a company is willing to buy out your store and pay you a boatload of money.
+A: Oh god that sounds like a terrible idea. Once I sign a single piece of a paper, the family’ll know and I’m doomed.
+A: I need to get outta here asap!
+A: I’m done with this place. 
+<i>Alici marches out the store, intent on leaving his current life..</i>
+<<exitStage Alici>>
+P: <i>This place is crazier than I thought! I didn’t get his signature, but maybe its for the best that this place gets forgotten...</i>
+//fade to white
+//variables: no sign, help.
+<<set $ASign = false>>
+<<set $AHelp = true>>
+[[Fish.End]]
+===
+title: Fish.EndBadCop
+tags: 
+colorID: 0
+position: -377,463
+---
+P: <i>HAH, he’s scared. I can definitely get him with a little display of power.</i>
+P: Stop the act. I have a squad of SWAT waiting for my signal.
+<i>Alici grins, recomposing himself.</i>
+A: Show me your search warrant then, “investigator”.
+P: It’s… not with me right now…
+A: As I thought, get out of here you bozo!
+P: B-but they are all waiting for my signal you don-
+A: Oh yeah? Then do it. Show me pipsqueak. 
+P: I-
+<i>Alici looks down, arms crossed, waiting for a response.</i>
+P: <i>Damn.</i>
+P:I-I’ll get out of your way. 
+A: That’s what I thought. 
+A: And don’t let the door hit you on the way out.
+<<exitStage Alici>>
+<i>Pengi walks out the front door of the store feeling utterly defeated.</i>
+P:<i>Guess he got me. I think I came on too strong.</i>
+//fade to white
+//variables: no sign, no help
+<<set $ASign = false>>
+<<set $AHelp = false>>
+[[Fish.End]]
+===
+title: Fish.End
+tags: 
+colorID: 0
+position: 134,-243
+---
+<<exitStage Alici>>
+<<changeBackground generalMarket>>
+<<playAudio Market>>
+P: Well, at the end of the day I wasn’t able to find that old mole’s boot...
+<i>Pengi reaches into their suitcase and pulls out the manila folder containing the store owners names.</i>
+<i>Looking at the list, they sigh.</i>
+P: Annnnd that was the last of the owners I needed to talk to. 
+<i>They furrowed their brow and scratched their beak nervously.</i>
+P: Not so sure if these are the results the boss was looking for, but we’ll find out soon enough. 
+<i>Placing the paper back in their suitcase, they make their way back to the office.</i>
+[[End.Intro]]
+===

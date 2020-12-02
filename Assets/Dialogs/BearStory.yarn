@@ -1,7 +1,7 @@
 title: Bear.EnterStore
 tags: Store
 colorID: 0
-position: 58,183
+position: -628,206
 ---
 <<exitStage Hank>>
 <<changeBackground carpentry>>
@@ -14,13 +14,12 @@ Brynhilda: Well hello-
 Pengi: AHH!
 <<shake>>
 <b>BAM</b> 
-//
-<i>Having been enthralled in all the items around them, Pengi hadn’t noticed the arrival of Brynhilda, and SMASHED their head on the shelf, knocking all of the items onto the floor.</i>
 Brynhilda: -there.
-P: Oh my gosh, I’m so sorry! 
+P: Oh my gosh, I’m so sorry!
+<i>Having been reaching up to grab a curious looking bag, Pengi hadn’t noticed the arrival of the apron-wearing polar bear, and has hit their hand against the shelf, knocking all of the items onto the floor.</i>
 <i>Pengi hurriedly gets to their knees, trying to pick up the items which were now strewn all across the shop floor.</i>
 <i>Brynhilda lets out a warm and hearty laugh</i>
- Brynhilda: <Smiling> Don’t be, you’d be surprised how common that is. I really need to make more sound when I enter a room. 
+Brynhilda: <Smiling> Don’t be, you’d be surprised how common that is. I really need to make more sound when I enter a room. 
 <i>She bends down and begins to help pick up the items on the floor</i>
 <i>Pengi, feeling a flush of red creeping up to their face pick up...</i>
 [[Bear.PuzzleStart]]
@@ -28,7 +27,7 @@ P: Oh my gosh, I’m so sorry!
 title: Bear.PuzzleStart
 tags: 
 colorID: 0
-position: 358,188
+position: 92,175
 ---
 <<changeBackground none>>
 <<clearShelfItem>>
@@ -75,7 +74,7 @@ Wait a sec...
 title: Bear.PuzzleDone
 tags: 
 colorID: 2
-position: 723,174
+position: 828,156
 ---
 <<changeBackground carpentry>>
 <<enterStage B GF>>
@@ -97,7 +96,7 @@ Brynhilda: So, what can I do for you today?
 title: Bear.GetSignature
 tags: 
 colorID: 5
-position: 1042,404
+position: 1232,606
 ---
 //music change to sour tone
 Pengi: Ummm, well.
@@ -112,7 +111,7 @@ Brynhilda: <Tense Smiling or Neutral> I’m sorry, but I think you need to leave
 title: Bear.BegSignature
 tags: 
 colorID: 5
-position: 1891,568
+position: 1547,609
 ---
 <i>Pengi blinks a couple times, tilting their head in confusion.</i>
 P: <Confused> I just want a little bit of your time, our company-
@@ -122,12 +121,15 @@ B: <Through gritted teeth> Get.
 B: <b>Out.</b>
 P: O-Oh...alright. H-have a wonderful day.
 <i>Pengi backs out of the store slowly, discouraged deeply by how that went.</i>
-[[Fish.Start]]
+//no sign, no help
+<<set $BHelp to false>>
+<<set $BSign  to false>>
+[[BearStory.End]]
 ===
 title: Bear.JustifyDream
 tags: 
 colorID: 1
-position: 1459,193
+position: 1220,231
 ---
 Pengi: <Nervously> I-I’m sorry! I really am. 
 Pengi: It wasn’t my idea to do this to you, and if I didn’t have to, I wouldn’t ask you to.
@@ -144,86 +146,10 @@ B: I’ve got dreams too, but I won’t go uprooting peoples’ lives and family
 B: <Normal/Determined?> I’m not going to-
 [[Bear.Both]]
 ===
-title: Bear.Intro
-tags: Intro
-colorID: 0
-position: -283,178
----
-<<changeBackground street>>
-<<enterStage oldMole>>
-// <<changeBackground patsOffice>>
-// Fade in background of street? Will add in later version
-<<playAudio OldMole>>
-Pengi: Okokok OK!
-Pengi: I got this!
-Pengi: Phew. 
-<i>This was Pengi's first real job. Their first actual, proper job.</i>
-Pengi: I really hope I don't mess it up.
-<i>They nervously adjust their tie and pull out a hankerchief to wipe thier beak.</i>
-// <i>Hmmm<<textSpeed=0.5/>>...<<textSpeed = 1/>>now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
-<i>Hmmm<textSpeed=0.1/>...<textSpeed = 1/> now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
-//
-<<shake>>
-HeLLLlllOOOoo there, youNGSTER!
-Pengi: Wha-what the?!
--> Look around
-    <i>Pengi looks around, confused</i>
-    HellooOOOoooo HELLlooOoo over heeereee!
-    <i>They waddle around to look behind them. Still nothing.</i>
-    Down! LooOOkk DOwn!
-    <i>Surprised, Pengi looks down to see an Old Mole looking up at them through foggy glasses.</i>
--> Look down
-    <i>They look down and see...nothing?</i>
-    Oh young one, bEHinNND you!
-    <i>Pengi turns around and still sees...nothing?</i>
-    Look down dear.
-    <i>Looking down once again, they are greeted with the face of wrinkled Old Mole</i>
-Pengi: O-oh, hello there!?
-<i>She squints up at the well dressed bird through tiny glasses and beady, black eyes.</i>
-Old Mole: You wouldn’t have happened to see my <b>Shoe</b>, no?
-<i>As impossible as it may seem she squints even harder, her eyes seemingly disappearing into her graying fur.</i>
-Pengi: UUuuhhhh no? Look, I'm sorry bu-
-//
-<<shake>>
-// [screen shakes again while next description plays:]
-Pengi: Hey! My shirt!
-Old Mole: OOOOoooooOoh please young one, could you help me find my <b>Shoe</b>? 
-Old Mole: It’s very important to me and my knees aren’t what they used to be. I was just sitting on a bench and suddenly…
-<i>She raises her hands, her beaded bag rustling at the sudden movement.</i>
-<<shake>>
-//[screen shakes again while next description plays]
-Old Mole: WHAM! ITS GONE!!! 
-<i>Lowering her hands, her brow wrinkles.</i>
-//
-Old Mole:  <size=75%>I swear <b>The Market</b> was where I was, no? Hmmmm... must have wandered off, just like my shoe... oh dear...
-Pengi: Sorry, did you just say <b>The Market</b>?
-Old Mole: Yes dear! You know <b>The Market</b>, no? Just down the street, turn left, over the yellow bridge, through the stream, past the hill, over the red bridge - not the yellow one - and through the corn field. Best and only <b>Market</b> we have!
-Pengi: <Surprise/Confused>
-Old Mole: SO, can you help me?
-Pengi: <Confused>... 
-<i>Pengi paused. They figured it wouldn't hurt to help a little right? Especially where they were headed to <b>The Market</b> already.</i>
-Pengi: Fine. <i>Pengi said through a sigh.</i>
-Old Mole: OH! Goodness, thank yoU!!! 
-//
-Old Mole: When you find it and bring it back, I’ll be sure to present a proper thank you gift.
-<i>She smiles sweetly, and with a curious glint in her eyes promptly turns and walks away at a surprisingly brisk pace.</i>
-<<exitStage moleLady>>
-Pengi: <Surprised> Oh wait where can I meet you once I... annnnnd she’s gone.
-Pengi: <Normal> Alright. At least I know the way there now. 
-
-
-//
-<<changeBackground generalMarket>>
-//
-Using their impeccable memory, Pengi began following the Old Mole's directions. 
-Panting, Pengi finally made it to <b>The Market</b>. 
-What greets them first are the various sounds and smells of people chatting, food cooking and so on. Next came the sights, a street filled with various shops, all seemingly different and random compared to the next. Overwhelmed by the smells and sounds surrounding the area Pengi rushes into the nearest store. 
-[[Bear.EnterStore]]
-===
 title: Bear.CondShoe
 tags: 
 colorID: 3
-position: 1451,-122
+position: 1384,-131
 ---
 <i>Brynhilda turns back towards the window and sighs, her fur flattening as she does so. She turns back towards Pengi, Her shoulders slightly hunched</i>
 Brynhilda: <Disappointed/Sad> Well, I can’t really get mad at you for this can I?
@@ -284,7 +210,7 @@ Pengi: -a-and this is my big break to get enough money to <words get smaller and
 title: Bear.PeaceDialogue
 tags: 
 colorID: 8
-position: 357,-295
+position: 335,-202
 ---
 <i>Picks up a large carving of a peace sign. There’s faded writing on it and you need both hands to carry it.</i>
 P: Woah, what is this? And why is it so <voffset=-0.5em>heavy?
@@ -297,7 +223,7 @@ B: It turns out a space for creation is compatible with the values of peace, lov
 title: Bear.ToiletDialogue
 tags: 
 colorID: 0
-position: 865,697
+position: -306,427
 ---
 P: …
 P: This is a roll of toilet paper.
@@ -312,7 +238,7 @@ B: They didn’t really catch on...
 title: Bear.GrammyPictureDialogue
 tags: 
 colorID: 0
-position: 689,-261
+position: 646,-104
 ---
 P: Ooh! Another picture. Is this polar bear you?
 B: Sure is. That’s great Grammy Ribitha and my 5 siblings. She was a family friend of our parents before their passing. She took us in afterward. Old girl’s still here and kicking!
@@ -323,7 +249,7 @@ B: <b><Heartfelt></b> We owe her everything.
 title: Bear.BaseBallDialogue
 tags: 
 colorID: 0
-position: -275,530
+position: -224,-47
 ---
 P: Is... is this trophy made out of wood?
 B: Yes it is, but that’s because my brother won it during the Mole Wars.
@@ -340,9 +266,9 @@ position: 58,-230
 ---
 P: Big fan?
 B: Oh yes. <i>*chuckles knowingly*</i>
-B: That’s my <size=90%>great-<size=100%>great-<size=110%>great-<size=120%>great-<size=130%>great-<size=100%>grandfather! 
+B: That’s my <size=90%>great-<size=100%>great-<size=110%>great-<size=120%>great-<size=150%>great-<size=100%>grandfather! 
 B: You know the whole thing about carrying a <size=120%>big<size=100%> stick? 
-B: My <size=90%>great-<size=100%>great-<size=113%>great-<size=125%>great-<size=135%>great-<size=100%>grandmother was the one that made him the stick! 
+B: My <size=90%>great-<size=100%>great-<size=113%>great-<size=125%>great-<size=155%>great-<size=100%>grandmother was the one that made him the stick! 
 B: It’s a truly charming tale of two bears and their love of wood-based items…
 <i>She trails off, as if reliving a wonderful childhood memory (even though she wasn’t alive back then).</i>
 [[Bear.PuzzleStart]]
@@ -350,7 +276,7 @@ B: It’s a truly charming tale of two bears and their love of wood-based items�
 title: Bear.MarbleDialogue
 tags: 
 colorID: 0
-position: -137,802
+position: 116,481
 ---
 P: A marble collection? Are these your kid’s?
 B: Nope. We have a thing for woodworking in this family. When we get to a certain skill level, we make a set of marbles, and everyone gets one.
@@ -368,7 +294,7 @@ B: Okay, which one first?
 title: Bear.BrettaMarble
 tags: 
 colorID: 0
-position: 126,1042
+position: 34,937
 ---
 B: This is my sister Bretta’s. She runs a chair shop in Grizzleton.
 -> The one that’s medium brown, with a white swirl running across the surface.
@@ -380,7 +306,7 @@ B: This is my sister Bretta’s. She runs a chair shop in Grizzleton.
 title: Bear.BrodyMarble
 tags: 
 colorID: 0
-position: 384,1039
+position: 333,942
 ---
 B:  Uncle Brody’s work. He’s a pretty big nerd.
 -> The one that’s white, black and brown.
@@ -392,7 +318,7 @@ B:  Uncle Brody’s work. He’s a pretty big nerd.
 title: Bear.BrianMarble
 tags: 
 colorID: 0
-position: 651,1034
+position: 646,946
 ---
 B: My dad’s. His name was Brian.
 -> The one that has a line running down the middle.
@@ -404,24 +330,15 @@ B: My dad’s. His name was Brian.
 title: Bear.Marble.End
 tags: 
 colorID: 0
-position: 380,556
+position: 468,574
 ---
 B: Alright, that’s enough for now.
 [[Bear.PuzzleStart]]
 ===
-title: Fish.Start
-tags: 
-colorID: 0
-position: 3347,568
----
-<<exitStage GF B>>
-P: On to the next one.
-<<gameEnd>>
-===
 title: Bear.Both
 tags: 
 colorID: 2
-position: 2153,185
+position: 1582,233
 ---
 <i>At that moment a faint call is heard growing louder and louder as Grammy Frog enters the room.</i>
 GF: BBRrynhilda? BrynhildaAA?? BRYNHILDA??? 
@@ -459,7 +376,7 @@ P: I...I see.
 title: Bear.SignAgain
 tags: 
 colorID: 2
-position: 2493,-61
+position: 1890,-109
 ---
 P: You know, if you sign, the money should be more than enough to open up shop somewhere else and to get her some help. 
 P: Or even to hire another hand around the shop so you could take care of her.
@@ -483,7 +400,7 @@ B: Well… here it is.
 title: Bear.AnotherWay
 tags: 
 colorID: 2
-position: 2500,308
+position: 1903,234
 ---
 <i>Pengi looks towards the door.</i>
 P: <Confused> There has to be another way.
@@ -511,17 +428,20 @@ P: Well, whatever happens, I’ll do my best.
 P: See you later.
 <i>Pengi turns and promptly walks out the door. Brynhilda waves as the little penguin leaves and the door rattles shut. </i>
 <<exitStage B GF>>
-// [Brynhilda's profile leaves this frame]
+// Brynhilda's profile leaves this frame
+//no sign, help
+<<set $BHelp to true>>
+<<set $BSign to false>>
 <i>As the door shuts behind them, Pengi pauses to think about what exactly they can do to help this family.</i>
 P: <Thoughtful> They mentioned they were having trouble with management...maybe something to do with that could help?
 <<set $manager = 1>>
 P: Well, that for me to think about later. 
-[[Fish.Start]]
+[[BearStory.End]]
 ===
 title: Bear.TakeContract
 tags: 
 colorID: 4
-position: 2836,-273
+position: 2293,-295
 ---
 <i>Pengi takes the contract back and grips the paper tightly in their hands.</i>
 P: I...I guess I did it? 
@@ -531,12 +451,16 @@ P: <Sad> I'll make sure to take care of this store.
 <i> The bear nods.</i>
 <i>As they turn to leave, Pengi feels a twinge of guilt at the thought of his accomplishment.</i>
 <i>The bell on the door jingles once again, and as Pengi steps out of the shop, he tries to shake off the terrible feeling.</i>
-[[Fish.Start]]
+//sign, no help
+<<$signature + 1>>
+<<set $BHelp to false>>
+<<set $BSign to true>>
+[[BearStory.End]]
 ===
 title: Bear.DontTakeContract
 tags: 
 colorID: 0
-position: 2863,51
+position: 2282,4
 ---
 <i>Pengi grips the paper tightly in both hands, staring intently at the signature on the bottom line.</i>
 <i>At that moment, Grammy Frog enters the room with a tray of what, at first glance, appears to be a dozen biscuits organized beautifully on a wooden plate.</i>
@@ -560,6 +484,21 @@ P: Yeah?
 B: Thanks.
 <i>Pengi gives Brynhilda a half smile, as if to say that they don’t feel they deserve the gratitude, and steps out of the shop.</i>
 <i>As Pengi walks to the next shop on their list, they wonder whether or not more could be done for that bear and her sweet old frog Grandma…</i>
-
-[[Fish.Start]]
+//no sign, no help
+<<set $BHelp to false>>
+<<set $BSign to false>>
+[[BearStory.End]]
+===
+title: BearStory.End
+tags: 
+colorID: 0
+position: 2635,407
+---
+<<exitStage GF B>>
+<<changeBackground generalMarket>>
+<<playAudio Market>>
+<i>Pengi pulls out the document containing the store owners they have to talk to and adds a little checkmark.</i>
+P: Alright.
+P: On to the next one.
+[[Fish.Intro]]
 ===

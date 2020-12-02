@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f73fdd7058b2dec4aaaa4f9c96700901
+guid: 6035b01935ac40e4f842e410b5649624
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -12,7 +12,8 @@ ScriptedImporter:
   stringIDs: []
   compilationStatus: 0
   isSuccesfullyCompiled: 0
-  compilationErrorMessage: "Error on line 122 at position 17:\nmismatched input 'to'
-    expecting '('\r\n<<set Signature to 1>>\r\n                ^^"
+  compilationErrorMessage: "Error on line 189 at position 19:\nmismatched input 'w'
+    expecting COMMAND_IF\r\n    A: Yes, I am<<wait 0.4>> .<<wait 0.4>> .<<wait 0.4>>
+    .\r\r\n                  ^"
   baseLanguage: {instanceID: 0}
   localizations: []

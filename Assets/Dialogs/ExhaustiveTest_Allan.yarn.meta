@@ -9,12 +9,30 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
   baseLanguageID: 
-  stringIDs: []
-  compilationStatus: 0
-  isSuccesfullyCompiled: 0
-  compilationErrorMessage: "Error on line 6 at position 35:\nextraneous input '<'
-    expecting {HASHTAG, BODY_HASHTAG, TEXT_NEWLINE, TEXT_HASHTAG, TEXT_COMMANDHASHTAG_HASHTAG,
-    TEXT_COMMANDHASHTAG_NEWLINE, HASHTAG_TAG}\r\nCow: Hello! Can <color=#ff00ff>you</color>
-    <u>share</u> some <b>cookies</b>?\r\n                                  ^"
+  stringIDs:
+  - ExhaustiveTest_Allan-Test.Start-0
+  - ExhaustiveTest_Allan-Test.Start-1
+  - ExhaustiveTest_Allan-Test.Start-2
+  - ExhaustiveTest_Allan-Test.Start-3
+  - ExhaustiveTest_Allan-GiveCookieScenario-4
+  - ExhaustiveTest_Allan-MyCookieScenario-5
+  - ExhaustiveTest_Allan-MyCookieScenario-6
+  - ExhaustiveTest_Allan-MyCookieScenario-7
+  - ExhaustiveTest_Allan-MyCookieScenario-8
+  - ExhaustiveTest_Allan-MyCookieScenario-9
+  - ExhaustiveTest_Allan-MyCookieScenario-10
+  - ExhaustiveTest_Allan-CookieBought-11
+  - ExhaustiveTest_Allan-CookieBought-12
+  - ExhaustiveTest_Allan-CookieBought-13
+  - ExhaustiveTest_Allan-CookieNotBought-14
+  - ExhaustiveTest_Allan-BuySomething-15
+  - ExhaustiveTest_Allan-BuySomething-16
+  - ExhaustiveTest_Allan-BuySomething-17
+  - ExhaustiveTest_Allan-BuySomething-18
+  - ExhaustiveTest_Allan-BuySomething-19
+  - ExhaustiveTest_Allan-PathingTest.Start-20
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
   baseLanguage: {instanceID: 0}
   localizations: []

@@ -8,7 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
-  baseLanguageID: en-US
+  baseLanguageID: 
   stringIDs:
   - BearStoryLocal-Bear.EnterStore-0
   - BearStoryLocal-Bear.EnterStore-1
@@ -184,7 +184,6 @@ ScriptedImporter:
   - BearStoryLocal-Bear.Marble.End-171
   compilationStatus: 1
   isSuccesfullyCompiled: 1
-  compilationErrorMessage: "Error on line 39 at position 24:\nmismatched input '=='
-    expecting '('\r\n<<elseif grammyPicture == 1>>\r\n                       ^^"
-  baseLanguage: {fileID: 7128917941130120860, guid: 85bd933472a1c7f4e9eb201d9784b4d1, type: 3}
+  compilationErrorMessage: 
+  baseLanguage: {instanceID: 0}
   localizations: []

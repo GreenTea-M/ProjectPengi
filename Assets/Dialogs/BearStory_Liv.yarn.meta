@@ -8,7 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
-  baseLanguageID: en-US
+  baseLanguageID: 
   stringIDs:
   - BearStory_Liv-Bear.EnterStore-0
   - BearStory_Liv-Bear.EnterStore-1
@@ -321,6 +321,5 @@ ScriptedImporter:
   compilationStatus: 1
   isSuccesfullyCompiled: 1
   compilationErrorMessage: 
-  baseLanguage: {fileID: 7128917941130120860, guid: 0b9b9f782e13c5744b962faf63dd5808,
-    type: 3}
+  baseLanguage: {instanceID: 0}
   localizations: []

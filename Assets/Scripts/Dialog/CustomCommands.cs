@@ -73,13 +73,19 @@ namespace Dialog
         private enum State
         {
             None,
-            GameEnding
+            GameEnding,
+            ScreenFadeTransition
         }
 
         private SaveClient _saveClient;
         private string _lastAudioName;
         private BackgroundScript _currentBg;
         private string _lastLocation;
+        private float _screenTransitionDuration = 1f;
+        private float _targetAlpha = 1f;
+        private float _transitionStartTime = 0f;
+        private float _startAlpha = 0f;
+        private float _diffAlpha = 1f;
 
         private void OnEnable()
         {
@@ -154,6 +160,7 @@ namespace Dialog
             dialogueRunner.AddCommandHandler("playSFX", PlaySFX);
             dialogueRunner.AddCommandHandler("playSfx", PlaySFX);
             dialogueRunner.AddCommandHandler("playsfx", PlaySFX);
+            dialogueRunner.AddCommandHandler("fadePlainBackground", FadePlainBackground);
         }
 
         private void Start()
@@ -173,9 +180,31 @@ namespace Dialog
                     blackScreenColor.a = _alpha;
                     blackScreen.color = blackScreenColor;
 
-                    if (_alpha >= 1f)
+                    if (_alpha >= _targetAlpha)
                     {
                         SceneManager.LoadScene("EndGameScene");
+                    }
+
+                    break;
+                case State.ScreenFadeTransition:
+                    _alpha = _startAlpha +
+                             ((Time.time - _transitionStartTime) / _screenTransitionDuration) * _diffAlpha;
+                    var screenColor = blackScreen.color;
+                    screenColor.a = _alpha;
+                    blackScreen.color = screenColor;
+                    
+                    if (_startAlpha < _targetAlpha && _alpha > _targetAlpha)
+                    {
+                        _state = State.None;
+                        _onComplete?.Invoke();
+                        _onComplete = null;
+                    }
+                    else if (_startAlpha >=_targetAlpha && _alpha < _targetAlpha)
+                    {
+                        _state = State.None;
+                        blackScreen.gameObject.SetActive(false);
+                        _onComplete?.Invoke();
+                        _onComplete = null;
                     }
 
                     break;
@@ -198,7 +227,6 @@ namespace Dialog
                 if (!audioItem.name.ToUpper().Equals(searchTerm)) continue;
                 
                 AudioClip audioClip = audioItem.audioClip;
-                Debug.Assert(audioClip != null);
 
                 PoolableInstantAudio sfx;
                 if (_instantAudioPool.Count == 0)
@@ -248,6 +276,8 @@ namespace Dialog
             {
                 blackScreen.gameObject.SetActive(true);
             }
+            blackScreen.color = Color.black;
+            _targetAlpha = 1f;
             _state = State.GameEnding;
         }
 
@@ -619,6 +649,78 @@ namespace Dialog
             }
 
             dialogueUiManager.SetFakeLastDialog(speaker, message);
+        }
+
+        private void FadePlainBackground(string[] parameters, System.Action onComplete)
+        {
+            if (parameters.Length == 0)
+            {
+                Debug.LogWarning("fadePlainBackground needs one argument");
+                return;
+            }
+
+            bool shouldAppear = parameters[0].ToLower().Equals("on");
+            _screenTransitionDuration = 1f;
+            var color = UnityEngine.Color.white;
+            _onComplete = null;
+            
+            // duration
+            if (parameters.Length > 1)
+            {
+                _screenTransitionDuration = float.Parse(parameters[1]);
+            }
+            
+            // should block?
+            if (parameters.Length > 2 && parameters[2].ToLower().Equals("block"))
+            {
+                 _onComplete = onComplete;
+            }
+            else
+            {
+                onComplete.Invoke();
+            }
+            
+            // color: accept by word or by value
+            // todo: make it not hardcoded, but that's for later
+            if (parameters.Length == 4)
+            {
+                switch (parameters[3].ToLower())
+                {
+                    case "white":
+                        color = Color.white;
+                        break;
+                    case "black":
+                        color = Color.white;
+                        break;
+                    default:
+                        Debug.LogWarning($"Unknown color: {parameters[3].ToLower()} in fadePlainBackground");
+                        break;
+                }
+            }
+            else if (parameters.Length == 7)
+            {
+                color = new Color(float.Parse(parameters[3]),float.Parse(parameters[4]),
+                    float.Parse(parameters[5]),float.Parse(parameters[6]));
+            }
+
+            if (shouldAppear)
+            {
+                blackScreen.gameObject.SetActive(true);
+                _targetAlpha = color.a;
+                color.a = 0f;
+                blackScreen.color = color;
+                _state = State.ScreenFadeTransition;
+                _startAlpha = 0f;
+            }
+            else if (blackScreen.gameObject.activeSelf)
+            {
+                _state = State.ScreenFadeTransition;
+                _startAlpha = blackScreen.color.a;
+                _targetAlpha = 0f;
+            }
+            
+            _diffAlpha = _targetAlpha - _startAlpha;
+            _transitionStartTime = Time.time;
         }
 
         public void WriteAutoSave()

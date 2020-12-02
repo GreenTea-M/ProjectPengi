@@ -13,6 +13,6 @@ ScriptedImporter:
   compilationStatus: 0
   isSuccesfullyCompiled: 0
   compilationErrorMessage: "Error on line 27 at position 5:\nmismatched input ']'
-    expecting FORMAT_FUNCTION_EXPRESSION_START\r\n[img]cow.png[/img]\r\n    ^"
+    expecting FORMAT_FUNCTION_EXPRESSION_START\r\n[img]cow.png[/img]\r\r\n    ^"
   baseLanguage: {instanceID: 0}
   localizations: []
