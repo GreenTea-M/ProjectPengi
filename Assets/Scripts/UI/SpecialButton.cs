@@ -43,7 +43,7 @@ namespace UI
                         NormalText();
                         break;
                     case SelectionState.Disabled:
-                        buttonText.text = $"{_optionText}";
+                        buttonText.text = $"<alpha=#66>{_optionText}";
                         break;
                     default:
                         break;

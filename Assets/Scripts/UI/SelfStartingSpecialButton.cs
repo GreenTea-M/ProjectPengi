@@ -17,5 +17,15 @@ namespace UI
 
             SetText(_originalText);
         }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            if (_originalText == null)
+            {
+                buttonText = GetComponentInChildren<TextMeshProUGUI>();
+                buttonText.text = _originalText;
+            }
+        }
     }
 }

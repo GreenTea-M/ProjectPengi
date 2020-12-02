@@ -10,7 +10,9 @@ namespace Manager
     public class MainMenuManager : MonoBehaviour, SaveClientCallback
     {
         public GameConfiguration gameConfiguration;
+        public Button newGameButton;
         public Button continueButton;
+        public Button optionsButton;
         public SaveClient saveClient;
 
         private void OnDestroy()
@@ -27,6 +29,10 @@ namespace Manager
             continueButton.interactable = gameConfiguration.SaveIo.RequestExecutor()
                 .AtSlotIndex(GameConfiguration.AutoSaveIndex)
                 .DoesExist();
+            
+            newGameButton.gameObject.SetActive(true);
+            continueButton.gameObject.SetActive(true);
+            optionsButton.gameObject.SetActive(true);
         }
 
         public void OnClickNewGame()

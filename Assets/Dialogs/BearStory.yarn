@@ -502,3 +502,10 @@ P: Alright.
 P: On to the next one.
 [[Fish.Intro]]
 ===
+title: BearStory.Intro
+tags: 
+colorID: 0
+position: -995,208
+---
+[[Bear.EnterStore]]
+===

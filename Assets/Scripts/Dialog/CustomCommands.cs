@@ -39,8 +39,7 @@ namespace Dialog
         [Tooltip("Puzzles should have PuzzleParent script")]
         public PuzzleItem[] puzzleList;
 
-        [FormerlySerializedAs("headerList")] 
-        public BackgroundItem[] backgroundList;
+        [FormerlySerializedAs("headerList")] public BackgroundItem[] backgroundList;
 
         public ShelfItemData[] shelfItemDataList;
 
@@ -118,7 +117,7 @@ namespace Dialog
             {
                 _saveClient = gameConfiguration.RequestSaveAccess(this);
             }
-            
+
             // initialize backgrounds
             _backgroundScriptList = new BackgroundScript[backgroundList.Length];
             for (int i = 0; i < backgroundList.Length; i++)
@@ -132,7 +131,7 @@ namespace Dialog
 
             ChangeHeader(new[] {_saveClient.currentSave.lastHeader});
             PlayAudio(new[] {_saveClient.currentSave.lastAudioName});
-            
+
             // load all active characters
             EnterStage(_saveClient.currentSave.activeCharacterList);
 
@@ -192,14 +191,14 @@ namespace Dialog
                     var screenColor = blackScreen.color;
                     screenColor.a = _alpha;
                     blackScreen.color = screenColor;
-                    
+
                     if (_startAlpha < _targetAlpha && _alpha > _targetAlpha)
                     {
                         _state = State.None;
                         _onComplete?.Invoke();
                         _onComplete = null;
                     }
-                    else if (_startAlpha >=_targetAlpha && _alpha < _targetAlpha)
+                    else if (_startAlpha >= _targetAlpha && _alpha < _targetAlpha)
                     {
                         _state = State.None;
                         blackScreen.gameObject.SetActive(false);
@@ -220,12 +219,12 @@ namespace Dialog
                 Debug.Log("PlaySFX: no parameter");
                 return;
             }
-            
+
             string searchTerm = parameters[0].ToUpper();
             foreach (var audioItem in audioList)
             {
                 if (!audioItem.name.ToUpper().Equals(searchTerm)) continue;
-                
+
                 AudioClip audioClip = audioItem.audioClip;
 
                 PoolableInstantAudio sfx;
@@ -238,13 +237,13 @@ namespace Dialog
                 {
                     sfx = _instantAudioPool.Pop();
                 }
-            
+
                 Debug.Assert(sfx != null);
                 sfx.Play(this, audioClip);
 
                 return;
             }
-            
+
             Debug.Log($"Audio clip not found for: {searchTerm}");
         }
 
@@ -276,6 +275,7 @@ namespace Dialog
             {
                 blackScreen.gameObject.SetActive(true);
             }
+
             blackScreen.color = Color.black;
             _targetAlpha = 1f;
             _state = State.GameEnding;
@@ -323,7 +323,7 @@ namespace Dialog
 
             if (parameters[0].Equals("all", StringComparison.InvariantCultureIgnoreCase))
             {
-                ChangeHeader(new[]{"None"});
+                ChangeHeader(new[] {"None"});
                 return;
             }
 
@@ -331,11 +331,10 @@ namespace Dialog
             {
                 if (parameter.Equals("bg", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    ChangeHeader(new[]{"None"});
+                    ChangeHeader(new[] {"None"});
                 }
                 else
                 {
-                    
                 }
             }
 
@@ -389,7 +388,7 @@ namespace Dialog
                 if (bg.IsSimilar(searchTerm))
                 {
                     var previousBg = "";
-                    
+
                     if (_currentBg != null)
                     {
                         _currentBg.Disappear();
@@ -401,7 +400,7 @@ namespace Dialog
                     _currentBg.gameObject.SetActive(true);
                     _currentBg.Appear();
                     locationPlate.SetLocation(bg.DisplayName);
-                    
+
                     // special cases
                     // bad hard coding LMAO
                     if (searchTerm.ToLower().Equals("sunset"))
@@ -413,7 +412,7 @@ namespace Dialog
                     {
                         iconManager.UpdateAlternativeTextLocation(TextAlternativeLocationState.Default);
                     }
-                    
+
                     return;
                 }
             }
@@ -454,7 +453,16 @@ namespace Dialog
             string searchTerm = parameters[0].ToUpper();
             foreach (var audioItem in audioList)
             {
-                if (!audioItem.name.ToUpper().Equals(searchTerm)) continue;
+                if (!audioItem.name.ToUpper().Equals(searchTerm))
+                {
+                    continue;
+                }
+
+                if (audioItem.audioClip == null)
+                {
+                    Debug.LogWarning($"playAudio: {audioItem.name} has no clip");
+                    return;
+                }
 
                 if (_lastAudio != null)
                 {
@@ -500,7 +508,7 @@ namespace Dialog
             {
                 shelfItem.gameObject.SetActive(false);
             }
-            
+
             // for (int i = _shelfItemList.Count - 1; i >= 0; i--)
             // {
             //     Destroy(_shelfItemList[i].gameObject);
@@ -562,7 +570,7 @@ namespace Dialog
                     shelfItem.Initialize(shelfItemData, this);
                 }
             }
-            
+
             foreach (var _shelfItem in _shelfItemList)
             {
                 _shelfItem.gameObject.SetActive(true);
@@ -642,7 +650,8 @@ namespace Dialog
             if (parameters.Length == 1)
             {
                 message = parameters[0];
-            } else if (parameters.Length > 1)
+            }
+            else if (parameters.Length > 1)
             {
                 speaker = parameters[0];
                 message = string.Join(" ", parameters.Skip(1));
@@ -663,23 +672,23 @@ namespace Dialog
             _screenTransitionDuration = 1f;
             var color = UnityEngine.Color.white;
             _onComplete = null;
-            
+
             // duration
             if (parameters.Length > 1)
             {
                 _screenTransitionDuration = float.Parse(parameters[1]);
             }
-            
+
             // should block?
             if (parameters.Length > 2 && parameters[2].ToLower().Equals("block"))
             {
-                 _onComplete = onComplete;
+                _onComplete = onComplete;
             }
             else
             {
                 onComplete.Invoke();
             }
-            
+
             // color: accept by word or by value
             // todo: make it not hardcoded, but that's for later
             if (parameters.Length == 4)
@@ -699,8 +708,8 @@ namespace Dialog
             }
             else if (parameters.Length == 7)
             {
-                color = new Color(float.Parse(parameters[3]),float.Parse(parameters[4]),
-                    float.Parse(parameters[5]),float.Parse(parameters[6]));
+                color = new Color(float.Parse(parameters[3]), float.Parse(parameters[4]),
+                    float.Parse(parameters[5]), float.Parse(parameters[6]));
             }
 
             if (shouldAppear)
@@ -718,7 +727,7 @@ namespace Dialog
                 _startAlpha = blackScreen.color.a;
                 _targetAlpha = 0f;
             }
-            
+
             _diffAlpha = _targetAlpha - _startAlpha;
             _transitionStartTime = Time.time;
         }
