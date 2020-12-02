@@ -1,0 +1,504 @@
+title: Bear.EnterStore
+tags: Store
+colorID: 0
+position: -628,206
+---
+<<exitStage Hank>>
+<<changeBackground carpentry>>
+<<enterStage Brynhilda>>
+<<playAudio BrynhildaBear>>
+<i>The bell on the door jingles in a delicate manner as Pengi enters the warm shop filled with an assortment of breathtaking, handcrafted items.</i>
+<i>Breathing in the welcoming scent of sawdust and maple, Pengi takes a few steps into the shop before noticing a shelf full of odd looking bits and bobs. Pengi walks over to it, leaning in to take a closer look at the shelf’s contents.</i>
+Pengi: WOooow what are these??
+Brynhilda: Well hello-
+Pengi: AHH!
+<<shake>>
+<b>BAM</b> 
+Brynhilda: -there.
+P: Oh my gosh, I’m so sorry!
+<i>Having been reaching up to grab a curious looking bag, Pengi hadn’t noticed the arrival of the apron-wearing polar bear, and has hit their hand against the shelf, knocking all of the items onto the floor.</i>
+<i>Pengi hurriedly gets to their knees, trying to pick up the items which were now strewn all across the shop floor.</i>
+<i>Brynhilda lets out a warm and hearty laugh</i>
+Brynhilda: <Smiling> Don’t be, you’d be surprised how common that is. I really need to make more sound when I enter a room. 
+<i>She bends down and begins to help pick up the items on the floor</i>
+<i>Pengi, feeling a flush of red creeping up to their face pick up...</i>
+[[Bear.PuzzleStart]]
+===
+title: Bear.PuzzleStart
+tags: 
+colorID: 0
+position: 92,175
+---
+<<changeBackground none>>
+<<clearShelfItem>>
+<<showItem shelf>>
+<<resetSpeaker 2>>
+<<if $puzzleDone == true>>
+    <<doPuzzle shelf full>>
+    <<hideDialogue>>
+    <<wait 3>>
+    <<clearShelfItem>>
+    <<hideItem shelf>>
+    <<changeBackground carpentry>>
+    <<showDialogue>>
+    <<fakeLastDialog Pengi Phew! I just finished arranging the shelves!>>
+    [[Bear.PuzzleDone]]
+<<endif>>
+<<doPuzzle shelf>>
+<<fakeLastDialog Pengi I'm still arranging the shelves...>>
+<<hideItem shelf>>
+<<changeBackground shelf>>
+<<if $peaceSign == 1>>
+    <<set $peaceSign = 2>>
+    [[Bear.PeaceDialogue]]
+<<elseif $toilet == 1>>
+    <<set $toilet = 2>>
+    [[Bear.ToiletDialogue]]
+<<elseif $grammyPicture == 1>>
+    <<set $grammyPicture = 2>>
+    [[Bear.GrammyPictureDialogue]]
+<<elseif $baseball == 1>>
+    <<set $baseball = 2>>
+    [[Bear.BaseBallDialogue]]
+<<elseif $teddy == 1>>
+    <<set $teddy = 2>>
+    [[Bear.TeddyDialogue]]
+<<elseif $marble == 1>>
+    <<set $marble = 2>>
+    [[Bear.MarbleDialogue]]
+<<endif>>
+<<debugLog This should not be happening>>
+Wait a sec...
+[[I guess it's all done now|Bear.PuzzleDone]]
+===
+title: Bear.PuzzleDone
+tags: 
+colorID: 2
+position: 828,156
+---
+<<changeBackground carpentry>>
+<<enterStage B GF>>
+Brynhilda: <Smiling> Thank you kindly for your help.
+<i>She smiles softly down at the tiny penguin.</i>
+Pengi: <Nervous> Nervously replies Ahhaha well, it WAS technically my fault. 
+Brynhilda: <Normal> Well not everyone helps you see, most actually run away in fright. My appearance can be a little intimidating at times. 
+<i>She chuckles to herself.</i>
+Brynhilda: Oh! I almost forgot, my name’s Brynhilda and welcome to The Builder Bear.
+Brynhilda: How can I help you today…umm
+Pengi: <Smiling> Oh! Yes! I'm Pengi.
+Brynhilda: <Beaming?/Smiling>Pengi!
+Brynhilda: What an absolutely delightful name! 
+<i>Her eyes beam as she says this, betraying the excitement she was having to finally having a customer in her store.</i>
+Brynhilda: So, what can I do for you today?
+[[Well...I guess I’m looking for a...Shoe?|Bear.Shoe]]
+[[I’m here on behalf of Grounded Real Estate.|Bear.GetSignature]]
+===
+title: Bear.GetSignature
+tags: 
+colorID: 5
+position: 1232,606
+---
+//music change to sour tone
+Pengi: Ummm, well.
+<i>They straighten their back and adjust their tie.</i>
+Pengi: I’m here on behalf of Grounded Real Estate to ask you if you would be willing to sign this document signing over possession of this lot. You and a few other shops on this street own the plots on which your businesses have been built and my company is looking to acquire these for a new project; The Menagerie Mall!. 
+<i>Brynhilda’s face slowly becomes much more stern as Pengi continues, her nose crinkling and fur standing up in what appears to be a barely contained sense of outrage.</i>
+Pengi: Uh-uhmm.
+Brynhilda: <Tense Smiling or Neutral> I’m sorry, but I think you need to leave.
+[[I just want a little bit of your time.|Bear.BegSignature]]
+[[I-I’m sorry!|Bear.JustifyDream]]
+===
+title: Bear.BegSignature
+tags: 
+colorID: 5
+position: 1547,609
+---
+<i>Pengi blinks a couple times, tilting their head in confusion.</i>
+P: <Confused> I just want a little bit of your time, our company-
+B: <Angry> Please, just go.
+P: <Panicking> No, please, I’m sorry, I didn’t mean any offense, I just need to get your signature and you’ll be compensated so that you can relocate--
+B: <Through gritted teeth> Get. 
+B: <b>Out.</b>
+P: O-Oh...alright. H-have a wonderful day.
+<i>Pengi backs out of the store slowly, discouraged deeply by how that went.</i>
+//no sign, no help
+<<set $BHelp to false>>
+<<set $BHelp to flase>>
+[[BearStory.End]]
+===
+title: Bear.JustifyDream
+tags: 
+colorID: 1
+position: 1220,231
+---
+Pengi: <Nervously> I-I’m sorry! I really am. 
+Pengi: It wasn’t my idea to do this to you, and if I didn’t have to, I wouldn’t ask you to.
+Pengi: <Normal> But it’s my dream to be a pilot, a-and I promise you will be compensated so you can relocate.
+P: But I really need this if anyone at my firm is going to respect me enough to promote me, so I can afford...
+P: ...the lessons... 
+<i>Pengi trails off, realizing the rude tone they had just taken with her after asking her to sign her store away and not thinking about how she might feel about their intrusion.</i>
+//needs to be edited
+<i>Brynhilda’s face softens ever so slightly.</i>
+B: <Angry> While...I can understand where you’re coming from, I can’t let you do that. 
+B: This store has been here ever since my great-great-great-grandfather bought it back in 1960's.
+B: And I’m not just going to sign it away to some stranger, just because they have a dream.
+B: I’ve got dreams too, but I won’t go uprooting peoples’ lives and family history to achieve it. 
+B: <Normal/Determined?> I’m not going to-
+[[Bear.Both]]
+===
+title: Bear.CondShoe
+tags: 
+colorID: 3
+position: 1384,-131
+---
+<i>Brynhilda turns back towards the window and sighs, her fur flattening as she does so. She turns back towards Pengi, Her shoulders slightly hunched</i>
+Brynhilda: <Disappointed/Sad> Well, I can’t really get mad at you for this can I?
+<i>She walks towards the store counter and picks up a little wooden bear statue from on top of it.</i>
+<i>She looks back at Pengi, who hurriedly looks back at the floor.</i>
+Brynhilda: Don’t worry, I’m not mad, just...
+Brynhilda: <Confused>...confused.
+Brynhilda: <Sad> See, this store... don’t get me wrong, I love it! 
+B: The work I get to do here is phenomenal and to carry the family legacy, nothing makes me more proud. But...
+Brynhilda: <Closed eyes> I want to explore. <Passionate eyes??/Smiling> Just like you do!
+Brynhilda: It just seems like I am fighting with myself every time I think about this. 
+Brynhilda: I can’t just leave?
+<i>She looks at the little penguin, seeming to almost beg him for the answer.</i>
+Pengi: I'm-
+[[Bear.Both]]
+===
+title: Bear.Shoe
+tags: 
+colorID: 3
+position: 1063,-114
+---
+Pengi: Well... I guess I’m looking for a... <b>Shoe</b>? 
+<i>Brynhilda’s looks down at the little penguin in confusion.</i>
+Brynhilda: <Confusion> A <b>Shoe</b>? I’m sorry, but we’re a carpentry store. Unfortunately we don’t have any shoes on sale.
+Pengi: Ah! No, I mean that I’m looking for a lost shoe. There’s this <b>Old Mole</b> lady and she left it somewhere at this market?
+Brynhilda: <Confused> Mole Lady?
+Brynhilda: <Surprised> OH! Mole Lady! I haven’t seen her in years!
+Pengi: Wh-what? Years?? But she said she was here just a couple hours ago.
+Brynhilda: <Confused> Huh, I guess I missed her then. 
+<i>She peers outside the storefront window, her eyes squinting.</i>
+Brynhilda: <Confused> <size=80%> Hmm... she usually comes here to say hi. I hope she's alright.
+<i>She looks back at Pengi, her expression looking a bit more somber.</i>
+Brynhilda: Sorry, it’s just... I was under the impression that she may have... left us. Made me think a little bit about the ending of things you know? 
+<i>She shakes her head a little, her fur rustling as she did so.</i>
+Brynhilda: <Sad> What am I saying? 
+Brynhilda: <Normal> Sorry, I shouldn’t be talking about such a heavy topic with a customer. 
+Pengi: No no no, don’t apologize. I understand.  
+<i>Pengi looks at the sawdust covered floor, shuffling their feet a little.</i>
+P: There’s an end to everything… <Sad> I really want to do whatever I can before that. I…
+P: ...
+Pengi: <Sad> I... I’ve always wanted to fly. But I can’t do it naturally you know? I... I really want to do it at least once! Just to know what it feels like! So I really want to enroll in flight school.
+Brynhilda: <Smiling> I wholeheartedly support this venture. What’s stopping you from going after it?
+Pengi: <Nervous> Ah-
+Pengi: Well-
+Pengi: I-
+Pengi: Ummm-
+Brynhilda: Yes?
+Pengi: I-
+<<shake>>
+// [Screen shakes???]
+Pengi: I’M SORRY!
+Brynhilda: <Surprised> Wha-what? 
+Pengi: I’m part of Grounded Real Estate a-and my job is to get contracts from the stores in the area- 
+<i>Brynhilda’s fur bristles a bit at the sound of the company’s name.</i>
+Pengi: -a-and this is my big break to get enough money to <words get smaller and smaller as Pengi trails off/> afford the lessons and…
+[[Bear.CondShoe]]
+===
+title: Bear.PeaceDialogue
+tags: 
+colorID: 8
+position: 335,-202
+---
+<i>Picks up a large carving of a peace sign. There’s faded writing on it and you need both hands to carry it.</i>
+P: Woah, what is this? And why is it so <voffset=-0.5em>heavy?
+B: You’re holding the first ever sign this store had. Used to hang right outside the door. 
+B: My <size=90%>great-<size=100%>great-<size=110%>great-<size=100%>grandfather carved it himself when he started the place. As you can guess, he was a bit of a hippy. 
+B: He was a huge fan of trees, so he took up woodworking.
+B: It turns out a space for creation is compatible with the values of peace, love, and happiness, so this place got fairly popular at the time. Stuck around ever since.
+[[Bear.PuzzleStart]]
+===
+title: Bear.ToiletDialogue
+tags: 
+colorID: 0
+position: -306,427
+---
+P: …
+P: This is a roll of toilet paper.
+P: Made of wood.
+B: They can’t all be winners, kid.
+P: Paper is processed wood! Is this some kind of artistic statement?
+B: No, my great great great grand aunt Brianna was just crazy. And an inventor. 
+B: She also made a wooden toilet, a wooden bathtub ...
+B: They didn’t really catch on...
+[[Bear.PuzzleStart]]
+===
+title: Bear.GrammyPictureDialogue
+tags: 
+colorID: 0
+position: 646,-104
+---
+P: Ooh! Another picture. Is this polar bear you?
+B: Sure is. That’s great Grammy Ribitha and my 5 siblings. She was a family friend of our parents before their passing. She took us in afterward. Old girl’s still here and kicking!
+<<shortPause>>
+B: <b><Heartfelt></b> We owe her everything.
+[[Bear.PuzzleStart]]
+===
+title: Bear.BaseBallDialogue
+tags: 
+colorID: 0
+position: -224,-47
+---
+P: Is... is this trophy made out of wood?
+B: Yes it is, but that’s because my brother won it during the Mole Wars.
+P: Oh, right! I remember learning about that in school. There was a shortage of metal right?
+B: Yup. No moles, no mines, no metal. That’s why my dad made this trophy out of wood for my brother’s Junior League Baseball performance.
+P: Wow. That’s some history right there.
+B: <Chuckles> Yup, this family of mine is pretty old.
+[[Bear.PuzzleStart]]
+===
+title: Bear.TeddyDialogue
+tags: 
+colorID: 0
+position: 58,-230
+---
+P: Big fan?
+B: Oh yes. <i>*chuckles knowingly*</i>
+B: That’s my <size=90%>great-<size=100%>great-<size=110%>great-<size=120%>great-<size=150%>great-<size=100%>grandfather! 
+B: You know the whole thing about carrying a <size=120%>big<size=100%> stick? 
+B: My <size=90%>great-<size=100%>great-<size=113%>great-<size=125%>great-<size=155%>great-<size=100%>grandmother was the one that made him the stick! 
+B: It’s a truly charming tale of two bears and their love of wood-based items…
+<i>She trails off, as if reliving a wonderful childhood memory (even though she wasn’t alive back then).</i>
+[[Bear.PuzzleStart]]
+===
+title: Bear.MarbleDialogue
+tags: 
+colorID: 0
+position: 116,481
+---
+P: A marble collection? Are these your kid’s?
+B: Nope. We have a thing for woodworking in this family. When we get to a certain skill level, we make a set of marbles, and everyone gets one.
+<<showItem orangeMarble>> 
+// <<debugLog todo unimplemented showItem>>
+// show penguin orange marble
+B: This one is mine. Want to see some more?
+P: Sure!
+B: Okay, which one first?
+// (Rewriting this part a bit to be 3 waves of options)
+[[A marble stripped with different bands of light and dark wood.|Bear.BrettaMarble]]
+[[A marble shaped like a 20 sided die.|Bear.BrodyMarble]]
+[[The one that has three different colored sections.|Bear.BrianMarble]]
+===
+title: Bear.BrettaMarble
+tags: 
+colorID: 0
+position: 34,937
+---
+B: This is my sister Bretta’s. She runs a chair shop in Grizzleton.
+-> The one that’s medium brown, with a white swirl running across the surface.
+    B:  That’s great grandpa Breppa’s. He loves Banjos. That’s actually a string incorporated into the marble.
+-> The one that’s pockmarked by varying sized holes.
+	B:  This is cousin Brie’s. She makes cheese for a living. Yes, we make jokes.
+[[Bear.Marble.End]]
+===
+title: Bear.BrodyMarble
+tags: 
+colorID: 0
+position: 333,942
+---
+B:  Uncle Brody’s work. He’s a pretty big nerd.
+-> The one that’s white, black and brown.
+    B:  That’s my mom’s. Her name was Brittney.
+-> The one with jagged lines that might be rectangles?
+    B:  My nephew’s name is Brick and he wanted to do his namesake pattern. It’s a little rough, but he was insistent on being the youngest ever to have made the marbles. Good kid.
+[[Bear.Marble.End]]
+===
+title: Bear.BrianMarble
+tags: 
+colorID: 0
+position: 646,946
+---
+B: My dad’s. His name was Brian.
+-> The one that has a line running down the middle.
+    B:  That’s Bran’s. No one knows how we’re related to him, but he’s family. It opens up like a matryoshka doll.
+-> The one that has a maze printed onto its surface.
+	B:  Brianna’s my niece, and likes to show how smart she is at every opportunity. She’s in Med School right now.
+[[Bear.Marble.End]]
+===
+title: Bear.Marble.End
+tags: 
+colorID: 0
+position: 468,574
+---
+B: Alright, that’s enough for now.
+[[Bear.PuzzleStart]]
+===
+title: Bear.Both
+tags: 
+colorID: 2
+position: 1582,233
+---
+<i>At that moment a faint call is heard growing louder and louder as Grammy Frog enters the room.</i>
+GF: BBRrynhilda? BrynhildaAA?? BRYNHILDA??? 
+// <<Bumps into Pengi and the screen shakes>>
+<i>Pengi turns and is greeted by an elderly frog covered in a hand sewn shawl.</i>
+GF: Brynhilda!! I have some exciting news to share with you!! I was just talking to--
+GF: <Surprise> Goodness! You’ve lost so much weight since I saw you thirty minutes ago! You have shrunk both vertically AND horizontally it seems. 
+GF: Just give me a minute and I’ll whip you up some of Grammy Frog’s famous-
+B: I’m over here, Grammy.
+<i>She lets out a little jump at the sound of Brynhilda’s voice, turns around and squints up at the bear's towering figure.</i>
+GF: <Surprise> Oh yes! Quite so. 
+<i>Grammy turns back to Pengi and chuckles.</i>
+GF: <Smiling> Apologies dear, my eyesight’s not what it used to be. But don’t you worry! I’ll still treat you to some of Grammy Frog’s Famous Biscuits.
+<i>She turns back to Brynhilda.</i> 
+GF: Anyways sweetie.
+GF: I was just talking to Edward, and we both agreed that even though it would be just me running the store for a while, it's fine!
+GF: You should take some of that money you’ve been saving and take that overseas trip you’ve always wanted.
+GF: We’ll be fine. Maybe we’ll put an ad in the classifieds for an unpaid apprenticeship.
+GF: You know how hard it gets during <b>musical chairs season</b>. So many orders! Oh my! 
+GF: But you go! Have some fun! We don’t want you trapped here forever with us old coots!
+<i>Brynnhilda’s face softens completely into a look of both empathy and a deep melancholy.</i>
+B: Grammy, Edward has been gone for 15 years now. And I really think you should be sitting down, you’re not supposed to be out of your chair. The doctor said-
+GF: That old thing is getting so worn down, I can see through the varnish! Just let me back into the workshop and I’ll make myself a new one! 
+GF: You can’t keep me out of there forever! HAHA!
+<i>Grammy Frog then tries to book it towards a door at the corner of the store labeled ‘WORKSHOP’, only to be promptly snatched up and carried to a well worn out rocking chair at the back of the store.</i>
+B: Grammy! How about you get those biscuits you were talking about before? For our little guest over here? 
+GF: Oh! Of course! How could I be so rude!
+<i>She hops over towards the back of the store and disappears into the back door. A series of clangs and bangs begin emerging from the open door.</i>
+P: Is it just you two?
+B: <Smiling> Yeah. It has been for a few years now. She’s one of the main reasons I don’t want to go. I don’t know where we’ll end up if we do, and I don’t know the impact it’ll have on her.
+P: I...I see.
+[[You know if you sign the contract...|Bear.SignAgain]]
+[[There has to be another way...|Bear.AnotherWay]]
+===
+title: Bear.SignAgain
+tags: 
+colorID: 2
+position: 1890,-109
+---
+P: You know, if you sign, the money should be more than enough to open up shop somewhere else and to get her some help. 
+P: Or even to hire another hand around the shop so you could take care of her.
+B: I-
+P: I’m not saying this as a contractor anymore! It’s just that…I think you should follow your dreams. Try things before it's too late. 
+P: This would make it easier for you, right? This way you’ll be able to follow your dreams and Grammy will be fine on her own. 
+<i>Brynhildala looks down. Her shoulders slouch and her brows furrow. </i>
+B: But this shop...it’s our family heritage. I can’t abandon it like this.
+P: My company would definitely help preserve this place and make sure to acknowledge the presence of your family!
+<i>Brynhilda looks towards the back of the store where the sounds of chaos were still emanating from.</i>
+B: She...she would be happier that way yeah?
+<i>Pengi looks down at the ground, adjusts their tie, clears their throat before looking back at the sullen bear in front of them.</i>
+P: <Uncertain> Yes, I-I’m sure of it.
+B: <Concerned> I guess...this is for the best then.
+<i>Pengi reaches into his briefcase and pulls out a small stack of papers. Brynhilda takes it.</i>
+<i>She pauses before pulling out a pen and writing something down.</i>
+B: Well… here it is.
+[[Take contract.|Bear.TakeContract]]
+[[Take contract?|Bear.DontTakeContract]]
+===
+title: Bear.AnotherWay
+tags: 
+colorID: 2
+position: 1903,234
+---
+<i>Pengi looks towards the door.</i>
+P: <Confused> There has to be another way.
+B: Hmm?
+<i>Pengi looks up at the confused bear.</i>
+P: <Determined> This can’t be the only way to solve this problem…
+B: What do you mean?
+<i>Pengi looks back at the shelf. All those items, they are full of history.</i> 
+<i>Their eyes then pan towards the rest of the shop, the front desk laden with memorabilia, the sawdust covered floors and the random, half finished projects strewn about the place. </i>
+P: <Sad> I can’t take this place from you.
+<i>Pengi looks back towards Brynhilda.</i>
+P: <Sad> The memories you made here are too precious. There is too much at stake for you to lose. <size=70%>There has to be another way.
+B: You’re right, I can’t leave my grandmother here all alone.
+B: I...I have to stay.
+P: ... 
+P: <Determined> No, that’s not right either.
+B: <Confused> B-but, what else can be done? 
+P: <Confused> I’m not sure yet, but I’ll think of...something. 
+<i>Pengi looks up at the confused polar bear and straightens their shoulders.</i>
+P: I have to get going now. I promise I’ll find a way. 
+P: I just need some time…
+<i>Brynhilda chuckles at this, shaking her head in amusement</i>
+B: <Smiling> Thank you for your thoughts, but you don’t have to do anything.
+P: Well, whatever happens, I’ll do my best.
+P: See you later.
+<i>Pengi turns and promptly walks out the door. Brynhilda waves as the little penguin leaves and the door rattles shut. </i>
+<<exitStage B GF>>
+// Brynhilda's profile leaves this frame
+//no sign, help
+<<set $BHelp to true>>
+<<set $BSign to false>>
+<i>As the door shuts behind them, Pengi pauses to think about what exactly they can do to help this family.</i>
+P: <Thoughtful> They mentioned they were having trouble with management...maybe something to do with that could help?
+<<set $manager = 1>>
+P: Well, that for me to think about later. 
+[[BearStory.End]]
+===
+title: Bear.TakeContract
+tags: 
+colorID: 4
+position: 2293,-295
+---
+<i>Pengi takes the contract back and grips the paper tightly in their hands.</i>
+P: I...I guess I did it? 
+<i>They look up at the polar bear, who was looking at the floor, clenching her fists.</i>
+P: Thank you for your time. I-
+P: <Sad> I'll make sure to take care of this store.
+<i> The bear nods.</i>
+<i>As they turn to leave, Pengi feels a twinge of guilt at the thought of his accomplishment.</i>
+<i>The bell on the door jingles once again, and as Pengi steps out of the shop, he tries to shake off the terrible feeling.</i>
+//sign, no help
+<<$signature + 1>>
+<<set $BHelp to false>>
+<<set $BSign to true>>
+[[BearStory.End]]
+===
+title: Bear.DontTakeContract
+tags: 
+colorID: 0
+position: 2282,4
+---
+<i>Pengi grips the paper tightly in both hands, staring intently at the signature on the bottom line.</i>
+<i>At that moment, Grammy Frog enters the room with a tray of what, at first glance, appears to be a dozen biscuits organized beautifully on a wooden plate.</i>
+GF: I brought some sweeties for the sweeties!
+<i>Pengi looks at Grammy Frog.</i>
+<i>Here's someone so dedicated to helping others, so much so that even when she herself is the one most in need of help, she does her best to help others anyway.</i>
+P: I…I can’t do this!
+<i>And with that, Pengi tears the contract in half.</i>
+<i>Feeling a sense of satisfaction, he tears the pieces of paper in half again.</i>
+<i>And then again.</i>
+<i>And again.
+<i>Until eventually the contract is nothing but bland confetti.</i>
+GF: Oh, are we having a party? 
+GF: Here darling, take a biscuit and I’ll be right back with the streamers!
+<i>Pengi takes one of the biscuits and Grammy Frog waddles once again into the back of the shop.</i>
+B: I wouldn’t eat that if I were you.
+<i>Pengi looks down and notices that the biscuit is almost entirely made of wood chips, stuck together with dead flies.</i>
+<i>Pengi carefully places the culinary nightmare onto the shelf of knick knacks and turns to leave.</i>
+B: Hey Pengi?
+P: Yeah?
+B: Thanks.
+<i>Pengi gives Brynhilda a half smile, as if to say that they don’t feel they deserve the gratitude, and steps out of the shop.</i>
+<i>As Pengi walks to the next shop on their list, they wonder whether or not more could be done for that bear and her sweet old frog Grandma…</i>
+//no sign, no help
+<<set $BHelp to false>>
+<<set $BSign to false>>
+[[BearStory.End]]
+===
+title: BearStory.End
+tags: 
+colorID: 0
+position: 2635,407
+---
+<<exitStage GF B>>
+<<changeBackground generalMarket>>
+<<playAudio Market>>
+<i>Pengi pulls out the document containing the store owners they have to talk to and adds a little checkmark.</i>
+P: Alright.
+P: On to the next one.
+[[Fish.Intro]]
+===
