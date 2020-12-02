@@ -40,13 +40,13 @@ MonoBehaviour:
   - {fileID: 370761829563420223, guid: 433475a9970f715468f070c67ba35a47, type: 3}
   - {fileID: 898698160826162532, guid: 79ab8cc9850b30f48a34c0ba6d852ab5, type: 3}
   - {fileID: 9116473933309794769, guid: 5fe80e9544eb6a9459968d53401de608, type: 3}
-  textRate: 0.025
+  textRate: 0.0125
   shouldShake: 1
   fontIndex: 0
   fontSize: 11
-  textOpacity: 0.97
+  textOpacity: 0.96
   enableTextFormatting: 1
-  volume: 0.8415678
+  volume: 0.75
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 

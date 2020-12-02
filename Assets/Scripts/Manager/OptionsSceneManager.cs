@@ -133,18 +133,21 @@ namespace Manager
         private void OnTextFormattingChanged(int value)
         {
             gameConfiguration.EnableTextFormatting = value == 0;
+            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
         }
 
         private void OnVolumeChanged(float value)
         {
             gameConfiguration.Volume = value;
+            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
         }
 
         private void OnShakeChanged(int value)
         {
             gameConfiguration.ShouldShake = value == 0;
+            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
         }
 
@@ -152,26 +155,29 @@ namespace Manager
         {
             Debug.Assert(value < gameConfiguration.fontList.Length);
             gameConfiguration.FontAsset = gameConfiguration.fontList[value].fontAsset;
+            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
         }
 
         private void OnTextOpacityChanged(float value)
         {
             gameConfiguration.TextOpacity = value;
+            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
         }
 
         private void OnTextRateChanged(float value)
         {
             gameConfiguration.TextRate = value;
+            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
-            Debug.Log("Reset");
             TextReset();
         }
 
         private void OnTextSizeChanged(float value)
         {
             gameConfiguration.FontSize = value;
+            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
         }
 

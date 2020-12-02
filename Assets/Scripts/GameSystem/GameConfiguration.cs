@@ -202,14 +202,16 @@ namespace GameSystem
 
         public void ResetOptions()
         {
-            textRate = baseConfiguration.textRate;
-            shouldShake = baseConfiguration.shouldShake;
-            fontIndex = baseConfiguration.fontIndex;
-            fontSize = baseConfiguration.fontSize;
-            textOpacity = baseConfiguration.textOpacity;
-            fontColor = baseConfiguration.fontColor;
-            enableTextFormatting = baseConfiguration.enableTextFormatting;
-            volume = baseConfiguration.volume;
+            // weird glitch: hardcoding values instead
+            TextRate = 0.0125f;
+            ShouldShake = true;
+            FontIndex = 0;
+            FontSize = 11;
+            TextOpacity = 0.96f;
+            // fontColor = baseConfiguration.fontColor;
+            EnableTextFormatting = true;
+            Volume = 0.75f;
+            PlayerPrefs.Save();
         }
 
         public SaveClient RequestSaveAccess(SaveClientCallback saveClientCallback)
