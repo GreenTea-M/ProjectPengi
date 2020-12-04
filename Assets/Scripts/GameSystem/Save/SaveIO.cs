@@ -126,13 +126,13 @@ namespace GameSystem.Save
 
 
             string path = GetPath(slotExecutor);
-            Debug.Log(path);
+            // Debug.Log(path);
             string jsonString = JsonUtility.ToJson(slotExecutor.saveData);
             File.WriteAllText(path, jsonString);
 
 #if UNITY_WEBGL
             if (Application.platform == RuntimePlatform.WebGLPlayer)
-            {
+            {y
                 SyncFiles();
             }
 #elif UNITY_STANDALONE_WIN

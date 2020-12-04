@@ -175,6 +175,11 @@ namespace Dialog
             // todo: research text gui things that people may use
             // todo: change text speed
 
+            if (text.Contains("<forceNext>"))
+            {
+                text = "";
+            }
+
             foreach (var c in text)
             {
                 #region for hiding markup

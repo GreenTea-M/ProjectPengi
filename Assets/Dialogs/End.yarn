@@ -1,0 +1,56 @@
+title: Fail.Final
+tags: 
+colorID: 0
+position: -1346,-290
+---
+Empty text
+===
+title: Fail.ShoeFull
+tags: 
+colorID: 0
+position: -1071,-459
+---
+//condition is the number of shoes being 1 or less
+<i>That was it… all the stores Pengi could possibly visit, and they didn’t even learn a thing about any of the stores.</i> 
+<i>With a sense of defeat, Pengi makes it to a bench in the middle of all three stores. It is at that moment they remember the Old Mole. They were supposed to find their missing shoe, which they didn’t...</i>
+
+<i>It wasn’t like the Old Mole was there to be disappointed at them however, as she was nowhere in sight…</i>
+<i>It was one less shame Pengi would have to face today at least...</i>
+
+[[Fail.SignatureFull]]
+===
+title: Fail.SignatureFull
+tags: 
+colorID: 0
+position: -802,-456
+---
+//condition is number of signatures being 1 or less
+//Menagerie Centre Background
+<<changeBackground generalMarket>>
+
+<i>Pengi looks on to all the stores they visited and is overcome with a feeling of vast emptiness. They had only managed to collect number of signatures... It wouldn’t be enough to collect the promotion.</i>
+
+<i>Feeling that the day was pointless, Pengi decides to head back to their apartment and ready their report for Patricia tomorrow.</i>
+
+//Office Background
+<<changeBackground office>>
+PB: By the look on your face it looks like things didn’t go so well, did it Pengsworth?
+P: …
+
+PB: Your silence speaks volumes. Oh well, guess I’ll have to send someone better next time. 
+PB: Go back to your cubicle, I’ll call you when I need you. 
+
+<i>Pengi walks back to their cubicle with their head slumped between their shoulders. The sound of the fingers rifling across keyboards drowns out their own thoughts as they sit back down and stare at the same old spreadsheet they had been looking at before...</i>
+===
+title: Fail.ShoeHalf
+tags: 
+colorID: 0
+position: -1091,9
+---
+//condition is number of signatures equal to 2 but shoe condition failed
+<i>That was it… all the stores Pengi could possibly visit, and they didn’t even learn a thing about any of the stores. But at least they managed to get some amount of signatures for the company… even though Pengi didn’t really learn much about this place </i>
+
+<i>They make their way to the bench in the middle of all three stores and there they remember about the Old Mole. They were supposed to find their missing shoe, which they didn’t failed...</i>
+
+<i>It wasn’t like the Old Mole was there to be disappointed at them however, as the she was nowhere in sight…It was one less thing Pengi had to worry about at least since they probably have a good shot at getting that promotion now.</i>
+===

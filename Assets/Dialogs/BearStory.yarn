@@ -30,6 +30,7 @@ colorID: 0
 position: 92,175
 ---
 <<changeBackground none>>
+<<clearShelfItem>>
 <<showItem shelf>>
 <<resetSpeaker 2>>
 <<if $puzzleDone == true>>
@@ -500,11 +501,4 @@ position: 2635,407
 P: Alright.
 P: On to the next one.
 [[Fish.Intro]]
-===
-title: BearStory.Intro
-tags: 
-colorID: 0
-position: -995,208
----
-[[Bear.EnterStore]]
 ===

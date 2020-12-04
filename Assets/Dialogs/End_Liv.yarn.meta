@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 5788e41f82d72ba47b06df4876a793ce
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: 
+  stringIDs: []
+  compilationStatus: 0
+  isSuccesfullyCompiled: 0
+  compilationErrorMessage: "Error on line 28 at position 12:\nmismatched input 'Centre'
+    expecting FORMAT_FUNCTION_EXPRESSION_START\r\n[Menagerie Centre Background]\r\r\n          
+    ^^^^^^"
+  baseLanguage: {instanceID: 0}
+  localizations: []

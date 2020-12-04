@@ -2652,6 +2652,11 @@ MonoBehaviour:
     prefab: {fileID: 3814284084452676809, guid: 0e11208d00be2a7439b107a872d2567b,
       type: 3}
     displayName: Hippo's Campus (Exterior)
+  - name: cockpit
+    aliases:
+    - hippocampus
+    prefab: {fileID: 627546365868416618, guid: 8fbee6b7c709d344393bdfa80730f863, type: 3}
+    displayName: 
   shelfItemDataList:
   - prefabShelfItem: {fileID: 4122080507588346039, guid: 1cea3cb0ef98e0f449c9a635e53f3ade,
       type: 3}
@@ -3568,6 +3573,7 @@ MonoBehaviour:
   - {fileID: 2480198943629176163, guid: 158c82c1cbfd81e408f074d22a5f7e45, type: 3}
   - {fileID: 2480198943629176163, guid: 9e7f4dec367a3974a87cc9c3bdd2d3fa, type: 3}
   - {fileID: 2480198943629176163, guid: 6035b01935ac40e4f842e410b5649624, type: 3}
+  - {fileID: 2480198943629176163, guid: cef2c563f4e07ee4d8d373c0e9ed33af, type: 3}
   textLanguage: 
   variableStorage: {fileID: 1066951502}
   dialogueUI: {fileID: 1856837811}

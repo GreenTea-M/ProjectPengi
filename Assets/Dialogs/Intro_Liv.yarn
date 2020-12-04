@@ -69,31 +69,29 @@ Pengi: <Normal> Alright. At least I know the way there now.
 <i>Overwhelmed by the smells and sounds surrounding the area, Pengi rushes to pull out the folder and look for the stores they need to go to.</i>
 <i>They quickly rush into the first store on their list.</i>
 //fade to white and move to Brynhilda
-[[Hippo.Intro]]
+[[BearStory.Intro]]
 ===
 title: Intro.Dream
 tags: 
 colorID: 0
 position: -1289,-14
 ---
-<<changeBackground cockpit>>
+<<changeBackground sunset>>
 <<playAudio pilotDream>>
-<<playSFX radio>>
 //clouds are moving, soft light??, maybe pengi moving back and forth?
 //SFX: radio sound? GOLD
 
-P, pilot: Hello everyone, this is your captain speaking. Hope you all had a wonderful sleep and as you look over to the left side of the plane you can see the sun rising over the ocean.
+P: Hello everyone, this is your captain speaking. Hope you all had a wonderful sleep and as you look over to the left side of the plane you can see the sun rising over the ocean.
 
-<<changeBackground sunset>>
 //Background cuts to shot of sunrise over ocean
 <i>The morning sun's rays glisten through the clouds.</i>
 
-P, pilot: Ain’t it something?
+P: Ain’t it something?
 
 <<shake>>
 <<playSFX SFXsoftwhack>>
 
-P, pilot: Huh?
+P: Huh?
 
 <<playSFX SFXsoftwhack>>
 <<shake>>
@@ -109,7 +107,7 @@ P, pilot: Huh?
     <<shake>>
 
 ->Question the voice
-	P, pilot: Who said that?
+	P: Who said that?
 //dreamy looking text? like floating?
     PtC, notVisible: Hehehe, it’s me, your conscience and I’m here to tell you to wake up.
     // The screen shake and sound occur each time Paul tries to wake up Pengi
@@ -117,7 +115,7 @@ P, pilot: Huh?
     <<playSFX SFXsoftwhack>>
     <<shake>>
 
-P, pilot: Stop. Stop. Stop!
+P: Stop. Stop. Stop!
 [[Intro.Office]]
 ===
 title: Intro.Office
@@ -131,8 +129,7 @@ position: -1043,-8
 <<fadePlainBackground on 2 block white>>
 <<changeBackground office>>
 // This is a hack: the empty double slash below will force a text to appear but go forward
-Pengi: <forceNext>
-This is a hack <forceNext>
+//
 <<wait 2>>
 <<fadePlainBackground off 1 block white>>
 <<enterStage Paul>>

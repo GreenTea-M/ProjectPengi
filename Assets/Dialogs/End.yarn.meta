@@ -1,0 +1,35 @@
+fileFormatVersion: 2
+guid: cef2c563f4e07ee4d8d373c0e9ed33af
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-US
+  stringIDs:
+  - End-Fail.Final-0
+  - End-Fail.ShoeFull-1
+  - End-Fail.ShoeFull-2
+  - End-Fail.ShoeFull-3
+  - End-Fail.ShoeFull-4
+  - End-Fail.SignatureFull-5
+  - End-Fail.SignatureFull-6
+  - End-Fail.SignatureFull-7
+  - End-Fail.SignatureFull-8
+  - End-Fail.SignatureFull-9
+  - End-Fail.SignatureFull-10
+  - End-Fail.SignatureFull-11
+  - End-Fail.ShoeHalf-12
+  - End-Fail.ShoeHalf-13
+  - End-Fail.ShoeHalf-14
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: "Error on line 28 at position 12:\nmismatched input 'Centre'
+    expecting FORMAT_FUNCTION_EXPRESSION_START\r\n[Menagerie Centre Background]\r\r\n          
+    ^^^^^^"
+  baseLanguage: {fileID: 7128917941130120860, guid: cef2c563f4e07ee4d8d373c0e9ed33af,
+    type: 3}
+  localizations: []
