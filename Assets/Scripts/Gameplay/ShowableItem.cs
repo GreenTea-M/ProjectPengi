@@ -1,11 +1,22 @@
+using System;
 using Dialog;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Rendering;
+using Yarn.Unity;
 
 namespace Gameplay
 {
+    /// <summary>
+    /// Limitation: not saved
+    /// </summary>
     public class ShowableItem : MonoBehaviour
     {
+        public UnityStringEvent instructionListeners;
+        public bool delayDestroy = false;
+        
         private ShowableItemData _data;
+        private const string DestroyKeyword = "Destroy";
 
         public void SetData(ShowableItemData data)
         {
@@ -17,9 +28,26 @@ namespace Gameplay
             return _data.Match(name);
         }
 
+        public void Instruct(string instruction)
+        {
+            instructionListeners.Invoke(instruction);
+        }
+
         public void SelfDestroy()
         {
-            Destroy(gameObject);
+            if (delayDestroy)
+            {
+                instructionListeners.Invoke(DestroyKeyword);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
+    }
+
+    [Serializable]
+    public class UnityStringEvent : UnityEvent<string>
+    {
     }
 }

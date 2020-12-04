@@ -59,6 +59,7 @@ public class SaveData
         isLeft = rhs.isLeft;
         currentSpeaker = rhs.currentSpeaker;
         previousSpeaker = rhs.previousSpeaker;
+        shownItem = rhs.shownItem;
 
         // todo: test out for optimization
         savedVariables.Clear();

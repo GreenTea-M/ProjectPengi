@@ -229,6 +229,35 @@ namespace Dialog
             }
         }
 
+        /// <summary>
+        /// Give instructions to showable items
+        /// </summary>
+        /// <remarks>
+        /// Usage:
+        /// <<instructShownItem fish jump>>
+        /// </remarks>
+        /// <param name="parameters"></param>
+        private void InstructShownItem(string[] parameters)
+        {
+            if (parameters.Length != 2)
+            {
+                Debug.LogWarning($"InstructShownItem: Insufficient instructions: {string.Join(" ", parameters)}");
+                return;
+            }
+
+            foreach (var showableItem in _itemShownList)
+            {
+                if (showableItem.Match(parameters[0]))
+                {
+                    Debug.Log($"Instructing {parameters[0]} to {parameters[1]}");
+                    showableItem.Instruct(parameters[1]);
+                    return;
+                }
+            }
+            
+            Debug.LogWarning($"InstructShownItem: Current item not shown: {string.Join(" ", parameters)}");
+        }
+
         private void PlaySFX(string[] parameters)
         {
             if (parameters.Length == 0)
