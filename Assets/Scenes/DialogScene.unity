@@ -3501,6 +3501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconManager: {fileID: 1066951500}
   inputManager: {fileID: 86176308}
+  customCommands: {fileID: 1431928779}
   gameConfiguration: {fileID: 11400000, guid: b016d432416a3f44abb0b0ed6d03b2c9, type: 2}
   markupWholeWhitelist:
   - <i>
@@ -3520,6 +3521,8 @@ MonoBehaviour:
   - <textSpeed
   - <color
   - <font
+  - <showItem
+  - <hideItem
   onDialogueStart:
     m_PersistentCalls:
       m_Calls: []

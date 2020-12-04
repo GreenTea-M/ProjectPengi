@@ -337,7 +337,7 @@ namespace Dialog
             ShowElements(true);
         }
 
-        private void ShowItem(string[] parameters)
+        public void ShowItem(string[] parameters)
         {
             if (parameters.Length == 0)
             {
@@ -359,7 +359,7 @@ namespace Dialog
             Debug.LogWarning($"ShowItem: Unknown item: {parameters[0]}");
         }
 
-        private void HideItem(string[] parameters)
+        public void HideItem(string[] parameters)
         {
             if (parameters.Length == 0)
             {
