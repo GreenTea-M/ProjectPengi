@@ -132,6 +132,23 @@ namespace Dialog
             ChangeHeader(new[] {_saveClient.currentSave.lastHeader});
             PlayAudio(new[] {_saveClient.currentSave.lastAudioName});
 
+            // special case: shelf item
+            if (!_saveClient.currentSave.shownItem.Equals(""))
+            {
+                foreach (var shelfItem in shelfItemDataList)
+                {
+                    if (shelfItem.variableName.Equals(_saveClient.currentSave.shownItem))
+                    {
+                        Debug.Log($"Shown item: ");
+                        var o = shelfItem.CreateObject();
+                        _shownShelfItem = o;
+                        o.Initialize(shelfItem, this);
+                        o.Display();
+                        break;
+                    }
+                }
+            }
+
             // load all active characters
             EnterStage(_saveClient.currentSave.activeCharacterList);
 
@@ -517,7 +534,8 @@ namespace Dialog
 
             // if (_shownShelfItem == null) return;
             // Destroy(_shownShelfItem.gameObject);
-            _shownShelfItem = null;
+
+            _saveClient.autoSave.shownItem = "";
         }
 
         private void DoPuzzle(string[] parameters, System.Action onComplete)
@@ -563,6 +581,12 @@ namespace Dialog
             // todo: give each item the call plus variable to change
             if (_shelfItemList.Count == 0)
             {
+                if (_shownShelfItem != null)
+                {
+                    Destroy(_shownShelfItem.gameObject);
+                }
+                _shownShelfItem = null;
+                
                 foreach (var shelfItemData in shelfItemDataList)
                 {
                     ShelfItem shelfItem = shelfItemData.CreateObject();
@@ -573,6 +597,7 @@ namespace Dialog
 
             foreach (var _shelfItem in _shelfItemList)
             {
+                _shelfItem.gameObject.SetActive(false); // force reload
                 _shelfItem.gameObject.SetActive(true);
             }
 
@@ -589,6 +614,7 @@ namespace Dialog
         public void InformShelfItemTouched(ShelfItem shelfItem)
         {
             _shownShelfItem = shelfItem;
+            _saveClient.autoSave.shownItem = _shownShelfItem.ShelfItemName;
             inputManager.SetInputState(InputState.Normal);
 
             bool isDone = true;
@@ -776,7 +802,9 @@ namespace Dialog
         public ShelfItem CreateObject()
         {
             Debug.Assert(prefabShelfItem != null);
-            return Object.Instantiate(prefabShelfItem).GetComponent<ShelfItem>();
+            ShelfItem o = Object.Instantiate(prefabShelfItem).GetComponent<ShelfItem>();
+            o.SetName(variableName);
+            return o;
         }
     }
 

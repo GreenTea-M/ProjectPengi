@@ -28,6 +28,7 @@ public class SaveData
     public string currentSpeaker = "";
     public string previousSpeaker = "";
     public string[] activeCharacterList;
+    public string shownItem = "";
 
     public SaveData(SaveData rhs)
     {

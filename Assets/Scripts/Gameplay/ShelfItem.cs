@@ -22,6 +22,9 @@ namespace Gameplay
         private bool _isDisplaying = false;
         private bool _isInitialized = false;
         private Vector3 _originalLocation = Vector3.zero;
+        private string _name = "";
+
+        public string ShelfItemName => _name;
 
         private void OnEnable()
         {
@@ -113,6 +116,11 @@ namespace Gameplay
             _rigidbody2DLoc.bodyType = RigidbodyType2D.Kinematic;
             _rigidbody2DLoc.simulated = false;
             _isDisplaying = true;
+        }
+
+        public void SetName(string _name)
+        {
+            this._name = _name;
         }
     }
 }

@@ -17,15 +17,19 @@ namespace GameSystem
     {
         [Header("Constants")] [Tooltip("Number of max save slots")]
         public int maxSaveSlots = 3;
+
         [Tooltip("This will be the game configuration used on new game")]
         public GameConfiguration baseConfiguration;
+
         public FontItem[] fontList;
         public GameObject[] characterPrefabList;
 
         #region Option variables
-        [Header("Option variables")] 
+
+        [Header("Option variables")]
         [Tooltip("The delay in seconds that each character shows up; If less than 0, show instantly")]
         public float textRate = 0.025f;
+
         public float TextRate
         {
             get => textRate;
@@ -37,6 +41,7 @@ namespace GameSystem
         }
 
         public bool shouldShake = true;
+
         public bool ShouldShake
         {
             get => shouldShake;
@@ -48,6 +53,7 @@ namespace GameSystem
         }
 
         public int fontIndex = 0;
+
         public int FontIndex
         {
             get => fontIndex;
@@ -57,6 +63,7 @@ namespace GameSystem
                 PlayerPrefs.SetInt(KeyFontIndex, value);
             }
         }
+
         public TMP_FontAsset FontAsset
         {
             get
@@ -71,7 +78,7 @@ namespace GameSystem
             set
             {
                 var index = 0;
-                
+
                 for (int i = 0; i < fontList.Length; i++)
                 {
                     if (fontList[i].fontAsset == value)
@@ -87,6 +94,7 @@ namespace GameSystem
         }
 
         public float fontSize = 18f;
+
         public float FontSize
         {
             get => fontSize;
@@ -96,16 +104,17 @@ namespace GameSystem
                 PlayerPrefs.SetFloat(KeyFontSize, fontSize);
             }
         }
-        
-        [Range(0.6f,1f)]
-        public float textOpacity = 0.97f;
+
+        [Range(0.6f, 1f)] public float textOpacity = 0.97f;
+
         public float TextOpacity
         {
             get => textOpacity;
             set => textOpacity = value;
         }
-        
+
         public bool enableTextFormatting = true;
+
         public bool EnableTextFormatting
         {
             get => enableTextFormatting;
@@ -117,37 +126,39 @@ namespace GameSystem
         }
 
         public float volume = 0.75f;
-        public float Volume { get => volume;
+
+        public float Volume
+        {
+            get => volume;
             set
             {
                 volume = value;
                 PlayerPrefs.SetFloat(KeyVolume, value);
-            } 
+            }
         }
-        
+
         public Color fontColor = Color.black;
-    
+
         private readonly string KeyTextRate = "TextRate";
         private readonly string KeyShouldShake = "ShakeStrength";
         private readonly string KeyFontIndex = "FontIndex";
+
         private readonly string KeyFontSize = "FontSize";
+
         // todo: clean up
         // private readonly string KeyTextOpacity = "TextOpacity";
         private readonly string KeyTextFormatting = "TextFormatting";
         private readonly string KeyVolume = "Volume";
+
         #endregion Option variables
-    
-        [FormerlySerializedAs("saveData")]
-        [Header("Save data")]
-        [SerializeField]
+
+        [FormerlySerializedAs("saveData")] [Header("Save data")] [SerializeField]
         private SaveData currentSave;
 
-        [Header("Auto save (Do not touch)")] 
-        [SerializeField]
+        [Header("Auto save (Do not touch)")] [SerializeField]
         private SaveData autoSave = new SaveData();
 
-        [Header("Other global stuff")] 
-        private SaveIO saveIo;
+        [Header("Other global stuff")] private SaveIO saveIo;
         public GameInstance gameInstance;
 
         public static int AutoSaveIndex = 0;
@@ -170,7 +181,7 @@ namespace GameSystem
                 // assume all has
                 textRate = PlayerPrefs.GetFloat(KeyTextRate);
                 shouldShake = PlayerPrefs.GetInt(KeyShouldShake) == 1;
-            
+
                 // font
                 fontIndex = PlayerPrefs.GetInt(KeyFontIndex);
                 if (fontIndex < 0 || fontIndex > fontList.Length)
@@ -184,12 +195,7 @@ namespace GameSystem
             }
             else
             {
-                TextRate = textRate;
-                ShouldShake = shouldShake;
-                fontIndex = FontIndex;
-                FontSize = fontSize;
-                EnableTextFormatting = enableTextFormatting;
-                Volume = volume;
+                ResetOptions();
                 PlayerPrefs.Save();
             }
         }
@@ -202,7 +208,7 @@ namespace GameSystem
 
         public void ResetOptions()
         {
-            // weird glitch: hardcoding values instead
+            // weird glitch: hard coding values instead
             TextRate = 0.0125f;
             ShouldShake = true;
             FontIndex = 0;
@@ -266,7 +272,7 @@ namespace GameSystem
             }
         }
     }
-    
+
 
     [Serializable]
     public class FontItem

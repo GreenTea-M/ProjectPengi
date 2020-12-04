@@ -30,7 +30,6 @@ colorID: 0
 position: 92,175
 ---
 <<changeBackground none>>
-<<clearShelfItem>>
 <<showItem shelf>>
 <<resetSpeaker 2>>
 <<if $puzzleDone == true>>
