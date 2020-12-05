@@ -5,6 +5,7 @@ position: -628,206
 ---
 <<exitStage Hank>>
 <<changeBackground carpentry>>
+<<playSfx bearBell>>
 <<enterStage Brynhilda>>
 <<playAudio BrynhildaBear>>
 <i>The bell on the door jingles in a delicate manner as Pengi enters the warm shop filled with an assortment of breathtaking, handcrafted items.</i>

@@ -7,6 +7,7 @@ position: -2154,-250
 <<changeBackground Bargain>>
 <<playAudio BGMBargain>>
 <<enterStage Alici>>
+<<playSfx bearBell>>
 <<set $FishChoices = 0>>
 <i>As Pengi enters the store, their eyes are bombarded by an assortment of odd items splayed everywhere for display and sale.</i>
 <i>The arrangements of these items seem to lack any rhyme or reason.</i>

@@ -7,7 +7,7 @@ position: -557,-8
 <<enterStage oldMole>>
 // <<changeBackground patsOffice>>
 // Fade in background of street? Will add in later version
-<<playAudio OldMole>>
+<<playAudio Market>>
 Pengi: Okokok OK!
 Pengi: I got this!
 Pengi: Phew. 
@@ -18,6 +18,7 @@ Pengi: I really hope I don't mess it up.
 <i>Hmmm<textSpeed=0.1/>...<textSpeed = 1/> now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
 <<playSFX SFXbumpinto>>
 <<shake>>
+<<playAudio OldMole>>
 HeLLLlllOOOoo there, youNGSTER!
 Pengi: Wha-what the?!
 -> Look around

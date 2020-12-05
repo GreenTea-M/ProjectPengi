@@ -5,6 +5,7 @@ position: -1041,-245
 ---
 <<changeBackground hipposCampus>>
 <<playAudio hippoBgm>>
+<<playSfx hippoBell>>
 <i>Pengi rushes into the store and is greeted with quite the sight.</i>
 <i><showItem weights>They look around at what, at first, seemed to be a sporting goods store, but proved to be otherwise upon closer inspection. Instead of weights and cardio machines<hideItem weights>,<showItem books> the floor is filled with books and other materials to expand one’s mind. </i>
 <<hideItem books>>
