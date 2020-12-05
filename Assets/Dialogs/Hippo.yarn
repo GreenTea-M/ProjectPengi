@@ -6,7 +6,8 @@ position: -1041,-245
 <<changeBackground hipposCampus>>
 <<playAudio hippoBgm>>
 <i>Pengi rushes into the store and is greeted with quite the sight.</i>
-<i>They look around at what, at first, seemed to be a sporting goods store, but proved to be otherwise upon closer inspection. Instead of weights and cardio machines, the floor is filled with books and other materials to expand one’s mind. </i>
+<i><showItem weights>They look around at what, at first, seemed to be a sporting goods store, but proved to be otherwise upon closer inspection. Instead of weights and cardio machines<hideItem weights>,<showItem books> the floor is filled with books and other materials to expand one’s mind. </i>
+<<hideItem books>>
 //The music changes to something bassy that bros use to lift weights, but also pretentious like the classical music all premeds use for cram sessions.
 //BIG TEXT
 <size=200%>What’s<textSpeed=0.2> </textSpeed>up<textSpeed=0.1> <textSpeed=4>my fellow intellectual!
@@ -23,7 +24,8 @@ H: Name’s Hank, but don’t be intimidated, I’m just another pilgrim in the 
 P: <i>W-what kind of place is this?</i>
 P: I-I-I don’t quite follow—
 H: New to the path? AH, I once stood where you are, foolishly believing that intelligence lay only in the brain.
-<i>Hank turns around and reaches up for an antique globe sitting at the top of a shelf. Spinning it, he turns back to the confused penguin.</i>
+<i>Hank turns around and reaches up for an antique <showItem globe>globe sitting at the top of a shelf. Spinning it, he turns back to the confused penguin.</i>
+<<hideItem globe>>
 H: I traveled across the globe studying in different education institutions from every country. But the one nugget that truly changed the game for me, the one that put me on this path was from a source I didn’t expect.
 H: You ever get those pulsing headaches after binging a whole book about M-theory?
 <i>Pengi’s feels a headache coming along from all this information dumping.</i>
@@ -83,7 +85,9 @@ position: -642,23
         [[Hippo.Angry]]
 
     -> Discuss Grounded’s modernization initiative.
+        <<showItem stripMall>>
         P: Then maybe Grounded’s modernization initiative would interest you? It's our company’s plan to modernize locations in the city that have the potential to be big attractions but have been neglected by their owners.
+        <<hideItem stripMall>>
         H: Ah, so that’s why Grounded is so interested in the Centre. They’re thinking they can make a quick buck.
         P: B–but you’ll be helping out your fellow store owners..
         <i>He scratches his chin with one of him muscular toes.</i>
@@ -101,16 +105,21 @@ position: -642,-248
 P: What exactly to do you sell in this store? I’m interested, but still a little confused.
 H: No problem with that at all, fellow intellectual. 
 H: Here at Hippo’s Campus we sell an assortment of goods ranging from books and supplements for the brain, to other methods of expanding one's mind.
+<<showItem brain>>
 -> Ask about books. <<if $hippoAskBook neq true>>
+    <<hideItem brain>>
     [[Hippo.AskBook]]
 
 -> Ask about supplements. <<if $hippoAskSupplements neq true>>
+    <<hideItem brain>>
     [[Hippo.AskSupplements]]
 
 -> Ask about other methods. <<if $hippoAskMethods neq true>>
+    <<hideItem brain>>
     [[Hippo.AskMethods]]
 
 -> Ask for signature..
+    <<hideItem brain>>
     P: A-a-actually sir, I want to let you know that I represent Grounded Real Estates and we have a proposition for your business.
     H: Hmmm...
     <i>His eyes squint and his muscles bulge.</i>
@@ -119,8 +128,10 @@ H: Here at Hippo’s Campus we sell an assortment of goods ranging from books an
 
 //This next branch only if Ask about supplements
 -> Ask if something.  <<if $hippoAskSupplements == true>>
+    <<hideItem brain>>
     [[Hippo.AskSomething]]
 
+<<hideItem brain>>
 [[Hippo.About]]
 ===
 title: Hippo.Angry
@@ -168,7 +179,8 @@ position: -653,-583
 ---
 P: Supplements? Like adderall to cram for a final?
 <i>For a moment, Hanks bravado disappears as he lets out a disappointed sigh before withdrawing behind a smug grin.</i>
-H: We have adderall, but that ain’t the only supplement. We got multivitamins, fish oils, anything to get that mind of yours to maximum brain gains.
+H: We have adderall, but that ain’t the only supplement. We got multivitamins, <showItem fishOil>fish oils, anything to get that mind of yours to maximum brain gains.
+<<hideItem fishOil>>
 P: <i>Huh, looks like there's something more to this. Maybe I should poke around a bit more.</i>
 //the Ask if something is wrong choice is opened
 <<set $hippoAskSupplements = true>>
@@ -214,8 +226,9 @@ H: A frustrating circumstance, but one I will recover from.
     [[Hippo.FindNotebook]]
 
 -> Offer Hank a new perspective on the situation.
-    P: Maybe this is an opportunity for reinvention? Without the ties of the notebook you could reinvent the wheel so to speak and make a whole new drink? 
+    P: Maybe this is an opportunity for reinvention? Without the ties of the <showItem notebook>notebook you could reinvent the wheel so to speak and make a whole new drink? 
     P: It might take work, but what discovery wouldn’t be great without the challenge?
+    <<hideItem notebook>>
     H: Wise words indeed. I think I might take you up on the offer. 
     H: I don’t believe much in destiny but I feel that our meeting was quite serendipitous.
     P: Thanks again for showing me your shop. I’m glad I discovered it!
@@ -256,11 +269,15 @@ H: But the last thing I want to do with them is sign off on my store and potenti
     [[Hippo.Angry]]
 
 -> Discuss Grounded’s modernization initiative.
+    <<showItem modernStripMall>>
     P: But have you heard that this is all part of Grounded’s modernization initiative? It's our company’s goal to update certain locations in the city that are potential big attractions for the city?.
+    <<hideItem modernStripMall>>
     <i>Hank scratches his chin with one of his muscular toes.</i>
     H: Interesting proposition...
     H: If you convince the others of how positive this change will be then you are the greatest representative I have ever met. But you have convinced me. Here.
+    <<showItem signature>>
     <i>Hank gives you his signature.</i>
+    <<hideItem signature>>
     [[Hippo.GetSignature]]
 ===
 title: Hippo.GetSignature

@@ -2688,6 +2688,48 @@ MonoBehaviour:
   - prefab: {fileID: 6775013585080012922, guid: c71ba5a0844f90e47a539aa7909d6a25,
       type: 3}
     name: fadeItemTest
+  - prefab: {fileID: 6025789413266260025, guid: 1e0699c4f831e014db65054cbab397a0,
+      type: 3}
+    name: paperStack
+  - prefab: {fileID: 5803698846503383656, guid: e68a46c88b111f24c9df87decb86f899,
+      type: 3}
+    name: weirdBird
+  - prefab: {fileID: 6025789413266260025, guid: 018436dea1d0c2a4988201183d0ea46c,
+      type: 3}
+    name: stripmall
+  - prefab: {fileID: 6025789413266260025, guid: 442de5e78939aa14c89c29157baa2674,
+      type: 3}
+    name: plane
+  - prefab: {fileID: 5803698846503383656, guid: e9a3040c5dafdb749be92327ba7be4be,
+      type: 3}
+    name: shoe
+  - prefab: {fileID: 6025789413266260025, guid: d09c05bc38bee36498bf6f515c174f43,
+      type: 3}
+    name: directionitem
+  - prefab: {fileID: 6025789413266260025, guid: c929b679a2f6b464ab1b5de97bc30a34,
+      type: 3}
+    name: weights
+  - prefab: {fileID: 6025789413266260025, guid: 36bdfe0b423dc7246aa9a846dc14e63c,
+      type: 3}
+    name: books
+  - prefab: {fileID: 6025789413266260025, guid: 14541e3bb8eb8544c93f08a536147a83,
+      type: 3}
+    name: globe
+  - prefab: {fileID: 6025789413266260025, guid: 24e49a6768e26fc49821ae8c2ca27968,
+      type: 3}
+    name: brain
+  - prefab: {fileID: 6025789413266260025, guid: 68a331b682f45334ab9a0d1febeda7f8,
+      type: 3}
+    name: notebook
+  - prefab: {fileID: 6025789413266260025, guid: 950282856ac656446b58f50ab3d3b928,
+      type: 3}
+    name: fishOil
+  - prefab: {fileID: 6025789413266260025, guid: 35ba9b1a9ddd36e4d80a6fe15b98a3f5,
+      type: 3}
+    name: modernStripMapp
+  - prefab: {fileID: 6025789413266260025, guid: 9a57d097f97786743acd4067617e5691,
+      type: 3}
+    name: signature
   prefabFadedAudio: {fileID: 3517092227973703711, guid: ffb55a4e78a9f6d448375860b9d3c112,
     type: 3}
   dialogueRunner: {fileID: 1856837812}
