@@ -14,6 +14,11 @@ namespace UI
         private int HashStartLocationPlate = Animator.StringToHash("StartLocationPlate");
         private string _previousLocationName = "";
 
+        private void OnEnable()
+        {
+            SetLocation(text.text);
+        }
+
         public void SetLocation(string locationName)
         {
             if (_animator == null)

@@ -18,7 +18,6 @@ namespace UI
         private void GoBack()
         {
             var sceneName = SceneManager.GetActiveScene().name;
-            Debug.Log("Okay");
             if (sceneName.Equals(MainMenuScene))
             {
                 Application.Quit();

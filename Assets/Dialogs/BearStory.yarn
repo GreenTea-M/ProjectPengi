@@ -77,6 +77,7 @@ tags:
 colorID: 2
 position: 828,156
 ---
+<forceNext>
 <<changeBackground carpentry>>
 <<enterStage B GF>>
 Brynhilda: <Smiling> Thank you kindly for your help.
@@ -91,6 +92,7 @@ Brynhilda: <Beaming?/Smiling>Pengi!
 Brynhilda: What an absolutely delightful name! 
 <i>Her eyes beam as she says this, betraying the excitement she was having to finally having a customer in her store.</i>
 Brynhilda: So, what can I do for you today?
+<<hideItem fadingMole>>
 [[Well...I guess I’m looking for a...Shoe?|Bear.Shoe]]
 [[I’m here on behalf of Grounded Real Estate.|Bear.GetSignature]]
 ===
