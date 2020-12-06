@@ -132,7 +132,7 @@ namespace GameSystem.Save
 
 #if UNITY_WEBGL
             if (Application.platform == RuntimePlatform.WebGLPlayer)
-            {y
+            {
                 SyncFiles();
             }
 #elif UNITY_STANDALONE_WIN

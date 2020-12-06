@@ -3,11 +3,18 @@ tags:
 colorID: 0
 position: -1041,-245
 ---
-<<changeBackground hipposCampus>>
-<<playAudio hippoBgm>>
 <<playSfx hippoBell>>
+<<set $HMaybe to false>>
+//<<fadePlainBackground on 0.5 block white>>
+//<forceNext>
+//<<playAudio Market>>
+//<<wait 0.2>>
+//<<changeBackground street>>
+//<<fadePlainBackground off 0.5 block white>>
+<forceNext>
 <i>Pengi rushes into the store and is greeted with quite the sight.</i>
-<i><showItem weights>They look around at what, at first, seemed to be a sporting goods store, but proved to be otherwise upon closer inspection. Instead of weights and cardio machines<hideItem weights>,<showItem books> the floor is filled with books and other materials to expand one’s mind. </i>
+<i><showItem weights>They look around at what, at first, seemed to be a sporting goods store, but proved to be otherwise upon closer inspection.</i> 
+<i>Instead of weights and cardio machines<hideItem weights>,<showItem books> the floor is filled with books and other materials to expand one’s mind. </i>
 <<hideItem books>>
 //The music changes to something bassy that bros use to lift weights, but also pretentious like the classical music all premeds use for cram sessions.
 //BIG TEXT
@@ -19,32 +26,37 @@ H: Welcome to Hippo’s Campus<textSpeed=0.2> <textSpeed=0.25>bruh<textSpeed=0.0
 //Hank flexes their muscles and the screen shakes from the force of his testosterone alone.
 <<shake>>
 H, jojo: <size=200%><b>—POLYMATH!
-<i>He lets out a booming laugh that shook Pengi to the core.</i>
-H: Name’s Hank, but don’t be intimidated, I’m just another pilgrim in the journey of self-improvement. How may I help you, fellow intellectual?
+<i>He lets out a booming laugh that shakes Pengi to the core.</i>
+H: Name’s Hank, but don’t be intimidated, I’m just another pilgrim in the journey of self-improvement.
+H: How may I help you, fellow intellectual?
 <i>Pengi stares blankly at Hank.</i>
 P: <i>W-what kind of place is this?</i>
 P: I-I-I don’t quite follow—
-H: New to the path? AH, I once stood where you are, foolishly believing that intelligence lay only in the brain.
+H: New to the path? 
+H: AH, I once stood where you are, foolishly believing that intelligence lay only in the brain.
 <i>Hank turns around and reaches up for an antique <showItem globe>globe sitting at the top of a shelf. Spinning it, he turns back to the confused penguin.</i>
 <<hideItem globe>>
-H: I traveled across the globe studying in different education institutions from every country. But the one nugget that truly changed the game for me, the one that put me on this path was from a source I didn’t expect.
+H: I traveled across the globe studying in different education institutions from every country.
+H: But the one nugget that truly changed the game for me, the one that put me on this path was from a source I didn’t expect.
 H: You ever get those pulsing headaches after binging a whole book about M-theory?
 <i>Pengi’s feels a headache coming along from all this information dumping.</i>
-P: Never read a physics textbook… B-b-but I think I might know what you are talking about… maybe?
+P: Never read a textbook… B-b-but I think I might know what you are talking about… maybe?
 H: So you know what I’m talking about, right bruh?
 H: Like your blood is <i>pumping</i> through your brain cells, circulating all the knowledge to strengthen the mind.
 H: Well, your body does that too, it <i>pumps</i> blood to circulate growth when building muscle.
 H: An ancient greek philosopher coined the phrase, <i>‘A sound mind in a sound body’</i>,
-H: And I realized that to get to the next level I needed the blood to <i>pump</i> across the body.
+H: And I realized that to get to the next level I needed the blood to <size=120%>PUMP</size> across the body.
 H: It’s all about the brain gains bro! 
-H:And the best way to do so, well, as said by the great bodybuilder, Armadillo Schwarzenegger, is it’s all about pump baby.
-<i>He flexes his bicep and presents the gnarled veins on his arm.</i>
+H: And the best way to do so, well, as said by the great bodybuilder Armadillo Schwarzenegger...
+H, jojo: <size=120%>IT'S ALL ABOUT PUMP BABY!</size>
 <i>Pengi nods, but only to sate the conversation.</i>
 P: Y-yes. Quite impressive...
 H: Awesome! Now, how can the owner of Hippo’s Campus help you today?.
 P: Oh.
-P: <i>This is such an interesting store! What kind of place would sell things to give you brain gains? That’s so awesome. But—but I need to ask for his signature!</i>
-P: <i>Oh gosh, what do I do, what do I do? Oh no, he’s looking at me, waiting for a response. Say something you dolt!</i>
+P: <i>This is such an interesting store! What kind of place would sell things to give you brain gains? 
+P: <i>That’s so awesome!</i> 
+P: <i>B—but I'm not here for that...I should ask for his signature...right?</i>
+P: <i>Oh gosh, what do I do, what do I do? Oh no, he’s looking at me, waiting for a response.</i>
 -> Ask about the shoe
     P:Uuuuhh, oh yeah, did you happen to see a shoe anywhere? It would be a loose shoe, not attached to anyone, about the size of an old mole lady's foot?
     [[Hippo.Shoe]]
@@ -53,12 +65,14 @@ P: <i>Oh gosh, what do I do, what do I do? Oh no, he’s looking at me, waiting 
     <i>Pengi clears their throat.</i>
     P: E-e-excuse me sir, but I represent Grounded Real Estates and I was wondering if you’d be interested in my company’s proposition.
     H: Ah, an envoy of the capitalist establishment seeks to extend their reach even further.
-    H: I’m not the biggest fan of what Grounded has been planning for our little Centre, but I am nothing if not a man of logic and reason. What is your new proposal?
+    H: I’m not the biggest fan of what Grounded has been planning for our little Centre, but I am nothing if not a man of logic and reason.
+    H: What is your new proposal?
     P: <i>He’s a lot more well spoken than I had expected.</i>
     [[Hippo.Sign]]
 
 -> Ask what the store sells
-    P: W-w-what exactly do you have to help me on my intellectual — was it pilgrimage that you said? Yes! Pilgrimage. What do you have to help with that?
+    P: W-w-what exactly do you have to help me on my intellectual — was it pilgrimage that you said? 
+    P: Yes! Pilgrimage. What do you have to help with that?
     [[Hippo.About]]
 ===
 title: Hippo.Sign
@@ -101,7 +115,6 @@ tags:
 colorID: 0
 position: -642,-248
 ---
-<<changeBackground hipposCampus>>
 // I'm playing safe, I encountered a weird location bug only for this node
 P: What exactly to do you sell in this store? I’m interested, but still a little confused.
 H: No problem with that at all, fellow intellectual. 
@@ -140,6 +153,7 @@ tags:
 colorID: 0
 position: 165,243
 ---
+<<exitStage Hank>> 
 <i>Pengi leave’s Hippos Campus with their head down.</i>
 P: That was… a disaster. <i>Pengi slaps themselves on the face.</i> No, now is not the time to pout. I must focus if I want to get into flight school. Now, who’s next?
 //no sign, no help
@@ -152,12 +166,14 @@ tags:
 colorID: 0
 position: 159,-7
 ---
+<<exitStage Hank>> 
 <i>Pengi leaves Hippo’s Campus with sweat rolling down their back.</i>
 
 P: Well, at least they didn’t kick me out. Maybe this other store will treat me better?
 //no sign (dependent), no friend
 <<set $HSign to false>>
 <<set $HHelp to false>>
+<<set $HMaybe to true>>
 [[Bear.EnterStore]]
 ===
 title: Hippo.AskBook
@@ -241,8 +257,9 @@ H: A frustrating circumstance, but one I will recover from.
 title: Hippo.FindNotebook
 tags: 
 colorID: 0
-position: 162,-546
+position: 161,-548
 ---
+<<exitStage Hank>> 
 <i>Pengi leaves Hippo’s Campus with a grin on their face.</i>
 
 P: What a nice guy! I’m really glad I took this assignment now, no wonder Grounded wants this place. It’s so awesome. I wonder if I’ll run into the notebook in any of these other stores?
@@ -255,13 +272,14 @@ P: What a nice guy! I’m really glad I took this assignment now, no wonder Grou
 title: Hippo.AskAboutTroubles
 tags: 
 colorID: 0
-position: -639,299
+position: -641,296
 ---
 P: Well what part of Grounded do you not like? I’m sure I could bring this up with my manager and we can come to a solution.
 H: That’s kind of you to say. 
 H: Unfortunately, the last person said the same thing and the only thing your company did in response was send you.
 P: O-oh...
-H: They leave much to be desired on the negotiating front. Perhaps they’d even benefit from my own personal method of self-growth.
+H: They leave much to be desired on the negotiating front.
+H: Perhaps they’d even benefit from my own personal method of self-growth.
 H: But the last thing I want to do with them is sign off on my store and potentially be left in a worse predicament than before.
 
 -> Talk about negative projections for the Centre’s future.
@@ -271,11 +289,12 @@ H: But the last thing I want to do with them is sign off on my store and potenti
 
 -> Discuss Grounded’s modernization initiative.
     <<showItem modernStripMall>>
-    P: But have you heard that this is all part of Grounded’s modernization initiative? It's our company’s goal to update certain locations in the city that are potential big attractions for the city?.
+    P: But have you heard that this is all part of Grounded’s modernization initiative? It's our company’s goal to update certain locations in the city that are potential big attractions for the city.
     <<hideItem modernStripMall>>
     <i>Hank scratches his chin with one of his muscular toes.</i>
     H: Interesting proposition...
-    H: If you convince the others of how positive this change will be then you are the greatest representative I have ever met. But you have convinced me. Here.
+    H: If you convince the others of how positive this change will be then you are the greatest representative I have ever met. 
+    H: But you have convinced me. Here.
     <<showItem signature>>
     <i>Hank gives you his signature.</i>
     <<hideItem signature>>
@@ -284,8 +303,9 @@ H: But the last thing I want to do with them is sign off on my store and potenti
 title: Hippo.GetSignature
 tags: 
 colorID: 0
-position: 162,474
+position: 160,473
 ---
+<<exitStage Hank>> 
 <i>Pengi leaves Hippo’s Campus with sweat rolling down their back and a grin on their face.</i>
 
 P: Whew! That was a lot more nerve wracking than I thought. But I got it at least. Now… who’s next?
@@ -300,6 +320,7 @@ tags:
 colorID: 0
 position: 163,-284
 ---
+<<exitStage Hank>> 
 <i>Pengi leaves Hippo’s Campus with a grin on their face.</i>
 
 P: What a nice guy! And what an interesting store. Are all of them like this here?

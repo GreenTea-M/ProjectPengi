@@ -21,6 +21,10 @@ namespace GameSystem.Editor
             GUILayout.Space(4f);
             if (GUILayout.Button("Reset Options"))
                 e.ResetOptions();
+            
+            GUILayout.Space(4f);
+            if (GUILayout.Button("Delete playerPrefs"))
+                PlayerPrefs.DeleteAll();
         }
     }
 }

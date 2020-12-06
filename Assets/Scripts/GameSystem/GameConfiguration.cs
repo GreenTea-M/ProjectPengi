@@ -174,8 +174,12 @@ namespace GameSystem
 
         public SaveIO SaveIo => saveIo ?? (saveIo = new SaveIO(this));
 
-        private void SyncWithPlayerPref()
+        public void SyncWithPlayerPref()
         {
+            ResetOptions();
+            return;
+            
+            // todo: avoid using player prefs because of how unreliable it is
             if (PlayerPrefs.HasKey(KeyTextRate))
             {
                 // assume all has
@@ -196,7 +200,6 @@ namespace GameSystem
             else
             {
                 ResetOptions();
-                PlayerPrefs.Save();
             }
         }
 

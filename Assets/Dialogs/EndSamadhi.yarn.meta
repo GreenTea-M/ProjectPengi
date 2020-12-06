@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: c32a19c4f7f99434d8878233322984cf
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: 
+  stringIDs: []
+  compilationStatus: 0
+  isSuccesfullyCompiled: 0
+  compilationErrorMessage: "Error on line 80 at position 18:\nextraneous input 'b'
+    expecting {HASHTAG, BODY_HASHTAG, TEXT_NEWLINE, TEXT_HASHTAG, TEXT_COMMANDHASHTAG_HASHTAG,
+    TEXT_COMMANDHASHTAG_NEWLINE, HASHTAG_TAG}\r\nCondition = # of both signatures
+    and shoes is equal to 2 for both categories\r\r\n                 ^"
+  baseLanguage: {instanceID: 0}
+  localizations: []

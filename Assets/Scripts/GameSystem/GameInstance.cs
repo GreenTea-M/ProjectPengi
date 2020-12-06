@@ -36,6 +36,7 @@ public class GameInstance : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         gameConfiguration.gameInstance = this;
+        gameConfiguration.SyncWithPlayerPref();
     }
 
     public SaveClient RequestSaveAccess()

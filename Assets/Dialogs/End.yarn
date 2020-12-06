@@ -1,56 +1,457 @@
-title: Fail.Final
+title: End.Fail
 tags: 
 colorID: 0
-position: -1346,-290
+position: -1636,-1165
 ---
-Empty text
-===
-title: Fail.ShoeFull
-tags: 
-colorID: 0
-position: -1071,-459
----
-//condition is the number of shoes being 1 or less
-<i>That was it… all the stores Pengi could possibly visit, and they didn’t even learn a thing about any of the stores.</i> 
-<i>With a sense of defeat, Pengi makes it to a bench in the middle of all three stores. It is at that moment they remember the Old Mole. They were supposed to find their missing shoe, which they didn’t...</i>
-
-<i>It wasn’t like the Old Mole was there to be disappointed at them however, as she was nowhere in sight…</i>
-<i>It was one less shame Pengi would have to face today at least...</i>
-
-[[Fail.SignatureFull]]
-===
-title: Fail.SignatureFull
-tags: 
-colorID: 0
-position: -802,-456
----
-//condition is number of signatures being 1 or less
-//Menagerie Centre Background
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio Market>>
+<<wait 0.2>>
 <<changeBackground generalMarket>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
 
-<i>Pengi looks on to all the stores they visited and is overcome with a feeling of vast emptiness. They had only managed to collect number of signatures... It wouldn’t be enough to collect the promotion.</i>
+<i>That was it… all the stores Pengi could possibly visit...</i>
+<i>Feeling defeated, Pengi makes their way towards a lonely bench in the middle of the street.</i>
+P: OH! I even forgot about that old lady’s shoe. 
+<i>Their shoulders slumped to an impossible degree…</i>
+P: I couldn’t even do this one simple thing...
+<i>It wasn’t like the Old Mole was there to be disappointed at them.</i>
+<i>However, as she was nowhere in sight… It still feels like she was somehow disappointed in them...</i>
+<i>Pengi looks on at all the stores they visited and is overcome with an empty feeling. They hadn’t managed to collect enough signatures… definitely not enough to get that promotion.</i>
+<i>Seeing that staying here wouldn’t accomplish anything more, Pengi decides to head back to their apartment and ready their report for Patricia tomorrow.</i>
 
-<i>Feeling that the day was pointless, Pengi decides to head back to their apartment and ready their report for Patricia tomorrow.</i>
-
-//Office Background
-<<changeBackground office>>
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio officeBgm>>
+<<wait 0.2>>
+<<changeBackground Boss>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<enterStage Patricia>>
 PB: By the look on your face it looks like things didn’t go so well, did it Pengsworth?
 P: …
-
-PB: Your silence speaks volumes. Oh well, guess I’ll have to send someone better next time. 
+PB: Your silence speaks volumes. 
+PB: Oh well, 
+PB: Guess I’ll have to send someone better next time. 
 PB: Go back to your cubicle, I’ll call you when I need you. 
-
-<i>Pengi walks back to their cubicle with their head slumped between their shoulders. The sound of the fingers rifling across keyboards drowns out their own thoughts as they sit back down and stare at the same old spreadsheet they had been looking at before...</i>
+<i>Defeated, Pengi walks slowly back to their cubicle with their head slumped between their shoulders.</i>
+<i>The sound of the fingers rifling across keyboards drowns out their own thoughts as they sit back down and stare at the same old spreadsheet they had been looking at before...</i>
+//fade to black, goes to credits, sad pengi music,...main scene
+[[End.GameEnd]]
 ===
-title: Fail.ShoeHalf
+title: End.Intro
 tags: 
 colorID: 0
-position: -1091,9
+position: -1562,-293
+---
+<<if $BSign == true and $ASign == true and $HMaybe == true>>
+    <<set $HSign to true>>
+    <<set $HHelp to true>>
+
+<<if $HHelp == false and $AHelp== false and $BHelp == false and $signature <= 1>>
+    [[End.Fail]]
+<<endif>>
+
+<<if $HHelp == false and $AHelp== false and $BHelp == false and $signature == 2>>
+    [[End.HalfEndingPromotion]]
+<<endif>>
+
+<<if ($HHelp == true xor $AHelp == true) and $BHelp == true and $signature < 2>>
+    [[End.HalfEndingShoe]]
+<<endif>>
+
+<<if ($HHelp == true or $AHelp == true) and $BHelp == true and $signature >= 2>>
+    [[End.Success]]
+<<endif>>
+
+<<if $HHelp == false and $AHelp == false and $BHelp == false and $signature == 3>>
+    [[End.Flight]]
+<<endif>>
+
+<<if $HHelp == true and $AHelp == true and $BHelp == true and $signatures == 0>>
+    [[End.ShoeEnding]]
+<<endif>>
+
+<<debugLog EndIntro failure>>
+<<gameEnd>>
+===
+title: End.Success
+tags: 
+colorID: 0
+position: -1143,-316
+---
+//menagerie centre background, street sounds
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio Market>>
+<<wait 0.2>>
+<<changeBackground generalMarket>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<enterStage oldMole>>
+<<enterStage Brynhilda>>
+<i>While trying to reflect on the events of the day, Pengi sits on a lone bench in the middle of the street.</i>
+<i>All of a sudden, the Old Mole appears out of nowhere and sits beside them.</i>
+M: Managed to find my shoe?
+P: Oh my gosh! I asked a few of the stores about it but none of them had seen it! I’ll double-check the area again!
+B: Ahem…
+<i>Pengi turns around, surprised to see Brynhilda standing behind them, and holding a pair of shoes.</i>
+B: I heard you were missing some footwear. I made these quickly for a fitting and will finish the final pair tomorrow for you.
+<i>She moves towards the front of the bench and helps the old mole try on the shoes.</i>
+P: Thank you… for helping.
+B: For an employee at Grounded, you are not as selfish as the others. Did you get enough signatures for that proposal?
+P: Maybe...
+B: Well, if you lose your job I’m pretty sure some of the people here wouldn’t mind hiring you part-time…
+P: Wait what? W-why?
+M: Most people see our old community and scoff, yet you took the time to get to know people. M: That is a very special thing around here.
+<i>Pengi watches quietly as Brynhilda works her crafts, thinking about the words that the Old Mole just said..</i>
+<<exitStage oldMole>>
+<<exitStage Brynhilda>>
+
+//fade to white, office background, office sounds
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio officeBgm>>
+<<wait 0.2>>
+<<changeBackground Boss>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<enterStage Patricia>>
+PB: This is some good work Pengsworth, I’m quite impressed.
+<i>Pengi holds back a yelp of joy. They didn’t want to disappoint themselves had Patricia forgotten about the raise..</i>
+PB: As promised, we’ll be giving you a raise in salary as a reward for your job well done. 
+PB: Since there were still a few of the store owners who didn’t fully sign over you won’t get the maximum amount.
+PB: But...
+PB: Perhaps we can send you on another assignment to get the full deal?
+<i>Pengi stands there, beak wide open. It was more than they could have hoped for and another shot at their dream seemed worth it.</i>
+P: Send it my way and I’ll see what I can do.
+PB: That’s the spirit Pengsworth! You’ll get info on the assignment in the next few days.
+<i>So, Pengi would go on to do that next assignment... </i>
+<i>And even if they don’t manage to get enough money for flight school, they can always visit the Centre and check out what’s happening with all the new faces they have met there...</i>
+[[End.GameEnd]]
+===
+title: End.HalfEndingPromotion
+tags: 
+colorID: 0
+position: -1288,-910
 ---
 //condition is number of signatures equal to 2 but shoe condition failed
-<i>That was it… all the stores Pengi could possibly visit, and they didn’t even learn a thing about any of the stores. But at least they managed to get some amount of signatures for the company… even though Pengi didn’t really learn much about this place </i>
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio Market>>
+<<wait 0.2>>
+<<changeBackground generalMarket>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
 
-<i>They make their way to the bench in the middle of all three stores and there they remember about the Old Mole. They were supposed to find their missing shoe, which they didn’t failed...</i>
+<i>That was it… all the stores Pengi could possibly visit...</i>
+<i>But at least they managed to get some amount of signatures for the company… even though Pengi didn’t really learn much about this place </i>
+<i>They make their way to the bench in the middle of all three stores and there they remember about the Old Mole.</i>
+<i>They were supposed to find her missing shoe, which they didn’t...</i>
+P: Oh well, it wasn’t super important anyway. 
+<i>It isn’t like the Old Mole is there to be disappointed at them, however…</i>
+P: No matter, the promotion is what I’m here for anyway. 
+P: Flight school, here I come!
+<i>With that, Pengi began their journey back to their apartment to ready their report for Patricia.</i>
 
-<i>It wasn’t like the Old Mole was there to be disappointed at them however, as the she was nowhere in sight…It was one less thing Pengi had to worry about at least since they probably have a good shot at getting that promotion now.</i>
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio officBgm>>
+<<wait 0.2>>
+<<changeBackground Boss>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<enterStage Patricia>>
+PB: This is some good work Pengsworth, I’m quite impressed.
+<i>Pengi holds back a yelp of joy. </i>
+P: <i>Oh, I hope Paul was right about keeping her word...</i>
+PB: As promised, we will be giving you a raise in salary as a reward for a job well done.
+PB: Since there were still a few of the store owners who didn’t fully sign over, you won’t get the maximum amount.
+PB: But… <i>She smirks, knowingly.</i>
+PB: Perhaps we can send you on another assignment to get the full deal?
+<i>Pengi stands there, beak wide open.</i>
+<i> It was more than they could have hoped for and another shot at their dream seemed worth it.</i>
+P: Send it my way and I’ll see what I can do.
+PB: That’s the spirit Pengsworth! You’ll get info on the assignment in the next few days.
+<i>Pengi would go on to do that next assignment.</i> 
+<i>By the time save up enough for flight school, the memories of the Old Mole lady and The Menagerie Centre fade away.</i>
+[[End.GameEnd]]
+===
+title: End.HalfEndingShoe
+tags: 
+colorID: 0
+position: -1113,-659
+---
+//Menagerie Centre Background
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio Market>>
+<<wait 0.2>>
+<<changeBackground generalMarket>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<enterStage oldMole>>
+<<enterStage Brynhilda>>
+<i>Rather than getting the signatures they needed, Pengi somehow instead managed to become familiar with some of the denizens of Menagerie Centre.</i>
+<i>While trying to reflect on the events of the day, Pengi sits on a lone bench in the middle of the street.</i>
+<i>All of a sudden, the Old Mole appears out of nowhere and sits beside them.</i>
+M: Managed to find my shoe, no?
+P: Oh my gosh! I asked a few of the stores about it but none of them had seen it! I’ll double-check the area again!
+B: <b>Ahem…</b>
+<i>Pengi turns around, surprised to see Brynhilda standing behind them holding a pair of wooden shoes.</i>
+B: I heard you were missing some footwear.
+B: I made these quickly for a fitting and will finish the final pair tomorrow for you.
+<i>She moves towards the front of the bench and helps the Old Mole try on the shoes.</i>
+P: Thank you… for helping.
+B: For an employee at Grounded, you are not as selfish as the others. Did you get enough signatures for that proposal?
+P: N-no…
+B: Well, if you lose your job I’m pretty sure some of the people here wouldn’t mind hiring you part-time…
+P: Wait what? W-why?
+M: Most people see our old community and scoff, yet you took the time to get to know people. 
+M: That is a very special thing around here.
+<i>Pengi watches quietly as Brynhilda works her crafts, thinking about the words that the Old Mole just said...</i>
+<<exitStage oldMole>>
+<<exitStage Brynhilda>>
+
+//fade to white, boss background, office sounds
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio officeBgm>>
+<<wait 0.2>>
+<<changeBackground Boss>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<enterStage Patricia>>
+PB: By the look on your face it looks like things didn’t go so well, did it Pengsworth?
+P: …
+PB: Your silence speaks volumes. Oh well, I’ll have to send someone better next time. 
+PB: Go back to your cubicle, I’ll call you when I need you. 
+<<exitStage Patricia>>
+
+//office bgd
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<changeBackground office>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<changeBackground office>>
+<i>Pengi walks back to their cubicle with their head slumped between their shoulders. 
+<i>The sound of the fingers rifling across keyboards drowns out their own thoughts as they sit back down and stare at the same old spreadsheet they had been looking at before...</i>
+<i>But even though they return to their old routine, a part of them feels like visiting Menagerie Centre after work.</i> 
+<i>Something tells Pengi that all that hard legwork at the Centre wasn’t all for nothing and that some of the people there would be glad to see them.</i>
+[[End.GameEnd]]
+===
+title: End.GameEnd
+tags: 
+colorID: 0
+position: 161,-581
+---
+Empty Text
+===
+title: End.Flight
+tags: 
+colorID: 0
+position: -1496,352
+---
+//menagerie, sounds
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio Market>>
+<<wait 0.2>>
+<<changeBackground generalMarket>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<i>As Pengi walks out of the last store on their list, they look triumphantly down at the paper in their flippers.</i>
+P: I-I did it!
+<i>Having collected all three signatures, the promotion is a guarantee.</i>
+P: I’m the first in the company to have achieved something like this. The boss is sure to be happy!
+P: <size=60%>Maybe she won’t call me Pengsworth anymore.</size>
+<i>In the back of their mind, a gnawing feeling tells them they are forgetting something. But just looking at the signatures and thinking about flight school wipes it all away..</i>
+<i>They march through the Menagerie Center, head held high, ready to show what they had accomplished to the boss tomorrow.</i>
+
+//office sounds, office background
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio officeBgm>>
+<<wait 0.2>>
+<<changeBackground Boss>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<enterStage Patricia>>
+PB: Well, well, well, you have accomplished the impossible Pengsworth!
+PB: <size=80%>I’m sure it’s the royalty in their blood.</size>
+PB: Anyway, of course, as promised, you get a promotion!
+PB: Woohoo. 
+PB: Such fun.
+PB: You’ll get Paula’s position, Acquisitions Manager, which is twice your current salary. 
+P:<i>Heck yeah!</i>
+<<exitStage Patricia>>
+<i>And so, Pengi accepts the position and with their extra money is able to pay for flying lessons, which they attend every Friday after work.</i>
+<i>Soon, the memory of Menagerie Centre fades from their mind…</i>
+<i>As they learn to fly higher, so does their position in the company grow.</i>
+<i>One day, on their way to the airstrip, Pengi decides to take a different route.</i>
+
+//menagerie centre background, street sounds
+//office sounds, office background
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio Market>>
+<<wait 0.2>>
+<<changeBackground generalMarket>>
+<<fadePlainBackground off 0.5 block white>>
+<i>A few blocks away from their destination, Pengi notices one of Grounded’s most popular properties, Menagerie Mall.</i>
+P: <i>There’s something familiar about this place…</i>
+<i>As if possessed, Pengi wanders into the mall, unable to put a flipper on why everything looked so familiar.</i>
+<i>Greeting them are the echoes and cries of people meandering through the halls, chatting around food corners that smell of several generic fast-food chains and your usual shopping mall perfume.</i> 
+<i>The street is filled with all the biggest brand stores. Not a single one catches Pengi’s eye in any particular way.</i>
+<i>It all just seemed so… plain.</i>
+<i>Walking past all the stores, Pengi stops in front of the Bed, Bear, and Beyond.</i>
+<i>Through the display window, they notice a tall polar bear working in one of the aisles.</i> 
+P: <i>It’s Bryhnilda!</i>
+<i> She’s barely recognizable, with her fur dishevelled and the passion in her eyes long gone. Her gaze meets Pengi’s through the glass, although they are unsure if she recognizes them at all...</i> 
+//fades to black, end credits, street noises in credits
+[[End.GameEnd]]
+===
+title: End.ShoeEnding
+tags: 
+colorID: 0
+position: -1227,44
+---
+//Menagerie, market sounds
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio Market>>
+<<wait 0.2>>
+<<changeBackground generalMarket>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<enterStage oldMole>>
+<<enterStage Brynhilda>>
+<i>Rather than getting the signatures they needed, Pengi had gotten to know each of the members of this wild menagerie.</i>
+<i>Pengi sits on a lone bench in the middle of the street while reflecting on the events of the day.</i>
+<i>All of a sudden, the Old Mole appears out of nowhere and sits beside them.</i>
+//mole lady music plays
+<<playAudio oldMole>>
+M: Managed to find my shoe, no?
+<<shake>>
+P: Oh gosh! 
+P: You surprised me.
+<i>They look down at their empty flippers.</i>
+P: I-
+P: I asked a few of the stores about it but none of them had seen it! I’ll double-check the area again!
+P: I-I’m really sorry, I feel like a total failu-
+B: <b>Ahem…</b>
+<i>Startled again, Pengi turns around and is surprised to see Brynhilda standing behind them.</i>
+<i>In her paws is a pair of wooden shoes.</i>
+B: I heard you were missing some footwear.
+B: I made these quickly for a fitting and will finish the final pair tomorrow for you.
+<i>She moves towards the bench and helps the Old Mole try on the shoes.</i>
+P: Thank you… for helping.
+B: You know, for an employee at Grounded, you are not as selfish as the others. Did you get enough signatures for that proposal?
+P: N-no…
+B: Well, if you lose your job, I’m pretty sure some of the people here wouldn’t mind hiring you part-time…
+P: Wait what? W-why?
+M: Most people see our old community and scoff, yet you took the time to get to know people. 
+M: That is a very special thing around here.
+<i>After putting on the shoes, Brynhilda says her goodbyes before returning to her store. </i>
+<<exitStage Brynhilda>>
+<i>The Old Mole and Pengi sit quietly on the bench for a while.</i>
+M: You know youngin’... this place isn’t just a mall. 
+M: Most o’ the people here are here for a reason. 
+P: Y-yeah, I can see that.
+P: After talking to all the people here, I really appreciate the effort they put into trying to live their lives their way.
+P: It doesn’t seem too easy…
+<i>The mole lets out a giggle before reaching into her puka-shell covered purse and pulls out a small shell.</i>
+<i>She hands it over to Pengi.</i>
+M: My Papa used to say only one thing mattered in life...
+M: CHOCOLATE!
+M: But also believing in yourself enough to live your truth.
+M: You know, he started this lil place ehehe…
+P: Oh!? He did?
+M: Yes! HeheHE! 
+M: He started this place… oooh, around twenty years ago? He was still a young pup, only two months old. 
+M: All his energy pooled into this one place…
+M: He would be super happy about what you have done, even going so far as to offer help to all these people.
+P: Well, I didn’t really do anything…
+M: HEHEHE!
+M: YOU KNOW
+M: Moles only live for about 6 years…
+<<showItem fadingMole>>
+M, invisible: <forceNext>
+<i>She giggles maniacally, before slowly fading away.</i>
+<i>Pengi looks around. They are very confused.</i>
+<i>They shrug and continue back to the office, clutching the shell tightly in their flipper.</i>
+<<exitStage oldMole>>
+
+//fade to white, boss background, office sounds
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio officeBgm>>
+<<wait 0.2>>
+<<changeBackground Boss>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<enterStage Patricia>>
+PB: By the look on your face it looks like things didn’t go so well, did it Pengsworth?
+P: …
+PB: Your silence speaks volumes. Oh well, I’ll have to send someone better next time. 
+PB: Go back to your cubicle, I’ll call you when I need you. 
+<i>Pengi slips their flipper in their pocket and pulls out a neatly folded piece of paper.</i>
+<i>They slip it across the table towards Patricia.</i>
+PB: What’s this?
+<i>She unfolds the papers and reads it.</i>
+PB: You’re resigning?
+P: Consider it my two weeks notice.
+<i>They turn around, flipper already on the doorknob when they look back at Patricia.</i>
+P: Oh and, by the way...
+//plays pilot dream
+<<playAudio pilotDream>>
+P: The name is <b>Pengi</b>.
+<<exitStage Patricia>>
+
+//change background to office
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<changeBackground office>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<enterStage Paul>>
+<i>Pengi marches back to their cubicle with a large smile on their beak. Paul gives them a curious look and asks what’s going on.</i>
+P: I’m quitting.
+PtC: That’s a brave move… What are you planning to do?
+P: Not sure… thinking of doing something with consulting, maybe? Could use a partner to help me start out.
+<i>They lift a brow to try and entice Paul’s curiosity.</i>
+PtC: Hah! We’ll see about that.
+<<exitStage Paul>>
+<i>After Pengi’s two weeks finish, they start their own business consulting firm focused on helping and expanding independent businesses.</i>
+<i>Their main clientele are the folks at Menagerie Centre. </i>
+<i>Seeing how successful Pengi is at helping out the businesses, Paul jumps ship to help out his friend’s new endeavour.</i>
+<i>Over time, more and more employees from Grounded see how successful Pengi’s firm is doing and follow suit.</i>
+<i>Through the firm, Pengi assists both Bryhndila and Alici problems together.</i>
+<i>Alici trains under Brynhilda as a woodworker, eventually taking over the store for a short while as assistant manager.</i>
+<i>Afterwards, Brynhilda goes to New Woodland to follow her dream and train with the great beaver masters of the woodworking craft.</i>
+<i>Oh, and to protect Alici from his family, he now goes under a new identity:</i>
+<i>Fillet.</i>
+<i>But people call him Fil for short.</i>
+<i>Pengi’s firm manages to help Hank in his new endeavour to start a lecture series on his form of enlightenment.</i>
+<i>He even manages to get a MasterClass of it published on YouCylinder.</i>
+<i>Due to the reputation Pengi’s firm acquires, more and more small businesses migrate to Menagerie Centre, transforming it back into the vibrant community it once was.</i>
+
+//Menagerie street, street sounds
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio Market>>
+<<wait 0.2>>
+<<changeBackground generalMarket>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<enterStage Paul>>
+PtC: Awesome work today, boss! Wanna join the rest of us for some drinks?
+P: Sure, I’ll just close down the office.
+<i>As Pengi locks the door to their office, they hear a plane humming overhead. They look up and smile.</i>
+P: One day…
+//fade to white, end credits, street sounds
+//if we playtest and street sounds doesn’t feel right, play pengi menu
+[[End.GameEnd]]
 ===

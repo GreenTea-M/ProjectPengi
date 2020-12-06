@@ -51,67 +51,53 @@ MonoBehaviour:
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
-    currentYarnNode: Intro.Mole
-    lastDialog: Pengi rolls their eyes before leaving their desk.
-    lastAudioName: officeBg
-    lastHeader: office
-    savedVariables: []
-    isLeft: 1
-    currentSpeaker: 
-    previousSpeaker: 
-    activeCharacterList:
-    - Brynhilda
-    - Grammy
-    shownItem: 
-  autoSave:
-    name: 
-    currentYarnNode: Fish.End
-    lastDialog: 'Pengi: O-oh! Sorry, my bad!'
-    lastAudioName: BGMBargain
-    lastHeader: Bargain
+    currentYarnNode: End.Fail
+    lastDialog: 'Pengi: FAil'
+    lastAudioName: market
+    lastHeader: generalMarket
     savedVariables:
-    - name: hippoAskSupplements
-      value: True
-      type: 2
-    - name: NoteBook
+    - name: HHelp
       value: False
       type: 2
     - name: HSign
+      value: False
+      type: 2
+    - name: BHelp
+      value: False
+      type: 2
+    - name: BSign
       value: True
       type: 2
-    - name: HHelp
-      value: True
+    - name: AHelp
+      value: False
       type: 2
-    - name: baseball
-      value: 2
+    - name: ASign
+      value: False
+      type: 2
+    - name: signature
+      value: 0
       type: 0
-    - name: toilet
+    - name: peaceSign
       value: 2
       type: 0
     - name: teddy
       value: 2
       type: 0
-    - name: grammyPicture
+    - name: toilet
       value: 2
       type: 0
     - name: marble
       value: 2
       type: 0
-    - name: peaceSign
+    - name: baseball
+      value: 2
+      type: 0
+    - name: grammyPicture
       value: 2
       type: 0
     - name: puzzleDone
       value: True
       type: 2
-    - name: BHelp
-      value: True
-      type: 2
-    - name: BSign
-      value: False
-      type: 2
-    - name: manager
-      value: 1
-      type: 0
     - name: FishChoices
       value: 3
       type: 0
@@ -124,19 +110,75 @@ MonoBehaviour:
     - name: FishHistory
       value: 0
       type: 0
-    - name: signature
-      value: 1
-      type: 0
-    - name: ASign
+    isLeft: 1
+    currentSpeaker: Pengi
+    previousSpeaker: 
+    activeCharacterList: []
+    shownItem: 
+  autoSave:
+    name: 
+    currentYarnNode: End.Intro
+    lastDialog: 'Pengi: FAil'
+    lastAudioName: market
+    lastHeader: generalMarket
+    savedVariables:
+    - name: HHelp
+      value: False
+      type: 2
+    - name: HSign
+      value: False
+      type: 2
+    - name: BHelp
+      value: False
+      type: 2
+    - name: BSign
       value: True
       type: 2
     - name: AHelp
       value: False
       type: 2
+    - name: ASign
+      value: False
+      type: 2
+    - name: signature
+      value: 2
+      type: 0
+    - name: peaceSign
+      value: 2
+      type: 0
+    - name: teddy
+      value: 2
+      type: 0
+    - name: toilet
+      value: 2
+      type: 0
+    - name: marble
+      value: 2
+      type: 0
+    - name: baseball
+      value: 2
+      type: 0
+    - name: grammyPicture
+      value: 2
+      type: 0
+    - name: puzzleDone
+      value: True
+      type: 2
+    - name: FishChoices
+      value: 3
+      type: 0
+    - name: FishShoe
+      value: 0
+      type: 0
+    - name: FishOrange
+      value: 0
+      type: 0
+    - name: FishHistory
+      value: 0
+      type: 0
     isLeft: 1
     currentSpeaker: Pengi
     previousSpeaker: 
-    activeCharacterList:
-    - Alici
+    activeCharacterList: []
     shownItem: 
   gameInstance: {fileID: 0}

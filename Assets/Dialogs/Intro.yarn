@@ -1,21 +1,25 @@
 title: Intro.Mole
 tags: 
 colorID: 0
-position: -557,-8
+position: -559,-9
 ---
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio Market>>
+<<wait 0.2>>
 <<changeBackground street>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
 <<enterStage oldMole>>
 // <<changeBackground patsOffice>>
 // Fade in background of street? Will add in later version
-<<playAudio Market>>
 Pengi: Okokok OK!
 Pengi: I got this!
 Pengi: Phew. 
-<i>This was Pengi's first real job. Their first actual, proper job.</i>
+<i>There was so much at stack here, they had to do this job perfectly to get that raise.</i>
 Pengi: I really hope I don't mess it up.
 <i>They nervously adjust their tie and pull out a handkerchief to wipe their beak.</i>
-// <i>Hmmm<<textSpeed=0.5/>>...<<textSpeed = 1/>>now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
-<i>Hmmm<textSpeed=0.1/>...<textSpeed = 1/> now where exactly is this <b>‘Market’</b>? I need to get this done before my flight lessons later toda-</i>
+<i>Hmmm<textSpeed=0.1/>...</textSpeed> now where exactly is this <b>‘Menagerie Centre’</b>? I need to get this done before my flight lessons later toda-</i>
 <<playSFX SFXbumpinto>>
 <<shake>>
 <<playAudio OldMole>>
@@ -25,13 +29,13 @@ Pengi: Wha-what the?!
     <i>Pengi looks around, confused</i>
     HellooOOOoooo HELLlooOoo over heeereee!
     <i>They waddle around to look behind them. Still nothing.</i>
-    Down! LooOOkk DOwn!
+    M: Down! LooOOkk DOwn!
     <i>Surprised, Pengi looks down to see an Old Mole looking up at them through foggy glasses.</i>
 -> Look down
     <i>They look down and see... nothing?</i>
     Oh young one, bEHinNND you!
     <i>Pengi turns around and still sees... nothing?</i>
-    Look down dear.
+    M: Look down dear.
     <i>Looking down once again, they are greeted with the face of wrinkled Old Mole</i>
 Pengi: O-oh, hello there!?
 <i>She squints up at the well dressed bird through tiny glasses and beady, black eyes.</i>
@@ -43,8 +47,9 @@ Pengi: UUuuhhhh no? Look, I'm sorry bu-
 // screen shakes again while next description plays:
 Pengi: Hey! Don't grab my shirt!
 Old Mole: OOOOoooooOoh please young one, could you help me find my <showItem shoe><b>Shoe</b>? 
-Old Mole: It’s very important to me and my knees aren’t what they used to be. I was just sitting on a bench and suddenly…
-<i>She raises her hands, her beaded bag rustling at the sudden movement.</i>
+Old Mole: It’s very important to me and my knees aren’t what they used to be. 
+Old Mole: I was just sitting on a bench and suddenly-
+<i>She raises her hands, her puka-shell bag rustling at the sudden movement.</i>
 //what can indicate? flash of light??? not sure...
 <<fadePlainBackground on 0.2 block white>>
 <forceNext>
@@ -52,15 +57,17 @@ Old Mole: It’s very important to me and my knees aren’t what they used to be
 <<fadePlainBackground off 0.2 block white>>
 Old Mole: WHAM! ITS GONE!!! 
 <i>Lowering her hands, her brow wrinkles.</i>
-Old Mole:  <size=75%>I swear <b>The Market</b> was where I was, no? Hmmmm... must have wandered off, just like my shoe... oh dear...
-Pengi: Sorry, did you just say <b>The Market</b>?
-Old Mole: Yes dear! You know <b>The Market</b>, no? Just down the street, turn left, over the <showItem directionItem>yellow bridge, through the stream, past the hill, over the red bridge - not the yellow one - and through the corn field. Best and only <b>Market</b> we have!
+Old Mole:  <size=75%>I swear <b>The Menagerie Centre</b> was where I was, no? Hmmmm... must have wandered off, just like my shoe... oh dear...
+Pengi: Sorry, did you just say <b>The Menagerie Centre</b>?
+Old Mole: Yes dear! You know <b>The Menagerie Centre</b>, no? Just down the street, turn left, over the <showItem directionItem>yellow bridge, through the stream, past the hill, over the red bridge - not the yellow one - and through the corn field. Best and only <b>Centre</b> we have!
 <<hideItem directionItem>>
 Pengi: ???<Surprise/Confused>
 Old Mole: SO, can you help me?
 Pengi: <Confused>... 
-<i>Pengi paused. They figured it wouldn't hurt to help a little right? Especially where they were headed to <b>The Market</b> already.</i>
-Pengi: Fine. <i>Pengi said through a sigh.</i>
+<i>Pengi paused.</i>
+<i>They figured it wouldn't hurt to help a little right? Especially when they were headed there already.</i>
+<i>Pengi let out a sigh.</i>
+Pengi: Fine. 
 Old Mole: OH! Goodness, thank yoU!!! 
 Old Mole: When you find it and bring it back, I’ll be sure to present you with a proper thank you gift.
 <i>She smiles sweetly, and with a curious glint in her eyes, promptly turns and walks away at a surprisingly brisk pace.</i>
@@ -68,7 +75,7 @@ Old Mole: When you find it and bring it back, I’ll be sure to present you with
 Pengi: <Surprised> Oh wait! Where can I meet you once I... annnnnd she’s gone.
 Pengi: <Normal> Alright. At least I know the way there now. 
 <i>Using their impeccable memory, Pengi began following the Old Mole's convoluted directions.</i> 
-<i>Panting, Pengi finally made it to <b>The Market</b>.</i>
+<i>Panting, Pengi finally made it to <b>The Menagerie Centre</b>.</i>
 <<changeBackground generalMarket>>
 <<playAudio Market>>
 <i>What greets them first are the various sounds and smells of people chatting, food cooking and so on. </i>
@@ -76,12 +83,19 @@ Pengi: <Normal> Alright. At least I know the way there now.
 <i>Overwhelmed by the smells and sounds surrounding the area, Pengi rushes to pull out the folder and look for the stores they need to go to.</i>
 <i>They quickly rush into the first store on their list.</i>
 //fade to white and move to Brynhilda
+<<set $HHelp = false>>
+<<set $HSign = false>>
+<<set $BHelp = false>>
+<<set $BSign = false>>
+<<set $AHelp = false>>
+<<set $ASign = false>>
+<<set $signature = 0>>
 [[Hippo.Intro]]
 ===
 title: Intro.Dream
 tags: 
 colorID: 0
-position: -1289,-14
+position: -1293,-20
 ---
 <<changeBackground cockpit>>
 <<playAudio pilotDream>>
@@ -89,7 +103,7 @@ position: -1289,-14
 //clouds are moving, soft light??, maybe pengi moving back and forth?
 //SFX: radio sound? GOLD
 
-P, pilot: Hello everyone, this is your captain speaking. Hope you all had a wonderful sleep and as you look over to the left side of the plane you can see the sun rising over the ocean.
+P, pilot: Hello everyone, this is your captain speaking. Hope you've all had a wonderful flight. As you look over to the left side of the plane you'll see the sun rising over the ocean.
 
 <<changeBackground sunset>>
 //Background cuts to shot of sunrise over ocean
@@ -106,21 +120,14 @@ P, pilot: Huh?
 <<shake>>
 <<enterStage Paul>>
 
-->Look for who said that
+->Look for who did that
     <i>Pengi turns their head, looking for the source of the voice</i>
-//dreamy looking text? like floating?
     PtC, notVisible: The boss is going to find you slacking again, so stop dozing off.
-    // The screen shake and sound occur each time Paul tries to wake up Pengi
-
     <<playSFX SFXsoftwhack>>
     <<shake>>
-
 ->Question the voice
 	P, pilot: Who said that?
-//dreamy looking text? like floating?
     PtC, notVisible: Hehehe, it’s me, your conscience and I’m here to tell you to wake up.
-    // The screen shake and sound occur each time Paul tries to wake up Pengi
-
     <<playSFX SFXsoftwhack>>
     <<shake>>
 
@@ -130,21 +137,20 @@ P, pilot: Stop. Stop. Stop!
 title: Intro.Office
 tags: 
 colorID: 0
-position: -1043,-8
+position: -1045,-9
 ---
 <<playSFX SFXwhack>>
-//Fade to white then to the office and audio sounds
 <<playAudio officeBg>>
 <<fadePlainBackground on 2 block white>>
 <<changeBackground office>>
-// This is a hack: the empty double slash below will force a text to appear but go forward
 Pengi: <forceNext>
 This is a hack <forceNext>
 <<wait 2>>
 <<fadePlainBackground off 1 block white>>
 <<enterStage Paul>>
 
-<i>Wiping off the drool running down their face, Pengi opens their eyes and realizes they are back in their dour office, surrounded by the same coworkers, sitting in the desk they had been assigned a year ago. They sigh.</i>
+<i>Wiping off the drool running down their face, Pengi opens their eyes and realizes they are back in their dour office, surrounded by the same coworkers, sitting in the desk they had been assigned a year ago.</i>
+<i>They sigh.</i>
 
 PtC: You were dreaming about flying again, weren’t you?
 
@@ -152,12 +158,15 @@ P:
 -> N-no I wasn’t...
     PtC: Sure, and I’m the king of the Antarctic. You need to learn to lie better.
     // Since there is a color out there, we have to be explicit about who is speaking
-    Narrator: <i>Pengi focuses back on their computer desk, littered with <showItem paperStack>spreadsheets they didn’t understand the purpose of filling out. It was the same work each week: get this name, attach this file, calculate this total, remove these liabilities. It never changed.</i>
+    Narrator: <i>Pengi focuses back on their computer desk, littered with <showItem paperStack>spreadsheets they didn’t understand the purpose of filling out.</i> 
+    <i>It was the same work each week: get this name, attach this file, calculate this total, remove these liabilities. </i>
+    <i>It never changed.</i>
 
 
 -> MaybeeE…?
     PtC: Well, focus up. The last time the boss caught you dozing off I got in trouble as well.
-    <i>After shaking their head in disbelief, Pengi scans the cubicles surrounding them. Each was occupied by a person that barely greeted them in the morning, and to be frank, these were people they didn’t much care to know.</i>
+    <i>After shaking their head in disbelief, Pengi scans the cubicles surrounding them.
+    <i>Each was occupied by a person that barely greeted them in the morning, and to be frank, these were people they didn’t much care to know.</i>
 
 PtC: By the way, the boss lady is looking for you.
 
@@ -174,11 +183,17 @@ PtC: Think she’s got an important assignment for you.
 title: Intro.Boss
 tags: 
 colorID: 0
-position: -794,-8
+position: -795,-10
 ---
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<wait 0.2>>
 <<changeBackground Boss>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
 <<enterStage Patricia>>
-<i>They walk up to the boss lady’s office, which is fenced in from both sides by cubicles of people Pengi has never seen outside the office. When they finally arrive in front of the glass door of the boss’ office, they take a long breath and turn the handle.</i>
+<i>They walk up to the boss lady’s office, which is fenced in from both sides by cubicles of people Pengi has never seen outside the office.<i/>
+<i>When they finally arrive in front of the glass door of the boss’ office, they take a long breath and turn the handle.</i>
 PB: Ah, Pengsworth, just the bird I wanted to see!
 
 -> M-m-my name is P-Pengi...
@@ -188,8 +203,9 @@ PB: Ah, Pengsworth, just the bird I wanted to see!
     PB: Well that’s unfortunate. Pengsworth suits you better, but I won’t judge.
 
 -> Say nothing
-    PB: Are you related to <showItem weirdBird>Pengsworth the Noble?  Oh, I remember having such a massive crush on him when I was a teenager. If you ever read the Noble Books you would know why...
-    P: (I wonder how long she’ll go on for this time. One of these days I really should bring a timer to one of her tangents… I really need to get out of here one day)
+    PB: Are you related to <showItem weirdBird>Pengsworth the Noble? Oh, I remember having such a massive crush on him when I was a teenager. 
+    PB: If you ever read the Noble Books you would know why...
+    P: <i>I wonder how long she’ll go on for this time. One of these days I really should bring a timer to one of her tangents… I really need to get out of here one day</i>
     <<hideItem weirdBird>>
 
 PB: Enough dillydallying Pengsworth, time to talk real business. Stop derailing our conversations.
@@ -201,19 +217,22 @@ PB: Well well, quite the dreamer, aren’t you? Might be hard to get in...cost a
 PB: Oh, yes, what a wonderful dream… for a PENGUIN!
 <i>She snorts and squeals into a burst of laughter, nearly knocking her coffee mug off her desk.</i>
 <i>Blushing, Pengi turns around, ready to exit the office, when Patricia calls out to them.</i>
-PB: Pengsworth! Pengsworth, wait!
+PB: <size=115%>Pengsworth!</size> Pengsworth, wait!
 <i>She clears her throat in an attempt to compose herself.</i>
 PB: We here at Grounded Real Estates are nothing if not supportive of our employees.
-<i>Her lips are twisted into a tensed smile trying to hold back another outburst.</i>
+<i>Her lips are twist into a tense smile trying to hold back another outburst.</i>
 PB: As such, we would love to present this wonderful opportunity to you, one of said wonderful employees!
 <i>She snorts again as she slides a file folder towards Pengi. </i>
-PB: It’s an old <showItem stripMall>strip mall we haven’t managed to get a hold of. The store owners there are tenacious and refuse to let go of the property, but if you’re able to get them to sign, I’ll consider giving you a sizable raise.
+PB: It’s an old <showItem stripMall>strip mall we haven’t managed to get a hold of. 
+PB: The store owners there are tenacious and refuse to let go of the property, but if you’re able to get them to sign...
+PB: <b> I’ll consider giving you a sizable raise.</b>
 <i>Her cheeks twitch.</i>
-PB: Maybe then your <i>Dream</i> might come true, Flyboy!
+PB: Maybe then your <i>Dream</i> might come true, <size=120%>Flyboy!</size>
 <i>And she knocks herself off her chair, rolling on the floor laughing.</i>
 <<hideItem stripMall>>
 <<exitStage Patricia>>
-<i>Taking the brown manila folder, Pengi sneaks out of the office as the snorts and oinks follow behind them. They make their way through the maze of cubicles and back to their desk. Paul looks over and grins upon seeing Pengi’s flushed face.</i>
+<i>Taking the brown manila folder, Pengi sneaks out of the office as the snorts and oinks follow behind them.</i>
+<i>They make their way through the maze of cubicles and back to their desk. Paul looks over and grins upon seeing Pengi’s flushed face.</i>
 <<enterStage Paul>>
 PtC: So, I’m guessing it’s nothing good, huh?
 <i>Pengi hands the folder to Paul and sits back down to sip their coffee and try to erase the memory of what just happened.</i>
@@ -222,17 +241,26 @@ PtC: Menagerie Centre... That's a tough one.
 P: You’ve heard of it then?
 PtC: Ms. Piggie sent me to do it a few months ago. Grounded wants to buy it up as part of their modernization initiative.
 P: Oh, it's a popular spot? Weird. I’ve never heard of it.
-PtC: Apparently it's in decline, but will be popular once we modernize it. At least, that's what the Analytics Department says.
+PtC: Apparently it's in decline, but will be popular once we modernize it. 
+PtC: At least, that's what the Analytics Department says.
 P: How are they so sure about that?
 <i>Paul shrugs.</i>
-PtC: I don’t know. Never really read their reports, and let's be honest, no one really does. I just do it for the paycheck. Anyways, when I was sent it wasn’t a pretty affair. Surprised the boss lady managed to rope you into doing it.
+PtC: I don’t know. Never really read their reports, and let's be honest, no one really does. 
+PtC: I just do it for the paycheck. 
+PtC: Anyways, when I was sent it wasn’t a pretty affair. Surprised the boss lady managed to rope you into doing it.
 <i>Pengi blushes.</i>
-P: She said she’d give me a big enough raise to go to <showItem plane>flight school. She was lying, wasn’t she? Dammit Pengi! You can be so gullible sometimes!
+P: She said she’d give me a big enough raise to go to <showItem plane>flight school. 
+P: ...
+P: ...She was lying, wasn’t she? <size=%80>Dammit Pengi! You can be so gullible sometimes!</size>
 <<hideItem plane>>
-PtC: I don’t think so… Piggie is a savage but she’s a woman of her word. I think you got a real shot at getting into flight school if you manage to get this done.
+PtC: I don’t think so… Piggie is a savage, but she’s a woman of her word. 
+PtC: I think you got a real shot at getting into flight school if you manage to get this done.
 <<exitStage Paul>>
 P: ...
-<i>Pengi checks their surroundings one last time, and sees the dreary walls of Grounded Real Estates and remembers the sunrise in their dreams. They snag the envelope from Paul and rush out the office with a single purpose. That raise was theirs.</i>
+<i>Pengi pauses and looks at their surroundings.</i>
+<i> They see the dreary walls of the office and remembers the sunrise in their dreams.</i>
+<i> Filled with determination, they snatch the envelope back from Paul and rush out the office with only a single purpose in mind.</i>
+<i> That raise was theirs.</i>
 //Fade out and add pause as we transition to a new area
 [[Intro.Mole]]
 ===

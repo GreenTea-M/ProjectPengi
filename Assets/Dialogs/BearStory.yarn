@@ -3,14 +3,30 @@ tags: Store
 colorID: 0
 position: -628,206
 ---
-<<exitStage Hank>>
-<<changeBackground carpentry>>
+//<<fadePlainBackground on 0.5 block white>>
+//<forceNext>
+//<<playAudio Market>>
+//<<wait 0.2>>
+//<<changeBackground generalMarket>>
+//<<fadePlainBackground off 0.5 block white>>
+//<forceNext>
+<i>Pengi looks at the list of stores and looks for their next customer.</i>
+P: Hmmm...Build-A-Bear...
+<i>They find the Build-A-Bear store and open the door.</i>
+
 <<playSfx bearBell>>
-<<enterStage Brynhilda>>
-<<playAudio BrynhildaBear>>
+//<<fadePlainBackground on 0.5 block white>>
+//<forceNext>
+//<<playAudio BrynhildaBear>>
+//<<wait 0.2>>
+//<<changeBackground carpentry>>
+//<<fadePlainBackground off 0.5 block white>>
+//<forceNext>
+//<<enterStage Brynhilda>>
 <i>The bell on the door jingles in a delicate manner as Pengi enters the warm shop filled with an assortment of breathtaking, handcrafted items.</i>
-<i>Breathing in the welcoming scent of sawdust and maple, Pengi takes a few steps into the shop before noticing a shelf full of odd looking bits and bobs. Pengi walks over to it, leaning in to take a closer look at the shelf’s contents.</i>
-Pengi: WOooow what are these??
+<i>Breathing in the welcoming scent of sawdust and maple, Pengi takes a few steps into the shop before noticing a shelf full of odd looking bits and bobs. </i>
+<i>Walking over to it, they lean in to take a closer look at the shelf’s contents.</i>
+Pengi: WOooow what are these?
 Brynhilda: Well hello-
 Pengi: AHH!
 <<shake>>
@@ -21,14 +37,14 @@ P: Oh my gosh, I’m so sorry!
 <i>Pengi hurriedly gets to their knees, trying to pick up the items which were now strewn all across the shop floor.</i>
 <i>Brynhilda lets out a warm and hearty laugh</i>
 Brynhilda: <Smiling> Don’t be, you’d be surprised how common that is. I really need to make more sound when I enter a room. 
-<i>She bends down and begins to help pick up the items on the floor</i>
+<i>She bends down and begins to help pick up the items on the floor.</i>
 <i>Pengi, feeling a flush of red creeping up to their face pick up...</i>
 [[Bear.PuzzleStart]]
 ===
 title: Bear.PuzzleStart
 tags: 
 colorID: 0
-position: 92,175
+position: 147,245
 ---
 <<changeBackground none>>
 <<clearShelfItem>>
@@ -38,11 +54,16 @@ position: 92,175
     <<doPuzzle shelf full>>
     <<hideDialogue>>
     <<wait 3>>
-    <<clearShelfItem>>
-    <<hideItem shelf>>
-    <<changeBackground carpentry>>
     <<showDialogue>>
     <<fakeLastDialog Pengi Phew! I just finished arranging the shelves!>>
+    <<fadePlainBackground on 0.5 block white>>
+    <<clearShelfItem>>
+    <<hideItem shelf>>
+    This is a hack <forceNext>
+    <<wait 0.2>>
+    <<changeBackground carpentry>>
+    <<fadePlainBackground off 0.5 block white>>
+    <forceNext>
     [[Bear.PuzzleDone]]
 <<endif>>
 <<doPuzzle shelf>>
@@ -66,6 +87,7 @@ position: 92,175
     [[Bear.TeddyDialogue]]
 <<elseif $marble == 1>>
     <<set $marble = 2>>
+    <<set $marbleDialogueDone to false>> 
     [[Bear.MarbleDialogue]]
 <<endif>>
 <<debugLog This should not be happening>>
@@ -77,8 +99,6 @@ tags:
 colorID: 2
 position: 828,156
 ---
-<forceNext>
-<<changeBackground carpentry>>
 <<enterStage B GF>>
 Brynhilda: <Smiling> Thank you kindly for your help.
 <i>She smiles softly down at the tiny penguin.</i>
@@ -172,7 +192,7 @@ Pengi: I'm-
 title: Bear.Shoe
 tags: 
 colorID: 3
-position: 1063,-114
+position: 1059,-115
 ---
 Pengi: Well... I guess I’m looking for a... <b>Shoe</b>? 
 <i>Brynhilda’s looks down at the little penguin in confusion.</i>
@@ -215,12 +235,15 @@ tags:
 colorID: 8
 position: 335,-202
 ---
-<i>Picks up a large carving of a peace sign. There’s faded writing on it and you need both hands to carry it.</i>
+<i>Pengi picks up a large carving of a peace sign.</i>
+<i>There’s faded writing on it and they need both hands to carry it.</i>
 P: Woah, what is this? And why is it so <voffset=-0.5em>heavy?
 B: You’re holding the first ever sign this store had. Used to hang right outside the door. 
-B: My <size=90%>great-<size=100%>great-<size=110%>great-<size=100%>grandfather carved it himself when he started the place. As you can guess, he was a bit of a hippy. 
+B: My <size=80%>great-<size=100%>great-<size=130%>great-<size=100%>grandfather carved it himself when he started the place.
+B: As I'm sure you can guess, he was a bit of a hippy. 
 B: He was a huge fan of trees, so he took up woodworking.
-B: It turns out a space for creation is compatible with the values of peace, love, and happiness, so this place got fairly popular at the time. Stuck around ever since.
+B: Turns out a space for creation is compatible with the values of peace, love, and happiness, so this place got fairly popular at the time.
+B: Stuck around ever since.
 [[Bear.PuzzleStart]]
 ===
 title: Bear.ToiletDialogue
@@ -231,7 +254,7 @@ position: -306,427
 P: …
 P: This is a roll of toilet paper.
 P: Made of wood.
-B: They can’t all be winners, kid.
+B: Yup.
 P: Paper is processed wood! Is this some kind of artistic statement?
 B: No, my great great great grand aunt Brianna was just crazy. And an inventor. 
 B: She also made a wooden toilet, a wooden bathtub ...
@@ -244,8 +267,10 @@ colorID: 0
 position: 646,-104
 ---
 P: Ooh! Another picture. Is this polar bear you?
-B: Sure is. That’s great Grammy Ribitha and my 5 siblings. She was a family friend of our parents before their passing. She took us in afterward. Old girl’s still here and kicking!
-<<shortPause>>
+B: Sure is. That’s great Grammy Ribitha and my 5 siblings. She was a family friend of our parents before their passing. 
+B: She took us in afterward. 
+B: Old girl’s still here and kicking!
+<i>A slight smile appears on her face.</i> 
 B: <b><Heartfelt></b> We owe her everything.
 [[Bear.PuzzleStart]]
 ===
@@ -273,69 +298,110 @@ B: That’s my <size=90%>great-<size=100%>great-<size=110%>great-<size=120%>grea
 B: You know the whole thing about carrying a <size=120%>big<size=100%> stick? 
 B: My <size=90%>great-<size=100%>great-<size=113%>great-<size=125%>great-<size=155%>great-<size=100%>grandmother was the one that made him the stick! 
 B: It’s a truly charming tale of two bears and their love of wood-based items…
-<i>She trails off, as if reliving a wonderful childhood memory (even though she wasn’t alive back then).</i>
+<i>She trails off, as if reliving a wonderful childhood memory.</i>
+P: <i>She wasn't alive at that time...right?</i> 
 [[Bear.PuzzleStart]]
 ===
 title: Bear.MarbleDialogue
 tags: 
 colorID: 0
-position: 116,481
+position: 122,548
 ---
-P: A marble collection? Are these your kid’s?
-B: Nope. We have a thing for woodworking in this family. When we get to a certain skill level, we make a set of marbles, and everyone gets one.
-<<showItem orangeMarble>> 
-// <<debugLog todo unimplemented showItem>>
-// show penguin orange marble
-B: This one is mine. Want to see some more?
-P: Sure!
-B: Okay, which one first?
+<< if $marbleDialogueDone == false>> 
+    P: A marble collection? Are these your kid’s?
+    B: Nope. We have a thing for woodworking in this family.
+    B: When we get to a certain skill level, we make a set of marbles, and everyone gets one.
+    <i>She pulls out a smooth orange one with the letter 'B' carved onto it.</i> 
+    <<showItem orangeMarble>> 
+    // <<debugLog todo unimplemented showItem>>
+    // show penguin orange marble
+    B: This one is mine. Want to see some more?
+    P: Sure!
+    B: Okay, which one first?
+    <<setmarbleDialogueDone to true>>
+    <<set $marblesLeft = 3>> 
+    <<set $Brody to false>>
+    <<set $Bretta to false>>
+    <<set $Brian to false>>
+<<endif>> 
 // (Rewriting this part a bit to be 3 waves of options)
-[[A marble stripped with different bands of light and dark wood.|Bear.BrettaMarble]]
-[[A marble shaped like a 20 sided die.|Bear.BrodyMarble]]
-[[The one that has three different colored sections.|Bear.BrianMarble]]
+[[A marble stripped with different bands of light and dark wood.|Bear.BrettaMarble]] << if $Bretta is false>> 
+[[A marble shaped like a 20 sided die.|Bear.BrodyMarble]] << if $Brody is false>>
+[[The one that has three different colored sections.|Bear.BrianMarble]] << if $Brian is false>>
 ===
 title: Bear.BrettaMarble
 tags: 
 colorID: 0
-position: 34,937
+position: -280,920
 ---
+<<set $Bretta to true>>
+<<$marblesLeft -= 1>> 
 B: This is my sister Bretta’s. She runs a chair shop in Grizzleton.
 -> The one that’s medium brown, with a white swirl running across the surface.
     B:  That’s great grandpa Breppa’s. He loves Banjos. That’s actually a string incorporated into the marble.
 -> The one that’s pockmarked by varying sized holes.
 	B:  This is cousin Brie’s. She makes cheese for a living. Yes, we make jokes.
-[[Bear.Marble.End]]
+<<if $marblesLeft >= 1>> 
+    B: Hehe there's 
+    -> Yes!
+        [[Bear.MarbleDialogue]]
+    -> Hmmm, maybe not...
+        [[Bear.Marble.End]]
+<<endif>>
+B: OK! That's the last of them!
+[[Bear.PuzzleStart]]
 ===
 title: Bear.BrodyMarble
 tags: 
 colorID: 0
-position: 333,942
+position: 98,939
 ---
+<<set $Brody to true>>
+<<$marblesLeft -= 1>> 
 B:  Uncle Brody’s work. He’s a pretty big nerd.
 -> The one that’s white, black and brown.
     B:  That’s my mom’s. Her name was Brittney.
 -> The one with jagged lines that might be rectangles?
-    B:  My nephew’s name is Brick and he wanted to do his namesake pattern. It’s a little rough, but he was insistent on being the youngest ever to have made the marbles. Good kid.
-[[Bear.Marble.End]]
+    B: My nephew’s name is Brick and he wanted to do his namesake pattern.
+    B: It’s a little rough, but he was insistent on being the youngest ever to have made the marbles. Good kid.
+<<if $marblesLeft >= 1>> 
+    B: Hehe there's 
+    -> Yes!
+        [[Bear.MarbleDialogue]]
+    -> Hmmm, maybe not...
+        [[Bear.Marble.End]]
+<<endif>>
+B: OK! That's the last of them!
+[[Bear.PuzzleStart]]
 ===
 title: Bear.BrianMarble
 tags: 
 colorID: 0
-position: 646,946
+position: 472,939
 ---
+<<set $Brian to true>>
+<<$marblesLeft -= 1>> 
 B: My dad’s. His name was Brian.
 -> The one that has a line running down the middle.
     B:  That’s Bran’s. No one knows how we’re related to him, but he’s family. It opens up like a matryoshka doll.
 -> The one that has a maze printed onto its surface.
 	B:  Brianna’s my niece, and likes to show how smart she is at every opportunity. She’s in Med School right now.
-[[Bear.Marble.End]]
+<<if $marblesLeft >= 1>> 
+    B: Hehe there's 
+    -> Yes!
+        [[Bear.MarbleDialogue]]
+    -> Hmmm, maybe not...
+        [[Bear.Marble.End]]
+<<endif>>
+B: OK! That's the last of them!
+[[Bear.PuzzleStart]]
 ===
 title: Bear.Marble.End
 tags: 
 colorID: 0
-position: 468,574
+position: 650,442
 ---
-B: Alright, that’s enough for now.
+B: Alright, guess that’s enough for now.
 [[Bear.PuzzleStart]]
 ===
 title: Bear.Both
@@ -363,13 +429,16 @@ GF: We’ll be fine. Maybe we’ll put an ad in the classifieds for an unpaid ap
 GF: You know how hard it gets during <b>musical chairs season</b>. So many orders! Oh my! 
 GF: But you go! Have some fun! We don’t want you trapped here forever with us old coots!
 <i>Brynnhilda’s face softens completely into a look of both empathy and a deep melancholy.</i>
-B: Grammy, Edward has been gone for 15 years now. And I really think you should be sitting down, you’re not supposed to be out of your chair. The doctor said-
+<<playAudio Bearsad>>
+B: Grammy, Edward has been gone for 15 years now. And I really think you should be sitting down, you’re not supposed to be out of your chair. 
+B: The doctor said-
 GF: That old thing is getting so worn down, I can see through the varnish! Just let me back into the workshop and I’ll make myself a new one! 
 GF: You can’t keep me out of there forever! HAHA!
 <i>Grammy Frog then tries to book it towards a door at the corner of the store labeled ‘WORKSHOP’, only to be promptly snatched up and carried to a well worn out rocking chair at the back of the store.</i>
 B: Grammy! How about you get those biscuits you were talking about before? For our little guest over here? 
 GF: Oh! Of course! How could I be so rude!
-<i>She hops over towards the back of the store and disappears into the back door. A series of clangs and bangs begin emerging from the open door.</i>
+<i>She hops over towards the back of the store and disappears into the back door.</i>
+<i>A series of clangs and bangs begin emerging from the open door.</i>
 P: Is it just you two?
 B: <Smiling> Yeah. It has been for a few years now. She’s one of the main reasons I don’t want to go. I don’t know where we’ll end up if we do, and I don’t know the impact it’ll have on her.
 P: I...I see.
@@ -498,10 +567,22 @@ colorID: 0
 position: 2635,407
 ---
 <<exitStage GF B>>
-<<changeBackground generalMarket>>
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
 <<playAudio Market>>
+<<wait 0.2>>
+<<changeBackground generalMarket>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
 <i>Pengi pulls out the document containing the store owners they have to talk to and adds a little checkmark.</i>
 P: Alright.
 P: On to the next one.
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio BGMBargain>>
+<<wait 0.2>>
+<<changeBackground Bargain>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
 [[Fish.Intro]]
 ===
