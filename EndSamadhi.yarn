@@ -1,0 +1,247 @@
+title: End.Fail
+tags: 
+colorID: 0
+position: -1371,-1421
+---
+//condition is the number of shoes being 1 or less
+<i>That was it… all the stores Pengi could possibly visit, and they didn’t even learn a thing about any of the stores.</i> 
+<i>With a sense of defeat, Pengi makes it to a bench in the middle of all three stores. It is at that moment they remember the Old Mole. They were supposed to find their missing shoe, which they didn’t...</i>
+
+<i>It wasn’t like the Old Mole was there to be disappointed at them however, as she was nowhere in sight…</i>
+<i>It was one less shame Pengi would have to face today at least...</i>
+
+[[End.FailedPromotion]]
+===
+title: End.FailedPromotion
+tags: 
+colorID: 0
+position: 103,-1224
+---
+//condition is number of signatures being 1 or less
+//Menagerie Centre Background
+<<changeBackground generalMarket>>
+
+<i>Pengi looks on to all the stores they visited and is overcome with a feeling of vast emptiness. They had only managed to collect number of signatures... It wouldn’t be enough to collect the promotion.</i>
+
+<i>Feeling that the day was pointless, Pengi decides to head back to their apartment and ready their report for Patricia tomorrow.</i>
+
+//Office Background
+<<changeBackground office>>
+PB: By the look on your face it looks like things didn’t go so well, did it Pengsworth?
+P: …
+
+PB: Your silence speaks volumes. Oh well, guess I’ll have to send someone better next time. 
+PB: Go back to your cubicle, I’ll call you when I need you. 
+
+<i>Pengi walks back to their cubicle with their head slumped between their shoulders. The sound of the fingers rifling across keyboards drowns out their own thoughts as they sit back down and stare at the same old spreadsheet they had been looking at before...</i>
+[[End.GameEnd]]
+===
+title: End.Intro
+tags: 
+colorID: 0
+position: -1564,-289
+---
+<<if $shoes <= 1 and $signature <= 1>>
+    [[End.Fail]]
+<<endif>>
+
+<<if $shoes == 2 and $signature == 2>>
+    [[End.Success]]
+<<endif>>
+
+<<if $shoes == 3 and $signature == 3>>
+    [[End.Gold]]
+<<endif>>
+
+<<if $signature == 3>>
+    [[End.Flight]]
+<<endif>>
+
+<<if $shoes == 3>>
+    [[End.ShoeEnding]]
+<<endif>>
+
+<<if $signature == 2>>
+    [[End.HalfEndingPromotion]]
+<<endif>>
+
+<<if $shoes == 2>>
+    [[End.HalfEndingShoe]]
+<<endif>>
+
+<<debugLog End.Intro failure>>
+<<gameEnd>>
+===
+title: End.Success
+tags: 
+colorID: 0
+position: -819,-299
+---
+Condition = # of both signatures and shoes is equal to 2 for both categories
+[Menagerie Centre Background]
+
+
+<i>Pengi somehow managed to become familiar with some of the denizens of Menagerie Centre.</i>
+
+<i>While trying to reflect on the events of the day, Pengi sits at a bench in the middle of all three stores when the Old Mole appears out of nowhere and sits beside them.</i>
+
+M: Managed to find my shoe?
+
+P: Oh my gosh! I asked a few of the stores about it but none of them had seen it! I’ll double check the area again!
+
+B: Ahem…
+
+<i>Pengi turns around, surprised to see Brynhilda standing behind them, and holding a pair of shoes.</i>
+
+B: I heard you were missing some footwear. I made these quickly for a fitting and will finish the final pair tomorrow for you.
+
+<i>She moves towards the front of the bench and helps the old mole try on the shoes.</i>
+
+P: Thank you… for helping.
+
+B: For an employee at Grounded, you are not as selfish as the others. Did you get enough signatures for that proposal?
+
+P: Maybe...
+
+B: Well, if you lose your job I’m pretty sure some of the people here wouldn’t mind hiring you part time…
+
+P: But why?
+
+M: Most people see our old community and scoff, yet you took the time to get to know people. That is a very special thing around here.
+
+<i>Pengi watches quietly as Brynhilda works her crafts, thinking about the words that the Old Mole just said..</i>
+
+[Office Background]
+
+PB: This is some good work Pengsworth, I’m quite impressed.
+
+<i>Pengi holds back a yelp of joy. They didn’t want to disappoint themselves had Patricia forgotten about the raise..</i>
+
+PB: As promised, we’ll be giving you a raise in salary as a reward for your job well done. Since there were still a few of the store owners who didn’t fully sign over you won’t get the maximum amount, but perhaps we can send you on another assignment to get the full deal?
+
+<i>Pengi stands there, beak wide open. It was more than they could have hoped for and another shot at their dream seemed worth it.</i>
+
+P: Send it my way and I’ll see what I can do.
+
+PB: That’s the spirit Pengsworth! You’ll get info on the assignment in the next few days.
+
+<i>Pengi would go on to do that next assignment, having forgotten about the Old Mole and Menagerie Centre by the time they had collected all they had needed to get into flight school.</i>
+
+<i>And even if they don’t manage to get enough money for flight school, they can always visit the Centre and check out what’s happening with all the new faces they had met there..</i>
+[[End.GameEnd]]
+===
+title: End.HalfEndingPromotion
+tags: 
+colorID: 0
+position: -1131,-1024
+---
+//condition is number of signatures equal to 2 but shoe condition failed
+<<changeBackground generalMarket>>
+<i>That was it… all the stores Pengi could possibly visit, and they didn’t even learn a thing about any of the stores. But at least they managed to get some amount of signatures for the company… even though Pengi didn’t really learn much about this place </i>
+
+<i>They make their way to the bench in the middle of all three stores and there they remember about the Old Mole. They were supposed to find their missing shoe, which they didn’t failed...</i>
+
+<i>It wasn’t like the Old Mole was there to be disappointed at them however, as the she was nowhere in sight…It was one less thing Pengi had to worry about at least since they probably have a good shot at getting that promotion now.</i>
+
+// Menagerie Centre Background
+
+// Office Background
+<<changeBackground office>>
+PB: This is some good work Pengsworth, I’m quite impressed.
+
+<i>Pengi holds back a yelp of joy. They didn’t want to disappoint themselves had Patricia forgotten about the raise..</i>
+
+PB: As promised, we’ll be giving you a raise in salary as a reward for your job well done. Since there were still a few of the store owners who didn’t fully sign over you won’t get the maximum amount, but perhaps we can send you on another assignment to get the full deal?
+
+<i>Pengi stands there, beak wide open. It was more than they could have hoped for and another shot at their dream seemed worth it.</i>
+
+P: Send it my way and I’ll see what I can do.
+
+PB: That’s the spirit Pengsworth! You’ll get info on the assignment in the next few days.
+
+<i>Pengi would go on to do that next assignment, having forgotten about the Old Mole and Menagerie Centre by the time they had collected all they had needed to get into flight school.</i>
+[[End.GameEnd]]
+===
+title: End.HalfEndingShoe
+tags: 
+colorID: 0
+position: -884,-720
+---
+//Menagerie Centre Background
+
+<<changeBackground generalMarket>>
+<i>Without getting the signatures they needed to get the raise, Pengi somehow managed to become familiar with some of the denizens of Menagerie Centre.</i>
+
+<i>While trying to reflect on the events of the day, Pengi sits at a bench in the middle of all three stores when the Old Mole appears out of nowhere and sits beside them.</i>
+
+M: Managed to find my shoe?
+
+P: Oh my gosh! I asked a few of the stores about it but none of them had seen it! I’ll double check the area again!
+
+B: Ahem…
+
+<i>Pengi turns around, surprised to see Brynhilda standing behind them, and holding a pair of shoes.</i>
+
+B: I heard you were missing some footwear. I made these quickly for a fitting and will finish the final pair tomorrow for you.
+
+<i>She moves towards the front of the bench and helps the old mole try on the shoes.</i>
+
+P: Thank you… for helping.
+
+B: For an employee at Grounded, you are not as selfish as the others. Did you get enough signatures for that proposal?
+
+P: No—no…
+
+B: Well, if you lose your job I’m pretty sure some of the people here wouldn’t mind hiring you part time…
+
+P: But why?
+
+M: Most people see our old community and scoff, yet you took the time to get to know people. That is a very special thing around here.
+
+<i>Pengi watches quietly as Brynhilda works her crafts, thinking about the words that the Old Mole just said..</i>
+
+
+//Failed Promotion:
+
+// Office Background
+<<changeBackground office>>
+PB: By the look on your face it looks like things didn’t go so well did it Pengsworth?
+
+P: ...
+
+PB: Your silence speaks volumes. Oh well, I’ll have to send someone else to try again next time. Go back to your cubicle, I’ll call you when I need you. 
+
+<i>Pengi walks back to their cubicle with their head slumped between their shoulders. The sound of the fingers rifling across keyboards drowns out their own thoughts as they sit back down and stare at the same old spreadsheet they had been looking at before...</i>
+
+<i>But even though they return to their old routine, a part of them feels like visiting Menagerie Centre after work. Something tells Pengi that all that hard legwork at the Centre wasn’t all for nothing and that some of the people there would be glad to see them.</i>
+[[End.GameEnd]]
+[[End.GameEnd]]
+===
+title: End.GameEnd
+tags: 
+colorID: 0
+position: 995,-709
+---
+Empty Text
+===
+title: End.Gold
+tags: 
+colorID: 0
+position: -1116,348
+---
+[[End.GameEnd]]
+===
+title: End.Flight
+tags: 
+colorID: 0
+position: -1495,656
+---
+[[End.GameEnd]]
+===
+title: End.ShoeEnding
+tags: 
+colorID: 0
+position: -831,7
+---
+[[End.GameEnd]]
+===

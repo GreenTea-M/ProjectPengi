@@ -4,8 +4,9 @@ colorID: 0
 position: -2154,-250
 ---
 //Switch to Bargain barrel background, The music sounds reminiscent of classic mafia music.
+<<changeBackground Bargain>>
+<<playAudio BGMBargain>>
 <<enterStage Alici>>
-<<playSfx bearBell>>
 <<set $FishChoices = 0>>
 <i>As Pengi enters the store, their eyes are bombarded by an assortment of odd items splayed everywhere for display and sale.</i>
 <i>The arrangements of these items seem to lack any rhyme or reason.</i>
@@ -115,7 +116,7 @@ position: -1307,-513
 P: So, this store has been here for a while?
 <i>Alici places a fin on his chest and lets out a laugh.</i>
 A: Ha! You have no idea kid!
-A: I’d say that we are the lifeblood of this little Menagerie. Without us, history wouldn't've been all that deep. 
+A: I’d say that we are the lifeblood of this little Menagerie. Without us, history wouldn've been all that deep. 
 A: I guess I wouldn’t have been anything without this life, kid.
 <i>He frowns a little as he says this, a look of confusion crossing his eyes before letting out another chuckle.</i>
 A: Well... never got the chance to find out…
@@ -221,13 +222,6 @@ A: N-n-no! That ain’t supposed to be here. I’m legit, legit I swear!
 	P: Ye-yeah.
 	//<<playSFX SFXrunning>>
 	<i>Pengi suddenly turns around and books it towards the front door.</i>
-    <<fadePlainBackground on 0.5 block white>>
-    This is a hack <forceNext>
-    <<playAudio Market>>
-    <<wait 0.2>>
-    <<changeBackground generalMarket>>
-    <<fadePlainBackground off 0.5 block white>>
-    <forceNext>
 	[[Fish.EndPanic]]
 ===
 title: Fish.Cop
@@ -285,7 +279,7 @@ tags:
 colorID: 0
 position: -1035,-783
 ---
-<i>As Alici walks away from his life of crime, Pengi pulls out a lollipop from their pocket. They unwrap it and take a lick.</i>
+<i>As Alici walks away from his life of crime, Pengi pulls out a lollipop from their pocket.</i>
 P: <i>Just another day in Menagerie Centre.</i> 
 P: <i>Heh. This place never changes,</i>
 P: <i>always sucking the soles of everyone who lives here.</i>
@@ -306,6 +300,8 @@ colorID: 0
 position: -390,-236
 ---
 <<exitStage Alici>>
+<<changeBackground generalMarket>>
+<<playAudio Market>>
 <i>Pengi rushes out of The Bargain Barrel. Hiding around the corner, they bend over while trying to catch their breath.</i>
 
 P: <i>What a disaster! Who knew actual gangsters operated here? And I didn’t even get a signature.</i>
@@ -393,14 +389,9 @@ tags:
 colorID: 0
 position: 133,-244
 ---
-<<fadePlainBackground on 0.5 block white>>
-This is a hack <forceNext>
-<<playAudio Market>>
-<<wait 0.2>>
-<<changeBackground generalMarket>>
-<<fadePlainBackground off 0.5 block white>>
-<forceNext>
 <<exitStage Alici>>
+<<changeBackground generalMarket>>
+<<playAudio Market>>
 P: Well, at the end of the day I wasn’t able to find that old mole’s boot...
 <i>Pengi reaches into their suitcase and pulls out the manila folder containing the store owners names.</i>
 <i>Looking at the list, they sigh.</i>
@@ -409,4 +400,11 @@ P: Annnnd that was the last of the owners I needed to talk to.
 P: Not so sure if these are the results the boss was looking for, but we’ll find out soon enough. 
 <i>Placing the paper back in their suitcase, they make their way back to the office.</i>
 [[End.Intro]]
+===
+title: End.Intro
+tags: 
+colorID: 0
+position: 253,-464
+---
+Empty Text
 ===
