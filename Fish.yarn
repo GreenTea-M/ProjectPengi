@@ -4,14 +4,16 @@ colorID: 0
 position: -2154,-250
 ---
 //Switch to Bargain barrel background, The music sounds reminiscent of classic mafia music.
+<<changeBackground Bargain>>
+<<playAudio BGMBargain>>
 <<enterStage Alici>>
-<<playSfx bearBell>>
 <<set $FishChoices = 0>>
+<<playSfx bearBell>>
 <i>As Pengi enters the store, their eyes are bombarded by an assortment of odd items splayed everywhere for display and sale.</i>
 <i>The arrangements of these items seem to lack any rhyme or reason.</i>
 <i>A vending machine simultaneously selling candy bars and fish soup was propped up against the wall, while barrels of coins, buttons and rice were against another.</i> 
 <i>The place seemed to be in utter chaos.</i>
-P: <i>This is the last place on the list, I think…?</i>
+P: <i>This is the last place on the list, I think...?</i>
 <i>Pengi looks around and doubles checks that they are in the right place. </i>
 P: <i>Is-Is-Is this even a real store?</i>
 P: Hello? Is anyone here?
@@ -209,7 +211,6 @@ A: N-n-no! That ain’t supposed to be here. I’m legit, legit I swear!
     A: Anything but this.
 //fade to white
     [[Fish.EndInvestigate]]
-
 -> Run away
 	<i>Pengi takes a step back in fright.</i>
 	<<shake>>

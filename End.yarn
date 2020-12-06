@@ -48,12 +48,13 @@ position: -1577,-302
 <<if $BSign == true and $ASign == true and $HMaybe == true>>
     <<set $HSign to true>>
     <<set $HHelp to true>>
+<<endif>>
 
 <<if $HHelp == false and $AHelp== false and $BHelp == false and $signature <= 1>>
     [[End.Fail]]
 <<endif>>
 
-<<if $HHelp == false and $AHelp== false and $BHelp == false and $signature == 2>>
+<<if $HHelp == false and $AHelp == false and $BHelp == false and $signature == 2>>
     [[End.HalfEndingPromotion]]
 <<endif>>
 
