@@ -44,7 +44,7 @@ Brynhilda: <Smiling> Don’t be, you’d be surprised how common that is. I real
 title: Bear.PuzzleStart
 tags: 
 colorID: 0
-position: 147,245
+position: 146,243
 ---
 <<changeBackground none>>
 <<showItem shelf>>
@@ -324,21 +324,19 @@ position: 122,548
     <<set $Brian to false>>
 <<endif>> 
 // (Rewriting this part a bit to be 3 waves of options)
-<<if $Bretta is false>> 
-    [[A marble stripped with different bands of light and dark wood.|Bear.BrettaMarble]]
-<<elif $Brody is false>>
-    [[A marble shaped like a 20 sided die.|Bear.BrodyMarble]] 
-<<elif $Brian is false>>
-    [[The one that has three different colored sections.|Bear.BrianMarble]] 
-<<else>>
-    [[The one that has three different colored sections.|Bear.BrianMarble]] 
-    <<debugLog Bad thing happened in Bear.MarbleDialogue>>
-<<endif>>
+
+-> A marble stripped with different bands of light and dark wood.<<if $Bretta is false>> 
+    [[Bear.BrettaMarble]]
+-> A marble shaped like a 20 sided die.<<if $Brody is false>>
+    [[Bear.BrodyMarble]] 
+-> The one that has three different colored sections. <<if $Brian is false>>
+    [[Bear.BrianMarble]] 
+<<debugLog Bad thing happened in Bear.MarbleDialogue>>
 ===
 title: Bear.BrettaMarble
 tags: 
 colorID: 0
-position: -280,920
+position: -281,919
 ---
 <<set $Bretta to true>>
 <<$marblesLeft = $marblesLeft - 1>> 
