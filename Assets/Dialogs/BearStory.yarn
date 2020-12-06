@@ -1,28 +1,28 @@
 title: Bear.EnterStore
 tags: Store
 colorID: 0
-position: -628,206
+position: -627,245
 ---
-//<<fadePlainBackground on 0.5 block white>>
-//<forceNext>
-//<<playAudio Market>>
-//<<wait 0.2>>
-//<<changeBackground generalMarket>>
-//<<fadePlainBackground off 0.5 block white>>
-//<forceNext>
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio Market>>
+<<wait 0.2>>
+<<changeBackground generalMarket>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
 <i>Pengi looks at the list of stores and looks for their next customer.</i>
 P: Hmmm...Build-A-Bear...
 <i>They find the Build-A-Bear store and open the door.</i>
 
 <<playSfx bearBell>>
-//<<fadePlainBackground on 0.5 block white>>
-//<forceNext>
-//<<playAudio BrynhildaBear>>
-//<<wait 0.2>>
-//<<changeBackground carpentry>>
-//<<fadePlainBackground off 0.5 block white>>
-//<forceNext>
-//<<enterStage Brynhilda>>
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio BrynhildaBear>>
+<<wait 0.2>>
+<<changeBackground carpentry>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<enterStage Brynhilda>>
 <i>The bell on the door jingles in a delicate manner as Pengi enters the warm shop filled with an assortment of breathtaking, handcrafted items.</i>
 <i>Breathing in the welcoming scent of sawdust and maple, Pengi takes a few steps into the shop before noticing a shelf full of odd looking bits and bobs. </i>
 <i>Walking over to it, they lean in to take a closer look at the shelf’s contents.</i>
@@ -595,7 +595,7 @@ P: On to the next one.
 title: BearStory.Intro
 tags: 
 colorID: 0
-position: -995,208
+position: -981,250
 ---
 [[Bear.EnterStore]]
 ===

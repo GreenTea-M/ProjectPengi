@@ -90,6 +90,13 @@ Pengi: <Normal> Alright. At least I know the way there now.
 <<set $AHelp = false>>
 <<set $ASign = false>>
 <<set $signature = 0>>
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio hippobgm>>
+<<wait 0.2>>
+<<changeBackground hipposCampus>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
 [[Hippo.Intro]]
 ===
 title: Intro.Dream
@@ -251,7 +258,7 @@ PtC: Anyways, when I was sent it wasn’t a pretty affair. Surprised the boss la
 <i>Pengi blushes.</i>
 P: She said she’d give me a big enough raise to go to <showItem plane>flight school. 
 P: ...
-P: ...She was lying, wasn’t she? <size=%80>Dammit Pengi! You can be so gullible sometimes!</size>
+P: ...She was lying, wasn’t she? <size=80%>Dammit Pengi! You can be so gullible sometimes!</size>
 <<hideItem plane>>
 PtC: I don’t think so… Piggie is a savage, but she’s a woman of her word. 
 PtC: I think you got a real shot at getting into flight school if you manage to get this done.
