@@ -4,14 +4,6 @@ colorID: 0
 position: -1041,-245
 ---
 <<playSfx hippoBell>>
-<<set $HMaybe to false>>
-<<fadePlainBackground on 0.5 block white>>
-<forceNext>
-<<playAudio hippoBgm>>
-<<wait 0.2>>
-<<changeBackground hipposCampus>>
-<<fadePlainBackground off 0.5 block white>>
-<forceNext>
 <i>Pengi rushes into the store and is greeted with quite the sight.</i>
 <i><showItem weights>They look around at what, at first, seemed to be a sporting goods store, but proved to be otherwise upon closer inspection.</i> 
 <i>Instead of weights and cardio machines<hideItem weights>,<showItem books> the floor is filled with books and other materials to expand one’s mind. </i>

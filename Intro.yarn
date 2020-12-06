@@ -109,24 +109,19 @@ position: -1293,-20
 <<playSFX radio>>
 //clouds are moving, soft light??, maybe pengi moving back and forth?
 //SFX: radio sound? GOLD
-
-P, pilot: Hello everyone, this is your captain speaking. Hope you've all had a wonderful flight. As you look over to the left side of the plane you'll see the sun rising over the ocean.
-
+P, pilot: Hello everyone, this is your captain speaking.
+P: Hope you've enjoyed this wonderful flight so far.
+P: As you look over to the left side of the plane you'll see the sun rising over the ocean.
 <<changeBackground sunset>>
 //Background cuts to shot of sunrise over ocean
 <i>The morning sun's rays glisten through the clouds.</i>
-
 P, pilot: Ain’t it something?
-
 <<shake>>
 <<playSFX SFXsoftwhack>>
-
 P, pilot: Huh?
-
 <<playSFX SFXsoftwhack>>
 <<shake>>
 <<enterStage Paul>>
-
 ->Look for who did that
     <i>Pengi turns their head, looking for the source of the voice</i>
     PtC, notVisible: The boss is going to find you slacking again, so stop dozing off.
@@ -137,7 +132,6 @@ P, pilot: Huh?
     PtC, notVisible: Hehehe, it’s me, your conscience and I’m here to tell you to wake up.
     <<playSFX SFXsoftwhack>>
     <<shake>>
-
 P, pilot: Stop. Stop. Stop!
 [[Intro.Office]]
 ===
@@ -165,8 +159,9 @@ P:
 -> N-no I wasn’t...
     PtC: Sure, and I’m the king of the Antarctic. You need to learn to lie better.
     // Since there is a color out there, we have to be explicit about who is speaking
-    Narrator: <i>Pengi focuses back on their computer desk, littered with <showItem paperStack>spreadsheets they didn’t understand the purpose of filling out.</i> 
-    <i>It was the same work each week: get this name, attach this file, calculate this total, remove these liabilities. </i>
+    <i>Pengi focuses back on their computer desk, littered with <showItem paperStack>spreadsheets they didn’t understand the purpose of filling out.</i> 
+    <i>It was the same work each week.</i>
+    <i>Get this name, attach this file, calculate this total, remove these liabilities. </i>
     <i>It never changed.</i>
 
 
