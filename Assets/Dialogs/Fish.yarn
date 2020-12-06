@@ -149,7 +149,7 @@ P: <i>I guess I’ll…</i>
     A: ...you a cop or somethin'?
 
     -> Tell him you’re a cop (Lie).
-        P: <i>Maybe I can find out more about him if I just tell this <size= 80%>smalllll-itty-bitty lie</size>.</i>
+        P: <i>Maybe I can find out more about him if I just tell this <size=80%>smalllll-itty-bitty lie</size>.</i>
 	    [[Fish.Cop]]
 
     -> Ask for signature (Truth).

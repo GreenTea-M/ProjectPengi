@@ -317,7 +317,7 @@ position: 122,548
     B: This one is mine. Want to see some more?
     P: Sure!
     B: Okay, which one first?
-    <<setmarbleDialogueDone to true>>
+    <<set $marbleDialogueDone to true>>
     <<set $marblesLeft = 3>> 
     <<set $Brody to false>>
     <<set $Bretta to false>>
@@ -348,7 +348,7 @@ B: This is my sister Bretta’s. She runs a chair shop in Grizzleton.
 -> The one that’s pockmarked by varying sized holes.
 	B:  This is cousin Brie’s. She makes cheese for a living. Yes, we make jokes.
 <<if $marblesLeft >= 1>> 
-    B: Hehe there's 
+    B: Hehe there's a lot more, would you like to keep going? 
     -> Yes!
         [[Bear.MarbleDialogue]]
     -> Hmmm, maybe not...
@@ -371,7 +371,7 @@ B:  Uncle Brody’s work. He’s a pretty big nerd.
     B: My nephew’s name is Brick and he wanted to do his namesake pattern.
     B: It’s a little rough, but he was insistent on being the youngest ever to have made the marbles. Good kid.
 <<if $marblesLeft >= 1>> 
-    B: Hehe there's 
+    B: Hehe there's a lot more, would you like to keep going? 
     -> Yes!
         [[Bear.MarbleDialogue]]
     -> Hmmm, maybe not...
@@ -393,7 +393,7 @@ B: My dad’s. His name was Brian.
 -> The one that has a maze printed onto its surface.
 	B:  Brianna’s my niece, and likes to show how smart she is at every opportunity. She’s in Med School right now.
 <<if $marblesLeft >= 1>> 
-    B: Hehe there's 
+    B: Hehe there's a lot more, would you like to keep going?
     -> Yes!
         [[Bear.MarbleDialogue]]
     -> Hmmm, maybe not...
@@ -469,7 +469,7 @@ B: She...she would be happier that way yeah?
 <i>Pengi looks down at the ground, adjusts their tie, clears their throat before looking back at the sullen bear in front of them.</i>
 P: <Uncertain> Yes, I-I’m sure of it.
 B: <Concerned> I guess...this is for the best then.
-<i>Pengi reaches into his briefcase and pulls out a small stack of papers. Brynhilda takes it.</i>
+<i>Pengi reaches into their briefcase and pulls out a small stack of papers. Brynhilda takes it.</i>
 <i>She pauses before pulling out a pen and writing something down.</i>
 B: Well… here it is.
 [[Take contract.|Bear.TakeContract]]
@@ -530,7 +530,7 @@ P: <Sad> I'll make sure to take care of this store.
 <i>As they turn to leave, Pengi feels a twinge of guilt at the thought of his accomplishment.</i>
 <i>The bell on the door jingles once again, and as Pengi steps out of the shop, he tries to shake off the terrible feeling.</i>
 //sign, no help
-<<$signature + 1>>
+<<set $signature = $signature + 1>>
 <<set $BHelp to false>>
 <<set $BSign to true>>
 [[BearStory.End]]
