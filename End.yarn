@@ -43,7 +43,7 @@ PB: Go back to your cubicle, I’ll call you when I need you.
 title: End.Intro
 tags: 
 colorID: 0
-position: -1577,-302
+position: -1580,-310
 ---
 <<if $BSign == true and $ASign == true and $HMaybe == true>>
     <<set $HSign to true>>

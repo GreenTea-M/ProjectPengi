@@ -358,13 +358,9 @@ This is a hack <forceNext>
 <<fadePlainBackground off 0.5 block white>>
 <forceNext>
 <<exitStage Alici>>
-P: Well, at the end of the day I wasn’t able to find that old mole’s shoe...
 <i>Pengi reaches into their suitcase and pulls out the manila folder containing the store owners names.</i>
-<i>Looking at the list, they sigh.</i>
+<i>Looking at the list.</i>
 P: Annnnd that was the last of the owners I needed to talk to. 
-<i>They furrowed their brow and scratched their beak nervously.</i>
-P: Not so sure if these are the results the boss was looking for, but we’ll find out soon enough. 
-<i>Placing the paper back in their suitcase, they make their way back to the office.</i>
 [[End.Intro]]
 ===
 title: Fish.InvestigateEndPanic
