@@ -61,7 +61,7 @@ position: -1583,-242
 <<if $FishChoices == 3>>
     [[Fish.DoneChoices]]
 <<endif>>
--> Well you see, I’m looking for a... boot? <<if $FishShoe == 1>>
+-> Well you see, I’m looking for a... shoe? <<if $FishShoe == 1>>
     [[Fish.Shoe]]
 -> Inspect the Orange smartphone. <<if $FishOrange == 1>>
     [[Fish.Orange]]
@@ -75,9 +75,9 @@ position: -1842,-518
 ---
 <<set $FishShoe to 0>>
 <<set $FishChoices = $FishChoices + 1>>
-P: Well you see, I’m looking for a... boot? 
+P: Well you see, I’m looking for a... shoe? 
 <i>He looked thoughtfully around the store before shaking his fish-bowl head.</i>
-A: Hmmm...funnily enough, sold our last boot to a fellow just five minutes ago.
+A: Hmmm... funnily enough, sold our last shoe to a fellow just five minutes ago.
 A: Sorry kid.
 A: But don’t even worry about that! We have so many things to choose from!
 A: We are sure to not disappoint. 
@@ -95,7 +95,7 @@ P: A-are you sure that’s a new phone? It looks like it's a fake.
 <i>Eyes widening, Alici snatches the phone from its display and shoves it in his pocket.</i>
 <i>His sudden movement spills some of his tank water onto the hardwood floor.</i>
 A: That must have been our testing version!
-<i>A nervous stream of bubbles escape his mouth as he speaks..</i>
+<i>A nervous stream of bubbles escape his mouth as he speaks.</i>
 A: Yes, yes, our testing version. Apologies, I’ll have to talk to our tech experts to get a real one working. 
 A: You know those tech idiots right? Too busy watching game streams all day to actually get the job done.
 P: Your store is also a tech... shop?
@@ -120,7 +120,7 @@ A: Ha! You have no idea kid!
 A: I’d say that we are the lifeblood of this little Menagerie. Without us, history wouldn't've been all that deep. 
 A: I guess I wouldn’t have been anything without this life, kid.
 <i>He frowns a little as he says this, a look of confusion crossing his eyes before letting out another chuckle.</i>
-A: Well... never got the chance to find out…
+A: Well... never got the chance to find out...
 A: <size=150%>BUT NEVER MIND THAT!</size>
 A: Anything I can help you find? 
 A: A glass of expi- I mean fermented apples? Or perhaps a rust- I MEAN some antique copper plates? 
@@ -141,7 +141,7 @@ P: <i>I guess I’ll…</i>
 -> Pressure Alici on my suspicions…
     [[Fish.Investigate]]
 
--> Dig deeper on Alici’s history....
+-> Dig deeper on Alici’s history...
     P: Can you tell me more about this place? And how it got to selling Oranges with oranges?
     <i>He freezes in place before looking down Pengi.</i>
     A: Whoa, whoa! What’s with all the questions here?!
@@ -187,39 +187,14 @@ A: N-n-no! That ain’t supposed to be here. I’m legit, legit I swear!
 title: Fish.Cop
 tags: 
 colorID: 0
-position: -710,173
+position: -1033,172
 ---
 P: Not a cop, but a private investigator. What are you going to do about it, sir?
 <i>For a moment, Alici’s panic shows through the cracks of his calm demeanor.</i>
 A: That’s a real funny joke there, friend. But I’ll have to ask you to stop, 'cause it’s rude to impersonate an investigator.
-P: <i>Oh god, am I really going to impersonate an officer?</i>
--> Commit to the bit.
-	<i>Pengi straightens their back and looks Alici dead in the eye.</i>
-    P: I’m not joking. Look at all this weird stuff you’re selling. Smartphones with oranges, skateboards with dresses, antique swords with furniture. Who are you trying to fool? Yourself?
-    <i>A stream of bubbles leaves Alici’s mouth as he begins to stutter.</i>
-    A: W-What do you want me to say? W-We are the innovation of modern—
-    P: Cut it with that innovation malarkey! You and I both know this store is a front!
-    <i>Alici begins muttering more gibberish. As he does so, Pengi takes a look around the store. When they look towards the door behind the counter, Alici shrieks.</i>
-    P: <i>Hmmm. Very interesting.</i>
-    [[Bring up the backdoor|Fish.EndGoodCop]]
-    [[Threaten with SWAT raid|Fish.EndBadCop]]
-
--> Chicken out.
-    P: Oh man, what am I even doing?
-    <i>Pengi looks up at the fish who is now flowing in confusion.</i>
-    P: I-
-    P: I’m actually a member of Grounded Real Estates and we want to buy the rights to your store. 
-    P: Sorry for all the trouble and stuff.
-    <i>There is a small pause before Alici responds, his voice curdling with anger.</i>
-    A: OH? So you WERE impersonating an officer of the law?
-    A: HAH! And now you wanna buy my shop?
-    <i>He lets out a roaring laugh while holding his belly.</i>
-    <i>Pengi winces at this sudden sound.</i>
-    A: I’ll be nice, kid.
-    A: Leave.
-    <i>He squints his watery eye down at the shivering penguin</i>
-    A: Or things will get ugly in here. .
-    [[Fish.EndPanic]]
+P: <i>Oh god, am I really going to impersonate an officer?</i
+[[Commit to the bit.|Fish.CopCommitToTheBit]]
+[[Chicken out.|Fish.ChickenOut]]
 ===
 title: Fish.Sign
 tags: 
@@ -333,7 +308,7 @@ P: <i>Right?</i>
 P: I-I hear a company is willing to buy out your store and pay you a boatload of money.
 A: Oh god, that sounds like a terrible idea! Once I sign a single piece of a paper, the family’ll know and I’m doomed!
 A: I need to get outta here ASAP!
-<i>Alici marches out the store, intent on leaving his current life..</i>
+<i>Alici marches out the store, intent on leaving his current life.</i>
 <<exitStage Alici>>
 P: <i>This place is crazier than I thought! I didn’t get his signature, but maybe it's for the best that this place gets forgotten...</i>
 //fade to white
@@ -383,7 +358,7 @@ This is a hack <forceNext>
 <<fadePlainBackground off 0.5 block white>>
 <forceNext>
 <<exitStage Alici>>
-P: Well, at the end of the day I wasn’t able to find that old mole’s boot...
+P: Well, at the end of the day I wasn’t able to find that old mole’s shoe...
 <i>Pengi reaches into their suitcase and pulls out the manila folder containing the store owners names.</i>
 <i>Looking at the list, they sigh.</i>
 P: Annnnd that was the last of the owners I needed to talk to. 
@@ -395,7 +370,7 @@ P: Not so sure if these are the results the boss was looking for, but we’ll fi
 title: Fish.InvestigateEndPanic
 tags: 
 colorID: 0
-position: -392,-547
+position: -404,-547
 ---
 <i>Pengi takes a step back in fright.</i>
 <<shake>>
@@ -414,5 +389,41 @@ This is a hack <forceNext>
 <<changeBackground generalMarket>>
 <<fadePlainBackground off 0.5 block white>>
 <forceNext>
+[[Fish.EndPanic]]
+===
+title: Fish.CopCommitToTheBit
+tags: 
+colorID: 0
+position: -765,165
+---
+<i>Pengi straightens their back and looks Alici dead in the eye.</i>
+P: I’m not joking. Look at all this weird stuff you’re selling. Smartphones with oranges, skateboards with dresses, antique swords with furniture. Who are you trying to fool? Yourself?
+<i>A stream of bubbles leaves Alici’s mouth as he begins to stutter.</i>
+A: W-What do you want me to say? W-We are the innovation of modern—
+P: Cut it with that innovation malarkey! You and I both know this store is a front!
+<i>Alici begins muttering more gibberish. As he does so, Pengi takes a look around the store. When they look towards the door behind the counter, Alici shrieks.</i>
+P: <i>Hmmm. Very interesting.</i>
+[[Bring up the backdoor|Fish.EndGoodCop]]
+[[Threaten with SWAT raid|Fish.EndBadCop]]
+===
+title: Fish.ChickenOut
+tags: 
+colorID: 0
+position: -763,466
+---
+P: Oh man, what am I even doing?
+<i>Pengi looks up at the fish who is now flowing in confusion.</i>
+P: I-
+P: I’m actually a member of Grounded Real Estates and we want to buy the rights to your store. 
+P: Sorry for all the trouble and stuff.
+<i>There is a small pause before Alici responds, his voice curdling with anger.</i>
+A: OH? So you WERE impersonating an officer of the law?
+A: HAH! And now you wanna buy my shop?
+<i>He lets out a roaring laugh while holding his belly.</i>
+<i>Pengi winces at this sudden sound.</i>
+A: I’ll be nice, kid.
+A: Leave.
+<i>He squints his watery eye down at the shivering penguin</i>
+A: Or things will get ugly in here. .
 [[Fish.EndPanic]]
 ===

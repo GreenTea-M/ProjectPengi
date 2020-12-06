@@ -43,7 +43,7 @@ H: And the best way to do so, well, as said by the great bodybuilder Armadillo S
 H, jojo: <size=120%>IT'S ALL ABOUT PUMP BABY!</size>
 <i>Pengi nods, but only to sate the conversation.</i>
 P: Y-yes. Quite impressive...
-H: Awesome! Now, how can the owner of Hippo’s Campus help you today?.
+H: Awesome! Now, how can the owner of Hippo’s Campus help you today?
 P: Oh.
 P: <i>This is such an interesting store! What kind of place would sell things to give you brain gains? 
 P: <i>That’s so awesome!</i> 
@@ -70,12 +70,12 @@ P: <i>Oh gosh, what do I do, what do I do? Oh no, he’s looking at me, waiting 
 title: Hippo.Sign
 tags: 
 colorID: 0
-position: -642,23
+position: -645,23
 ---
--> Well, what parts do you not like?.
+-> Well, what parts do you not like?
     [[Hippo.AskAboutTroubles]]
 
--> Well, you'd be happy to know that\nGrounded provides all the support you need!.
+-> Well, you'd be happy to know that\nGrounded provides all the support you need!
     P: Well… you’d be happy to know that Grounded provides all its tenants with full support and low rental fees during their stay on our property! 
     P: We are also well known for our world class customer support when it comes to utilities and other things you may need as a store owner!
     <i>Hank lets out a frustrated sigh.</i>
@@ -96,7 +96,7 @@ position: -642,23
         P: Then maybe Grounded’s modernization initiative would interest you? It's our company’s plan to modernize locations in the city that have the potential to be big attractions but have been neglected by their owners.
         <<hideItem stripMall>>
         H: Ah, so that’s why Grounded is so interested in the Centre. They’re thinking they can make a quick buck.
-        P: B–but you’ll be helping out your fellow store owners..
+        P: B–but you’ll be helping out your fellow store owners.
         <i>He scratches his chin with one of him muscular toes.</i>
         H: You know what. I'll give you a chance.
         H: If you manage to get the other owners to agree, then maybe. But for now I’ll have to decline.
@@ -124,7 +124,7 @@ H: Here at Hippo’s Campus we sell an assortment of goods ranging from books an
     <<hideItem brain>>
     [[Hippo.AskMethods]]
 
--> Ask for signature..
+-> Ask for signature.
     <<hideItem brain>>
     P: A-a-actually sir, I want to let you know that I represent Grounded Real Estates and we have a proposition for your business.
     H: Hmmm...
@@ -133,7 +133,7 @@ H: Here at Hippo’s Campus we sell an assortment of goods ranging from books an
     [[Hippo.Sign]]
 
 //This next branch only if Ask about supplements
--> Ask if something.  <<if $hippoAskSupplements == true>>
+-> Ask if something offended him.  <<if $hippoAskSupplements == true>>
     <<hideItem brain>>
     [[Hippo.AskSomething]]
 
@@ -156,7 +156,7 @@ P: That was… a disaster. <i>Pengi slaps themselves on the face.</i> No, now is
 title: Hippo.Depends
 tags: 
 colorID: 0
-position: 159,-7
+position: 157,-9
 ---
 <<exitStage Hank>> 
 <i>Pengi leaves Hippo’s Campus with sweat rolling down their back.</i>
@@ -202,7 +202,7 @@ position: -401,-579
 ---
 <i>Pengi’s eyes widen.</i>
 P: What kind of other methods? Like... 
-<i>Their voice softens to a whisper..</i>
+<i>Their voice softens to a whisper.</i>
 P: I-I-Illegal methods?
 <i>Hank's eyes widen before letting out a roaring laugh.</i>
 H: <size=150%>HAHAHAH</size>. No, we ARE running a respectable business here! 
@@ -231,7 +231,7 @@ H: A frustrating circumstance, but one I will recover from.
     H: Hmmm...
     H: Since you are walking around this lot, you may stumble upon it. 
     P: Well, if I find it anywhere I’ll let you know. Thanks again for showing me your shop. I’m glad I discovered it!
-    H: I’m glad you dropped by. Feel free to visit anytime as I’m always here!.
+    H: I’m glad you dropped by. Feel free to visit anytime as I’m always here!
     [[Hippo.FindNotebook]]
 
 -> Offer Hank a new perspective on the situation.
@@ -241,7 +241,7 @@ H: A frustrating circumstance, but one I will recover from.
     H: Wise words indeed. I think I might take you up on the offer. 
     H: I don’t believe much in destiny but I feel that our meeting was quite serendipitous.
     P: Thanks again for showing me your shop. I’m glad I discovered it!
-    H: I’m glad you dropped by. Feel free to visit anytime as I’m always here!.
+    H: I’m glad you dropped by. Feel free to visit anytime as I’m always here!
     [[Hippo.FriendsWithHank]]
 
 [[Hippo.About]]
