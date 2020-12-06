@@ -74,6 +74,7 @@ position: -1577,-302
     [[End.ShoeEnding]]
 <<endif>>
 
+[[End.Fail]]
 <<debugLog End.Intro failure>>
 <<gameEnd>>
 ===
@@ -268,7 +269,7 @@ P: I-I did it!
 <i>Having collected all three signatures, the promotion is a guarantee.</i>
 P: I’m the first in the company to have achieved something like this. The boss is sure to be happy!
 P: <size=60%>Maybe she won’t call me Pengsworth anymore.</size>
-<i>In the back of their mind, a gnawing feeling tells them they are forgetting something. But just looking at the signatures and thinking about flight school wipes it all away..</i>
+<i>In the back of their mind, a gnawing feeling tells them they are forgetting something. But just looking at the signatures and thinking about flight school wipes it all away.</i>
 <i>They march through the Menagerie Center, head held high, ready to show what they had accomplished to the boss tomorrow.</i>
 
 //office sounds, office background
