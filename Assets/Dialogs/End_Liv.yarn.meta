@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 5788e41f82d72ba47b06df4876a793ce
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: 
+  stringIDs: []
+  compilationStatus: 0
+  isSuccesfullyCompiled: 0
+  compilationErrorMessage: "Error on line 31 at position 148:\nextraneous input 'I'
+    expecting {HASHTAG, BODY_HASHTAG, TEXT_NEWLINE, TEXT_HASHTAG, TEXT_COMMANDHASHTAG_HASHTAG,
+    TEXT_COMMANDHASHTAG_NEWLINE, HASHTAG_TAG}\r\n<i>Pengi looks on to all the stores
+    they visited and is overcome with a feeling of vast emptiness. They had only
+    managed to collect #ofsignatures\u2026 It wouldn\u2019t be enough to collect
+    the promotion.</i>\r\r\n                                                                                                                                                  
+    ^"
+  baseLanguage: {instanceID: 0}
+  localizations: []
