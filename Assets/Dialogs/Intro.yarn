@@ -229,6 +229,7 @@ PB: <b> I’ll consider giving you a sizable raise.</b>
 <i>Her cheeks twitch.</i>
 PB: Maybe then your <i>Dream</i> might come true, <size=120%>Flyboy!</size>
 <i>And she knocks herself off her chair, rolling on the floor laughing.</i>
+<<hideItem stripMall>>
 <<exitStage Patricia>>
 <i>Taking the brown manila folder, Pengi sneaks out of the office as the snorts and oinks follow behind them.</i>
 <i>They make their way through the maze of cubicles and back to their desk. Paul looks over and grins upon seeing Pengi’s flushed face.</i>

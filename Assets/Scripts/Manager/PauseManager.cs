@@ -23,6 +23,16 @@ namespace Manager
         public TextMeshProUGUI popupMessage;
 
         public DialogSceneManager dialogSceneManager;
+        public BackButton backButton;
+        
+        public bool IsPaused
+        {
+            get => _isPaused;
+            set
+            {
+                _isPaused = value;
+            }
+        }
 
         private bool _isPaused = false;
         private SaveData _currentSaveData;
@@ -51,7 +61,7 @@ namespace Manager
 
         public void TogglePause()
         {
-            if (_isPaused)
+            if (IsPaused)
             {
                 // Unpause
                 inputManager.SetInputState(InputState.Normal);
@@ -69,10 +79,10 @@ namespace Manager
                 panelParent.gameObject.SetActive(false);
             }
 
-            _isPaused = !_isPaused;
+            IsPaused = !IsPaused;
 
-            blockingBackground.SetActive(_isPaused);
-            pauseUI.SetActive(_isPaused);
+            blockingBackground.SetActive(IsPaused);
+            pauseUI.SetActive(IsPaused);
         }
 
         public IEnumerator LoadSaveData()

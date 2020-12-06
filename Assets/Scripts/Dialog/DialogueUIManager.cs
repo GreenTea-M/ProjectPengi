@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Gameplay;
 using GameSystem;
@@ -25,6 +26,7 @@ namespace Dialog
     {
         [FormerlySerializedAs("assetManager")] public IconManager iconManager;
         public InputManager inputManager;
+        public CustomCommands customCommands;
 
         [Header("Critical")] public GameConfiguration gameConfiguration;
 
@@ -173,6 +175,11 @@ namespace Dialog
             // todo: research text gui things that people may use
             // todo: change text speed
 
+            if (text.Contains("<forceNext>"))
+            {
+                text = "";
+            }
+
             foreach (var c in text)
             {
                 #region for hiding markup
@@ -210,6 +217,40 @@ namespace Dialog
                                 {
                                     argument = $"{1f / tmpFloat}",
                                     effect = SpecialTextMark.Effect.TextSpeed,
+                                    index = cleanStringBuilder.Length
+                                });
+                            }
+                            else
+                            {
+                                Debug.LogWarning($"Failed to translate markup: {markupText}");
+                            }
+                        }
+                        else if (markupText.Contains("showitem"))
+                        {
+                            var parseArgs = markupText.Trim('>').Split(' ');
+                            if (parseArgs.Length != 0)
+                            {
+                                textMarks.Enqueue(new SpecialTextMark
+                                {
+                                    argument = string.Join(" ", parseArgs.Skip(1)),
+                                    effect = SpecialTextMark.Effect.ShowItem,
+                                    index = cleanStringBuilder.Length
+                                });
+                            }
+                            else
+                            {
+                                Debug.LogWarning($"Failed to translate markup: {markupText}");
+                            }
+                        }
+                        else if (markupText.Contains("hideitem"))
+                        {
+                            var parseArgs = markupText.Trim('>').Split(' ');
+                            if (parseArgs.Length != 0)
+                            {
+                                textMarks.Enqueue(new SpecialTextMark
+                                {
+                                    argument = string.Join(" ", parseArgs.Skip(1)),
+                                    effect = SpecialTextMark.Effect.HideItem,
                                     index = cleanStringBuilder.Length
                                 });
                             }
@@ -262,17 +303,7 @@ namespace Dialog
                 if (textMarks.Count != 0 && textMarks.Peek().index <= i)
                 {
                     var effect = textMarks.Dequeue();
-                    switch (effect.effect)
-                    {
-                        case SpecialTextMark.Effect.TextSpeed:
-                            if (float.TryParse(effect.argument, out var value))
-                            {
-                                textSpeedMultiplier = value;
-                            }
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
+                    ExecuteEffect(effect, textSpeedMultiplier);
                 }
 
                 if (userRequestedNextLine)
@@ -291,6 +322,11 @@ namespace Dialog
             
             // i don't know why the last character's not shown sometimes
             character.ShowCharacters(textLength + 10);
+
+            while (textMarks.Count != 0)
+            {
+                ExecuteEffect(textMarks.Dequeue(), textSpeedMultiplier);
+            }
 
             // Indicate to the rest of the game that the line has finished being delivered
             onLineFinishDisplaying?.Invoke();
@@ -311,6 +347,27 @@ namespace Dialog
             // onLineUpdate.RemoveListener(textItem.UpdateLine);
 
             onComplete();
+        }
+
+        private void ExecuteEffect(SpecialTextMark effect, float textSpeedMultiplier)
+        {
+            switch (effect.effect)
+            {
+                case SpecialTextMark.Effect.TextSpeed:
+                    if (float.TryParse(effect.argument, out var value))
+                    {
+                        textSpeedMultiplier = value;
+                    }
+                    break;
+                case SpecialTextMark.Effect.ShowItem:
+                    customCommands.ShowItem(effect.argument.Split(' '));
+                    break;
+                case SpecialTextMark.Effect.HideItem:
+                    customCommands.HideItem(effect.argument.Split(' '));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         private bool IsWhiteListed(string markupText)
@@ -510,7 +567,9 @@ namespace Dialog
 
         public enum Effect
         {
-            TextSpeed
+            TextSpeed,
+            ShowItem,
+            HideItem
         }
     }
 }

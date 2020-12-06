@@ -470,7 +470,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: c4417bb7c6de56c49b08f45a99058a59, type: 3}
+      objectReference: {fileID: 8300000, guid: ef9b5251ef0971540956071825acd965, type: 3}
     - target: {fileID: 3517092227973703711, guid: ffb55a4e78a9f6d448375860b9d3c112,
         type: 3}
       propertyPath: m_Name
@@ -581,7 +581,7 @@ PrefabInstance:
     - target: {fileID: 1064279660104995764, guid: d20af860a4a87c84eb5bfb43e72d26f9,
         type: 3}
       propertyPath: shouldIgnoreColor
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1064279660104995764, guid: d20af860a4a87c84eb5bfb43e72d26f9,
         type: 3}
@@ -601,18 +601,18 @@ PrefabInstance:
     - target: {fileID: 1064279660104995765, guid: d20af860a4a87c84eb5bfb43e72d26f9,
         type: 3}
       propertyPath: m_text
-      value: '<size=175%>Project Pengi</size>
+      value: '<size=175%>Pengi</size>
 
 
         Made in Unity
 
-        Written
-        in YarnSpinner
+        Written in
+        YarnSpinner
 
 
 
 
-        <size=120%>Team SNAOLE</size>
+        <size=120%>Green Tea-m</size>
 
         EJ Meneses
 
@@ -696,22 +696,22 @@ PrefabInstance:
     - target: {fileID: 1064279660104995765, guid: d20af860a4a87c84eb5bfb43e72d26f9,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 667
+      value: 659
       objectReference: {fileID: 0}
     - target: {fileID: 1064279660104995765, guid: d20af860a4a87c84eb5bfb43e72d26f9,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 133
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 1064279660104995765, guid: d20af860a4a87c84eb5bfb43e72d26f9,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 106
+      value: 105
       objectReference: {fileID: 0}
     - target: {fileID: 1064279660104995765, guid: d20af860a4a87c84eb5bfb43e72d26f9,
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
-      value: 55
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 1064279660104995765, guid: d20af860a4a87c84eb5bfb43e72d26f9,
         type: 3}
@@ -730,6 +730,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -2472646548117390439, guid: dc35776587d58074b9f6a9b0249e7b65,
         type: 2}
+    - target: {fileID: 1064279660104995765, guid: d20af860a4a87c84eb5bfb43e72d26f9,
+        type: 3}
+      propertyPath: m_textInfo.materialCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064279660104995765, guid: d20af860a4a87c84eb5bfb43e72d26f9,
+        type: 3}
+      propertyPath: m_subTextObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1625720367}
     - target: {fileID: 1064279660772767339, guid: d20af860a4a87c84eb5bfb43e72d26f9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -853,6 +863,24 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1291438139}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1291438141 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1064279660104995767, guid: d20af860a4a87c84eb5bfb43e72d26f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1291438139}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1291438142 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1064279660104995765, guid: d20af860a4a87c84eb5bfb43e72d26f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1291438139}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1299333043
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,6 +932,79 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1625720365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1625720366}
+  - component: {fileID: 1625720368}
+  - component: {fileID: 1625720367}
+  m_Layer: 5
+  m_Name: TMP SubMeshUI [Nunito-Bold Atlas Material + LiberationSans SDF Atlas]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1625720366
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625720365}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1291438141}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1625720367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625720365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_spriteAsset: {fileID: 0}
+  m_material: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
+  m_isDefaultMaterial: 0
+  m_padding: 1.25
+  m_canvasRenderer: {fileID: 1625720368}
+  m_TextComponent: {fileID: 1291438142}
+  m_materialReferenceIndex: 1
+--- !u!222 &1625720368
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625720365}
+  m_CullTransparentMesh: 0
 --- !u!1 &1684779701
 GameObject:
   m_ObjectHideFlags: 0
