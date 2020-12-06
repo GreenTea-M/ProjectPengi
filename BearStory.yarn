@@ -341,7 +341,7 @@ colorID: 0
 position: -280,920
 ---
 <<set $Bretta to true>>
-<<$marblesLef = $marblesLeft - 1>> 
+<<$marblesLeft = $marblesLeft - 1>> 
 B: This is my sister Bretta’s. She runs a chair shop in Grizzleton.
 -> The one that’s medium brown, with a white swirl running across the surface.
     B:  That’s great grandpa Breppa’s. He loves Banjos. That’s actually a string incorporated into the marble.
@@ -353,9 +353,10 @@ B: This is my sister Bretta’s. She runs a chair shop in Grizzleton.
         [[Bear.MarbleDialogue]]
     -> Hmmm, maybe not...
         [[Bear.Marble.End]]
+<<else>>
+    B: OK! That's the last of them!
+    [[Bear.PuzzleStart]]
 <<endif>>
-B: OK! That's the last of them!
-[[Bear.PuzzleStart]]
 ===
 title: Bear.BrodyMarble
 tags: 
@@ -363,7 +364,7 @@ colorID: 0
 position: 94,935
 ---
 <<set $Brody to true>>
-<<$marblesLef = $marblesLeft - 1>> 
+<<$marblesLeft = $marblesLeft - 1>> 
 B:  Uncle Brody’s work. He’s a pretty big nerd.
 -> The one that’s white, black and brown.
     B:  That’s my mom’s. Her name was Brittney.
@@ -376,17 +377,18 @@ B:  Uncle Brody’s work. He’s a pretty big nerd.
         [[Bear.MarbleDialogue]]
     -> Hmmm, maybe not...
         [[Bear.Marble.End]]
+<<else>>
+    B: OK! That's the last of them!
+    [[Bear.PuzzleStart]]
 <<endif>>
-B: OK! That's the last of them!
-[[Bear.PuzzleStart]]
 ===
 title: Bear.BrianMarble
 tags: 
 colorID: 0
-position: 472,939
+position: 471,939
 ---
 <<set $Brian to true>>
-<<$$marblesLef = marblesLeft - 1>> 
+<<$$marblesLeft = $marblesLeft - 1>> 
 B: My dad’s. His name was Brian.
 -> The one that has a line running down the middle.
     B:  That’s Bran’s. No one knows how we’re related to him, but he’s family. It opens up like a matryoshka doll.
@@ -398,9 +400,10 @@ B: My dad’s. His name was Brian.
         [[Bear.MarbleDialogue]]
     -> Hmmm, maybe not...
         [[Bear.Marble.End]]
+<<else>>
+    B: OK! That's the last of them!
+    [[Bear.PuzzleStart]]
 <<endif>>
-B: OK! That's the last of them!
-[[Bear.PuzzleStart]]
 ===
 title: Bear.Marble.End
 tags: 

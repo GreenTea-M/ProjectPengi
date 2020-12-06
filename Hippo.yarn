@@ -302,7 +302,7 @@ position: 160,473
 
 P: Whew! That was a lot more nerve wracking than I thought. But I got it at least. Now… who’s next?
 //sign, no help
-<<$signature = $signature + 1>>
+<<set $signature = $signature + 1>>
 <<set $HSign to true>>
 <<set $HHelp to false>>
 [[Bear.EnterStore]]
