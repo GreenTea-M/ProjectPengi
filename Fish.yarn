@@ -181,55 +181,8 @@ A: N-n-no! That was a joke, I’m a joker, see?
 <i>He lifts his blazer and reveals a handgun tucked inside. He lets out a gurgle.</i>
 <<shake>>
 A: N-n-no! That ain’t supposed to be here. I’m legit, legit I swear!
--> Rush towards the door.
-    <i>Pengi rushes to the door behind the counter. Alici chases after them but it's too late. Behind the door are rows of desks sitting in the dark with poker chips laying on top of each one.</i>
-    P: Wha-what’s this!? 
-    P: Are you running a gambling den?!
-    <i>Alici tries to say something, uttering gibberish noises before collapsing to his knees and crying.</i>
-    <i>The water in the fishbowl makes it hard to make out his tears.</i>
-    A: Yes! 
-    <i>He holds his fish bowl in his hands spilling half the water out of it.</i>
-    A: Yes, I am <textSpeed=0.075>...
-    A: There’s nothing I can do about it. 
-    A: My family made me do it. They said- they said it was all for the family!
-    P: Are you an actual mafioso?! Like with all the illegal stuff?
-    A: I am!
-    <i>He begins to shake and gurgle, sloshing more water onto the floor</i>
-    <i>Pengi hands their handkerchief to Alici who wipes the water off the front of his bowl.</i>
-    <i>His shoulders slouched down in defeat.</i>
-    A: They wanted me to handle our little front, but…
-    A: I can’t handle it no more!
-    A: I’m not made for a life of crime! I couldn’t even sell you a freakin' futon!
-    P: <i>Hmmm. This place is no good for this guy. Maybe him signing is actually a good thing?</i>
-    P: How about I get this trouble off your fins then? I represent a company interested in taking over the Centre. They’ll even give you some money to start the business somewhere else.
-    A: W-wait...really?
-    A: But...the family will probably find out...
-    P: I don't think that's any worse than how you are living right now.
-    <i>Alici looks down at his two fins then around at the tables in the darkly lit back room.</i>
-    A: You know what...
-    A: Give me the damn paper. Imma sign it and use that money to do... something... 
-    A: Anything but this.
-//fade to white
-    [[Fish.EndInvestigate]]
--> Run away
-	<i>Pengi takes a step back in fright.</i>
-	<<shake>>
-	P: <size=150%>THAT’S A REAL GUN!</size>
-	A: No! Don’t worry about it! Don’t tell anyone kid, ya hear?
-	P: I-I swear I won’t! 
-	P: Just please don’t hurt me!
-	A: I wont kid! Swears it, I’ve never even used this old thing!
-	P: Ye-yeah.
-	//<<playSFX SFXrunning>>
-	<i>Pengi suddenly turns around and books it towards the front door.</i>
-    <<fadePlainBackground on 0.5 block white>>
-    This is a hack <forceNext>
-    <<playAudio Market>>
-    <<wait 0.2>>
-    <<changeBackground generalMarket>>
-    <<fadePlainBackground off 0.5 block white>>
-    <forceNext>
-	[[Fish.EndPanic]]
+[[Rush towards the door.|Fish.EndInvestigate]]
+[[Run away|Fish.InvestigateEndPanic]]
 ===
 title: Fish.Cop
 tags: 
@@ -284,8 +237,36 @@ A: I’m about to bust your head in like a watermelon if you don’t walk outta 
 title: Fish.EndInvestigate
 tags: 
 colorID: 0
-position: -1035,-783
+position: -400,-888
 ---
+<i>Pengi rushes to the door behind the counter. Alici chases after them but it's too late. Behind the door are rows of desks sitting in the dark with poker chips laying on top of each one.</i>
+P: Wha-what’s this!? 
+P: Are you running a gambling den?!
+<i>Alici tries to say something, uttering gibberish noises before collapsing to his knees and crying.</i>
+<i>The water in the fishbowl makes it hard to make out his tears.</i>
+A: Yes! 
+<i>He holds his fish bowl in his hands spilling half the water out of it.</i>
+A: Yes, I am <textSpeed=0.075>...
+A: There’s nothing I can do about it. 
+A: My family made me do it. They said- they said it was all for the family!
+P: Are you an actual mafioso?! Like with all the illegal stuff?
+A: I am!
+<i>He begins to shake and gurgle, sloshing more water onto the floor</i>
+<i>Pengi hands their handkerchief to Alici who wipes the water off the front of his bowl.</i>
+<i>His shoulders slouched down in defeat.</i>
+A: They wanted me to handle our little front, but…
+A: I can’t handle it no more!
+A: I’m not made for a life of crime! I couldn’t even sell you a freakin' futon!
+P: <i>Hmmm. This place is no good for this guy. Maybe him signing is actually a good thing?</i>
+P: How about I get this trouble off your fins then? I represent a company interested in taking over the Centre. They’ll even give you some money to start the business somewhere else.
+A: W-wait...really?
+A: But...the family will probably find out...
+P: I don't think that's any worse than how you are living right now.
+<i>Alici looks down at his two fins then around at the tables in the darkly lit back room.</i>
+A: You know what...
+A: Give me the damn paper. Imma sign it and use that money to do... something... 
+A: Anything but this.
+//fade to white
 <i>As Alici walks away from his life of crime, Pengi pulls out a lollipop from their pocket. They unwrap it and take a lick.</i>
 P: <i>Just another day in Menagerie Centre.</i> 
 P: <i>Heh. This place never changes,</i>
@@ -410,4 +391,28 @@ P: Annnnd that was the last of the owners I needed to talk to.
 P: Not so sure if these are the results the boss was looking for, but we’ll find out soon enough. 
 <i>Placing the paper back in their suitcase, they make their way back to the office.</i>
 [[End.Intro]]
+===
+title: Fish.InvestigateEndPanic
+tags: 
+colorID: 0
+position: -392,-547
+---
+<i>Pengi takes a step back in fright.</i>
+<<shake>>
+P: <size=150%>THAT’S A REAL GUN!</size>
+A: No! Don’t worry about it! Don’t tell anyone kid, ya hear?
+P: I-I swear I won’t! 
+P: Just please don’t hurt me!
+A: I wont kid! Swears it, I’ve never even used this old thing!
+P: Ye-yeah.
+//<<playSFX SFXrunning>>
+<i>Pengi suddenly turns around and books it towards the front door.</i>
+<<fadePlainBackground on 0.5 block white>>
+This is a hack <forceNext>
+<<playAudio Market>>
+<<wait 0.2>>
+<<changeBackground generalMarket>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+[[Fish.EndPanic]]
 ===

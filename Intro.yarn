@@ -110,8 +110,8 @@ position: -1293,-20
 //clouds are moving, soft light??, maybe pengi moving back and forth?
 //SFX: radio sound? GOLD
 P, pilot: Hello everyone, this is your captain speaking.
-P: Hope you've enjoyed this wonderful flight so far.
-P: As you look over to the left side of the plane you'll see the sun rising over the ocean.
+P, pilot: Hope you've enjoyed this wonderful flight so far.
+P, pilot: As you look over to the left side of the plane you'll see the sun rising over the ocean.
 <<changeBackground sunset>>
 //Background cuts to shot of sunrise over ocean
 <i>The morning sun's rays glisten through the clouds.</i>
