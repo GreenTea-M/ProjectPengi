@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -16,11 +17,13 @@ namespace UI
 
         private void OnEnable()
         {
-            SetLocation(text.text);
+            StartCoroutine(OnEnablePlate());
         }
 
         public void SetLocation(string locationName)
         {
+            StopAllCoroutines();
+            
             if (_animator == null)
             {
                 _animator = GetComponent<Animator>();
@@ -33,6 +36,7 @@ namespace UI
             }
             else
             {
+                // todo: this part maybe the reason why the location plate doesn't appear...
                 if (_previousLocationName.Equals(locationName))
                 {
                     return;
@@ -43,6 +47,12 @@ namespace UI
                 text.text = locationName;
                 _animator.Play(HashStartLocationPlate);
             }
+        }
+
+        IEnumerator OnEnablePlate()
+        {
+            yield return new WaitForSeconds(0.25f);
+            SetLocation(text.text);
         }
     }
 }
