@@ -45,37 +45,45 @@ namespace GameSystem.Save
         /// </remarks>
         public class SlotExecutor
         {
-            internal int slotIndex = 0;
-            internal SaveData saveData = null;
-
-            private readonly SaveIO _saveIo;
+            private int _slotIndex = 0;
+            private SaveData _saveData = null;
+            private readonly JSONExecutor _jsonExecutor;
+            private SaveIO _saveIo;
 
             internal SlotExecutor(SaveIO saveIo)
             {
                 _saveIo = saveIo;
+                _jsonExecutor = saveIo.RequestJsonExecutor();
             }
 
             public SlotExecutor AtSlotIndex(int slotIndex)
             {
                 Assert.IsTrue(slotIndex < _saveIo.gameConfiguration.maxSaveSlots);
-                this.slotIndex = slotIndex;
+                _slotIndex = slotIndex;
                 return this;
             }
 
             public SlotExecutor UsingSaveData(SaveData saveData)
             {
-                this.saveData = saveData;
+                _saveData = saveData;
                 return this;
             }
 
             public SaveData GetSaveData()
             {
-                return saveData;
+                return _saveData;
+            }
+
+            private string GetFilename()
+            {
+                return $"savedata{_slotIndex}";
             }
 
             public bool OverwriteSlot()
             {
-                return this._saveIo.OverwriteSlot(this);
+                return _jsonExecutor.UsingFilename(GetFilename())
+                    .UsingJsonData(JsonUtility.ToJson(_saveData))
+                    .OverwriteJsonFile();
             }
 
             /// <summary>
@@ -84,12 +92,13 @@ namespace GameSystem.Save
             /// <returns>Returns whether the loading was successful</returns>
             public SaveData LoadSlot()
             {
-                return this._saveIo.LoadSlot(this);
+                var jsonString = _jsonExecutor.UsingFilename(GetFilename()).LoadJsonString();
+                return jsonString != null ? JsonUtility.FromJson<SaveData>(jsonString) : null;
             }
 
             public bool DoesExist()
             {
-                return this._saveIo.DoesExist(this);
+                return _jsonExecutor.UsingFilename(GetFilename()).DoesExist();
             }
         }
 
@@ -101,10 +110,9 @@ namespace GameSystem.Save
         {
             private string _filename = null;
             private string _jsonString = "";
-
             private readonly SaveIO _saveIo;
 
-            internal JSONExecutor(SaveIO saveIo)
+            public JSONExecutor(SaveIO saveIo)
             {
                 _saveIo = saveIo;
             }
@@ -165,70 +173,17 @@ namespace GameSystem.Save
         /// <remarks>
         /// todo(Turnip): extract constants
         /// </remarks>
-        private string GetPath(SlotExecutor slotExecutor)
-        {
-            return Application.persistentDataPath + "/savedata"
-                                                  + slotExecutor.slotIndex + ".json";
-        }
-        
         private string GetPath(JSONExecutor jsonExecutor)
         {
-            return Application.persistentDataPath + "/" + jsonExecutor.GetFilename() + ".json";
+            return $"{Application.persistentDataPath}/{jsonExecutor.GetFilename()}.json";
         }
 
-        private bool OverwriteSlot(SlotExecutor slotExecutor)
-        {
-            if (slotExecutor.saveData == null)
-            {
-                return false;
-            }
-
-            bool result = true;
-
-
-            string path = GetPath(slotExecutor);
-            // Debug.Log(path);
-            string jsonString = JsonUtility.ToJson(slotExecutor.saveData);
-            File.WriteAllText(path, jsonString);
-
-#if UNITY_WEBGL
-            if (Application.platform == RuntimePlatform.WebGLPlayer)
-            {
-                SyncFiles();
-            }
-#elif UNITY_STANDALONE_WIN
-            /*BinaryFormatter formatter = new BinaryFormatter();
-            string path = GetPath(slotExecutor);
-            FileStream stream = new FileStream(path, FileMode.Create);
-
-            try
-            {
-                formatter.Serialize(stream, slotExecutor.saveData);
-            }
-            catch (Exception)
-            {
-                // todo: specify the three exceptions here
-                result = false;
-            }
-            finally
-            {
-                stream.Close();
-            }*/
-#else
-            Debug.LogError("Saving not supported on current platform");
-#endif
-
-            return result;
-        }
-        
         private bool OverwriteJson(JSONExecutor jsonExecutor)
         {
             if (jsonExecutor.GetFilename() == null)
             {
                 return false;
             }
-
-            bool result = true;
 
             string path = GetPath(jsonExecutor);
             File.WriteAllText(path, jsonExecutor.GetJsonString());
@@ -238,84 +193,14 @@ namespace GameSystem.Save
             {
                 SyncFiles();
             }
-#elif UNITY_STANDALONE_WIN
-            /*BinaryFormatter formatter = new BinaryFormatter();
-            string path = GetPath(slotExecutor);
-            FileStream stream = new FileStream(path, FileMode.Create);
-
-            try
-            {
-                formatter.Serialize(stream, slotExecutor.saveData);
-            }
-            catch (Exception)
-            {
-                // todo: specify the three exceptions here
-                result = false;
-            }
-            finally
-            {
-                stream.Close();
-            }*/
-#else
-            Debug.LogError("Saving not supported on current platform");
 #endif
 
-            return result;
+            return true;
         }
-
-        private bool DoesExist(SlotExecutor slotExecutor)
-        {
-            return File.Exists(GetPath(slotExecutor));
-        }
-        
 
         private bool DoesExist(JSONExecutor jsonExecutor)
         {
             return File.Exists(GetPath(jsonExecutor));
-        }
-
-        private SaveData LoadSlot(SlotExecutor slotExecutor)
-        {
-            SaveData result = null;
-            string path = GetPath(slotExecutor);
-
-            if (File.Exists(path))
-            {
-                var jsonString = File.ReadAllText(path);
-                result = JsonUtility.FromJson<SaveData>(jsonString);
-
-#if UNITY_WEBGL
-                if (Application.platform == RuntimePlatform.WebGLPlayer)
-                {
-                    SyncFiles();
-                }
-#elif UNITY_STANDALONE_WIN
-                /*BinaryFormatter formatter = new BinaryFormatter();
-                FileStream stream = new FileStream(path, FileMode.Open);
-
-                try
-                {
-                    result = (SaveData) formatter.Deserialize(stream);
-                }
-                catch (Exception ex)
-                {
-                    // todo: specify the three exceptions here
-                    Debug.LogError(ex.Message);
-                }
-                finally
-                {
-                    stream.Close();
-                }*/
-#else
-            Debug.LogError("Saving not supported on current platform");
-#endif
-            }
-            else
-            {
-                Debug.LogError("Save file not found in path: " + path);
-            }
-
-            return result;
         }
 
         private string LoadJsonString(JSONExecutor jsonExecutor)
@@ -324,7 +209,8 @@ namespace GameSystem.Save
 
             if (File.Exists(path))
             {
-                return File.ReadAllText(path);
+                jsonExecutor.UsingJsonData(File.ReadAllText(path));
+                return jsonExecutor.GetJsonString();
             }
 
             Debug.LogError("Save file not found in path: " + path);
