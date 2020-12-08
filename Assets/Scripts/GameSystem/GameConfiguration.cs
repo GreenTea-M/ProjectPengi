@@ -244,7 +244,7 @@ namespace GameSystem
 
         public void LoadData(int slotIndex)
         {
-            var tmpSave = SaveIo.RequestExecutor()
+            var tmpSave = SaveIo.RequestSlotExecutor()
                 .AtSlotIndex(slotIndex)
                 .LoadSlot();
             if (tmpSave != null)

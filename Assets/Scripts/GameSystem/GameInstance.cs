@@ -58,7 +58,7 @@ public class GameInstance : MonoBehaviour
         {
             saveClient.TryAutoSaveWrite();
         }
-        gameConfiguration.SaveIo.RequestExecutor()
+        gameConfiguration.SaveIo.RequestSlotExecutor()
             .AtSlotIndex(0)
             .UsingSaveData(gameConfiguration.GetAutoSave())
             .OverwriteSlot();
