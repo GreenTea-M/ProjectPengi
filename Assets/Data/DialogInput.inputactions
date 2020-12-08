@@ -261,6 +261,17 @@
                 },
                 {
                     "name": "",
+                    "id": "99915b45-494a-4c87-b19e-fe4345c060b1",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ContinueText",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c37a1d28-bcd3-4aa8-9877-66b497b3f549",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
