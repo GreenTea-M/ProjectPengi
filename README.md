@@ -1,9 +1,18 @@
 // todo: Clean up this section
-
+# Code references
+These are code references that helped us make the game.
 * Audio Fade In. https://stackoverflow.com/questions/57527257/audio-fade-in-out-with-c-sharp-in-unity
+* http://digitalnativestudios.com/forum/index.php?topic=1199.0
 
 # External assets
-These are external assets that were made by other people.
+These are external assets that were made by other people. Each has their own licenses, so please check them out:
+## Code
+Unite 2017 - Game Architecture with Scriptable Objects
+// todo: link the repo
+Author: Ryan Hipple
+Date:   10/04/17
+
+## Fonts
 * Comic Nueue. The Comic Neue Project Authors. https://github.com/crozynski/comicneue
 * Hind. Indian Type Foundry. info@indiantypefoundry.com
 * Karla. Jonathan Pinhorn (jonpinhorn.typedesign@gmail.com)

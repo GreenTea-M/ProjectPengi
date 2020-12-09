@@ -1,31 +1,34 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Cinemachine;
 using Dialog;
 using Others;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 namespace UI
 {
+    /// <summary>
+    /// This is two finite state machines which dictates how each character,
+    /// and text associated with the character, appears in the scene.
+    /// </summary>
     public class UnifiedCharacterScript : MonoBehaviour
     {
-        [Header("Data")]
-        public CharacterData characterData;
+        [Header("Data")] public CharacterData characterData;
         public SpriteEmote defaultSprite;
-        public SpriteEmote[] alternativeSprites;        
-        
+        public SpriteEmote[] alternativeSprites;
+
         [Header("Locations")] public Transform stageLocation;
         public Transform exitLocation;
-        [FormerlySerializedAs("alternativeTextLocation")] public Transform alternativeTextTransform;
+
+        [FormerlySerializedAs("alternativeTextLocation")]
+        public Transform alternativeTextTransform;
+
         public AlternativeTextLocationData[] defaultTextLocationList;
         public AlternativeTextLocationData[] alternativeTextLocationList;
         public AlternativeTextLocationData[] alternativeStageLocationList;
-        
+
         [Header("Child components")] public SpriteRenderer sprite;
         public TextMeshProUGUI dialogueText;
         public Transform layoutGroup;
@@ -39,8 +42,7 @@ namespace UI
         public float speakFloatHeight = 0.25f;
         public float speakFloatSpeed = 2f;
 
-        [FormerlySerializedAs("_state")] 
-        public CharacterState characterState = CharacterState.Hidden;
+        [FormerlySerializedAs("_state")] public CharacterState characterState = CharacterState.Hidden;
         private CharacterState _previousState = CharacterState.Hidden;
         private TextState _textState = TextState.Default;
         private CharacterType _characterType = CharacterType.Narrator;
@@ -96,14 +98,13 @@ namespace UI
 
         private void Update()
         {
-            
             if (characterState != _previousState)
             {
                 RefreshSprite();
 
                 _previousState = characterState;
             }
-            
+
             switch (characterState)
             {
                 case CharacterState.Hidden:
@@ -128,7 +129,7 @@ namespace UI
                 case CharacterState.Speaking:
                     sprite.transform.position = _currentStagePosition +
                                                 (Mathf.Abs(Mathf.Sin((Time.time - _timeOffset) *
-                                                            speakFloatSpeed)) * speakFloatHeight * Vector3.up);
+                                                                     speakFloatSpeed)) * speakFloatHeight * Vector3.up);
                     break;
                 case CharacterState.Disappearing:
                     Disappear();
@@ -163,7 +164,7 @@ namespace UI
                         break;
                     }
                 }
-                
+
                 _defaultTextLocation = _initialTextLocation;
 
                 foreach (var data in defaultTextLocationList)
@@ -174,7 +175,7 @@ namespace UI
                         break;
                     }
                 }
-                
+
                 _previousTextAlternative = _textAlternative;
 
                 _currentStagePosition = stageLocation.position;
@@ -265,7 +266,6 @@ namespace UI
 
         private void Disappear()
         {
-            
             switch (_characterType)
             {
                 case CharacterType.Narrator:
@@ -280,23 +280,39 @@ namespace UI
                     {
                         characterState = CharacterState.Hidden;
                     }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
+        /// <summary>
+        /// Initializes unified character script
+        /// </summary>
+        /// <param name="iconManager"></param>
         public void SetData(IconManager iconManager)
         {
             _iconManager = iconManager;
             _characterType = characterData.characterType;
         }
 
+        /// <summary>
+        /// Returns true if the candidate speaker matches their name or alias
+        /// </summary>
+        /// <param name="candidateSpeaker"></param>
+        /// <returns></returns>
         public bool IsSimilar(string candidateSpeaker)
         {
             return characterData.IsSimilar(candidateSpeaker);
         }
 
+        /// <summary>
+        /// Updates the status of a character depending on their emotion or description.
+        /// It also checks what their status is based on icon manager.
+        /// </summary>
+        /// <param name="description"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void UpdateStatus(string description)
         {
             if (_iconManager.currentSpeaking != this && characterState != CharacterState.Hidden)
@@ -358,7 +374,6 @@ namespace UI
                 characterState = CharacterState.Appearing;
             }
 
-            
 
             if (_isSpeaking)
             {
@@ -376,18 +391,19 @@ namespace UI
                         _jojoPreviousAltState = _textAlternative;
                         _iconManager.UpdateAlternativeTextLocation(TextAlternativeLocationState.Jojo);
                     }
-                    
+
                     _oldDescription = _description;
                     RefreshSprite();
                 }
-                
-                
             }
 
             textCanvas.gameObject.SetActive(false);
             dialogueText.text = "";
         }
 
+        /// <summary>
+        /// Refreshes the sprite based on their current description and state.
+        /// </summary>
         private void RefreshSprite()
         {
             // update sprite based on description + state
@@ -404,7 +420,11 @@ namespace UI
             bestSpriteData.GetBestSprite(sprite, characterState);
         }
 
-
+        /// <summary>
+        /// Sets the text of the text associated with the character.
+        /// It also sets the visible characters to zero.
+        /// </summary>
+        /// <param name="text"></param>
         public void SetInitialText(string text)
         {
             textCanvas.gameObject.SetActive(true);
@@ -413,11 +433,21 @@ namespace UI
             _currentTextMax = text.Length;
         }
 
+        /// <summary>
+        /// Sets the visible characters of the script.
+        /// </summary>
+        /// <param name="count"></param>
         public void ShowCharacters(int count)
         {
             dialogueText.maxVisibleCharacters = count;
         }
 
+        /// <summary>
+        /// Creates the buttons, given the optionsLength, for the main character.
+        /// Only use for the main character.
+        /// This will not make uneccessary buttons.
+        /// </summary>
+        /// <param name="optionsLength"></param>
         public void CreateButtons(int optionsLength)
         {
             Debug.Assert(_characterType == CharacterType.Main);
@@ -434,6 +464,11 @@ namespace UI
             _textState = TextState.ToAlternative;
         }
 
+        /// <summary>
+        /// Activates the buttons to make them appear.
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="call"></param>
         public void ActivateButtons(int i, UnityAction call)
         {
             Debug.Assert(_characterType == CharacterType.Main);
@@ -443,11 +478,19 @@ namespace UI
             _buttons[i].onClick.AddListener(call);
         }
 
+        /// <summary>
+        /// Sets the text of button on index i with string optionText
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="optionText"></param>
         public void SetButtonText(int i, string optionText)
         {
             _buttons[i].SetText(optionText);
         }
 
+        /// <summary>
+        /// Makes the button disappear
+        /// </summary>
         public void HideAllButtons()
         {
             foreach (var button in _buttons)
@@ -461,28 +504,41 @@ namespace UI
             _textState = TextState.ToDefault;
         }
 
+        /// <summary>
+        /// Makes the character leave the visible scene.
+        /// </summary>
         public void Leave()
         {
             characterState = CharacterState.Disappearing;
             dialogueText.text = "";
         }
 
+        /// <summary>
+        /// Forces the text location to its alternative location. This is useful when dialogue options are being shown.
+        /// </summary>
         public void SetTextAlternativeLocation()
         {
             _textState = TextState.ToAlternative;
         }
 
+        /// <summary>
+        /// Resets the text location. This is useful after a dialogue option was chosen
+        /// </summary>
         public void ResetTextLocation()
         {
             _textState = TextState.ToDefault;
         }
 
+        /// <summary>
+        /// For certain scenes, the text locations may need to change. Use this to communicate that.
+        /// </summary>
+        /// <param name="alternativeLocationState"></param>
         public void SetAlternativeLocationState(TextAlternativeLocationState alternativeLocationState)
         {
             _textAlternative = alternativeLocationState;
         }
     }
-    
+
     public enum CharacterState
     {
         Hidden,
@@ -493,7 +549,7 @@ namespace UI
         ToRepositionIdling,
         RepostitionIdling
     }
-    
+
     [Serializable]
     public class CharacterData : DataItem
     {

@@ -1,10 +1,12 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
 namespace UI
 {
+    /// <summary>
+    /// <c>LocationPlate</c> animates the swinging sign which displays the current location's name.
+    /// </summary>
     [RequireComponent(typeof(Animator))]
     public class LocationPlate : MonoBehaviour
     {

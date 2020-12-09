@@ -1,7 +1,7 @@
-using System;
 using Dialog;
 using GameSystem;
 using GameSystem.Save;
+using Others;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +9,9 @@ using Yarn.Unity;
 
 namespace Manager
 {
+    /// <summary>
+    /// <c>DialogSceneManager</c> manages DialogScene
+    /// </summary>
     public class DialogSceneManager : MonoBehaviour, ISaveClientCallback
     {
         public GameConfiguration gameConfiguration;
@@ -80,9 +83,13 @@ namespace Manager
             memory.Write(_saveClient.autoSave);
         }
 
+        /// <summary>
+        /// Used when back button is clicked
+        /// </summary>
+        /// I'm not sure but I don't want to delete this, just in case.
         public void GoBack()
         {
-            SceneManager.LoadScene("MainMenuScene");
+            SceneManager.LoadScene(PengiConstants.SceneMainMenu);
         }
     }
 }

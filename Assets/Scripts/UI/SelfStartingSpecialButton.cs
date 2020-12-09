@@ -2,6 +2,10 @@ using TMPro;
 
 namespace UI
 {
+    /// <summary>
+    /// This button does not require external scripts to start.
+    /// Its base class requires an external script to activate it.
+    /// </summary>
     public class SelfStartingSpecialButton : SpecialButton
     {
         private string _originalText = null;

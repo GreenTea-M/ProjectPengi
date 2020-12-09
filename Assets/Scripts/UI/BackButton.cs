@@ -1,4 +1,4 @@
-using System;
+using Others;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,7 +7,7 @@ namespace UI
 {
     public class BackButton : MonoBehaviour
     {
-        private const string MainMenuScene = "MainMenuScene";
+        private const string MainMenuScene = PengiConstants.SceneMainMenu;
         
         private void Start()
         {

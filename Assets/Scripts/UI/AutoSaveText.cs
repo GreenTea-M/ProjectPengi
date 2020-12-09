@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Gameplay;
 using GameSystem;
@@ -7,6 +6,9 @@ using UnityEngine;
 
 namespace UI
 {
+    /// <summary>
+    /// Component for the text that informs you that we are auto saving
+    /// </summary>
     public class AutoSaveText : MonoBehaviour
     {
         public InputManager inputManager;

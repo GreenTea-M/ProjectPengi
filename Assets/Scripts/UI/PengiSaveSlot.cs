@@ -7,6 +7,10 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    /// <summary>
+    /// <c>PengiSaveSlot</c> is the save slot you see when saving and loading a data.
+    /// It handles the logic for both.
+    /// </summary>
     public class PengiSaveSlot : MonoBehaviour
     {
         public GameConfiguration gameConfiguration;

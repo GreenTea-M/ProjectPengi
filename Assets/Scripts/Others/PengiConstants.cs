@@ -7,6 +7,8 @@ namespace Others
     public static class PengiConstants
     {
         public const string SceneEndGame = "EndGameScene";
+        public const string SceneMainMenu = "MainMenuScene";
+        
         public const string PuzzleDoneVariableName = "$puzzleDone";
     }
 }

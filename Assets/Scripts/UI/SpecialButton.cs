@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,6 +5,10 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    /// <summary>
+    /// This animates the button for the dialog options.
+    /// Requires startup by an external script.
+    /// </summary>
     public class SpecialButton : Button
     {
         protected TextMeshProUGUI buttonText;

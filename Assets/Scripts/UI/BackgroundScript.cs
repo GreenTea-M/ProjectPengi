@@ -1,11 +1,13 @@
 using System;
-using Dialog;
 using Others;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace UI
 {
+    /// <summary>
+    /// Component for the background which fades in and out. It is used when changeHeader is called.
+    /// </summary>
     public class BackgroundScript : MonoBehaviour
     {
         [FormerlySerializedAs("allParts")] 

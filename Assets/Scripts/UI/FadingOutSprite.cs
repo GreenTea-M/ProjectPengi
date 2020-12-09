@@ -1,8 +1,10 @@
-using System;
 using UnityEngine;
 
 namespace UI
 {
+    /// <summary>
+    /// On start, the sprite fades and destroys itself.
+    /// </summary>
     [RequireComponent(typeof(SpriteRenderer))]
     public class FadingOutSprite : MonoBehaviour
     {

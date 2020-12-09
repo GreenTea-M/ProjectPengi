@@ -1,5 +1,3 @@
-using System;
-using Dialog;
 using GameSystem;
 using RoboRyanTron.Unite2017.Events;
 using TMPro;
@@ -8,22 +6,28 @@ using UnityEngine.Serialization;
 
 namespace UI
 {
+    /// <summary>
+    /// <c>TextUnifier</c> should be attached with text meshes that adjusts to a user defined font via options.
+    /// </summary>
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class TextUnifier : GameEventListener
     {
         public GameConfiguration gameConfiguration;
         public float textFontMultiplier = 1f;
-        [FormerlySerializedAs("shouldIgnoreColor")] public bool shouldIgnoreAlpha = false;
+
+        [FormerlySerializedAs("shouldIgnoreColor")]
+        public bool shouldIgnoreAlpha = false;
+
         public bool shouldIgnoreSize = false;
         public bool shouldIgnoreColor = false;
-        
+
         private TextMeshProUGUI _text;
         private Color _color;
 
         protected new void OnEnable()
         {
             base.OnEnable();
-            
+
             Response.AddListener(UpdateFontSize);
             _text = GetComponent<TextMeshProUGUI>();
             _color = _text.color;
@@ -39,7 +43,7 @@ namespace UI
         public void UpdateFontSize()
         {
             _text.font = gameConfiguration.FontAsset;
-            
+
             if (!shouldIgnoreSize)
             {
                 _text.fontSize = gameConfiguration.FontSize * textFontMultiplier;
