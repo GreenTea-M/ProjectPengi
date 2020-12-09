@@ -22,6 +22,9 @@ namespace GameSystem
         public GameConfiguration baseConfiguration;
 
         public FontItem[] fontList;
+
+        public GameObject mainCharacterPrefab;
+        public GameObject narratingCharacterPrefab;
         public GameObject[] characterPrefabList;
 
         #region Option variables
@@ -233,6 +236,10 @@ namespace GameSystem
                     break;
                 }
             }
+
+            // if no one else is speaking, go with pengi
+            image.sprite = mainCharacterPrefab.GetComponent<UnifiedCharacterScript>()
+                .defaultSprite.defaultState.sprite;
         }
     }
 
