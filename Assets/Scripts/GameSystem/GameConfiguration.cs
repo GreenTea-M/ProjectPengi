@@ -136,7 +136,7 @@ namespace GameSystem
         public SaveIO SaveIo => saveIo ?? (saveIo = new SaveIO(this));
 
         /// <summary>
-        /// todo: document
+        /// When the game starts, load the player preferences.
         /// </summary>
         /// Q: Why aren't you using player preferences?
         /// I have been trying to use player preferences, but I don't understand
@@ -179,7 +179,6 @@ namespace GameSystem
             autoSave.Overwrite(baseConfiguration.currentSave);
         }
 
-        // todo: update
         public void ResetOptions()
         {
             _playerPref = new PlayerPreferences();

@@ -50,7 +50,6 @@ namespace UI
                         }
                         break;
                     case State.Disappearing:
-                        // todo: improve fade
                         _allAlpha -= Time.deltaTime * transitionDuration;
                         bgColor.a = _allAlpha;
                         bg.color = bgColor;

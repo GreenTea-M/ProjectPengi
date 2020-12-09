@@ -17,11 +17,9 @@ using Yarn.Unity;
 namespace Dialog
 {
     /// <summary>
-    /// Based on YarnSpinner's sample DialogueUI
+    /// Modified version of YarnSpinner's sample DialogueUI
     /// </summary>
     /// <seealso cref="DialogueUI"/>
-    ///  todo: add more documentation
-    ///  todo: add aliases in button options
     public class DialogueUIManager : Yarn.Unity.DialogueUIBehaviour, SaveClientCallback
     {
         [FormerlySerializedAs("assetManager")] public IconManager iconManager;
@@ -135,7 +133,6 @@ namespace Dialog
                 text = "";
             }
 
-            // todo: deprecate
             // identifies speaker
             var argSplit = text.Split(':');
             InformSpeakerReturn speakerInfo = iconManager.InformSpeaker(argSplit.Length != 1 ? argSplit[0] : "");
@@ -171,9 +168,6 @@ namespace Dialog
             var cleanStringBuilder = new StringBuilder();
             var markupBuilder = new StringBuilder();
             var textMarks = new Queue<SpecialTextMark>();
-            // todo: do something about markup symbols
-            // todo: research text gui things that people may use
-            // todo: change text speed
 
             if (text.Contains("<forceNext>"))
             {
@@ -298,26 +292,29 @@ namespace Dialog
             }
 
             var textSpeedMultiplier = 1f;
-            for (int i = 0; i < textLength; i++)
+            if (Math.Abs(TextRate) > 0.00001f)
             {
-                if (textMarks.Count != 0 && textMarks.Peek().index <= i)
+                for (int i = 0; i < textLength; i++)
                 {
-                    var effect = textMarks.Dequeue();
-                    ExecuteEffect(effect, textSpeedMultiplier);
-                }
+                    if (textMarks.Count != 0 && textMarks.Peek().index <= i)
+                    {
+                        var effect = textMarks.Dequeue();
+                        ExecuteEffect(effect, ref textSpeedMultiplier);
+                    }
 
-                if (userRequestedNextLine)
-                {
-                    userRequestedNextLine = false;
-                    break;
-                }
+                    if (userRequestedNextLine)
+                    {
+                        userRequestedNextLine = false;
+                        break;
+                    }
                 
-                character.ShowCharacters(i);
-                while (inputManager.inputState == InputState.Pause)
-                {
-                    yield return new WaitForSeconds(1f/60f);
+                    character.ShowCharacters(i);
+                    while (inputManager.inputState == InputState.Pause)
+                    {
+                        yield return new WaitForSeconds(1f/60f);
+                    }
+                    yield return new WaitForSeconds(TextRate * textSpeedMultiplier);
                 }
-                yield return new WaitForSeconds(TextRate * textSpeedMultiplier);
             }
             
             // i don't know why the last character's not shown sometimes
@@ -325,7 +322,7 @@ namespace Dialog
 
             while (textMarks.Count != 0)
             {
-                ExecuteEffect(textMarks.Dequeue(), textSpeedMultiplier);
+                ExecuteEffect(textMarks.Dequeue(), ref textSpeedMultiplier);
             }
 
             // Indicate to the rest of the game that the line has finished being delivered
@@ -349,7 +346,7 @@ namespace Dialog
             onComplete();
         }
 
-        private void ExecuteEffect(SpecialTextMark effect, float textSpeedMultiplier)
+        private void ExecuteEffect(SpecialTextMark effect, ref float textSpeedMultiplier)
         {
             switch (effect.effect)
             {
@@ -372,7 +369,6 @@ namespace Dialog
 
         private bool IsWhiteListed(string markupText)
         {
-            // todo: not in white list
             string markupLower = markupText.ToLower();
             foreach (var wholeMarkup in markupWholeWhitelist)
             {
@@ -478,10 +474,6 @@ namespace Dialog
         /// <inheritdoc/>
         public override void DialogueStarted()
         {
-            // todo: Enable the dialogue controls.
-            // if (dialogueContainer != null)
-            //     dialogueContainer.SetActive(true);
-
             onDialogueStart?.Invoke();
         }
 
@@ -490,10 +482,6 @@ namespace Dialog
         public override void DialogueComplete()
         {
             onDialogueEnd?.Invoke();
-
-            // todo: Hide the dialogue interface.
-            // if (dialogueContainer != null)
-            //     dialogueContainer.SetActive(false);
         }
 
         /// <summary>
@@ -530,7 +518,6 @@ namespace Dialog
         /// the <see cref="OptionSet.Option"/> that was selected.</param>
         public void SelectOption(int optionID)
         {
-            // todo: check what this means
             if (waitingForOptionSelection == false)
             {
                 Debug.LogWarning("An option was selected, but the dialogue UI was not expecting it.");

@@ -36,7 +36,6 @@ namespace UI
             }
             else
             {
-                // todo: this part maybe the reason why the location plate doesn't appear...
                 if (_previousLocationName.Equals(locationName))
                 {
                     return;

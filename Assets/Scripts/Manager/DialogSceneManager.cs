@@ -9,11 +9,6 @@ using Yarn.Unity;
 
 namespace Manager
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// todo: create savable game (use the auto save file)
-    /// todo: load save data from memory
     public class DialogSceneManager : MonoBehaviour, SaveClientCallback
     {
         public GameConfiguration gameConfiguration;

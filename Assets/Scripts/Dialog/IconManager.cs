@@ -16,17 +16,15 @@ namespace Dialog
 {
     public class IconManager : MonoBehaviour, SaveClientCallback
     {
-        public static string mainSpeakerName = "Pengi";
-
         public GameConfiguration gameConfiguration;
         public InformSpeakerReturn informSpeakerReturnValue = new InformSpeakerReturn();
+        public UnifiedCharacterScript currentSpeaking;
 
         private SaveClient _saveClient;
         private UnifiedCharacterScript[] _characterList;
         private UnifiedCharacterScript _mainCharacter;
         private UnifiedCharacterScript _narratingCharacter;
-        private List<UnifiedCharacterScript> _activeCharacterList = new List<UnifiedCharacterScript>();
-        public UnifiedCharacterScript currentSpeaking;
+        private readonly List<UnifiedCharacterScript> _activeCharacterList = new List<UnifiedCharacterScript>();
 
         private void OnEnable()
         {
@@ -62,7 +60,7 @@ namespace Dialog
             }
         }
 
-        public UnifiedCharacterScript InstantiateCharacter(GameObject prefab)
+        private UnifiedCharacterScript InstantiateCharacter(GameObject prefab)
         {
             var script = Object.Instantiate(prefab)
                 .GetComponent<UnifiedCharacterScript>();
@@ -71,23 +69,7 @@ namespace Dialog
             return script;
         }
 
-        public void RemoveSpeaker(int count)
-        {
-            Debug.LogWarning("Deprecated: Remove Speaker");
-        }
-
-        public void RemoveSpeaker(string speakerName)
-        {
-            Debug.LogError("RemoveSpeaker not implemented");
-        }
-
         public InformSpeakerReturn InformSpeaker(string candidateSpeaker)
-        {
-            return InformSpeaker(candidateSpeaker, false);
-        }
-
-        private InformSpeakerReturn InformSpeaker(string candidateSpeaker,
-            bool isForced)
         {
             // find out who is the active speaker
             // arrange accordingly
@@ -142,61 +124,6 @@ namespace Dialog
             informSpeakerReturnValue.realName = currentSpeaking.RealName;
 
             return informSpeakerReturnValue;
-
-            /*var ret = new InformSpeakerReturn();
-        candidateSpeaker = candidateSpeaker.Trim();
-
-        if (candidateSpeaker.Equals(""))
-        {
-            // do nothing ??
-            Speak(defaultCharacter);
-            ret.isBlocking = false;
-            return SaveState(ret);
-        }
-
-        if (_mainSpeaker != null && _mainSpeaker.IsSameSpeaker(candidateSpeaker))
-        {
-            ret.realName = _mainSpeaker.GetRealName();
-            Speak(_mainSpeaker);
-            return SaveState(ret);
-        }
-
-        if (_otherSpeaker != null && _otherSpeaker.IsSameSpeaker(candidateSpeaker))
-        {
-            ret.realName = _otherSpeaker.GetRealName();
-            Speak(_otherSpeaker);
-            return SaveState(ret);
-        }
-
-        // did not match current speakers
-        var currentSpeaker = GetSpeakerPortrait(candidateSpeaker);
-        if (currentSpeaker.IsSameSpeaker(mainSpeakerName))
-        {
-            // we know that main speaker is null
-            _mainSpeaker = currentSpeaker;
-            Speak(_mainSpeaker); // must be in here
-            ret.isBlocking = !isForced;
-            ret.realName = _mainSpeaker.GetRealName();
-            return SaveState(ret);
-        }
-
-        if (_otherSpeaker != null)
-        {
-            // we have replace the other speaker
-            _otherSpeaker.Leave();
-        }
-
-        _otherSpeaker = currentSpeaker;
-        Speak(_otherSpeaker); // must be here
-        ret.isBlocking = !isForced;
-        ret.realName = _otherSpeaker.GetRealName();
-        return SaveState(ret);*/
-        }
-
-// todo: delete
-        private InformSpeakerReturn SaveState(InformSpeakerReturn ret)
-        {
-            return ret;
         }
 
         public void ShowElements(bool shouldShow)
@@ -216,13 +143,6 @@ namespace Dialog
         public void WriteAutoSave()
         {
             _saveClient.autoSave.SetActiveSpeakerList(_activeCharacterList);
-            // _saveClient.autoSave.isLeft = !_isLeft;
-            // _saveClient.autoSave.currentSpeaker = _otherSpeaker != null
-            //     ? _otherSpeaker.Speaker
-            //     : "";
-            // _saveClient.autoSave.previousSpeaker = _mainSpeaker != null
-            //     ? _mainSpeaker.Speaker
-            //     : "";
         }
 
         public void EnterStage(string characterName)
@@ -312,13 +232,6 @@ namespace Dialog
                 characterScript.SetAlternativeLocationState(alternativeLocationState);
             }
         }
-    }
-
-    [Serializable]
-    public class IconItem : DataItem
-    {
-        [FormerlySerializedAs("sprite")] public Sprite mainSprite;
-        public Sprite outlineSprite;
     }
 
     public class InformSpeakerReturn

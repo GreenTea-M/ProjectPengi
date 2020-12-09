@@ -1,7 +1,5 @@
-using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -18,7 +16,6 @@ namespace GameSystem.Save
     /// Reference(s):
     /// Brackeys. SAVE & LOAD SYSTEM in Unity. 2 Dec. 2018. youtu.be/XOjd_qU2Ido.
     ///     Accessed on 8 July 2020.
-    /// todo: document
     public class SaveIO
     {
         private GameConfiguration gameConfiguration;
@@ -103,8 +100,6 @@ namespace GameSystem.Save
         }
 
         /// <summary>
-        /// Initially assumes that this is a json file
-        ///  todo: improve documentation
         /// </summary>
         public class JSONExecutor
         {
@@ -172,7 +167,6 @@ namespace GameSystem.Save
         /// <param name="slotExecutor"></param>
         /// <returns></returns>
         /// <remarks>
-        /// todo(Turnip): extract constants
         /// </remarks>
         private string GetPath(JSONExecutor jsonExecutor)
         {

@@ -61,7 +61,6 @@ public class SaveData
         previousSpeaker = rhs.previousSpeaker;
         shownItem = rhs.shownItem;
 
-        // todo: test out for optimization
         savedVariables.Clear();
         foreach (var variable in rhs.savedVariables)
         {

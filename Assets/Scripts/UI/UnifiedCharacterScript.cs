@@ -290,7 +290,6 @@ namespace UI
         {
             _iconManager = iconManager;
             _characterType = characterData.characterType;
-            // todo: set sprite???
         }
 
         public bool IsSimilar(string candidateSpeaker)

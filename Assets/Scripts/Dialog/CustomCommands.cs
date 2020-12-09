@@ -622,7 +622,6 @@ namespace Dialog
         /// what was originally planned.
         private void DoPuzzle(string[] parameters, System.Action onComplete)
         {
-            // todo??? puzzle shelf no args???
             if (parameters.Length == 0)
             {
                 Debug.LogWarning("No such command doPuzzle with no arguments");
@@ -709,8 +708,7 @@ namespace Dialog
 
             if (isDone)
             {
-                // todo: remove hard code
-                memoryStorage.SetValue("$puzzleDone", true);
+                memoryStorage.SetValue(PengiConstants.PuzzleDoneVariableName, true);
             }
 
             ShowElements(true);
@@ -811,7 +809,6 @@ namespace Dialog
             }
 
             // color: accept by word or by value
-            // todo: make it not hardcoded, but that's for later
             if (parameters.Length == 4)
             {
                 switch (parameters[3].ToLower())

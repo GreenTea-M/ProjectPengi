@@ -9,7 +9,6 @@ namespace Dialog
     /// <summary>
     /// Modified version of InMemoryVariableStorage
     /// </summary>
-    /// todo: speed up by using dirty flags
     public class MemoryStorage : InMemoryVariableStorage
     {
         public void Write(SaveData saveData)
