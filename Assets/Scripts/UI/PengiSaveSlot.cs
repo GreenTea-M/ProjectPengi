@@ -30,6 +30,7 @@ namespace UI
                 // load description
                 var autoSaveText = index == GameConfiguration.AutoSaveIndex ? "[Auto save] " : $"[Save {index}] ";
                 textMesh.text = $"{autoSaveText}{saveData.lastDialog}";
+                image.enabled = true;
             }
             else
             {

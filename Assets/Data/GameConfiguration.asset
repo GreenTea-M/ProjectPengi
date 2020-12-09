@@ -33,6 +33,10 @@ MonoBehaviour:
     fontName: Karla
   - fontAsset: {fileID: 11400000, guid: 6b468795670eb704fa2f2922aab14504, type: 2}
     fontName: Nunito Sans
+  mainCharacterPrefab: {fileID: 5457296641195751246, guid: 4ac73c72d52938647883951cf453a57c,
+    type: 3}
+  narratingCharacterPrefab: {fileID: 3613125057938647323, guid: 9b469aef651ec7c4dbb168ec65e99585,
+    type: 3}
   characterPrefabList:
   - {fileID: 7721856675482816111, guid: 2d6cde523a7cab44da33f0a59e6bb49c, type: 3}
   - {fileID: 4183247458888187938, guid: 5b5895be60c0a59449f7b6aa2533c6ce, type: 3}
@@ -42,143 +46,32 @@ MonoBehaviour:
   - {fileID: 9116473933309794769, guid: 5fe80e9544eb6a9459968d53401de608, type: 3}
   - {fileID: 2623449583302762767, guid: 14ee499bbde94294c93f41fd8bb15468, type: 3}
   textRate: 0.0125
-  shouldShake: 1
-  fontIndex: 0
   fontSize: 11
   textOpacity: 0.96
-  enableTextFormatting: 1
-  volume: 0.75
   fontColor: {r: 0.26666668, g: 0.14901961, b: 0.27450982, a: 1}
   currentSave:
     name: 
-    currentYarnNode: End.Fail
-    lastDialog: 'Pengi: FAil'
-    lastAudioName: market
-    lastHeader: generalMarket
-    savedVariables:
-    - name: HHelp
-      value: False
-      type: 2
-    - name: HSign
-      value: False
-      type: 2
-    - name: BHelp
-      value: False
-      type: 2
-    - name: BSign
-      value: True
-      type: 2
-    - name: AHelp
-      value: False
-      type: 2
-    - name: ASign
-      value: False
-      type: 2
-    - name: signature
-      value: 0
-      type: 0
-    - name: peaceSign
-      value: 2
-      type: 0
-    - name: teddy
-      value: 2
-      type: 0
-    - name: toilet
-      value: 2
-      type: 0
-    - name: marble
-      value: 2
-      type: 0
-    - name: baseball
-      value: 2
-      type: 0
-    - name: grammyPicture
-      value: 2
-      type: 0
-    - name: puzzleDone
-      value: True
-      type: 2
-    - name: FishChoices
-      value: 3
-      type: 0
-    - name: FishShoe
-      value: 0
-      type: 0
-    - name: FishOrange
-      value: 0
-      type: 0
-    - name: FishHistory
-      value: 0
-      type: 0
+    currentYarnNode: Intro.Dream
+    lastDialog: 
+    lastAudioName: 
+    lastHeader: 
+    savedVariables: []
     isLeft: 1
-    currentSpeaker: Pengi
+    currentSpeaker: 
     previousSpeaker: 
     activeCharacterList: []
     shownItem: 
   autoSave:
     name: 
-    currentYarnNode: End.Intro
-    lastDialog: 'Pengi: FAil'
-    lastAudioName: market
-    lastHeader: generalMarket
-    savedVariables:
-    - name: HHelp
-      value: False
-      type: 2
-    - name: HSign
-      value: False
-      type: 2
-    - name: BHelp
-      value: False
-      type: 2
-    - name: BSign
-      value: True
-      type: 2
-    - name: AHelp
-      value: False
-      type: 2
-    - name: ASign
-      value: False
-      type: 2
-    - name: signature
-      value: 2
-      type: 0
-    - name: peaceSign
-      value: 2
-      type: 0
-    - name: teddy
-      value: 2
-      type: 0
-    - name: toilet
-      value: 2
-      type: 0
-    - name: marble
-      value: 2
-      type: 0
-    - name: baseball
-      value: 2
-      type: 0
-    - name: grammyPicture
-      value: 2
-      type: 0
-    - name: puzzleDone
-      value: True
-      type: 2
-    - name: FishChoices
-      value: 3
-      type: 0
-    - name: FishShoe
-      value: 0
-      type: 0
-    - name: FishOrange
-      value: 0
-      type: 0
-    - name: FishHistory
-      value: 0
-      type: 0
+    currentYarnNode: Intro.Office
+    lastDialog: 'Pengi: Stop. Stop. Stop!'
+    lastAudioName: pilotDream
+    lastHeader: sunset
+    savedVariables: []
     isLeft: 1
     currentSpeaker: Pengi
     previousSpeaker: 
-    activeCharacterList: []
+    activeCharacterList:
+    - Paul
     shownItem: 
   gameInstance: {fileID: 0}

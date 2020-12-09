@@ -33,11 +33,11 @@ namespace Manager
         {
             SaveData saveData = null;
             
-            if (gameConfiguration.SaveIo.RequestExecutor()
+            if (gameConfiguration.SaveIo.RequestSlotExecutor()
                 .AtSlotIndex(index)
                 .DoesExist())
             {
-                saveData = gameConfiguration.SaveIo.RequestExecutor()
+                saveData = gameConfiguration.SaveIo.RequestSlotExecutor()
                     .AtSlotIndex(index)
                     .LoadSlot();
             }

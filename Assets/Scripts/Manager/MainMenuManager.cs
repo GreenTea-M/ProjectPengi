@@ -26,7 +26,7 @@ namespace Manager
             saveClient = gameConfiguration.RequestSaveAccess(this);
             
             // disable continue when auto save does not exist
-            continueButton.interactable = gameConfiguration.SaveIo.RequestExecutor()
+            continueButton.interactable = gameConfiguration.SaveIo.RequestSlotExecutor()
                 .AtSlotIndex(GameConfiguration.AutoSaveIndex)
                 .DoesExist();
             

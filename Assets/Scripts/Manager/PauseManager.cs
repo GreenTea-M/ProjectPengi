@@ -100,11 +100,11 @@ namespace Manager
         {
             SaveData saveData = null;
 
-            if (gameConfiguration.SaveIo.RequestExecutor()
+            if (gameConfiguration.SaveIo.RequestSlotExecutor()
                 .AtSlotIndex(index)
                 .DoesExist())
             {
-                saveData = gameConfiguration.SaveIo.RequestExecutor()
+                saveData = gameConfiguration.SaveIo.RequestSlotExecutor()
                     .AtSlotIndex(index)
                     .LoadSlot();
             }
@@ -131,7 +131,7 @@ namespace Manager
             if (isApproved)
             {
                 var newData = gameConfiguration.GetAutoSave();
-                gameConfiguration.SaveIo.RequestExecutor()
+                gameConfiguration.SaveIo.RequestSlotExecutor()
                     .AtSlotIndex(_currentIndex)
                     .UsingSaveData(newData)
                     .OverwriteSlot();

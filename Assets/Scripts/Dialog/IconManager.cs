@@ -19,8 +19,6 @@ namespace Dialog
         public static string mainSpeakerName = "Pengi";
 
         public GameConfiguration gameConfiguration;
-        public GameObject mainCharacterPrefab;
-        public GameObject narratingCharacterPrefab;
         public InformSpeakerReturn informSpeakerReturnValue = new InformSpeakerReturn();
 
         private SaveClient _saveClient;
@@ -55,8 +53,8 @@ namespace Dialog
                 _characterList[i] = InstantiateCharacter(characterPrefabList[i]);
             }
 
-            _narratingCharacter = InstantiateCharacter(narratingCharacterPrefab);
-            _mainCharacter = InstantiateCharacter(mainCharacterPrefab);
+            _narratingCharacter = InstantiateCharacter(gameConfiguration.narratingCharacterPrefab);
+            _mainCharacter = InstantiateCharacter(gameConfiguration.mainCharacterPrefab);
 
             if (_saveClient == null)
             {

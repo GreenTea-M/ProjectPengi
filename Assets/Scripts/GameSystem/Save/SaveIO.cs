@@ -14,21 +14,18 @@ namespace GameSystem.Save
     /// This class was separated from SaveLocator in the case where
     /// we may have a different save source (debugging) or different operating
     /// system.
-    ///
+    ///</remarks>
     /// Reference(s):
     /// Brackeys. SAVE & LOAD SYSTEM in Unity. 2 Dec. 2018. youtu.be/XOjd_qU2Ido.
     ///     Accessed on 8 July 2020.
-    /// </remarks>
+    /// todo: document
     public class SaveIO
     {
-        public GameConfiguration gameConfiguration;
+        private GameConfiguration gameConfiguration;
 
 #if UNITY_WEBGL
         [DllImport("__Internal")]
         private static extern void SyncFiles();
-
-        [DllImport("__Internal")]
-        private static extern void Hello();
 #endif
 
         public SaveIO(GameConfiguration gameConfiguration)
@@ -48,37 +45,45 @@ namespace GameSystem.Save
         /// </remarks>
         public class SlotExecutor
         {
-            internal int slotIndex = 0;
-            internal SaveData saveData = null;
-
+            private int _slotIndex = 0;
+            private SaveData _saveData = null;
+            private readonly JSONExecutor _jsonExecutor;
             private SaveIO _saveIo;
 
             internal SlotExecutor(SaveIO saveIo)
             {
-                this._saveIo = saveIo;
+                _saveIo = saveIo;
+                _jsonExecutor = saveIo.RequestJsonExecutor();
             }
 
             public SlotExecutor AtSlotIndex(int slotIndex)
             {
                 Assert.IsTrue(slotIndex < _saveIo.gameConfiguration.maxSaveSlots);
-                this.slotIndex = slotIndex;
+                _slotIndex = slotIndex;
                 return this;
             }
 
             public SlotExecutor UsingSaveData(SaveData saveData)
             {
-                this.saveData = saveData;
+                _saveData = saveData;
                 return this;
             }
 
             public SaveData GetSaveData()
             {
-                return saveData;
+                return _saveData;
+            }
+
+            private string GetFilename()
+            {
+                return $"savedata{_slotIndex}";
             }
 
             public bool OverwriteSlot()
             {
-                return this._saveIo.OverwriteSlot(this);
+                return _jsonExecutor.UsingFilename(GetFilename())
+                    .UsingJsonData(JsonUtility.ToJson(_saveData))
+                    .OverwriteJsonFile();
             }
 
             /// <summary>
@@ -87,18 +92,78 @@ namespace GameSystem.Save
             /// <returns>Returns whether the loading was successful</returns>
             public SaveData LoadSlot()
             {
-                return this._saveIo.LoadSlot(this);
+                var jsonString = _jsonExecutor.UsingFilename(GetFilename()).LoadJsonString();
+                return jsonString != null ? JsonUtility.FromJson<SaveData>(jsonString) : null;
             }
 
             public bool DoesExist()
             {
-                return this._saveIo.DoesExist(this);
+                return _jsonExecutor.UsingFilename(GetFilename()).DoesExist();
             }
         }
 
-        public SlotExecutor RequestExecutor()
+        /// <summary>
+        /// Initially assumes that this is a json file
+        ///  todo: improve documentation
+        /// </summary>
+        public class JSONExecutor
+        {
+            private string _filename = null;
+            private string _jsonString = "";
+            private readonly SaveIO _saveIo;
+
+            public JSONExecutor(SaveIO saveIo)
+            {
+                _saveIo = saveIo;
+            }
+
+            public JSONExecutor UsingFilename(string filename)
+            {
+                this._filename = filename;
+                return this;
+            }
+
+            public JSONExecutor UsingJsonData(string jsonString)
+            {
+                this._jsonString = jsonString;
+                return this;
+            }
+
+            public string GetJsonString()
+            {
+                Debug.Assert(_jsonString != null);
+                return _jsonString;
+            }
+
+            public string GetFilename()
+            {
+                return _filename;
+            }
+
+            public bool OverwriteJsonFile()
+            {
+                return _saveIo.OverwriteJson(this);
+            }
+
+            public string LoadJsonString()
+            {
+                return _saveIo.LoadJsonString(this);
+            }
+
+            public bool DoesExist()
+            {
+                return _saveIo.DoesExist(this);
+            }
+        }
+
+        public SlotExecutor RequestSlotExecutor()
         {
             return new SlotExecutor(this);
+        }
+
+        public JSONExecutor RequestJsonExecutor()
+        {
+            return new JSONExecutor(this);
         }
 
         /// <summary>
@@ -109,104 +174,48 @@ namespace GameSystem.Save
         /// <remarks>
         /// todo(Turnip): extract constants
         /// </remarks>
-        private string GetPath(SlotExecutor slotExecutor)
+        private string GetPath(JSONExecutor jsonExecutor)
         {
-            return Application.persistentDataPath + "/savedata"
-                                                  + slotExecutor.slotIndex + ".json";
+            return $"{Application.persistentDataPath}/{jsonExecutor.GetFilename()}.json";
         }
 
-        private bool OverwriteSlot(SlotExecutor slotExecutor)
+        private bool OverwriteJson(JSONExecutor jsonExecutor)
         {
-            if (slotExecutor.saveData == null)
+            if (jsonExecutor.GetFilename() == null)
             {
                 return false;
             }
 
-            bool result = true;
-
-
-            string path = GetPath(slotExecutor);
-            // Debug.Log(path);
-            string jsonString = JsonUtility.ToJson(slotExecutor.saveData);
-            File.WriteAllText(path, jsonString);
+            string path = GetPath(jsonExecutor);
+            File.WriteAllText(path, jsonExecutor.GetJsonString());
 
 #if UNITY_WEBGL
             if (Application.platform == RuntimePlatform.WebGLPlayer)
             {
                 SyncFiles();
             }
-#elif UNITY_STANDALONE_WIN
-            /*BinaryFormatter formatter = new BinaryFormatter();
-            string path = GetPath(slotExecutor);
-            FileStream stream = new FileStream(path, FileMode.Create);
-
-            try
-            {
-                formatter.Serialize(stream, slotExecutor.saveData);
-            }
-            catch (Exception)
-            {
-                // todo: specify the three exceptions here
-                result = false;
-            }
-            finally
-            {
-                stream.Close();
-            }*/
-#else
-            Debug.LogError("Saving not supported on current platform");
 #endif
 
-            return result;
+            return true;
         }
 
-        private bool DoesExist(SlotExecutor slotExecutor)
+        private bool DoesExist(JSONExecutor jsonExecutor)
         {
-            return File.Exists(GetPath(slotExecutor));
+            return File.Exists(GetPath(jsonExecutor));
         }
 
-        private SaveData LoadSlot(SlotExecutor slotExecutor)
+        private string LoadJsonString(JSONExecutor jsonExecutor)
         {
-            SaveData result = null;
-            string path = GetPath(slotExecutor);
+            var path = GetPath(jsonExecutor);
 
             if (File.Exists(path))
             {
-                var jsonString = File.ReadAllText(path);
-                result = JsonUtility.FromJson<SaveData>(jsonString);
-
-#if UNITY_WEBGL
-                if (Application.platform == RuntimePlatform.WebGLPlayer)
-                {
-                    SyncFiles();
-                }
-#elif UNITY_STANDALONE_WIN
-                /*BinaryFormatter formatter = new BinaryFormatter();
-                FileStream stream = new FileStream(path, FileMode.Open);
-
-                try
-                {
-                    result = (SaveData) formatter.Deserialize(stream);
-                }
-                catch (Exception ex)
-                {
-                    // todo: specify the three exceptions here
-                    Debug.LogError(ex.Message);
-                }
-                finally
-                {
-                    stream.Close();
-                }*/
-#else
-            Debug.LogError("Saving not supported on current platform");
-#endif
-            }
-            else
-            {
-                Debug.LogError("Save file not found in path: " + path);
+                jsonExecutor.UsingJsonData(File.ReadAllText(path));
+                return jsonExecutor.GetJsonString();
             }
 
-            return result;
+            Debug.LogError("Save file not found in path: " + path);
+            return null;
         }
     }
 }
