@@ -131,6 +131,7 @@ namespace GameSystem.Save
 
             public string GetJsonString()
             {
+                Debug.Assert(_jsonString != null);
                 return _jsonString;
             }
 

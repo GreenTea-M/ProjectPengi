@@ -32,48 +32,32 @@ namespace GameSystem
 
         public float TextRate
         {
-            get => textRate;
-            set
-            {
-                textRate = value;
-                PlayerPrefs.SetFloat(KeyTextRate, textRate);
-            }
+            get => _playerPref.textRate;
+            set => _playerPref.textRate = value;
         }
-
-        public bool shouldShake = true;
 
         public bool ShouldShake
         {
-            get => shouldShake;
-            set
-            {
-                shouldShake = value;
-                PlayerPrefs.SetInt(KeyTextRate, shouldShake ? 1 : 0);
-            }
+            get => _playerPref.shouldShake;
+            set => _playerPref.shouldShake = value;
         }
-
-        public int fontIndex = 0;
 
         public int FontIndex
         {
-            get => fontIndex;
-            set
-            {
-                fontIndex = value;
-                PlayerPrefs.SetInt(KeyFontIndex, value);
-            }
+            get => _playerPref.fontIndex;
+            set => _playerPref.fontIndex = value;
         }
 
         public TMP_FontAsset FontAsset
         {
             get
             {
-                if (fontIndex < 0 || fontIndex > fontList.Length)
+                if (_playerPref.fontIndex < 0 || _playerPref.fontIndex > fontList.Length)
                 {
-                    fontIndex = 0;
+                    _playerPref.fontIndex = 0;
                 }
 
-                return fontList[fontIndex].fontAsset;
+                return fontList[_playerPref.fontIndex].fontAsset;
             }
             set
             {
@@ -88,8 +72,7 @@ namespace GameSystem
                     }
                 }
 
-                fontIndex = index;
-                PlayerPrefs.SetInt(KeyFontIndex, index);
+                _playerPref.fontIndex = index;
             }
         }
 
@@ -97,12 +80,8 @@ namespace GameSystem
 
         public float FontSize
         {
-            get => fontSize;
-            set
-            {
-                fontSize = value;
-                PlayerPrefs.SetFloat(KeyFontSize, fontSize);
-            }
+            get => _playerPref.fontSize;
+            set => _playerPref.fontSize = value;
         }
 
         [Range(0.6f, 1f)] public float textOpacity = 0.97f;
@@ -113,42 +92,19 @@ namespace GameSystem
             set => textOpacity = value;
         }
 
-        public bool enableTextFormatting = true;
-
         public bool EnableTextFormatting
         {
-            get => enableTextFormatting;
-            set
-            {
-                enableTextFormatting = value;
-                PlayerPrefs.SetInt(KeyTextFormatting, enableTextFormatting ? 1 : 0);
-            }
+            get => _playerPref.enableTextFormatting;
+            set => _playerPref.enableTextFormatting = value;
         }
-
-        public float volume = 0.75f;
 
         public float Volume
         {
-            get => volume;
-            set
-            {
-                volume = value;
-                PlayerPrefs.SetFloat(KeyVolume, value);
-            }
+            get => _playerPref.volume;
+            set => _playerPref.volume = value;
         }
 
         public Color fontColor = Color.black;
-
-        private readonly string KeyTextRate = "TextRate";
-        private readonly string KeyShouldShake = "ShakeStrength";
-        private readonly string KeyFontIndex = "FontIndex";
-
-        private readonly string KeyFontSize = "FontSize";
-
-        // todo: clean up
-        // private readonly string KeyTextOpacity = "TextOpacity";
-        private readonly string KeyTextFormatting = "TextFormatting";
-        private readonly string KeyVolume = "Volume";
 
         #endregion Option variables
 
@@ -162,7 +118,9 @@ namespace GameSystem
         public GameInstance gameInstance;
 
         public static int AutoSaveIndex = 0;
+        private PlayerPreferences _playerPref = new PlayerPreferences();
         private const float _shakeStrength = 1f;
+        private const string PlayerPreferenceFilename = "PengiPlayePref";
 
         private void Awake()
         {
@@ -170,37 +128,46 @@ namespace GameSystem
             SyncWithPlayerPref();
         }
 
-        public float ShakeStrength => shouldShake ? _shakeStrength : 0f;
+        public float ShakeStrength => _playerPref.shouldShake ? _shakeStrength : 0f;
 
         public SaveIO SaveIo => saveIo ?? (saveIo = new SaveIO(this));
 
+        /// <summary>
+        /// todo: document
+        /// </summary>
+        /// Q: Why aren't you using player preferences?
+        /// I have been trying to use player preferences, but I don't understand
+        /// why it's not working. I might as well use the save system I had already made.
         public void SyncWithPlayerPref()
         {
-            ResetOptions();
-            return;
-            
-            // todo: avoid using player prefs because of how unreliable it is
-            if (PlayerPrefs.HasKey(KeyTextRate))
+            var doesPlayerPrefExist = SaveIo.RequestJsonExecutor()
+                .UsingFilename(PlayerPreferenceFilename)
+                .DoesExist();
+            bool isSuccessful = false;
+            if (doesPlayerPrefExist)
             {
-                // assume all has
-                textRate = PlayerPrefs.GetFloat(KeyTextRate);
-                shouldShake = PlayerPrefs.GetInt(KeyShouldShake) == 1;
-
-                // font
-                fontIndex = PlayerPrefs.GetInt(KeyFontIndex);
-                if (fontIndex < 0 || fontIndex > fontList.Length)
+                var jsonString = SaveIo.RequestJsonExecutor()
+                    .UsingFilename(PlayerPreferenceFilename)
+                    .LoadJsonString();
+                if (jsonString != null)
                 {
-                    fontIndex = 0;
+                    _playerPref = JsonUtility.FromJson<PlayerPreferences>(jsonString);
+                    isSuccessful = true;
                 }
-
-                fontSize = PlayerPrefs.GetFloat(KeyFontSize);
-                enableTextFormatting = PlayerPrefs.GetInt(KeyTextFormatting) == 1;
-                volume = PlayerPrefs.GetFloat(KeyVolume);
             }
-            else
+
+            if (!isSuccessful)
             {
                 ResetOptions();
             }
+        }
+
+        public void SavePlayerPreference()
+        {
+            SaveIo.RequestJsonExecutor()
+                .UsingFilename(PlayerPreferenceFilename)
+                .UsingJsonData(JsonUtility.ToJson(_playerPref))
+                .OverwriteJsonFile();
         }
 
         public void ResetSaveData()
@@ -209,18 +176,11 @@ namespace GameSystem
             autoSave.Overwrite(baseConfiguration.currentSave);
         }
 
+        // todo: update
         public void ResetOptions()
         {
-            // weird glitch: hard coding values instead
-            TextRate = 0.0125f;
-            ShouldShake = true;
-            FontIndex = 0;
-            FontSize = 11;
-            TextOpacity = 0.96f;
-            // fontColor = baseConfiguration.fontColor;
-            EnableTextFormatting = true;
-            Volume = 0.75f;
-            PlayerPrefs.Save();
+            _playerPref = new PlayerPreferences();
+            SavePlayerPreference();
         }
 
         public SaveClient RequestSaveAccess(SaveClientCallback saveClientCallback)

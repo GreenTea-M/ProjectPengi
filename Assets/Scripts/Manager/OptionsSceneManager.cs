@@ -75,8 +75,7 @@ namespace Manager
             dropdownFont.value = gameConfiguration.FontIndex;
             dropdownShake.value = gameConfiguration.ShouldShake ? 0 : 1;
             dropdownTextFormatting.value = gameConfiguration.EnableTextFormatting ? 0 : 1;
-            sliderVolume.value = gameConfiguration.volume;
-            PlayerPrefs.Save();
+            sliderVolume.value = gameConfiguration.Volume;
         }
 
         private void TextReset()
@@ -133,21 +132,18 @@ namespace Manager
         private void OnTextFormattingChanged(int value)
         {
             gameConfiguration.EnableTextFormatting = value == 0;
-            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
         }
 
         private void OnVolumeChanged(float value)
         {
             gameConfiguration.Volume = value;
-            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
         }
 
         private void OnShakeChanged(int value)
         {
             gameConfiguration.ShouldShake = value == 0;
-            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
         }
 
@@ -155,21 +151,18 @@ namespace Manager
         {
             Debug.Assert(value < gameConfiguration.fontList.Length);
             gameConfiguration.FontAsset = gameConfiguration.fontList[value].fontAsset;
-            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
         }
 
         private void OnTextOpacityChanged(float value)
         {
             gameConfiguration.TextOpacity = value;
-            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
         }
 
         private void OnTextRateChanged(float value)
         {
             gameConfiguration.TextRate = value;
-            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
             TextReset();
         }
@@ -177,7 +170,6 @@ namespace Manager
         private void OnTextSizeChanged(float value)
         {
             gameConfiguration.FontSize = value;
-            PlayerPrefs.Save();
             onFontChangedEvent.Raise();
         }
 
@@ -190,6 +182,7 @@ namespace Manager
 
         public void Back()
         {
+            gameConfiguration.SavePlayerPreference();
             SceneManager.LoadScene("MainMenuScene");
         }
     }
