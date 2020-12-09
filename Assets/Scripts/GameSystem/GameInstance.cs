@@ -1,63 +1,61 @@
 using System.Collections.Generic;
-using GameSystem;
 using GameSystem.Save;
 using UnityEngine;
 
-/// <summary>
-/// <c>GameInstance</c> primarily serves to contain several Subsystems or ServiceLocators
-/// and it should only be used to access those.
-/// </summary>
-/// <remarks>
-/// It may house some other variables for prototyping but those should be enclosed in either of the
-/// two types of components that this Instance should hold.
-/// </remarks>
-/// <see cref="GameConfiguration"/>
-public class GameInstance : MonoBehaviour
+namespace GameSystem
 {
-    private static GameInstance _instance = null;
-
-    [Header("Variables")] [Tooltip("Used to access configurations that may be relevant for gameplay and debugging")]
-    public GameConfiguration gameConfiguration;
-
-    private List<SaveClient> saveClientList = new List<SaveClient>();
-    
-    private void Awake()
+    /// <summary>
+    /// <c>GameInstance</c> is a Unity object that's always present in the game.
+    /// It is currently used to save game data.
+    /// </summary>
+    public class GameInstance : MonoBehaviour
     {
-        if (_instance != null && _instance != this)
+        private static GameInstance _instance = null;
+
+        [Header("Variables")] [Tooltip("Used to access configurations that may be relevant for gameplay and debugging")]
+        public GameConfiguration gameConfiguration;
+
+        private List<SaveClient> saveClientList = new List<SaveClient>();
+
+        private void Awake()
         {
-            Destroy(this);
-            return;
+            if (_instance != null && _instance != this)
+            {
+                Destroy(this);
+                return;
+            }
+
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            gameConfiguration.gameInstance = this;
+            gameConfiguration.SyncWithPlayerPref();
         }
 
-        _instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        gameConfiguration.gameInstance = this;
-        gameConfiguration.SyncWithPlayerPref();
-    }
-
-    public SaveClient RequestSaveAccess()
-    {
-        var client = new SaveClient();
-        saveClientList.Add(client);
-        return client;
-    }
-
-    public void RemoveSaveClient(SaveClient saveClient)
-    {
-        saveClientList.Remove(saveClient);
-    }
-
-    public void WriteOnAutoSave()
-    {
-        // make all writers write
-        foreach (var saveClient in saveClientList)
+        public SaveClient RequestSaveAccess()
         {
-            saveClient.TryAutoSaveWrite();
+            var client = new SaveClient();
+            saveClientList.Add(client);
+            return client;
         }
-        gameConfiguration.SaveIo.RequestSlotExecutor()
-            .AtSlotIndex(0)
-            .UsingSaveData(gameConfiguration.GetAutoSave())
-            .OverwriteSlot();
+
+        public void RemoveSaveClient(SaveClient saveClient)
+        {
+            saveClientList.Remove(saveClient);
+        }
+
+        public void WriteOnAutoSave()
+        {
+            // make all writers write
+            foreach (var saveClient in saveClientList)
+            {
+                saveClient.TryAutoSaveWrite();
+            }
+
+            gameConfiguration.SaveIo.RequestSlotExecutor()
+                .AtSlotIndex(0)
+                .UsingSaveData(gameConfiguration.GetAutoSave())
+                .OverwriteSlot();
+        }
     }
 }

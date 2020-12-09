@@ -1,4 +1,3 @@
-using System;
 using Dialog;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -12,8 +11,6 @@ namespace GameSystem
         public float changeRate = 1f;
         public float maxVolume = 0.35f;
         public float fadeOutRatio = 0.5f;
-        
-        // for other things
         
         public bool playOnStart = false;
         
@@ -86,11 +83,19 @@ namespace GameSystem
             }
         }
 
+        /// <summary>
+        /// Called in options when you adjust the volume slider
+        /// </summary>
         public void OnOptionsChanged()
         {
             _state = State.FadeIn;
         }
 
+        /// <summary>
+        /// Sets the audio as active, and fades the music in
+        /// </summary>
+        /// <param name="clip"></param>
+        /// <param name="commands"></param>
         public void FadeIn(AudioClip clip, CustomCommands commands)
         {
             _audioSource = GetComponent<AudioSource>();
@@ -101,6 +106,9 @@ namespace GameSystem
             _state = State.FadeIn;
         }
 
+        /// <summary>
+        /// Fades the music out, and will inform custom commands that this FadedAudio is no longer active.
+        /// </summary>
         public void FadeOut()
         {
             _fadeOutRate = changeRate * fadeOutRatio;

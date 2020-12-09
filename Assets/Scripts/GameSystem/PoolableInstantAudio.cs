@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace GameSystem
 {
+    /// <summary>
+    /// One-time sound effects that are pooled.
+    /// </summary>
     [RequireComponent(typeof(AudioSource))]
     public class PoolableInstantAudio : MonoBehaviour
     {
