@@ -73,7 +73,7 @@ namespace Manager
             sliderTextRate.value = gameConfiguration.TextRate;
             sliderTextSize.value = gameConfiguration.FontSize;
             dropdownFont.value = gameConfiguration.FontIndex;
-            dropdownShake.value = gameConfiguration.ShouldShake ? 0 : 1;
+            dropdownShake.value = gameConfiguration.ShowVisualEffects ? 0 : 1;
             dropdownTextFormatting.value = gameConfiguration.EnableTextFormatting ? 0 : 1;
             sliderVolume.value = gameConfiguration.Volume;
         }
@@ -143,7 +143,7 @@ namespace Manager
 
         private void OnShakeChanged(int value)
         {
-            gameConfiguration.ShouldShake = value == 0;
+            gameConfiguration.ShowVisualEffects = value == 0;
             onFontChangedEvent.Raise();
         }
 

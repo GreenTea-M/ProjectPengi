@@ -39,10 +39,10 @@ namespace GameSystem
             set => _playerPref.textRate = value;
         }
 
-        public bool ShouldShake
+        public bool ShowVisualEffects
         {
-            get => _playerPref.shouldShake;
-            set => _playerPref.shouldShake = value;
+            get => _playerPref.showVisualEffects;
+            set => _playerPref.showVisualEffects = value;
         }
 
         public int FontIndex
@@ -131,7 +131,7 @@ namespace GameSystem
             SyncWithPlayerPref();
         }
 
-        public float ShakeStrength => _playerPref.shouldShake ? _shakeStrength : 0f;
+        public float ShakeStrength => _playerPref.showVisualEffects ? _shakeStrength : 0f;
 
         public SaveIO SaveIo => saveIo ?? (saveIo = new SaveIO(this));
 

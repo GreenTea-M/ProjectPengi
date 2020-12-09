@@ -468,7 +468,7 @@ namespace Dialog
 
         private void Shake(string[] parameter)
         {
-            if (gameConfiguration.ShouldShake)
+            if (gameConfiguration.ShowVisualEffects)
             {
                 _impulseSignal.GenerateImpulse(gameConfiguration.ShakeStrength);
             }
@@ -717,6 +717,12 @@ namespace Dialog
 
         private void FadePlainBackground(string[] parameters, System.Action onComplete)
         {
+            if (!gameConfiguration.ShowVisualEffects)
+            {
+                onComplete.Invoke();
+                return;
+            }
+            
             if (parameters.Length == 0)
             {
                 Debug.LogWarning("fadePlainBackground needs one argument");
