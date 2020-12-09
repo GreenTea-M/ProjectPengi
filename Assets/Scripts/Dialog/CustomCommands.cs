@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Cinemachine;
 using Gameplay;
@@ -10,8 +9,6 @@ using GameSystem.Save;
 using Others;
 using UI;
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Yarn.Unity;
@@ -19,63 +16,37 @@ using Object = UnityEngine.Object;
 
 namespace Dialog
 {
-    // todo: play current song being played??? on load
+    /// <summary>
+    /// CustomCommand has all the functions that can be used as a command in Yarn.
+    /// </summary>
     [RequireComponent(typeof(CinemachineImpulseSource))]
     public class CustomCommands : MonoBehaviour, SaveClientCallback, PoolableInstantAudio.IPooler
     {
         public GameConfiguration gameConfiguration;
-        public MemoryStorage memoryStorage;
-        public InputManager inputManager;
-        public IconManager iconManager;
-        public SpriteRenderer blackScreen;
-        public LocationPlate locationPlate;
-        public GameObject sfxEffectPrefab;
 
         [Header("Variables")] public float delayTime = 3f;
         public float fadeRate = 0.05f;
 
         [Header("Assets")] public AudioItem[] audioList;
-
-        [Tooltip("Puzzles should have PuzzleParent script")]
-        public PuzzleItem[] puzzleList;
-
-        [FormerlySerializedAs("headerList")] public BackgroundItem[] backgroundList;
-
+        public GameObject sfxEffectPrefab;
+        public BackgroundItem[] backgroundList;
         public ShelfItemData[] shelfItemDataList;
-
         public ShowableItemData[] showableItemDataList;
-
-        [Header("Prefabs")] public GameObject prefabFadedAudio;
+        public GameObject prefabFadedAudio;
 
         [Header("Scene objects")]
         // Drag and drop your Dialogue Runner into this variable.
         public DialogueRunner dialogueRunner;
 
+        public MemoryStorage memoryStorage;
+        public InputManager inputManager;
+        public IconManager iconManager;
+        public SpriteRenderer blackScreen;
+        public LocationPlate locationPlate;
         public DialogueUIManager dialogueUiManager;
 
-        private FadedAudio _lastAudio = null;
-
-        private readonly Stack<FadedAudio> Pool = new Stack<FadedAudio>();
-        private List<ShelfItem> _shelfItemList = new List<ShelfItem>();
-        private PuzzleParent _puzzle;
-        private Action _onComplete;
-        private CinemachineImpulseSource _impulseSignal;
-        private ShelfItem _shownShelfItem;
-        private List<ShowableItem> _itemShownList = new List<ShowableItem>();
-
-        private const string PuzzleShelfArg = "shelf";
         private State _state = State.None;
         private float _alpha = 0f;
-        private BackgroundScript[] _backgroundScriptList;
-        private Stack<PoolableInstantAudio> _instantAudioPool = new Stack<PoolableInstantAudio>();
-
-        private enum State
-        {
-            None,
-            GameEnding,
-            ScreenFadeTransition
-        }
-
         private SaveClient _saveClient;
         private string _lastAudioName;
         private BackgroundScript _currentBg;
@@ -85,6 +56,26 @@ namespace Dialog
         private float _transitionStartTime = 0f;
         private float _startAlpha = 0f;
         private float _diffAlpha = 1f;
+
+        private FadedAudio _lastAudio = null;
+        private readonly List<ShelfItem> _shelfItemList = new List<ShelfItem>();
+        private Action _onComplete;
+        private CinemachineImpulseSource _impulseSignal;
+        private ShelfItem _shownShelfItem;
+        private readonly List<ShowableItem> _itemShownList = new List<ShowableItem>();
+        private BackgroundScript[] _backgroundScriptList;
+        private readonly Stack<PoolableInstantAudio> _instantAudioPool = new Stack<PoolableInstantAudio>();
+
+        private readonly Stack<FadedAudio> Pool = new Stack<FadedAudio>();
+
+        private const string PuzzleShelfArg = "shelf";
+
+        private enum State
+        {
+            None,
+            GameEnding,
+            ScreenFadeTransition
+        }
 
         private void OnEnable()
         {
@@ -173,9 +164,9 @@ namespace Dialog
             dialogueRunner.AddCommandHandler("enterStage", EnterStage);
             dialogueRunner.AddCommandHandler("exitStage", ExitStage);
             dialogueRunner.AddCommandHandler("fakeLastDialog", FakeLastDialog);
-            dialogueRunner.AddCommandHandler("playSFX", PlaySFX);
-            dialogueRunner.AddCommandHandler("playSfx", PlaySFX);
-            dialogueRunner.AddCommandHandler("playsfx", PlaySFX);
+            dialogueRunner.AddCommandHandler("playSFX", PlaySfx);
+            dialogueRunner.AddCommandHandler("playSfx", PlaySfx);
+            dialogueRunner.AddCommandHandler("playsfx", PlaySfx);
             dialogueRunner.AddCommandHandler("fadePlainBackground", FadePlainBackground);
         }
 
@@ -198,7 +189,7 @@ namespace Dialog
 
                     if (_alpha >= _targetAlpha)
                     {
-                        SceneManager.LoadScene("EndGameScene");
+                        SceneManager.LoadScene(PengiConstants.SceneEndGame);
                     }
 
                     break;
@@ -232,11 +223,11 @@ namespace Dialog
         /// <summary>
         /// Give instructions to showable items
         /// </summary>
-        /// <remarks>
-        /// Usage:
-        /// <<instructShownItem fish jump>>
-        /// </remarks>
-        /// <param name="parameters"></param>
+        /// <example><<instructShownItem fish jump>></example>
+        /// <param name="parameters">
+        /// 1st element is shownItem name
+        /// 2nd element is the name of the command
+        /// </param>
         private void InstructShownItem(string[] parameters)
         {
             if (parameters.Length != 2)
@@ -254,11 +245,16 @@ namespace Dialog
                     return;
                 }
             }
-            
+
             Debug.LogWarning($"InstructShownItem: Current item not shown: {string.Join(" ", parameters)}");
         }
 
-        private void PlaySFX(string[] parameters)
+        /// <summary>
+        /// Plays a sound effect once. Sound effects can stack on each other.
+        /// </summary>
+        /// <example><<playSfx sfxName>></example>
+        /// <param name="parameters">The name of the audio item containing the AudioClip in audioList</param>
+        private void PlaySfx(string[] parameters)
         {
             if (parameters.Length == 0)
             {
@@ -293,6 +289,12 @@ namespace Dialog
             Debug.Log($"Audio clip not found for: {searchTerm}");
         }
 
+        /// <summary>
+        /// EnterStage will allow a specified character to appear in the scene.
+        /// </summary>
+        /// <param name="parameter">The name or alias of the character</param>
+        /// <remarks>You can call multiple characters in one command</remarks>
+        /// <example><<enterStage B oldMole>></example>
         private void EnterStage(string[] parameter)
         {
             foreach (var characterName in parameter)
@@ -301,6 +303,14 @@ namespace Dialog
             }
         }
 
+        /// <summary>
+        /// ExitStage forces a character to leave the scene. After a character leaves a scene and
+        /// if their name appears in the script, they will not appear and the narrator will
+        /// take place of them speaking.
+        /// </summary>
+        /// <param name="parameter">The name or alias of the character</param>
+        /// <remarks>You can call multiple characters in one command</remarks>
+        /// <example><<exitStage B oldMole>></example>
         private void ExitStage(string[] parameter)
         {
             foreach (var characterName in parameter)
@@ -309,7 +319,11 @@ namespace Dialog
             }
         }
 
-        // Note: not using Coroutine to allow for smoother fade
+        /// <summary>
+        /// Calling GameEnd will make the screen fade to black and open the credit scene.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <example><<gameEnd>></example>
         private void GameEnd(string[] parameters)
         {
             if (_lastAudio != null)
@@ -327,16 +341,38 @@ namespace Dialog
             _state = State.GameEnding;
         }
 
+        /// <summary>
+        /// Forces all characters to leave without the side effect of them not reappearing when
+        /// they need to speak.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <example><<hideDialogue>></example>
+        /// Note: the game had more distinct elements back then. Now, it's just a matter of making
+        /// the characters leave the scene without the side effect of not making them not appear
+        /// when it's their turn to speak.
         private void HideDialogue(string[] parameters)
         {
             ShowElements(false);
         }
 
+        /// <summary>
+        /// Does nothing.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <example><<hideDialogue>></example>
+        /// Note: the game had more distinct elements back then. Now, it's just a matter of making
+        /// the characters leave the scene without the side effect of not making them not appear
+        /// when it's their turn to speak.
         private void ShowDialogue(string[] parameters)
         {
             ShowElements(true);
         }
 
+        /// <summary>
+        /// Makes a showableItem appear.
+        /// </summary>
+        /// <param name="parameters">Name of the showable item in the showableItemDataList</param>
+        /// <example><<showItem shelf>></example>
         public void ShowItem(string[] parameters)
         {
             if (parameters.Length == 0)
@@ -359,6 +395,11 @@ namespace Dialog
             Debug.LogWarning($"ShowItem: Unknown item: {parameters[0]}");
         }
 
+        /// <summary>
+        /// Makes a showableItem disappear.
+        /// </summary>
+        /// <param name="parameters">Name of the showable item in the showableItemDataList</param>
+        /// <example><<hideItem shelf>></example>
         public void HideItem(string[] parameters)
         {
             if (parameters.Length == 0)
@@ -379,9 +420,6 @@ namespace Dialog
                 {
                     ChangeHeader(new[] {"None"});
                 }
-                else
-                {
-                }
             }
 
             for (int i = _itemShownList.Count - 1; i >= 0; i--)
@@ -397,27 +435,23 @@ namespace Dialog
             Debug.LogWarning($"HideItem: Unknown item: {parameters[0]}");
         }
 
+        /// <summary>
+        /// Does not do anything.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <example></example>
         private void ResetSpeaker(string[] parameters)
         {
-            Debug.Log($"ResetSpeaker: {string.Join(" ", parameters)}");
-            if (parameters.Length == 1 && float.TryParse(parameters[0], out _))
-            {
-                iconManager.RemoveSpeaker(2);
-            }
-            else
-            {
-                iconManager.RemoveSpeaker(String.Join(" ", parameters));
-            }
+            Debug.LogWarning("ResetSpeaker does not do anything.");
         }
 
         /// <summary>
-        /// Call in YarnSpinner as:
-        /// <<changeHeader headerName>>
+        /// Changes the current active header. It also animates the location plate.
         /// </summary>
         /// <example>
         /// <<changeHeader fishMarket>>
         /// </example>
-        /// <param name="parameters">1 name for the header</param>
+        /// <param name="parameters">1st element if the name for the header</param>
         private void ChangeHeader(string[] parameters)
         {
             if (parameters.Length != 1)
@@ -474,6 +508,10 @@ namespace Dialog
             }
         }
 
+        /// <summary>
+        /// Prints a message into Debug.LogWarning()
+        /// </summary>
+        /// <param name="parameter">The message to be displayed in Debug.LogWarning()</param>
         private void DebugLog(string[] parameter)
         {
             Debug.LogWarning("Incoming warning from Yarn");
@@ -483,7 +521,9 @@ namespace Dialog
         #region PlayAudio
 
         /// <summary>
-        /// 
+        /// Plays the looping background music. In the game, only one background music can be played at a time.
+        /// When invoked, it will attempt to fade out the previous audio, and fade in the current
+        /// audio requested.
         /// </summary>
         /// <example>
         /// <<playAudio audioName>>
@@ -525,6 +565,10 @@ namespace Dialog
             Debug.LogWarning($"Audio name not found: {searchTerm}");
         }
 
+        /// <summary>
+        /// Gets an unused audio from the pool or a newly instantiated one.
+        /// </summary>
+        /// <returns></returns>
         private FadedAudio GetNewAudio()
         {
             if (Pool.Count == 0)
@@ -539,6 +583,10 @@ namespace Dialog
             }
         }
 
+        /// <summary>
+        /// Receives an unused audio to be put back into the pool
+        /// </summary>
+        /// <param name="fadedAudio"></param>
         public void ReturnAudio(FadedAudio fadedAudio)
         {
             Pool.Push(fadedAudio);
@@ -548,6 +596,11 @@ namespace Dialog
 
         #region DoPuzzle
 
+        /// <summary>
+        /// Makes all shelf item disappear
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <example><<clearShelfItem>></example>
         private void ClearShelfItem(string[] parameters)
         {
             foreach (var shelfItem in _shelfItemList)
@@ -555,18 +608,18 @@ namespace Dialog
                 shelfItem.gameObject.SetActive(false);
             }
 
-            // for (int i = _shelfItemList.Count - 1; i >= 0; i--)
-            // {
-            //     Destroy(_shelfItemList[i].gameObject);
-            //     _shelfItemList.RemoveAt(i);
-            // }
-
-            // if (_shownShelfItem == null) return;
-            // Destroy(_shownShelfItem.gameObject);
-
             _saveClient.autoSave.shownItem = "";
         }
 
+        /// <summary>
+        /// Use DoPuzzle in Yarn as <<doPuzzle puzzleName>>
+        /// </summary>
+        /// <param name="parameters">The only puzzle name supported is "shelf"</param>
+        /// <param name="onComplete">onComplete will be invoked when the puzzle is done</param>
+        /// Note: Originally, there were supposed to be puzzles. The puzzles would fall apart,
+        /// and you would have to put them in their proper positions. Then, we just
+        /// scrapped the idea. The current mechanic is a lot more simplified than
+        /// what was originally planned.
         private void DoPuzzle(string[] parameters, System.Action onComplete)
         {
             // todo??? puzzle shelf no args???
@@ -585,37 +638,26 @@ namespace Dialog
             }
 
             string searchTerm = parameters[0].ToUpper();
-            foreach (var puzzleItem in puzzleList)
-            {
-                if (!puzzleItem.name.ToUpper().Equals(searchTerm)) continue;
-
-                // todo hide elements
-                ShowElements(false);
-                _puzzle = Instantiate(puzzleItem.puzzlePrefab).GetComponent<PuzzleParent>();
-                _onComplete = onComplete;
-                _puzzle.SetCustomCommand(this);
-                Debug.Assert(_puzzle != null);
-
-                return;
-            }
-
+            Debug.LogWarning("Deprecated use for doPuzzle");
             Debug.LogWarning($"Puzzle name not found: {searchTerm}");
             onComplete.Invoke();
         }
 
+        /// <summary>
+        /// Makes the interactive shelf part in Byrnhilda's story appear.
+        /// </summary>
+        /// <param name="parameters"></param>
         private void DoShelfPuzzle(string[] parameters)
         {
-            // todo: make shelf appear
-
-            // todo: give each item the call plus variable to change
             if (_shelfItemList.Count == 0)
             {
                 if (_shownShelfItem != null)
                 {
                     Destroy(_shownShelfItem.gameObject);
                 }
+
                 _shownShelfItem = null;
-                
+
                 foreach (var shelfItemData in shelfItemDataList)
                 {
                     ShelfItem shelfItem = shelfItemData.CreateObject();
@@ -640,6 +682,10 @@ namespace Dialog
             }
         }
 
+        /// <summary>
+        /// Acts as an interface for shelf item to call when they are clicked.
+        /// </summary>
+        /// <param name="shelfItem"></param>
         public void InformShelfItemTouched(ShelfItem shelfItem)
         {
             _shownShelfItem = shelfItem;
@@ -654,7 +700,6 @@ namespace Dialog
                 if (shelfItem != _shelfItemList[i])
                 {
                     _shelfItemList[i].gameObject.SetActive(false);
-                    // Destroy(_shelfItemList[i].gameObject);
                 }
                 else
                 {
@@ -672,31 +717,29 @@ namespace Dialog
             _onComplete.Invoke();
         }
 
-        public void InformPuzzleDone()
-        {
-            StartCoroutine(CoroutineInformPuzzleDone());
-        }
-
-        private IEnumerator CoroutineInformPuzzleDone()
-        {
-            yield return new WaitForSeconds(delayTime);
-            Destroy(_puzzle.gameObject);
-            UnblockYarn();
-        }
-
         #endregion DoPuzzle
 
+        /// <summary>
+        /// ShowElements can only make characters leave.
+        /// </summary>
+        /// <param name="shouldShow">
+        /// This function will only work if you pass shouldShow as true
+        /// </param>
         public void ShowElements(bool shouldShow)
         {
             dialogueUiManager.ShowElements(shouldShow);
         }
 
-        public void UnblockYarn()
-        {
-            ShowElements(true);
-            _onComplete.Invoke();
-        }
-
+        /// <summary>
+        /// Sets the last dialog to the given parameter without making the dialog
+        /// appear on-screen.
+        /// </summary>
+        /// <param name="parameters">Fake dialogue separated by a space/param>
+        /// <remarks>
+        /// This is very useful for parts without dialog, and we still want
+        /// to give context about the last dialog when saving.
+        /// </remarks>
+        /// <example><<fakeLastDialog I just finished cleaning up the shelf...>></example>
         private void FakeLastDialog(String[] parameters)
         {
             string message = "";
@@ -715,6 +758,23 @@ namespace Dialog
             dialogueUiManager.SetFakeLastDialog(speaker, message);
         }
 
+        /// <summary>
+        /// Fades in or fades out a plain foreground.
+        /// </summary>
+        /// <param name="parameters">
+        /// 1st element: on or off
+        /// - on will make the foreground appear
+        /// - off will make the foreground disappear
+        /// 2nd element: float as transition duration
+        /// 3rd element: block?
+        /// - if the 3rd element is block, the function will block yarn until it finishes its transition
+        /// 4th element: the color of the background
+        /// - Only white or black is supported
+        ///
+        /// If there are 7 elements:
+        /// - 4th, 5th, 6th, 7th elements would be float values that correspond to r, g, b, a in Color
+        /// </param>
+        /// <param name="onComplete"></param>
         private void FadePlainBackground(string[] parameters, System.Action onComplete)
         {
             if (!gameConfiguration.ShowVisualEffects)
@@ -722,7 +782,7 @@ namespace Dialog
                 onComplete.Invoke();
                 return;
             }
-            
+
             if (parameters.Length == 0)
             {
                 Debug.LogWarning("fadePlainBackground needs one argument");
@@ -793,12 +853,19 @@ namespace Dialog
             _transitionStartTime = Time.time;
         }
 
+        /// <summary>
+        /// Writes relevant savable information to auto save when requested.
+        /// </summary>
         public void WriteAutoSave()
         {
             _saveClient.autoSave.lastAudioName = _lastAudioName;
             _saveClient.autoSave.lastHeader = _lastLocation;
         }
 
+        /// <summary>
+        /// Returns unused audio into the audio pool.
+        /// </summary>
+        /// <param name="finished"></param>
         public void ReturnInstantAudio(PoolableInstantAudio finished)
         {
             _instantAudioPool.Push(finished);
