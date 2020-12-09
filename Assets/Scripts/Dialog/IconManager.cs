@@ -11,7 +11,7 @@ namespace Dialog
     /// <summary>
     /// IconManager handles all the character sprites that appear in the scene.
     /// </summary>
-    public class IconManager : MonoBehaviour, SaveClientCallback
+    public class IconManager : MonoBehaviour, ISaveClientCallback
     {
         public GameConfiguration gameConfiguration;
         public InformSpeakerReturn informSpeakerReturnValue = new InformSpeakerReturn();

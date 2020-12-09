@@ -8,17 +8,12 @@ namespace GameSystem.Save
     /// <summary>
     /// This class gives access to read write operations.
     /// </summary>
-    /// <remarks>
-    /// This class was separated from SaveLocator in the case where
-    /// we may have a different save source (debugging) or different operating
-    /// system.
-    ///</remarks>
     /// Reference(s):
     /// Brackeys. SAVE & LOAD SYSTEM in Unity. 2 Dec. 2018. youtu.be/XOjd_qU2Ido.
     ///     Accessed on 8 July 2020.
     public class SaveIO
     {
-        private GameConfiguration gameConfiguration;
+        private readonly GameConfiguration gameConfiguration;
 
 #if UNITY_WEBGL
         [DllImport("__Internal")]
@@ -31,20 +26,13 @@ namespace GameSystem.Save
         }
 
         /// <summary>
-        /// This class works like a Builder class but it nominalizes the actions and let's the users
-        /// configure how the actions are made.
+        /// Saves a save data into a save slot.
         /// </summary>
-        /// <remarks>
-        /// I'm anticipating for UserIndex in the future or additional arguments required
-        /// to make a save data be saved. The reason why this is an inner class is due
-        /// to the lack of friend class features in C#. I also need to configure SaveIO so that's
-        /// another separate thing from Executor.
-        /// </remarks>
         public class SlotExecutor
         {
             private int _slotIndex = 0;
             private SaveData _saveData = null;
-            private readonly JSONExecutor _jsonExecutor;
+            private readonly JsonExecutor _jsonExecutor;
             private SaveIO _saveIo;
 
             internal SlotExecutor(SaveIO saveIo)
@@ -100,25 +88,26 @@ namespace GameSystem.Save
         }
 
         /// <summary>
+        /// Saves data into a persistent json file
         /// </summary>
-        public class JSONExecutor
+        public class JsonExecutor
         {
             private string _filename = null;
             private string _jsonString = "";
             private readonly SaveIO _saveIo;
 
-            public JSONExecutor(SaveIO saveIo)
+            public JsonExecutor(SaveIO saveIo)
             {
                 _saveIo = saveIo;
             }
 
-            public JSONExecutor UsingFilename(string filename)
+            public JsonExecutor UsingFilename(string filename)
             {
                 this._filename = filename;
                 return this;
             }
 
-            public JSONExecutor UsingJsonData(string jsonString)
+            public JsonExecutor UsingJsonData(string jsonString)
             {
                 this._jsonString = jsonString;
                 return this;
@@ -151,29 +140,30 @@ namespace GameSystem.Save
             }
         }
 
+        /// <summary>
+        /// Request for a save data writer
+        /// </summary>
+        /// <returns></returns>
         public SlotExecutor RequestSlotExecutor()
         {
             return new SlotExecutor(this);
         }
 
-        public JSONExecutor RequestJsonExecutor()
+        /// <summary>
+        /// Request for a json file writer
+        /// </summary>
+        /// <returns></returns>
+        public JsonExecutor RequestJsonExecutor()
         {
-            return new JSONExecutor(this);
+            return new JsonExecutor(this);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="slotExecutor"></param>
-        /// <returns></returns>
-        /// <remarks>
-        /// </remarks>
-        private string GetPath(JSONExecutor jsonExecutor)
+        private string GetPath(JsonExecutor jsonExecutor)
         {
             return $"{Application.persistentDataPath}/{jsonExecutor.GetFilename()}.json";
         }
 
-        private bool OverwriteJson(JSONExecutor jsonExecutor)
+        private bool OverwriteJson(JsonExecutor jsonExecutor)
         {
             if (jsonExecutor.GetFilename() == null)
             {
@@ -193,12 +183,12 @@ namespace GameSystem.Save
             return true;
         }
 
-        private bool DoesExist(JSONExecutor jsonExecutor)
+        private bool DoesExist(JsonExecutor jsonExecutor)
         {
             return File.Exists(GetPath(jsonExecutor));
         }
 
-        private string LoadJsonString(JSONExecutor jsonExecutor)
+        private string LoadJsonString(JsonExecutor jsonExecutor)
         {
             var path = GetPath(jsonExecutor);
 

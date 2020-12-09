@@ -185,7 +185,7 @@ namespace GameSystem
             SavePlayerPreference();
         }
 
-        public SaveClient RequestSaveAccess(SaveClientCallback saveClientCallback)
+        public SaveClient RequestSaveAccess(ISaveClientCallback saveClientCallback)
         {
             var saveClient = gameInstance.RequestSaveAccess();
             saveClient.currentSave = currentSave;

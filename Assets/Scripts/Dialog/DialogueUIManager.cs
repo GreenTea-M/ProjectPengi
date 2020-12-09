@@ -19,7 +19,7 @@ namespace Dialog
     /// Modified version of YarnSpinner's sample DialogueUI
     /// </summary>
     /// <seealso cref="DialogueUI"/>
-    public class DialogueUIManager : Yarn.Unity.DialogueUIBehaviour, SaveClientCallback
+    public class DialogueUIManager : Yarn.Unity.DialogueUIBehaviour, ISaveClientCallback
     {
         [FormerlySerializedAs("assetManager")] public IconManager iconManager;
         public InputManager inputManager;

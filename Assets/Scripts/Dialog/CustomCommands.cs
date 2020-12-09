@@ -18,7 +18,7 @@ namespace Dialog
     /// CustomCommand has all the functions that can be used as a command in Yarn.
     /// </summary>
     [RequireComponent(typeof(CinemachineImpulseSource))]
-    public class CustomCommands : MonoBehaviour, SaveClientCallback, PoolableInstantAudio.IPooler
+    public class CustomCommands : MonoBehaviour, ISaveClientCallback, PoolableInstantAudio.IPooler
     {
         public GameConfiguration gameConfiguration;
 

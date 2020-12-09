@@ -9,7 +9,7 @@ using Yarn.Unity;
 
 namespace Manager
 {
-    public class DialogSceneManager : MonoBehaviour, SaveClientCallback
+    public class DialogSceneManager : MonoBehaviour, ISaveClientCallback
     {
         public GameConfiguration gameConfiguration;
         public DialogueRunner runner;

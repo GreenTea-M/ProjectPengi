@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Manager
 {
-    public class MainMenuManager : MonoBehaviour, SaveClientCallback
+    public class MainMenuManager : MonoBehaviour, ISaveClientCallback
     {
         public GameConfiguration gameConfiguration;
         public Button newGameButton;

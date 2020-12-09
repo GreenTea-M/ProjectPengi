@@ -2,6 +2,9 @@ using System;
 
 namespace GameSystem.Save
 {
+    /// <summary>
+    /// Player preferences POD
+    /// </summary>
     [Serializable]
     public class PlayerPreferences
     {
