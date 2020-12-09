@@ -3,16 +3,6 @@ tags:
 colorID: 0
 position: -559,-9
 ---
-<<fadePlainBackground on 0.5 block white>>
-<forceNext>
-<<playAudio Market>>
-<<wait 0.2>>
-<<changeBackground street>>
-<<fadePlainBackground off 0.5 block white>>
-<forceNext>
-<<enterStage oldMole>>
-// <<changeBackground patsOffice>>
-// Fade in background of street? Will add in later version
 Pengi: Okokok OK!
 Pengi: I got this!
 Pengi: Phew. 
@@ -133,13 +123,7 @@ P, pilot: Huh?
     <<playSFX SFXsoftwhack>>
     <<shake>>
 P, pilot: Stop. Stop. Stop!
-[[Intro.Office]]
-===
-title: Intro.Office
-tags: 
-colorID: 0
-position: -1045,-9
----
+
 <<playSFX SFXwhack>>
 <<playAudio officeBg>>
 <<fadePlainBackground on 2 block white>>
@@ -148,6 +132,13 @@ Pengi: <forceNext>
 This is a hack <forceNext>
 <<wait 2>>
 <<fadePlainBackground off 1 block white>>
+[[Intro.Office]]
+===
+title: Intro.Office
+tags: 
+colorID: 0
+position: -1045,-9
+---
 <<enterStage Paul>>
 
 <i>Wiping off the drool running down their face, Pengi opens their eyes and realizes they are back in their dour office, surrounded by the same coworkers, sitting in the desk they had been assigned a year ago.</i>
@@ -180,13 +171,6 @@ PtC: Think she’s got an important assignment for you.
 <<exitStage Paul>>
 <i>Pengi rolls their eyes before leaving their desk.</i>
 <<hideItem paperStack>>
-[[Intro.Boss]]
-===
-title: Intro.Boss
-tags: 
-colorID: 0
-position: -795,-10
----
 <<fadePlainBackground on 0.5 block white>>
 <forceNext>
 <<wait 0.2>>
@@ -194,6 +178,14 @@ position: -795,-10
 <<fadePlainBackground off 0.5 block white>>
 <forceNext>
 <<enterStage Patricia>>
+
+[[Intro.Boss]]
+===
+title: Intro.Boss
+tags: 
+colorID: 0
+position: -795,-10
+---
 <i>They walk up to the boss lady’s office, which is fenced in from both sides by cubicles of people Pengi has never seen outside the office.<i/>
 <i>When they finally arrive in front of the glass door of the boss’ office, they take a long breath and turn the handle.</i>
 PB: Ah, Pengsworth, just the bird I wanted to see!
@@ -264,5 +256,13 @@ P: ...
 <i> Filled with determination, they snatch the envelope back from Paul and rush out the office with only a single purpose in mind.</i>
 <i> That raise was theirs.</i>
 //Fade out and add pause as we transition to a new area
+<<fadePlainBackground on 0.5 block white>>
+<forceNext>
+<<playAudio Market>>
+<<wait 0.2>>
+<<changeBackground street>>
+<<fadePlainBackground off 0.5 block white>>
+<forceNext>
+<<enterStage oldMole>>
 [[Intro.Mole]]
 ===
