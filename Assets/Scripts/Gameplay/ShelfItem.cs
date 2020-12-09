@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Dialog;
 using UnityEngine;
 using Yarn;
@@ -7,6 +6,9 @@ using Random = UnityEngine.Random;
 
 namespace Gameplay
 {
+    /// <summary>
+    /// Shelf items in Byrnhilda's interactive section.
+    /// </summary>
     public class ShelfItem : MonoBehaviour, IClickable
     {
         public float forceMultiplier = 40f;

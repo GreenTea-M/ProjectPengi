@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Configuration;
-using Gameplay;
+﻿using System.Collections.Generic;
 using GameSystem;
 using GameSystem.Save;
-using Others;
 using UI;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Dialog
 {
+    /// <summary>
+    /// IconManager handles all the character sprites that appear in the scene.
+    /// </summary>
     public class IconManager : MonoBehaviour, SaveClientCallback
     {
         public GameConfiguration gameConfiguration;
@@ -69,6 +66,11 @@ namespace Dialog
             return script;
         }
 
+        /// <summary>
+        /// Checks out who the current speaker is, and adjusts the state of every character.
+        /// </summary>
+        /// <param name="candidateSpeaker"></param>
+        /// <returns></returns>
         public InformSpeakerReturn InformSpeaker(string candidateSpeaker)
         {
             // find out who is the active speaker
@@ -126,6 +128,10 @@ namespace Dialog
             return informSpeakerReturnValue;
         }
 
+        /// <summary>
+        /// Forces all characters to leave without removing the ability to reappear
+        /// </summary>
+        /// <param name="shouldShow">If true, does not do anything</param>
         public void ShowElements(bool shouldShow)
         {
             if (!shouldShow)
@@ -145,6 +151,13 @@ namespace Dialog
             _saveClient.autoSave.SetActiveSpeakerList(_activeCharacterList);
         }
 
+        /// <summary>
+        /// Adds an inactive character to the active character list.
+        /// A character in an active character list enables them to appear in the scene.
+        /// Otherwise, the narrator will take their script.
+        /// Calling enter stage on a character that's already active does nothing.
+        /// </summary>
+        /// <param name="characterName"></param>
         public void EnterStage(string characterName)
         {
             if (DoesActiveCharacterListContain(characterName))
@@ -164,6 +177,11 @@ namespace Dialog
             Debug.LogWarning($"EnterStage: Character {characterName} not in character list");
         }
 
+        /// <summary>
+        /// Checks if the given name belongs to any of the active characters.
+        /// </summary>
+        /// <param name="characterName"></param>
+        /// <returns></returns>
         private bool DoesActiveCharacterListContain(string characterName)
         {
             foreach (var characterScript in _activeCharacterList)
@@ -177,6 +195,10 @@ namespace Dialog
             return false;
         }
 
+        /// <summary>
+        /// Removes an active character from the inactive character list, once.
+        /// </summary>
+        /// <param name="characterName"></param>
         public void ExitStage(string characterName)
         {
             for (int i = 0; i < _activeCharacterList.Count; i++)
@@ -191,7 +213,7 @@ namespace Dialog
 
             Debug.LogWarning($"ExitStage: Character {characterName} not in character list");
         }
-
+        
         public void CreateButtons(int optionsLength)
         {
             _mainCharacter.CreateButtons(optionsLength);
@@ -213,11 +235,20 @@ namespace Dialog
             _narratingCharacter.ResetTextLocation();
         }
 
+        /// <summary>
+        /// Checks what the index is for an active character in the stack of characters who last spoke.
+        /// This is useful for determining their position when there are multiple side characters active in the scene.
+        /// </summary>
+        /// <param name="unifiedCharacterScript"></param>
+        /// <returns></returns>
         public int GetSideCharacterIndex(UnifiedCharacterScript unifiedCharacterScript)
         {
             return _activeCharacterList.IndexOf(unifiedCharacterScript);
         }
 
+        /// <summary>
+        /// Activates the alternative text location for the narrating character.
+        /// </summary>
         public void InformShowingOptions()
         {
             _narratingCharacter.SetTextAlternativeLocation();

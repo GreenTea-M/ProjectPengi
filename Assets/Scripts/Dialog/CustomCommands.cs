@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
@@ -10,7 +9,6 @@ using Others;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using Yarn.Unity;
 using Object = UnityEngine.Object;
 

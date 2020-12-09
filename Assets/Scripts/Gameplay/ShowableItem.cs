@@ -8,7 +8,7 @@ using Yarn.Unity;
 namespace Gameplay
 {
     /// <summary>
-    /// Limitation: not saved
+    /// Common component for objects that can be shown in the scene through the YarnCommand <<showItem>>.
     /// </summary>
     public class ShowableItem : MonoBehaviour
     {

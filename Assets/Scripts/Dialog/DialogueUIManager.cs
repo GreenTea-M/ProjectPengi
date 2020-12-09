@@ -8,7 +8,6 @@ using GameSystem;
 using GameSystem.Save;
 using UI;
 using UnityEngine;
-using UnityEngine.Assertions.Comparers;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Yarn;
@@ -346,6 +345,12 @@ namespace Dialog
             onComplete();
         }
 
+        /// <summary>
+        /// Executes effects that are placed as html tags in the script instead of yarn commands
+        /// </summary>
+        /// <param name="effect"></param>
+        /// <param name="textSpeedMultiplier"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         private void ExecuteEffect(SpecialTextMark effect, ref float textSpeedMultiplier)
         {
             switch (effect.effect)
@@ -367,6 +372,11 @@ namespace Dialog
             }
         }
 
+        /// <summary>
+        /// Checks if the tag is whitelisted
+        /// </summary>
+        /// <param name="markupText"></param>
+        /// <returns></returns>
         private bool IsWhiteListed(string markupText)
         {
             string markupLower = markupText.ToLower();
@@ -391,14 +401,13 @@ namespace Dialog
             return false;
         }
 
+        /// <summary>
+        /// Adjust markups that may contain special characters, like color
+        /// </summary>
+        /// <param name="markupBuilder"></param>
         private void AdjustMarkups(StringBuilder markupBuilder)
         {
             markupBuilder.Replace("<color=", "<color=#");
-        }
-
-        private string AdjustMarkups(String markupBuilder)
-        {
-            return markupBuilder.Replace("<color=", "<color=#");
         }
 
         public override void RunOptions(OptionSet optionSet, ILineLocalisationProvider localisationProvider,

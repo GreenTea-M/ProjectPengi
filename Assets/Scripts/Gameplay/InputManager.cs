@@ -1,11 +1,13 @@
 using System;
 using Dialog;
-using Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Gameplay
 {
+    /// <summary>
+    /// InputManager distributes the input to different systems, and it will block or modify some inputs depending on its state.
+    /// </summary>
     public class InputManager : MonoBehaviour
     {
         public DialogueUIManager dialogueUiManager;
@@ -15,7 +17,7 @@ namespace Gameplay
         public InputState inputState = InputState.Normal;
         
         private Camera _camera;
-        private float _toleratedTime = 0f;
+        private float _toleratedTime;
 
         private void Awake()
         {
