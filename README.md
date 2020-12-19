@@ -12,9 +12,9 @@ This was a group project made for STS 350.
 [You can watch our trailer on YouTube by clicking this link.](https://www.youtube.com/watch?v=4P3LrOflOBQ&feature=youtu.be)
 
 # Where to play
-The game is available on Windows (best resolution), and you can download this versions of the game in [itch.io](https://turnipxenon.itch.io/pengi). <br/><br/>
+The game is available on Windows (best resolution), and you can download this version of the game in [itch.io](https://turnipxenon.itch.io/pengi). <br/><br/>
 <a href="https://turnipxenon.itch.io/pengi"><img src="https://static.itch.io/images/badge.svg" height="64"></a><br><br>
-Or, you can play the game in your browser by clicking the button below or [clicking this link](https://greentea-m.github.io/Pengi/). <br/><br/>
+Or, you can play the game in your browser by clicking the image below or [by clicking this link](https://greentea-m.github.io/Pengi/). <br/><br/>
 <a href="https://greentea-m.github.io/Pengi/"><img src="/Docs/play-in-browser-button.png" height="256"></a>
 
 # How to play
@@ -32,7 +32,7 @@ disable the screen shakes and flashes.
 
 # Green Tea-m
 ![Green Tea-m logo](Docs/Tea_Logo.gif)
-<br/>
+<br/><br/>
 This game was developed by Green Tea-m.
 * EJ Meneses
 * Liv McRobbie
