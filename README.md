@@ -14,7 +14,7 @@ This was a group project made for STS 350.
 The game is available on Windows (best resolution), and you can download this versions of the game in [itch.io](https://turnipxenon.itch.io/pengi). <br/><br/>
 <a href="https://turnipxenon.itch.io/pengi"><img src="https://static.itch.io/images/badge.svg" height="64"></a><br><br>
 Or, you can play the game in your browser by clicking the button below or [clicking this link](https://greentea-m.github.io/Pengi/). <br/><br/>
-<a href="https://greentea-m.github.io/Pengi/"><img src="https://static.itch.io/images/badge.svg" height="64"></a>
+<a href="https://greentea-m.github.io/Pengi/"><img src="/Docs/play-in-browser-button.png" height="64"></a>
 
 # How to play
 * You can right click, use the spacebar, or use the enter key to move through the dialogue. 
@@ -87,4 +87,4 @@ These fonts are in Assets/Art/Font
 All custom scripts and scene files are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
 ## Assets
-Unless mentioned otherwise, all other art assets (files in `Assets/Art/` and `Assets/Audio/`) should not be used anywhere else. Please don't make our artists sad.
+Unless mentioned otherwise, all other art assets (files in `Assets/Art/` and `Assets/Audio/`) should not be used anywhere else. Please don't make our artists sad. :(
