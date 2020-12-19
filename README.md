@@ -31,6 +31,7 @@ disable the screen shakes and flashes.
 
 # Green Tea-m
 ![Green Tea-m logo](Docs/Tea_Logo.gif)
+<br/>
 This game was developed by Green Tea-m.
 * EJ Meneses
 * Liv McRobbie
