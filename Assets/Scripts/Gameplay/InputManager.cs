@@ -2,6 +2,7 @@ using System;
 using Dialog;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 namespace Gameplay
 {
@@ -12,12 +13,13 @@ namespace Gameplay
     {
         public DialogueUIManager dialogueUiManager;
         public float clickDelay = 0.25f;
-        
-        [HideInInspector]
-        public InputState inputState = InputState.Normal;
-        
+        public float androidTouchDelay = 0.1f;
+
+        [HideInInspector] public InputState inputState = InputState.Normal;
+
         private Camera _camera;
         private float _toleratedTime;
+        private bool _requestRaycast = false;
 
         private void Awake()
         {
@@ -49,7 +51,9 @@ namespace Gameplay
         {
             if (context.started)
             {
-                var position = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                Vector3 position;
+                position = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
                 var hit = Physics2D.Raycast(position, Vector2.zero);
 
                 if (hit)
@@ -71,7 +75,7 @@ namespace Gameplay
                     }
                 }
             }
-            
+
             // for mouse clicks:
             ContinueText(context);
         }
@@ -82,7 +86,7 @@ namespace Gameplay
             inputState = state;
         }
     }
-    
+
 
     public enum InputState
     {

@@ -276,6 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueUiManager: {fileID: 1856837811}
   clickDelay: 0.25
+  androidTouchDelay: 0.125
   inputState: 0
 --- !u!1 &113402248
 GameObject:
@@ -1534,6 +1535,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 819417288}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &819417290 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9179845449656107089, guid: 8d29f822e8fbccc41afa6b7b1fc68994,
+    type: 3}
+  m_PrefabInstance: {fileID: 819417288}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462502180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa2fdac40534cc28036ad2d2782a8e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &971322465 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1064279660772767343, guid: d20af860a4a87c84eb5bfb43e72d26f9,
@@ -1707,7 +1720,7 @@ MonoBehaviour:
   popupObject: {fileID: 971322465}
   popupMessage: {fileID: 670499634}
   dialogSceneManager: {fileID: 1066951501}
-  backButton: {fileID: 0}
+  backButton: {fileID: 819417290}
 --- !u!114 &1066951500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2801,7 +2814,7 @@ MonoBehaviour:
     displayName: Bargain Barrel
   - name: street
     aliases: []
-    prefab: {fileID: 9008790985451863317, guid: f8ace03fa9eac97479973fd223999724,
+    prefab: {fileID: 9008790985451863317, guid: 9902b0a3feef3284cba8919f4cbb97eb,
       type: 3}
     displayName: Street
   - name: shelf
