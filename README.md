@@ -1,3 +1,4 @@
+![Gameplay footage 1](/Docs/pengi-header03.gif)
 # Pengi
 Pengi is an ~~interactive fiction~~ interfic about Pengi the penguin working for real estate.
 Will Pengi get to convince the mall folks to hand out their stores?
