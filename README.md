@@ -53,10 +53,11 @@ For example, if you left click and press enter at the same time, the game will f
 and the game won’t freeze. You can alternate between left clicking, and pressing the spacebar, and the game won’t freeze.
 
 # Documents
-* [Walkthrough document](Docs/PENGI%20Walkthrough.pdf)
+Note: The pdfs don't render well on github. It might be better to download them.
+* [Walkthrough document (spoilers)](Docs/PENGI%20Walkthrough.pdf)
 * [Workflow documentation](Docs/Public%20workflow%20documentation.pdf)
 * [Custom yarn commands in the script](Docs/CustomCommands.md)
-* [Our chaotic script in Gist](https://gist.github.com/TurnipXenon/634bd8024ef23ecea396539316ea7efd)
+* [Our chaotic script in Gist (spoilers)](https://gist.github.com/TurnipXenon/634bd8024ef23ecea396539316ea7efd)
 
 # Code references
 These are code references that helped us make the game.
