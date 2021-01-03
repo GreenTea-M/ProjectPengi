@@ -67,7 +67,7 @@ These are code references that helped us make the game.
 # External assets
 These are external assets that were made by other people.
 ## Code
-[YarnSpinner by Secret Lab](https://github.com/YarnSpinnerTool/YarnSpinner)
+[YarnSpinner by Secret Lab](https://github.com/YarnSpinnerTool/YarnSpinner)</br>
 [Unite 2017 - Game Architecture with Scriptable Objects by Ryan Hipple](https://github.com/roboryantron/Unite2017)
 - The scripts are located in Assets/Scripts/RoboRyanTron.Unite2017
 
